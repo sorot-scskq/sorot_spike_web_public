@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Application</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            pre = document.getElementById('outputContent');
+            document.getElementById('loadScenarioButton').addEventListener('click', function() {
+                if (typeof window.load === 'function') {
+                    window.load();
+                }
+            });
+
+            document.getElementById('startRunButton').addEventListener('click', function() {
+                // 走行開始の処理をここに追加
+                pre.innerHTML += "走行を開始します。\n";
+                if (typeof window.main === 'function') {
+                    window.main();
+                }
+            });
+            document.getElementById('startUnitTestButton').addEventListener('click', function() {
+                if (typeof window.main === 'function') {
+                    window.runUnitTest();
+                }
+            });
+        });
+    
+    </script>
+    <style>
+        /* クラスで適用する場合 */
+        .narrow-input {
+            font-family: monospace; /* 文字幅を安定させる */
+            width: 6em;             /* 約4文字分 */
+            box-sizing: border-box; /* padding を幅に含める */
+            padding: 2px 4px;
+            text-align: right;
+        }
+        .custom-canvas {
+            border: 1px solid black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 750px;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/main-CHT--q3O.js"></script>
+</head>
+<body>
+    <div style="display: flex;">
+        <canvas id="pdf" width="500" height="750" class="custom-canvas"></canvas>
+        <canvas id="field" width="500" height="750" class="custom-canvas"></canvas>
+        <canvas id="trailCanvas" width="500" height="750" class="custom-canvas" style="pointer-events: none;"></canvas>
+    </div>
+    <div style="display: flex;margin-left:500px;">
+        <div style="margin-left: 20px;">
+
+            <div>
+                <h2>Sorot-Spikeテストツール</h2>
+                <button id="loadScenarioButton">シナリオ読み込み</button>
+                <button id="startRunButton">走行開始</button>
+                <button id="startUnitTestButton">単体テスト開始</button><BR/><BR/>
+
+                <textarea id="scenarioInput" rows="10" cols="100" placeholder="シナリオを入力してください...">
+                </textarea><BR/>
+            </div>
+
+            <div>
+                <h4>ロボット情報</h4>
+                <label for="leftPower">左モーター出力:</label>
+                <input type="number" id="leftPower" min="-1" max="1" step="0.01" value="0">
+                <input type="range" id="leftPowerRange" min="-100" max="100" step="1" value="0" oninput="document.getElementById('leftPower').value = this.value;">
+                <label for="rightPower">右モーター出力:</label>
+                <input type="number" id="rightPower" min="-1" max="1" step="0.01" value="0">
+                <input type="range" id="rightPowerRange" min="-100" max="100" step="1" value="0" oninput="document.getElementById('rightPower').value = this.value;">
+                <BR/>
+                <label for="xCoord">X座標:</label>
+                <input type="number" id="xCoord" value="0" step="0.1" class="narrow-input">
+                <label for="yCoord">Y座標:</label>
+                <input type="number" id="yCoord" value="0" step="0.1" class="narrow-input">
+                <label for="angle">角度:</label>
+                <input type="number" id="angle" value="0" step="1" class="narrow-input">
+            </div>
+            <div>
+                <h4>シナリオ情報</h4>
+                <label for="sno">SNO:</label>
+                <input type="number" id="sno" value="0" step="1" class="narrow-input">
+                <label for="cno">CNO:</label>
+                <input type="number" id="cno" value="0" step="1" class="narrow-input">
+                <label for="fwd">FWD:</label>
+                <input type="number" id="fwd" value="0" step="1" class="narrow-input">
+                <label for="trn">TRN:</label>
+                <input type="number" id="trn" value="0" step="1" class="narrow-input">
+            </div>
+            <div>
+                <h4>走行体情報</h4>
+                <label for="distance">距離:</label>
+                <input type="number" id="distance" value="0" step="0.1" class="narrow-input">
+                <label for="x">x:</label>
+                <input type="number" id="x" value="0" step="0.1" class="narrow-input">
+                <label for="y">y:</label>
+                <input type="number" id="y" value="0" step="0.1" class="narrow-input">
+                <label for="angle2">angle2:</label>
+                <input type="number" id="angle2" value="0" step="0.1" class="narrow-input"><BR/>
+            </div>
+
+            <div id="outputArea" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">
+                <h2>実行結果</h2>
+                <pre id="outputContent"></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

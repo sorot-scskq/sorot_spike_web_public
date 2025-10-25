@@ -1,0 +1,39 @@
+# ロボット設定ファイル
+
+width: 40
+height: 40
+color: "gray"
+
+# 初期位置設定
+initial_position:
+  x: 427 # 初期X座標
+  y: 30  # 初期Y座
+  angle: 90  # 初期角度
+
+wheel:
+  # radius: 50  # 車輪半径[mm]
+  # interval: 120  # 車輪間隔[mm]
+  radius: 27.5  # 車輪半径[mm]
+  interval: 125  # 車輪間隔[mm]
+
+# 速度制御設定
+speed:
+  sample_num: 10  # サンプル数
+  max_speed: 18  # 最大速度
+
+# 方向制御設定
+direction:
+  drive_direction_cnt: 5  # 方向数
+
+# タスク設定
+task:
+  period: 10  # タスク周期[ms]
+
+# センサー設定
+sensors:
+  color:
+    black_threshold: 0  # 黒の閾値
+    white_threshold: 70  # 白の閾値
+  sonar:
+    enabled: true  # ソナー有効/無効
+    max_distance: 200  # 最大検知距離[mm]

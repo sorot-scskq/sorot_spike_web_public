@@ -1,0 +1,4715 @@
+[
+    [
+        {
+            "Comment": "シナリオ1: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 1,
+            "CNO": 1,
+            "PRVSNO": 1,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ2: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 2,
+            "CNO": 1,
+            "PRVSNO": 2,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ3: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 3,
+            "CNO": 1,
+            "PRVSNO": 3,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ4: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 4,
+            "CNO": 1,
+            "PRVSNO": 4,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ5: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 5,
+            "CNO": 1,
+            "PRVSNO": 5,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ6: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 6,
+            "CNO": 1,
+            "PRVSNO": 6,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ7: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 7,
+            "CNO": 1,
+            "PRVSNO": 7,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ8: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 8,
+            "CNO": 1,
+            "PRVSNO": 8,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ9: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_X (X座標 500)",
+            "SNO": 9,
+            "CNO": 1,
+            "PRVSNO": 9,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ10: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 10,
+            "CNO": 1,
+            "PRVSNO": 10,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ11: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 11,
+            "CNO": 1,
+            "PRVSNO": 11,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ12: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 12,
+            "CNO": 1,
+            "PRVSNO": 12,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ13: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 13,
+            "CNO": 1,
+            "PRVSNO": 13,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ14: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 14,
+            "CNO": 1,
+            "PRVSNO": 14,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ15: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 15,
+            "CNO": 1,
+            "PRVSNO": 15,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ16: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 16,
+            "CNO": 1,
+            "PRVSNO": 16,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ17: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 17,
+            "CNO": 1,
+            "PRVSNO": 17,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ18: 組み合わせテスト: 走行方法: LEFT_EDGE_PID (左エッジPID走行) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 18,
+            "CNO": 1,
+            "PRVSNO": 18,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 1,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ19: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 19,
+            "CNO": 1,
+            "PRVSNO": 19,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ20: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 20,
+            "CNO": 1,
+            "PRVSNO": 20,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ21: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 21,
+            "CNO": 1,
+            "PRVSNO": 21,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ22: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 22,
+            "CNO": 1,
+            "PRVSNO": 22,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ23: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 23,
+            "CNO": 1,
+            "PRVSNO": 23,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ24: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 24,
+            "CNO": 1,
+            "PRVSNO": 24,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ25: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 25,
+            "CNO": 1,
+            "PRVSNO": 25,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ26: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 26,
+            "CNO": 1,
+            "PRVSNO": 26,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ27: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_X (X座標 500)",
+            "SNO": 27,
+            "CNO": 1,
+            "PRVSNO": 27,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ28: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 28,
+            "CNO": 1,
+            "PRVSNO": 28,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ29: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 29,
+            "CNO": 1,
+            "PRVSNO": 29,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ30: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 30,
+            "CNO": 1,
+            "PRVSNO": 30,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ31: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 31,
+            "CNO": 1,
+            "PRVSNO": 31,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ32: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 32,
+            "CNO": 1,
+            "PRVSNO": 32,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ33: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 33,
+            "CNO": 1,
+            "PRVSNO": 33,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ34: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 34,
+            "CNO": 1,
+            "PRVSNO": 34,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ35: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 35,
+            "CNO": 1,
+            "PRVSNO": 35,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ36: 組み合わせテスト: 走行方法: RIGHT_EDGE_PID (右エッジPID走行) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 36,
+            "CNO": 1,
+            "PRVSNO": 36,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 2,
+                "FWD": 50,
+                "TRN": 0,
+                "KP": 3,
+                "KI": 0.1,
+                "KD": 1,
+                "NOBLNCE": 1,
+                "WPER": 50
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ37: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 37,
+            "CNO": 1,
+            "PRVSNO": 37,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ38: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 38,
+            "CNO": 1,
+            "PRVSNO": 38,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ39: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 39,
+            "CNO": 1,
+            "PRVSNO": 39,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ40: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 40,
+            "CNO": 1,
+            "PRVSNO": 40,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ41: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 41,
+            "CNO": 1,
+            "PRVSNO": 41,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ42: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 42,
+            "CNO": 1,
+            "PRVSNO": 42,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ43: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 43,
+            "CNO": 1,
+            "PRVSNO": 43,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ44: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 44,
+            "CNO": 1,
+            "PRVSNO": 44,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ45: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_X (X座標 500)",
+            "SNO": 45,
+            "CNO": 1,
+            "PRVSNO": 45,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ46: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 46,
+            "CNO": 1,
+            "PRVSNO": 46,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ47: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 47,
+            "CNO": 1,
+            "PRVSNO": 47,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ48: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 48,
+            "CNO": 1,
+            "PRVSNO": 48,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ49: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 49,
+            "CNO": 1,
+            "PRVSNO": 49,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ50: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 50,
+            "CNO": 1,
+            "PRVSNO": 50,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ51: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 51,
+            "CNO": 1,
+            "PRVSNO": 51,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ52: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 52,
+            "CNO": 1,
+            "PRVSNO": 52,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ53: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 53,
+            "CNO": 1,
+            "PRVSNO": 53,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ54: 組み合わせテスト: 走行方法: REVOLUTION (その場回転 90度) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 54,
+            "CNO": 1,
+            "PRVSNO": 54,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 3,
+                "FWD": 0,
+                "TRN": 90,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ55: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 55,
+            "CNO": 1,
+            "PRVSNO": 55,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ56: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 56,
+            "CNO": 1,
+            "PRVSNO": 56,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ57: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 57,
+            "CNO": 1,
+            "PRVSNO": 57,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ58: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 58,
+            "CNO": 1,
+            "PRVSNO": 58,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ59: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 59,
+            "CNO": 1,
+            "PRVSNO": 59,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ60: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 60,
+            "CNO": 1,
+            "PRVSNO": 60,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ61: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 61,
+            "CNO": 1,
+            "PRVSNO": 61,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ62: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 62,
+            "CNO": 1,
+            "PRVSNO": 62,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ63: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_X (X座標 500)",
+            "SNO": 63,
+            "CNO": 1,
+            "PRVSNO": 63,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ64: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 64,
+            "CNO": 1,
+            "PRVSNO": 64,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ65: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 65,
+            "CNO": 1,
+            "PRVSNO": 65,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ66: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 66,
+            "CNO": 1,
+            "PRVSNO": 66,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ67: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 67,
+            "CNO": 1,
+            "PRVSNO": 67,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ68: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 68,
+            "CNO": 1,
+            "PRVSNO": 68,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ69: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 69,
+            "CNO": 1,
+            "PRVSNO": 69,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ70: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 70,
+            "CNO": 1,
+            "PRVSNO": 70,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ71: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 71,
+            "CNO": 1,
+            "PRVSNO": 71,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ72: 組み合わせテスト: 走行方法: STRAIGHT (倒立走行) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 72,
+            "CNO": 1,
+            "PRVSNO": 72,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 4,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ73: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 73,
+            "CNO": 1,
+            "PRVSNO": 73,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ74: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 74,
+            "CNO": 1,
+            "PRVSNO": 74,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ75: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 75,
+            "CNO": 1,
+            "PRVSNO": 75,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ76: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 76,
+            "CNO": 1,
+            "PRVSNO": 76,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ77: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 77,
+            "CNO": 1,
+            "PRVSNO": 77,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ78: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 78,
+            "CNO": 1,
+            "PRVSNO": 78,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ79: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 79,
+            "CNO": 1,
+            "PRVSNO": 79,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ80: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 80,
+            "CNO": 1,
+            "PRVSNO": 80,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ81: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_X (X座標 500)",
+            "SNO": 81,
+            "CNO": 1,
+            "PRVSNO": 81,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ82: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 82,
+            "CNO": 1,
+            "PRVSNO": 82,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ83: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 83,
+            "CNO": 1,
+            "PRVSNO": 83,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ84: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 84,
+            "CNO": 1,
+            "PRVSNO": 84,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ85: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 85,
+            "CNO": 1,
+            "PRVSNO": 85,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ86: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 86,
+            "CNO": 1,
+            "PRVSNO": 86,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ87: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 87,
+            "CNO": 1,
+            "PRVSNO": 87,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ88: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 88,
+            "CNO": 1,
+            "PRVSNO": 88,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ89: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 89,
+            "CNO": 1,
+            "PRVSNO": 89,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ90: 組み合わせテスト: 走行方法: LINEAR (倒立走行 エンコーダ補正あり) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 90,
+            "CNO": 1,
+            "PRVSNO": 90,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 5,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ91: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 91,
+            "CNO": 1,
+            "PRVSNO": 91,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ92: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 92,
+            "CNO": 1,
+            "PRVSNO": 92,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ93: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 93,
+            "CNO": 1,
+            "PRVSNO": 93,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ94: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 94,
+            "CNO": 1,
+            "PRVSNO": 94,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ95: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 95,
+            "CNO": 1,
+            "PRVSNO": 95,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ96: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 96,
+            "CNO": 1,
+            "PRVSNO": 96,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ97: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 97,
+            "CNO": 1,
+            "PRVSNO": 97,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ98: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 98,
+            "CNO": 1,
+            "PRVSNO": 98,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ99: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_X (X座標 500)",
+            "SNO": 99,
+            "CNO": 1,
+            "PRVSNO": 99,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ100: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 100,
+            "CNO": 1,
+            "PRVSNO": 100,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ101: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 101,
+            "CNO": 1,
+            "PRVSNO": 101,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ102: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 102,
+            "CNO": 1,
+            "PRVSNO": 102,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ103: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 103,
+            "CNO": 1,
+            "PRVSNO": 103,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ104: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 104,
+            "CNO": 1,
+            "PRVSNO": 104,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ105: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 105,
+            "CNO": 1,
+            "PRVSNO": 105,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ106: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 106,
+            "CNO": 1,
+            "PRVSNO": 106,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ107: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 107,
+            "CNO": 1,
+            "PRVSNO": 107,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ108: 組み合わせテスト: 走行方法: LINEAR_SPDADJ (速度一定制御 FWD 30) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 108,
+            "CNO": 1,
+            "PRVSNO": 108,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 6,
+                "FWD": 30,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ109: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 109,
+            "CNO": 1,
+            "PRVSNO": 109,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ110: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 110,
+            "CNO": 1,
+            "PRVSNO": 110,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ111: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 111,
+            "CNO": 1,
+            "PRVSNO": 111,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ112: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 112,
+            "CNO": 1,
+            "PRVSNO": 112,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ113: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 113,
+            "CNO": 1,
+            "PRVSNO": 113,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ114: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 114,
+            "CNO": 1,
+            "PRVSNO": 114,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ115: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 115,
+            "CNO": 1,
+            "PRVSNO": 115,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ116: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 116,
+            "CNO": 1,
+            "PRVSNO": 116,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ117: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_X (X座標 500)",
+            "SNO": 117,
+            "CNO": 1,
+            "PRVSNO": 117,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ118: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 118,
+            "CNO": 1,
+            "PRVSNO": 118,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ119: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 119,
+            "CNO": 1,
+            "PRVSNO": 119,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ120: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 120,
+            "CNO": 1,
+            "PRVSNO": 120,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ121: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 121,
+            "CNO": 1,
+            "PRVSNO": 121,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ122: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 122,
+            "CNO": 1,
+            "PRVSNO": 122,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ123: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 123,
+            "CNO": 1,
+            "PRVSNO": 123,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ124: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 124,
+            "CNO": 1,
+            "PRVSNO": 124,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ125: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_TIMER (時間経過 100ms)",
+            "SNO": 125,
+            "CNO": 1,
+            "PRVSNO": 125,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ126: 組み合わせテスト: 走行方法: PHOTO (写真撮影) + スイッチ: SW_DIR (角度 45度)",
+            "SNO": 126,
+            "CNO": 1,
+            "PRVSNO": 126,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 7,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 45,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ127: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_DISTANCE (走行距離 200mm)",
+            "SNO": 127,
+            "CNO": 1,
+            "PRVSNO": 127,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 200,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ128: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_DIR (角度 90度)",
+            "SNO": 128,
+            "CNO": 1,
+            "PRVSNO": 128,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 90,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ129: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_DISTANCE (走行距離 100mm)",
+            "SNO": 129,
+            "CNO": 1,
+            "PRVSNO": 129,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 100,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ130: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_TIMER (時間経過 2000ms)",
+            "SNO": 130,
+            "CNO": 1,
+            "PRVSNO": 130,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 2000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ131: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_TIMER (時間経過 500ms)",
+            "SNO": 131,
+            "CNO": 1,
+            "PRVSNO": 131,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 500,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ132: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_TIMER (時間経過 1000ms)",
+            "SNO": 132,
+            "CNO": 1,
+            "PRVSNO": 132,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 1000,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ133: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_VAR (システム変数 無条件TRUE)",
+            "SNO": 133,
+            "CNO": 1,
+            "PRVSNO": 133,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ134: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_VAR (システム変数 ソナー検知結果)",
+            "SNO": 134,
+            "CNO": 1,
+            "PRVSNO": 134,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 1,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ135: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_X (X座標 500)",
+            "SNO": 135,
+            "CNO": 1,
+            "PRVSNO": 135,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 500,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ136: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_Y (Y座標 500)",
+            "SNO": 136,
+            "CNO": 1,
+            "PRVSNO": 136,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 500
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ137: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 137,
+            "CNO": 1,
+            "PRVSNO": 137,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ138: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 138,
+            "CNO": 1,
+            "PRVSNO": 138,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 2,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ139: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_STAIR (段差検知)",
+            "SNO": 139,
+            "CNO": 1,
+            "PRVSNO": 139,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ140: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_DISTANCE (走行距離 150mm)",
+            "SNO": 140,
+            "CNO": 1,
+            "PRVSNO": 140,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 150,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ141: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_STOP (走行スピード0検知)",
+            "SNO": 141,
+            "CNO": 1,
+            "PRVSNO": 141,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ142: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_SYNC (同期コマンド待ち)",
+            "SNO": 142,
+            "CNO": 1,
+            "PRVSNO": 142,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 512,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    ,
+    [
+        {
+            "Comment": "シナリオ143: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_DISTANCE (走行距離 10mm)",
+            "SNO": 143,
+            "CNO": 1,
+            "PRVSNO": 143,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 128,
+                "SCT": 0,
+                "SCD": 10,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ144: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_DIR (角度 10度)",
+            "SNO": 144,
+            "CNO": 1,
+            "PRVSNO": 144,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 32,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 10,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ145: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_TIME (時間 100ms)",
+            "SNO": 145,
+            "CNO": 1,
+            "PRVSNO": 145,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 1,
+                "SCT": 100,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ146: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_X (X座標 100)",
+            "SNO": 146,
+            "CNO": 1,
+            "PRVSNO": 146,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 4,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 100,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ147: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_Y (Y座標 100)",
+            "SNO": 147,
+            "CNO": 1,
+            "PRVSNO": 147,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 8,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 100
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ148: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_COLOR (白色検知)",
+            "SNO": 148,
+            "CNO": 1,
+            "PRVSNO": 148,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 6,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ149: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_COLOR (黒色検知)",
+            "SNO": 149,
+            "CNO": 1,
+            "PRVSNO": 149,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 16,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 1,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ150: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_TOUCH (タッチセンサー)",
+            "SNO": 150,
+            "CNO": 1,
+            "PRVSNO": 150,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 2,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ151: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_SONAR (ソナーセンサー)",
+            "SNO": 151,
+            "CNO": 1,
+            "PRVSNO": 151,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 64,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 100,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment": "シナリオ152: 組み合わせテスト: 走行方法: PHOTO_MULT (複数写真撮影) + スイッチ: SW_NONE (スイッチなし)",
+            "SNO": 152,
+            "CNO": 1,
+            "PRVSNO": 152,
+            "PRVCNO": 0,
+            "RunInfo": {
+                "FUNCNO": 8,
+                "FWD": 0,
+                "TRN": 0,
+                "KP": 0,
+                "KI": 0,
+                "KD": 0,
+                "NOBLNCE": 0,
+                "WPER": 0
+            },
+            "SwitchInfo": {
+                "SCJFN": 256,
+                "SCT": 0,
+                "SCD": 0,
+                "SCR": 0,
+                "SCC": 0,
+                "SCV": 0,
+                "JMPSNO": 0,
+                "SCX": 0,
+                "SCY": 0
+            },
+            "CoordCorrectInfo": {}
+        }
+    ]
+]

@@ -1,0 +1,412 @@
+[
+    [
+        {
+            "Comment":"シナリオ1: 走行方法テスト: LEFT_EDGE_PID (FUNCNO: 1) - 走行方法テスト: LEFT_EDGE_PID (左エッジPID走行)",
+            "SNO":1, "CNO":1,"PRVSNO":1,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":3,"KI":0.1,"KD":1,"NOBLNCE":1,"WPER":50},
+            "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":200,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ1: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 1, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ2: 走行方法テスト: RIGHT_EDGE_PID (FUNCNO: 2) - 走行方法テスト: RIGHT_EDGE_PID (右エッジPID走行)",
+            "SNO":2, "CNO":1,"PRVSNO":2,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":2,"FWD":50,"TRN":0,"KP":3,"KI":0.1,"KD":1,"NOBLNCE":1,"WPER":50},
+            "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":200,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ2: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 2, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ3: 走行方法テスト: REVOLUTION (FUNCNO: 3) - 走行方法テスト: REVOLUTION (その場回転)",
+            "SNO":3, "CNO":1,"PRVSNO":3,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":90,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ3: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 3, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ4: 走行方法テスト: STRAIGHT (FUNCNO: 4) - 走行方法テスト: STRAIGHT (倒立走行)",
+            "SNO":4, "CNO":1,"PRVSNO":4,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":4,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ4: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 4, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ5: 走行方法テスト: LINEAR (FUNCNO: 5) - 走行方法テスト: LINEAR (倒立走行 エンコーダ補正あり)",
+            "SNO":5, "CNO":1,"PRVSNO":5,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ5: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 5, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ6: 走行方法テスト: LINEAR_SPDADJ (FUNCNO: 6) - 走行方法テスト: LINEAR_SPDADJ (速度一定制御)",
+            "SNO":6, "CNO":1,"PRVSNO":6,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":2000,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ6: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 6, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ7: 走行方法テスト: PHOTO (FUNCNO: 7) - 走行方法テスト: PHOTO (写真撮影)",
+            "SNO":7, "CNO":1,"PRVSNO":7,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":7,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":500,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ7: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 7, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ8: 走行方法テスト: PHOTO_MULT (FUNCNO: 8) - 走行方法テスト: PHOTO_MULT (複数写真撮影)",
+            "SNO":8, "CNO":1,"PRVSNO":8,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":8,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":1000,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ8: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 8, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+
+    [
+        {
+            "Comment":"シナリオ9: スイッチテスト: 時間経過 (SW_TIMER - SCJFN: 1) - スイッチテスト: 時間経過 (SW_TIMER)",
+            "SNO":9, "CNO":1,"PRVSNO":9,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":2000,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ9: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 9, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ10: スイッチテスト: システム変数判定 (SW_VAR - SCJFN: 2, 無条件TRUE) - スイッチテスト: システム変数判定 (SW_VAR - 無条件TRUE)",
+            "SNO":10, "CNO":1,"PRVSNO":10,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ10: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 10, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ11: スイッチテスト: システム変数判定 (SW_VAR - SCJFN: 2, ソナー検知結果) - スイッチテスト: システム変数判定 (SW_VAR - ソナー検知結果)",
+            "SNO":11, "CNO":1,"PRVSNO":11,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":1,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ11: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 11, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ12: スイッチテスト: X座標 (SW_X - SCJFN: 4, 現在不使用) - スイッチテスト: X座標 (SW_X - 現在不使用)",
+            "SNO":12, "CNO":1,"PRVSNO":12,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":4,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":500,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ12: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 12, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ13: スイッチテスト: Y座標 (SW_Y - SCJFN: 8, 現在不使用) - スイッチテスト: Y座標 (SW_Y - 現在不使用)",
+            "SNO":13, "CNO":1,"PRVSNO":13,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":8,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":500},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ13: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 13, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ14: スイッチテスト: 黒色検知 (SW_COLOR - SCJFN: 16, WHITE) - スイッチテスト: 黒色検知 (SW_COLOR - WHITE)",
+            "SNO":14, "CNO":1,"PRVSNO":14,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ14: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 14, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ15: スイッチテスト: 黒色検知 (SW_COLOR - SCJFN: 16, BLACK) - スイッチテスト: 黒色検知 (SW_COLOR - BLACK)",
+            "SNO":15, "CNO":1,"PRVSNO":15,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":2,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ15: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 15, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ16: スイッチテスト: 角度指定 (SW_DIR - SCJFN: 32) - スイッチテスト: 角度指定 (SW_DIR)",
+            "SNO":16, "CNO":1,"PRVSNO":16,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":90,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ16: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 16, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ17: スイッチテスト: 段差検知 (SW_STAIR - SCJFN: 64) - スイッチテスト: 段差検知 (SW_STAIR)",
+            "SNO":17, "CNO":1,"PRVSNO":17,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":64,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ17: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 17, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ18: スイッチテスト: 走行距離 (SW_DISTANCE - SCJFN: 128) - スイッチテスト: 走行距離 (SW_DISTANCE)",
+            "SNO":18, "CNO":1,"PRVSNO":18,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":6,"FWD":20,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":150,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ18: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 18, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ19: スイッチテスト: 走行スピード0検知 (SW_STOP - SCJFN: 256) - スイッチテスト: 走行スピード0検知 (SW_STOP)",
+            "SNO":19, "CNO":1,"PRVSNO":19,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":256,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ19: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 19, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ20: スイッチテスト: 同期コマンド待ち (SW_SYNC - SCJFN: 512) - スイッチテスト: 同期コマンド待ち (SW_SYNC)",
+            "SNO":20, "CNO":1,"PRVSNO":20,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":512,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ20: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 20, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+
+    [
+        {
+            "Comment":"シナリオ21: 座標補正テスト: X補正 (ACAF: 0x01) - 座標補正テスト: X補正",
+            "SNO":21, "CNO":1,"PRVSNO":21,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":100,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{"CAPX":100,"CAPY":0,"CAPR":0,"ACAF":1}
+        },
+        {
+            "Comment": "シナリオ21: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 21, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ22: 座標補正テスト: Y補正 (ACAF: 0x02) - 座標補正テスト: Y補正",
+            "SNO":22, "CNO":1,"PRVSNO":22,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":100,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{"CAPX":0,"CAPY":100,"CAPR":0,"ACAF":2}
+        },
+        {
+            "Comment": "シナリオ22: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 22, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ23: 座標補正テスト: 角度補正 (ACAF: 0x04) - 座標補正テスト: 角度補正",
+            "SNO":23, "CNO":1,"PRVSNO":23,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":100,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{"CAPX":0,"CAPY":0,"CAPR":45,"ACAF":4}
+        },
+        {
+            "Comment": "シナリオ23: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 23, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+    [
+        {
+            "Comment":"シナリオ24: 座標補正テスト: 全体補正 (ACAF: 0x07) - 座標補正テスト: 全体補正",
+            "SNO":24, "CNO":1,"PRVSNO":24,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":1,"SCT":100,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{"CAPX":50,"CAPY":50,"CAPR":30,"ACAF":7}
+        },
+        {
+            "Comment": "シナリオ24: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 24, "PRVCNO": 1,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ],
+
+    [
+        {
+            "Comment":"シナリオ25: 複数コマンドシーケンステスト - 複数コマンドシーケンステスト: 直進後旋回 - コマンド1 (直進10cm)",
+            "SNO":25, "CNO":1,"PRVSNO":25,"PRVCNO":0,
+            "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":3,"KI":0.1,"KD":1,"NOBLNCE":1,"WPER":50},
+            "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment":"複数コマンドシーケンステスト: 直進後旋回 - コマンド2 (右旋回45度)",
+            "SNO":25, "CNO":2,"PRVSNO":25,"PRVCNO":1,
+            "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":45,"KP":0,"KI":0,"KD":0,"NOBLNCE":0,"WPER":0},
+            "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":45,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+            "CoordCorrectInfo":{}
+        },
+        {
+            "Comment": "シナリオ25: 終了コマンド",
+            "SNO": 0, "CNO": 0, "PRVSNO": 25, "PRVCNO": 2,
+            "RunInfo": {},
+            "SwitchInfo": {},
+            "CoordCorrectInfo": {}
+        }
+    ]
+]
