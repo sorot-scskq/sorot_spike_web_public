@@ -1,3 +1,4 @@
+
 @echo off
 chcp 65001 >nul
 echo Git commit and push to GitHub Pages...
