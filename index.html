@@ -4,32 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Application</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            pre = document.getElementById('outputContent');
-            document.getElementById('loadScenarioButton').addEventListener('click', function() {
-                if (typeof window.load === 'function') {
-                    window.load();
-                }
-            });
-
-            document.getElementById('startRunButton').addEventListener('click', function() {
-                // 走行開始の処理をここに追加
-                pre.innerHTML += "走行を開始します。\n";
-                if (typeof window.main === 'function') {
-                    window.main();
-                }
-            });
-            document.getElementById('startUnitTestButton').addEventListener('click', function() {
-                if (typeof window.main === 'function') {
-                    window.runUnitTest();
-                }
-            });
-        });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     
-    </script>
     <style>
         /* クラスで適用する場合 */
         .narrow-input {
@@ -48,7 +24,8 @@
             height: 750px;
         }
     </style>
-  <script type="module" crossorigin src="/assets/main-CHT--q3O.js"></script>
+  <script type="module" crossorigin src="/assets/main-Ccc9JEvY.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/app-BLSevjHY.js">
 </head>
 <body>
     <div style="display: flex;">
