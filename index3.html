@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>RunMethod ビジュアライザ</title>
+  <style>
+    body { font-family: sans-serif; margin: 12px; }
+    .controls { display:flex; gap:24px; }
+    .panel { border:1px solid #ddd; padding:12px; border-radius:6px; }
+    label { display:block; margin-top:8px; }
+    canvas { background:#fafafa; border:1px solid #ccc; }
+  </style>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/index3-Bd_Qnmoq.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/robot-eg90LYBI.js">
+</head>
+<body>
+  <h2>RunMethod パラメータ & 軌跡プレビュー</h2>
+
+  <div class="controls">
+    <div class="panel" style="width:320px">
+      <label>走行方式
+        <select id="methodSelect">
+          <option value="linear">LinearRunning</option>
+          <option value="revolution">RevolutionRunning</option>
+          <option value="edgepid">EdgePidRunning</option>
+        </select>
+      </label>
+
+      <label>Forward (FWD): <span id="fwdVal">50</span>
+        <input id="fwd" type="range" min="-100" max="100" value="50">
+      </label>
+
+      <label>Turn (TRN): <span id="trnVal">0</span>
+        <input id="trn" type="range" min="-100" max="100" value="0">
+      </label>
+
+      <div id="pidPanel" style="display:none">
+        <label>Kp: <span id="kpVal">1.0</span>
+          <input id="kp" type="range" min="0" max="5" step="0.1" value="1.0">
+        </label>
+        <label>Ki: <span id="kiVal">0.0</span>
+          <input id="ki" type="range" min="0" max="1" step="0.01" value="0.0">
+        </label>
+        <label>Kd: <span id="kdVal">0.0</span>
+          <input id="kd" type="range" min="0" max="1" step="0.01" value="0.0">
+        </label>
+      </div>
+
+      <div id="encoderPanel" style="margin-top:12px">
+        <strong>Encoder Model Parameters</strong>
+        <label>Ts (s):
+          <input id="ts" type="range" min="0.01" max="0.5" step="0.01" value="0.1" onchange="document.getElementById('tsVal').textContent = this.value;">
+          <span id="tsVal">0.1</span>
+        </label>
+        <label>alpha:
+          <input id="alpha" type="range" min="0" max="5" step="0.1" value="1.0" onchange="document.getElementById('alphaVal').textContent = this.value;">
+          <span id="alphaVal">1.0</span>
+        </label>
+        <label>beta:
+          <input id="beta" type="range" min="0" max="2" step="0.1" value="0.5" onchange="document.getElementById('betaVal').textContent = this.value;">
+          <span id="betaVal">0.5</span>
+        </label>
+        <label>J:
+          <input id="j" type="range" min="0" max="0.1" step="0.005" value="0.01" onchange="document.getElementById('jVal').textContent = this.value;">
+          <span id="jVal">0.01</span>
+        </label>
+        <label>tau_c:
+          <input id="tauc" type="range" min="0" max="1" step="0.01" value="0.1" onchange="document.getElementById('taucVal').textContent = this.value;">
+          <span id="taucVal">0.1</span>
+        </label>
+        <label>tau_load:
+          <input id="taul" type="range" min="0" max="1" step="0.01" value="0.1" onchange="document.getElementById('taulVal').textContent = this.value;">
+          <span id="taulVal">0.1</span>
+        </label>
+        <label>θ (角度):
+          <input id="theta" type="range" min="-360" max="360" value="0" onchange="document.getElementById('thetaVal').textContent = this.value;">
+          <span id="thetaVal">0</span>
+        </label>
+        <label>ω (角速度):
+          <input id="omega" type="range" min="-10" max="10" value="0" onchange="document.getElementById('omegaVal').textContent = this.value;">
+          <span id="omegaVal">0</span>
+        </label>
+        <div id="calculationPanel" style="margin-top:12px">
+          <strong>getCount 計算式</strong>
+          <p>θ (角度) の更新: θ += Ts * ω</p>
+          <p>ω (角速度) の更新: ω += Ts * (α * u - β * ω - (J * τ_c * sign(ω)) - (J * τ_load))</p>
+          <p>エンコーダ値の更新: count += θ * window.robot.maxSpeed</p>
+          
+          <p>θ (角度) の更新: θ += <span id="tsValSpan">Ts</span> * <span id="omegaSpan">ω</span></p>
+          <p>ω (角速度) の更新: ω += <span id="tsValSpan">Ts</span> * (<span id="alphaValSpan">α</span> * <span id="uValSpan">u</span> - <span id="betaValSpan">β</span> * <span id="omegaSpan">ω</span> - (<span id="jValSpan">J</span> * τ<sub>c</sub> * sign(<span id="omegaSpan">ω</span>)) - (<span id="jValSpan">J</span> * τ<sub>load</sub>))</p>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <button id="resetBtn">リセット</button>
+      </div>
+    </div>
+
+    <div class="panel" style="flex:1">
+      <canvas id="preview" width="500" height="500"></canvas>
+      <div id="info" style="margin-top:8px; font-size:14px; color:#333"></div>
+    </div>
+  </div>
+</body>
+</html>
