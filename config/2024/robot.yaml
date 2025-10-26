@@ -10,8 +10,8 @@ axleColor: "black"  # 車軸の色
 
 
 scenario:
-  url: "config/years/2023/scenario/scenario.json"
-  unittest_url: "config/years/2023/scenario/unittest.json"
+  url: "scenario/scenario.json"
+  unittest_url: "scenario/unittest.json"
 
 # 初期位置設定
 initial_position:

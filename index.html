@@ -23,9 +23,35 @@
             width: 500px;
             height: 750px;
         }
+        .header {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .header label {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .header select {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .header select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
     </style>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-DpA9vauE.js"></script>
-  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-C3aYoPwR.js">
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-C_Ks6jSt.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-DxYdPOEN.js">
 </head>
 <body>
     <div style="display: flex;">
@@ -38,10 +64,15 @@
 
             <div>
                 <h2>Sorot-Spikeテストツール</h2>
-                <button id="loadScenarioButton">シナリオ読み込み</button>
-                <button id="startRunButton">走行開始</button>
-                <button id="startUnitTestButton">単体テスト開始</button><BR/><BR/>
-
+                <div class="header">
+                    <button id="loadScenarioButton">シナリオ読み込み</button>
+                    <button id="startRunButton">走行開始</button>
+                    <button id="startUnitTestButton">単体テスト開始</button>
+                    
+                    &nbsp;&nbsp;&nbsp;<label for="yearSelect">年度選択:</label>
+                    <select id="yearSelect">
+                    </select>
+                </div>
                 <textarea id="scenarioInput" rows="10" cols="100" placeholder="シナリオを入力してください...">
                 </textarea><BR/>
             </div>

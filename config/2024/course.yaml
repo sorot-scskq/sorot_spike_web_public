@@ -3,7 +3,7 @@
 
 # コース画像設定
 image:
-  filename: "course.png"  # 画像ファイル名
+  filename: "2025_competition_course_50pct_v0.9.pdf"  # 画像ファイル名
   width: 500  # 画像幅
   height: 730  # 画像高さ
   scale: 1.0  # スケール倍率

@@ -2,12 +2,21 @@
 
 width: 40
 height: 40
-color: "gray"
+scale: 1.0
+color: "green"
+sensorColor: "red"
+wheelColor: "#399A9C"  # 車輪の色
+axleColor: "black"  # 車軸の色
+
+
+scenario:
+  url: "scenario/scenario.json"
+  unittest_url: "scenario/unittest.json"
 
 # 初期位置設定
 initial_position:
   x: 427 # 初期X座標
-  y: 30  # 初期Y座
+  y: 30  # 初期Y座標
   angle: 90  # 初期角度
 
 wheel:
@@ -19,7 +28,7 @@ wheel:
 # 速度制御設定
 speed:
   sample_num: 10  # サンプル数
-  max_speed: 18  # 最大速度
+  max_speed: 10.0 # 最大速度
 
 # 方向制御設定
 direction:
@@ -33,7 +42,7 @@ task:
 sensors:
   color:
     black_threshold: 0  # 黒の閾値
-    white_threshold: 70  # 白の閾値
+    white_threshold: 65  # 白の閾値
   sonar:
     enabled: true  # ソナー有効/無効
     max_distance: 200  # 最大検知距離[mm]
