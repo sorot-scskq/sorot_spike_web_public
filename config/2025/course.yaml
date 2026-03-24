@@ -1,11 +1,11 @@
 # コース設定ファイル
-# 2024年度用の設定
+# 2025年度用の設定
 
 # コース画像設定
 image:
   filename: "2025_competition_course_50pct_v0.9.pdf"  # 画像ファイル名
-  width: 500  # 画像幅
-  height: 730  # 画像高さ
+  width: 556  # 画像幅
+  height: 750  # 画像高さ
   toriming: 250 # トリミング幅
   scale: 1.0  # スケール倍率
 

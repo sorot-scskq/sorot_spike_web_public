@@ -1,129 +1,267 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Application</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    
-    <style>
-        /* クラスで適用する場合 */
-        .narrow-input {
-            font-family: monospace; /* 文字幅を安定させる */
-            width: 6em;             /* 約4文字分 */
-            box-sizing: border-box; /* padding を幅に含める */
-            padding: 2px 4px;
-            text-align: right;
-        }
-        .custom-canvas {
-            border: 1px solid black;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 500px;
-            height: 750px;
-        }
-        .header {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-        }
-
-        .header label {
-            display: inline-block;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .header select {
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background-color: white;
-            font-size: 14px;
-        }
-
-        .header select:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-        }
-    </style>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-eg90LYBI.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Ctj9IG0I.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-qrv89UZZ.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-Bxz1GToJ.js">
 </head>
+
 <body>
-    <div style="display: flex;">
-        <canvas id="pdf" width="500" height="750" class="custom-canvas"></canvas>
-        <canvas id="field" width="500" height="750" class="custom-canvas"></canvas>
-        <canvas id="trailCanvas" width="500" height="750" class="custom-canvas" style="pointer-events: none;"></canvas>
-    </div>
-    <div style="display: flex;margin-left:500px;">
-        <div style="margin-left: 20px;">
-            <div>
-                <a href="index3.html">ビジュアライザ</a>
-                <h2>Sorot-Spikeテストツール</h2>
-                <div class="header">
-                    <button id="loadScenarioButton">シナリオ読み込み</button>
-                    <button id="startRunButton">走行開始</button>
-                    <button id="startUnitTestButton">単体テスト開始</button>
-                    
-                    &nbsp;&nbsp;&nbsp;<label for="yearSelect">年度選択:</label>
-                    <select id="yearSelect">
-                    </select>
+    <div id="appLayout" class="app-layout">
+            <button id="toggleLeftPanelButton" type="button" aria-label="サイドバー切替">«</button>
+            <div id="leftSelectorPanel" class="left-panel">
+                <div class="left-panel-header">
+                    <div class="section-title">シナリオ/コース選択</div>
                 </div>
-                <textarea id="scenarioInput" rows="10" cols="100" placeholder="シナリオを入力してください...">
-                </textarea><BR/>
-            </div>
 
-            <div>
-                <h4>ロボット情報</h4>
-                <label for="leftPower">左モーター出力:</label>
-                <input type="number" id="leftPower" min="-1" max="1" step="0.01" value="0">
-                <input type="range" id="leftPowerRange" min="-100" max="100" step="1" value="0" oninput="document.getElementById('leftPower').value = this.value;">
-                <label for="rightPower">右モーター出力:</label>
-                <input type="number" id="rightPower" min="-1" max="1" step="0.01" value="0">
-                <input type="range" id="rightPowerRange" min="-100" max="100" step="1" value="0" oninput="document.getElementById('rightPower').value = this.value;">
-                <BR/>
-                <label for="xCoord">X座標:</label>
-                <input type="number" id="xCoord" value="0" step="0.1" class="narrow-input">
-                <label for="yCoord">Y座標:</label>
-                <input type="number" id="yCoord" value="0" step="0.1" class="narrow-input">
-                <label for="angle">角度:</label>
-                <input type="number" id="angle" value="0" step="1" class="narrow-input">
-            </div>
-            <div>
-                <h4>シナリオ情報</h4>
-                <label for="sno">SNO:</label>
-                <input type="number" id="sno" value="0" step="1" class="narrow-input">
-                <label for="cno">CNO:</label>
-                <input type="number" id="cno" value="0" step="1" class="narrow-input">
-                <label for="fwd">FWD:</label>
-                <input type="number" id="fwd" value="0" step="1" class="narrow-input">
-                <label for="trn">TRN:</label>
-                <input type="number" id="trn" value="0" step="1" class="narrow-input">
-            </div>
-            <div>
-                <h4>走行体情報</h4>
-                <label for="distance">距離:</label>
-                <input type="number" id="distance" value="0" step="0.1" class="narrow-input">
-                <label for="x">x:</label>
-                <input type="number" id="x" value="0" step="0.1" class="narrow-input">
-                <label for="y">y:</label>
-                <input type="number" id="y" value="0" step="0.1" class="narrow-input">
-                <label for="angle2">angle2:</label>
-                <input type="number" id="angle2" value="0" step="0.1" class="narrow-input"><BR/>
-            </div>
+                <div id="leftSelectorBody" class="tree">
+                    <details open>
+                        <summary>コース</summary>
+                        <div class="row">
+                            <label><input type="radio" name="courseSide" value="L" checked> L</label>
+                            <label><input type="radio" name="courseSide" value="R"> R</label>
+                            <button id="applyCourseSideButton" type="button">適用</button>
+                        </div>
+                    </details>
+                    <details open>
+                        <summary>シナリオ</summary>
+                        <div id="scenarioTree" class="tree"></div>
+                    </details>
 
-            <div id="outputArea" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">
-                <h2>実行結果</h2>
-                <pre id="outputContent"></pre>
-            </div>
+                    <details>
+                        <summary>外部</summary>
+                        <div class="small">URL読込はCORS/共有設定次第（Driveは変換を試行）</div>
+                        <input id="scenarioUrlInput" type="text" placeholder="https://.../scenario.json / Drive共有リンク" />
+                        <div class="row">
+                            <button id="loadScenarioFromUrlButton" type="button">URL読込</button>
+                            <input id="scenarioFileInput" type="file" accept=".json,application/json" />
+                        </div>
+                    </details>
+                </div>
         </div>
+
+        <div class="main-area">
+            <div class="canvas-stack">
+                <canvas id="pdf" width="500" height="750" class="custom-canvas"></canvas>
+                <canvas id="field" width="500" height="750" class="custom-canvas"></canvas>
+                <canvas id="trailCanvas" width="500" height="750" class="custom-canvas" style="pointer-events: none;"></canvas>
+            </div>
+
+            <div style="margin-left: 10px;">
+                <a href="index3.html">ビジュアライザ</a>
+                <h2 style="margin-bottom: 10px; margin-top: 0;">Sorot-Spikeテストツール</h2>
+
+            <div class="header">
+                <button id="loadScenarioButton" type="button">シナリオ<br/>読み込み</button>
+                <button id="startRunButton" type="button">走行<br/>開始</button>
+                <span style="margin-left:4px;">LAPタイム: <br/><strong id="raceTimerDisplay">00:00.000</strong></span>
+
+                &nbsp;<label for="yearSelect">年度選択:</label>
+                <select id="yearSelect">
+                </select>
+            </div>
+
+            <!-- タブメニュー -->
+            <div class="tabs">
+                <button class="tab-button active-tab" onclick="openTab(event, 'MainTab')">メイン</button>
+                <button class="tab-button" onclick="openTab(event, 'TaskTab')">タスク/通信</button>
+                <button class="tab-button" onclick="openTab(event, 'ScenarioTab')">シナリオ編集・一覧</button>
+                <button class="tab-button" onclick="openTab(event, 'OutputTab')">実行結果 (ログ)</button>
+            </div>
+
+            <!-- タスク追跡オプション（タブ直下 / TaskTab の時だけ表示） -->
+            <div id="taskTrackingBar" class="task-exec-options" style="margin: 6px 0 10px; display: none;">
+                <label><input type="checkbox" id="taskTrackingCheckbox" /> タスクを追跡する</label>
+            </div>
+
+            <!-- タスク/通信タブ -->
+            <div id="TaskTab" class="tab-content">
+                <div class="debug-grid">
+                    <!-- タスク実行状況 -->
+                    <div class="debug-group full-width">
+                        <h4>タスク実行状況 (10ms ループ)</h4>
+                        <div style="max-height: 240px; overflow: auto;">
+                            <table class="task-exec-table">
+                                <thead>
+                                    <tr>
+                                        <th>Task</th>
+                                        <th>状態</th>
+                                        <th>送信</th>
+                                        <th>受信</th>
+                                        <th>Last(ms)</th>
+                                        <th>Avg(ms)</th>
+                                        <th>Count</th>
+                                        <th>頻度(回/s)</th>
+                                        <th>Tick</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="taskExecTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- メッセージ通信（やりとりの見える化） -->
+                    <div class="debug-group full-width">
+                        <h4>メッセージ通信 (Task間のやりとり)</h4>
+                        <div class="msg-traffic-actions">
+                            <button id="msgTrafficDownloadCSV" type="button">CSVダウンロード</button>
+                        </div>
+                        <div style="max-height: 200px; overflow: auto; margin-bottom: 8px;">
+                            <table id="msgTrafficTable" class="task-exec-table">
+                                <thead>
+                                    <tr>
+                                        <th>ミリ秒</th>
+                                        <th>ペア</th>
+                                        <th>種別</th>
+                                        <th>内容</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="msgTrafficTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- シナリオ編集タブ -->
+            <div id="ScenarioTab" class="tab-content">
+                <textarea id="scenarioInput" placeholder="シナリオを入力してください..."></textarea>
+                <!-- 読み込み済みシナリオ一覧 -->
+                <div id="scenarioListContainer" class="scenario-table-container" style="display: none;"></div>
+            </div>
+
+            <!-- 実行結果タブ -->
+            <div id="OutputTab" class="tab-content">
+                <div id="outputArea" style="margin-top: 5px; border: 1px solid #ccc; padding: 10px;">
+                    <h2 style="margin-top:0;">実行結果</h2>
+                    <pre id="outputContent"
+                        style="max-height: 600px; overflow-y: auto; white-space: pre-wrap; margin:0;"></pre>
+                </div>
+            </div>
+
+            <!-- メインデバッグタブ -->
+            <div id="MainTab" class="tab-content active-content">
+                <!-- シナリオステータスパネル -->
+                <div class="status-panel">
+                    <div id="statusPanelSummary" class="status-panel-summary" aria-live="polite">-</div>
+                    <div class="status-item">
+                        <div class="status-label">現在のSNO</div>
+                        <div id="statusSNO" class="status-value">-</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">現在のCNO</div>
+                        <div id="statusCNO" class="status-value">-</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">進捗 (Step)</div>
+                        <div id="statusProgress" class="status-value">0 / 0</div>
+                        <div class="progress-bar-container">
+                            <div id="progressBarFill" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">FWD (前進)</div>
+                        <div id="statusFwd" class="status-value">0</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">TRN (旋回)</div>
+                        <div id="statusTrn" class="status-value">0</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">SCJFN (条件)</div>
+                        <div id="statusScjfn" class="status-value">0</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">JMPSNO</div>
+                        <div id="statusJmpsno" class="status-value">0</div>
+                    </div>
+                </div>
+
+                <!-- 新デバッグ情報エリア (Grid Layout) -->
+                <div class="debug-grid">
+                    <!-- ロボット位置・姿勢・モーター・エンコーダ（統合） -->
+                    <div class="debug-group">
+                        <h4>位置・姿勢・モーター</h4>
+                        <div class="debug-item"><label for="xCoord">X座標:</label><input type="number" id="xCoord" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="yCoord">Y座標:</label><input type="number" id="yCoord" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="angle">角度(度):</label><input type="number" id="angle" value="0" step="1" readonly></div>
+                        <div class="debug-item"><label for="leftPower">左PWM:</label><input type="number" id="leftPower" min="-100" max="100" step="1" value="0"></div>
+                        <div class="debug-item"><label for="encL">左カウント:</label><input type="number" id="encL" value="0" readonly></div>
+                        <div class="debug-item"><label for="rightPower">右PWM:</label><input type="number" id="rightPower" min="-100" max="100" step="1" value="0"></div>
+                        <div class="debug-item"><label for="encR">右カウント:</label><input type="number" id="encR" value="0" readonly></div>
+                    </div>
+
+                    <!-- CoordinateInfo (エンコーダ系座標) -->
+                    <div class="debug-group">
+                        <h4>CoordinateInfo</h4>
+                        <div class="debug-item"><label for="coordX">X:</label><input type="number" id="coordX" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="coordY">Y:</label><input type="number" id="coordY" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="coordDistance">走行距離(mm):</label><input type="number" id="coordDistance" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="coordDriveDirection">進行方向(度):</label><input type="number" id="coordDriveDirection" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="coordDriveDirectionAve">平均進行方向:</label><input type="number" id="coordDriveDirectionAve" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="coordDriveDirectionAveLast">最終平均方向:</label><input type="number" id="coordDriveDirectionAveLast" value="0" step="0.1" readonly></div>
+                        <div class="debug-item"><label for="coordIsObstacle">障害物:</label><input type="text" id="coordIsObstacle" value="false" readonly></div>
+                    </div>
+
+                    <!-- センサー情報 -->
+                    <div class="debug-group">
+                        <h4>センサー・状態</h4>
+                        <div class="debug-item">
+                            <label for="gyroValue">ジャイロ:</label>
+                            <input type="number" id="gyroValue" value="0" readonly>
+                        </div>
+                        <div class="debug-item">
+                            <label for="sonarValue">ソナー検知:</label>
+                            <input type="text" id="sonarValue" value="-" readonly>
+                        </div>
+                        <div class="debug-item">
+                            <label for="colorValue">カラー値 (RGB):</label>
+                            <input type="text" id="colorValue" value="" readonly>
+                        </div>
+                        <div class="debug-item">
+                            <label for="brightnessValue">明度:</label>
+                            <input type="number" id="brightnessValue" value="0" readonly>
+                        </div>
+                    </div>
+
+                    <!-- (internal task/status UI removed) -->
+                </div>
+            </div>
+        </div> <!-- // End of MainTab -->
+
     </div>
+    </div>
+
+    <script>
+        // 初期表示（メインタブ）では非表示
+        (function() {
+            var bar = document.getElementById("taskTrackingBar");
+            if (bar) bar.style.display = "none";
+        })();
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active-content");
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active-tab");
+            }
+            document.getElementById(tabName).classList.add("active-content");
+            evt.currentTarget.classList.add("active-tab");
+
+            // 「タスクを追跡する」は TaskTab の時だけ表示
+            var bar = document.getElementById("taskTrackingBar");
+            if (bar) bar.style.display = (tabName === "TaskTab") ? "" : "none";
+        }
+    </script>
 </body>
+
 </html>
-
-

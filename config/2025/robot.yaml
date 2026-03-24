@@ -2,7 +2,7 @@
 
 width: 40
 height: 40
-scale: 1.5
+scale: 2.90  # 走行距離を1/2にするため (旧1.5)
 color: "gray"
 sensorColor: "red"
 wheelColor: "#399A9C"  # 車輪の色
@@ -15,9 +15,14 @@ scenario:
 
 # 初期位置設定
 initial_position:
-  x: 427 # 初期X座標
-  y: 30  # 初期Y座標
-  angle: 90  # 初期角度
+  L:
+    x: 475 # 初期X座標（Lコース）
+    y: 30  # 初期Y座標（Lコース）
+    angle: 90  # 初期角度（Lコース）
+  R:
+    x: 85 # 初期X座標（Rコース）
+    y: 30  # 初期Y座標（Rコース）
+    angle: 90  # 初期角度（Rコース）
 
 wheel:
   # radius: 50  # 車輪半径[mm]

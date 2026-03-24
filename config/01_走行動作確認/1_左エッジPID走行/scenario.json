@@ -1,0 +1,16 @@
+[
+    {
+        "Comment":"シナリオ1: 走行方法テスト: LEFT_EDGE_PID (FUNCNO: 1) - 走行方法テスト: LEFT_EDGE_PID (左エッジPID走行)",
+        "SNO":1, "CNO":1,"PRVSNO":1,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":3,"KI":0.1,"KD":1,"NOBLNCE":1,"WPER":50},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":3000,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment": "シナリオ1: 終了コマンド",
+        "SNO": 0, "CNO": 0, "PRVSNO": 1, "PRVCNO": 1,
+        "RunInfo": {"FUNCNO": 1},
+        "SwitchInfo": {},
+        "CoordCorrectInfo": {}
+    }
+]

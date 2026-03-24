@@ -1,0 +1,8 @@
+{
+  "label": "動作確認",
+  "suites": [
+    { "label": "基本動作", "path": "scenario/unittest.json" },
+    { "label": "追加テスト", "path": "scenario/unittest2.json" }
+  ]
+}
+

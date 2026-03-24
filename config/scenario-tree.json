@@ -1,0 +1,402 @@
+{
+  "label": "config",
+  "open": true,
+  "children": [
+    {
+      "label": "01_走行動作確認",
+      "open": false,
+      "children": [
+        {
+          "label": "0_何もしない",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/0_何もしない/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "1_左エッジPID走行",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/1_左エッジPID走行/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "2_右エッジPID走行",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/2_右エッジPID走行/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "3_回転",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/3_回転/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "4_LINEAR",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/4_LINEAR/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "5_四角形走行",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/5_四角形走行/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "6_速度一定制御",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/6_速度一定制御/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "7_撮影_単発",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/7_撮影_単発/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "8_撮影_複数",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/8_撮影_複数/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "9_座標指定走行",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/9_座標指定走行/scenario.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "02_切替動作確認",
+      "open": false,
+      "children": [
+        {
+          "label": "0_時間経過 ",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/0_時間経過 /scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "1_システム変数判定",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/1_システム変数判定/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "10_同期コマンド待ち",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/10_同期コマンド待ち/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "11_X補正",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/11_X補正/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "12_Y補正",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/12_Y補正/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "13_角度補正",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/13_角度補正/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "14_全体補正",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/14_全体補正/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "15_複数コマンドシーケンス",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/15_複数コマンドシーケンス/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "2_システム変数判定",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/2_システム変数判定/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "3_X座標",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/3_X座標/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "4_Y座標",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/4_Y座標/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "5_黒色検知(白)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/5_黒色検知(白)/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "6_黒色検知(黒)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/6_黒色検知(黒)/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "7_角度指定",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/7_角度指定/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "8_走行距離",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/8_走行距離/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "9_走行スピード",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "02_切替動作確認/9_走行スピード/scenario.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "2024",
+      "open": false,
+      "children": [
+        {
+          "label": "scenario",
+          "open": false,
+          "children": [
+            {
+              "label": "quickcheck.json",
+              "type": "file",
+              "path": "2024/scenario/quickcheck.json"
+            },
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2024/scenario/scenario.json"
+            },
+            {
+              "label": "unittest.json",
+              "type": "file",
+              "path": "2024/scenario/unittest.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "2025",
+      "open": false,
+      "children": [
+        {
+          "label": "scenario",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2025/scenario/scenario.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "2026",
+      "open": false,
+      "children": [
+        {
+          "label": "scenario",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/scenario/scenario.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Test",
+      "open": false,
+      "children": [
+        {
+          "label": "scenario",
+          "open": false,
+          "children": [
+            {
+              "label": "quickcheck.json",
+              "type": "file",
+              "path": "Test/scenario/quickcheck.json"
+            },
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "Test/scenario/scenario.json"
+            },
+            {
+              "label": "unittest copy.json",
+              "type": "file",
+              "path": "Test/scenario/unittest copy.json"
+            },
+            {
+              "label": "unittest.json",
+              "type": "file",
+              "path": "Test/scenario/unittest.json"
+            },
+            {
+              "label": "unittest2.json",
+              "type": "file",
+              "path": "Test/scenario/unittest2.json"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

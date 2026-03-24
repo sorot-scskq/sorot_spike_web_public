@@ -1,0 +1,22 @@
+[
+    {
+        "Comment": "走行方法テスト: PHOTO_MULT (FUNCNO: 8) — 撮影（複数）",
+        "SNO": 8,
+        "CNO": 1,
+        "PRVSNO": 8,
+        "PRVCNO": 0,
+        "RunInfo": { "FUNCNO": 8, "FWD": 0, "TRN": 0, "KP": 0, "KI": 0, "KD": 0, "NOBLNCE": 1, "WPER": 0 },
+        "SwitchInfo": { "SCJFN": 1, "SCT": 1000, "SCD": 0, "SCR": 0, "SCC": 0, "SCV": 0, "JMPSNO": 0, "SCX": 0, "SCY": 0 },
+        "CoordCorrectInfo": {}
+    },
+    {
+        "Comment": "終了コマンド",
+        "SNO": 0,
+        "CNO": 0,
+        "PRVSNO": 8,
+        "PRVCNO": 1,
+        "RunInfo": { "FUNCNO": 1 },
+        "SwitchInfo": {},
+        "CoordCorrectInfo": {}
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "Comment":"シナリオ5: 走行方法テスト: LINEAR (FUNCNO: 5) - 走行方法テスト: LINEAR (倒立走行 エンコーダ補正あり)",
+        "SNO":5, "CNO":1,"PRVSNO":5,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1000,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"回転",
+        "SNO":5, "CNO":2,"PRVSNO":5,"PRVCNO":1,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":30,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"直線",
+        "SNO":5, "CNO":3,"PRVSNO":5,"PRVCNO":2,
+        "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1000,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"回転",
+        "SNO":5, "CNO":4,"PRVSNO":5,"PRVCNO":3,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":30,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"直線",
+        "SNO":5, "CNO":5,"PRVSNO":5,"PRVCNO":4,
+        "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1000,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"回転",
+        "SNO":5, "CNO":6,"PRVSNO":5,"PRVCNO":5,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":30,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"直線",
+        "SNO":5, "CNO":7,"PRVSNO":5,"PRVCNO":6,
+        "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1000,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"回転",
+        "SNO":5, "CNO":8,"PRVSNO":5,"PRVCNO":7,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":30,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"直線",
+        "SNO":5, "CNO":9,"PRVSNO":5,"PRVCNO":8,
+        "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1000,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment": "シナリオ5: 終了コマンド",
+        "SNO": 0, "CNO": 0, "PRVSNO": 5, "PRVCNO": 9,
+        "RunInfo": {"FUNCNO": 1},
+        "SwitchInfo": {},
+        "CoordCorrectInfo": {}
+    }
+]

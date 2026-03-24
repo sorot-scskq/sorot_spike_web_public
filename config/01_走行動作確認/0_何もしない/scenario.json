@@ -1,0 +1,21 @@
+[
+    { "Comment":"いきなり早くするとコースアウトするため、徐々に早く",
+        "SNO":99, "CNO":1,"PRVSNO":0,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":1,"FWD":1,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { "Comment":"停止時に走行体を止めるためには動きを止めてから停止する必要がある。",
+        "SNO":99, "CNO":2,"PRVSNO":99,"PRVCNO":1,
+        "RunInfo":{"FUNCNO":1,"FWD":1,"TRN":0,"KP":3,"KI":0,"KD":2,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"停止",
+        "SNO":0, "CNO":0,"PRVSNO":99,"PRVCNO":2,
+        "RunInfo":{"FUNCNO":1,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    }
+]

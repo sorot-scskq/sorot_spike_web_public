@@ -1,0 +1,23 @@
+[
+    {
+        "Comment":"シナリオ3: 走行方法テスト: REVOLUTION (FUNCNO: 3) - 走行方法テスト: REVOLUTION (その場回転)",
+        "SNO":3, "CNO":1,"PRVSNO":3,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":90,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment":"シナリオ3: 走行方法テスト: REVOLUTION (FUNCNO: 3) - 走行方法テスト: REVOLUTION (その場回転)",
+        "SNO":3, "CNO":2,"PRVSNO":3,"PRVCNO":1,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-90,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment": "シナリオ3: 終了コマンド",
+        "SNO": 0, "CNO": 0, "PRVSNO": 3, "PRVCNO": 2,
+        "RunInfo": {"FUNCNO": 1},
+        "SwitchInfo": {},
+        "CoordCorrectInfo": {}
+    }
+]
