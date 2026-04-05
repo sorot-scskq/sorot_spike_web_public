@@ -7,8 +7,8 @@
     <title>My Application</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-Dp7WyRHS.js"></script>
-  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-vAa4z6Qi.js">
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-nERt5mze.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-BO46mpDr.js">
 </head>
 
 <body>
@@ -42,6 +42,11 @@
                             <input id="scenarioFileInput" type="file" accept=".json,application/json" />
                         </div>
                     </details>
+                </div>
+
+                <div class="camera-preview-wrap camera-preview-in-sidebar">
+                    <div class="camera-preview-label">前面カメラ（シミュレーション）</div>
+                    <canvas id="cameraView" width="240" height="144" class="camera-view-canvas"></canvas>
                 </div>
         </div>
 

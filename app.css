@@ -491,6 +491,36 @@
             flex: 0 0 auto;
         }
 
+        .camera-preview-wrap {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .camera-preview-in-sidebar {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #cfd4da;
+        }
+
+        .camera-preview-in-sidebar .camera-view-canvas {
+            width: 100%;
+            height: auto;
+            max-width: 240px;
+        }
+
+        .camera-preview-label {
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        .camera-view-canvas {
+            display: block;
+            border: 1px solid #333;
+            background: #1e6fd9;
+            image-rendering: pixelated;
+        }
+
         .left-panel {
             width: 100%;
             max-height: calc(100vh - 20px);
