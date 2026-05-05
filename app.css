@@ -227,7 +227,8 @@
         }
 
         .scenario-table col.scenario-col-scjfn {
-            width: 4em;
+            width: 7em;
+            min-width: 6.5em;
         }
 
         /* 10ms ごとの |Δ距離|・|Δ角度| の平均（実行中行は逐次更新） */
