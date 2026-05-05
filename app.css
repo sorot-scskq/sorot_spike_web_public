@@ -188,41 +188,287 @@
 
         /* シナリオ一覧テーブルのスタイル */
         .scenario-table-container {
-            margin-top: 15px;
-            max-height: 300px;
+            margin-top: 4px;
+            padding: 0;
+            max-height: 320px;
             overflow-y: auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f1f3f5;
+            overflow-x: hidden;
+            border: 1px solid #c5cad1;
+            border-radius: 6px;
+            background-color: #fff;
         }
 
         .scenario-table {
+            min-width: 60%;
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
+            font-size: 0.72rem;
+            line-height: 1.35;
+            table-layout: fixed;
+        }
+
+        /* 列幅: SNO/CNO=3文字、FUNC=4、前進/角度=3、距離=4、Sec=小数含め約5文字分 */
+        .scenario-table col.scenario-col-sno,
+        .scenario-table col.scenario-col-cno,
+        .scenario-table col.scenario-col-fwd,
+        .scenario-table col.scenario-col-trn {
+            width: 3em;
+        }
+
+        .scenario-table col.scenario-col-func {
+            width: 4em;
+        }
+
+        /* 切替条件・実績は同一幅・広め（セル側でも padding で余裕） */
+        .scenario-table col.scenario-col-switch-cond,
+        .scenario-table col.scenario-col-actual {
+            width: 11em;
+            min-width: 10em;
+        }
+
+        .scenario-table col.scenario-col-scjfn {
+            width: 4em;
+        }
+
+        /* 10ms ごとの |Δ距離|・|Δ角度| の平均（実行中行は逐次更新） */
+        .scenario-table col.scenario-col-rate10ms {
+            width: 9em;
+            min-width: 7.5em;
+        }
+
+        .scenario-table col.scenario-col-sec {
+            width: 3.5em;
+        }
+
+        /* 座標は最小限の幅（整数 X/Y のみ・列を広げすぎない） */
+        .scenario-table col.scenario-col-coord {
+            width: 4em;
+            max-width: 4.5em;
+        }
+
+        .scenario-table td:nth-child(1),
+        .scenario-table td:nth-child(2),
+        .scenario-table td:nth-child(3),
+        .scenario-table thead th:nth-child(1),
+        .scenario-table thead th:nth-child(2),
+        .scenario-table thead th:nth-child(3) {
+            padding: 2px 2px;
         }
 
         .scenario-table th,
         .scenario-table td {
-            border: 1px solid #ddd;
-            padding: 6px 8px;
+            border: 1px solid #d8dde3;
+            padding: 4px 5px;
             text-align: right;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .scenario-table tbody td {
+            padding: 5px 6px;
+            vertical-align: middle;
+        }
+
+        /* ヘッダ2行目 */
+        .scenario-table thead tr:nth-child(2) th.scenario-th-leaf {
+            white-space: normal;
+            overflow: visible;
+            vertical-align: top;
+            line-height: 1.25;
+            padding: 2px 5px 4px;
+            box-sizing: border-box;
+        }
+
+        /* 高さ揃え用の不可視行は行ボックスを持たせない（2行目が下に空いて見えるのを防ぐ） */
+        .scenario-table thead tr:nth-child(2) th.scenario-th-leaf .scenario-th-sub {
+            display: block;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-size: 0;
+            line-height: 0;
+            color: transparent;
+            user-select: none;
+        }
+
+        /* SwitchMethod「切替条件」見出し（実績見出しと同じ横余白） */
+        .scenario-table thead tr:nth-child(2) th.scenario-th-switch-val.scenario-th-switch-cond {
+            background-color: #ffe7cc;
+            color: #8a3b00;
+            text-align: left;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        /* 切替条件セル */
+        .scenario-table td.scenario-td-switch-cond {
+            white-space: normal;
+            text-align: left;
+            line-height: 1.45;
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            overflow: visible;
+            text-overflow: clip;
+            color: #5c3d00;
+            background-color: #fff8f0;
+            padding-left: 8px;
+            padding-right: 8px;
         }
 
         .scenario-table th {
             text-align: center;
-            background-color: #f0f0f0;
-            position: sticky;
-            top: 0;
-            z-index: 1;
+            background-color: #eef1f5;
         }
 
-        .scenario-table tr:nth-child(even) {
-            background-color: #fafafa;
+        .scenario-table .scenario-th-group {
+            font-weight: 600;
+            font-size: 0.68rem;
+            vertical-align: middle;
         }
 
-        .scenario-table tr:hover {
-            background-color: #e8f4ff;
+        .scenario-table .scenario-th-group-run {
+            color: #0b5ed7;
+            background-color: #dbeafe;
+        }
+
+        .scenario-table .scenario-th-group-switch {
+            color: #8a3b00;
+            background-color: #ffe7cc;
+        }
+
+        /* 2行ヘッダー: sticky はスクロールコンテナ＋2段ヘッダで隙間・ずれの原因になりやすいため使わない */
+        .scenario-table thead tr:first-child th.scenario-th-group {
+            padding: 4px 6px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            line-height: 1.25;
+        }
+
+        .scenario-table thead tr:nth-child(2) th {
+            vertical-align: top;
+            padding-top: 2px;
+            padding-bottom: 4px;
+        }
+
+        .scenario-table tbody tr:nth-child(even) {
+            background-color: #f7f9fb;
+        }
+
+        .scenario-table tbody tr:hover {
+            background-color: #e8f2fc;
+        }
+
+        /* SCJFN（SwitchMethod 左端・ビットフラグ値） */
+        .scenario-table th.scenario-th-scjfn,
+        .scenario-table td.scenario-td-scjfn {
+            white-space: normal;
+            text-align: center;
+            line-height: 1.25;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* 座標: 列幅を抑えつつ X/Y 2行を収める */
+        .scenario-table th.scenario-th-coord,
+        .scenario-table td.scenario-td-coord {
+            white-space: pre-line;
+            text-align: left;
+            line-height: 1.25;
+            font-size: 0.68rem;
+            font-variant-numeric: tabular-nums;
+            overflow: visible;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        .scenario-table thead th.scenario-th-coord {
+            white-space: normal;
+        }
+
+        .scenario-table tr.active-row td.scenario-td-coord {
+            color: #856404;
+        }
+
+        /* 10ms 平均（SwitchMethod 配下の葉見出し） */
+        .scenario-table thead tr:nth-child(2) th.scenario-th-rate10ms {
+            text-align: left;
+            font-size: 0.66rem;
+            line-height: 1.2;
+            white-space: normal;
+            background-color: #d8f0e4;
+            color: #14532d;
+            font-weight: 600;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        .scenario-table td.scenario-td-rate10ms {
+            white-space: pre-line;
+            text-align: left;
+            line-height: 1.35;
+            font-size: 0.68rem;
+            font-variant-numeric: tabular-nums;
+            overflow: visible;
+            font-weight: 500;
+            color: #14532d;
+            background-color: #f0faf5;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        .scenario-table tr.active-row td.scenario-td-rate10ms {
+            color: #14532d;
+            background-color: #e6ffe8;
+        }
+
+        /* 実績 */
+        .scenario-table thead tr:nth-child(2) th.scenario-th-actual {
+            text-align: left;
+            background-color: #cfe4f8;
+            font-weight: 600;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .scenario-table th.scenario-th-actual,
+        .scenario-table td.scenario-td-actual {
+            text-align: left;
+            line-height: 1.45;
+            word-break: break-word;
+            overflow: visible;
+            text-overflow: clip;
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            color: #1a365d;
+            background-color: #e2eefc;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .scenario-table th.scenario-th-actual {
+            white-space: normal;
+        }
+
+        .scenario-table td.scenario-td-actual {
+            white-space: pre-line;
+        }
+
+        .scenario-table tr.active-row td.scenario-td-actual {
+            background-color: #d4e8ff;
+            color: #1a365d;
+        }
+
+        /* Sec: 右寄せ・等幅数字（例: 99.99 を約5文字幅に収める） */
+        .scenario-table th.scenario-th-sec,
+        .scenario-table td.scenario-td-sec {
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+            text-align: right;
+            padding-left: 2px;
+            padding-right: 4px;
+            overflow: visible;
+            text-overflow: clip;
         }
 
         /* 実行中の行をハイライト */
@@ -398,6 +644,67 @@
         .debug-item input:read-only {
             background-color: #eef;
             color: #333;
+        }
+
+        /* XY を1つの入力枠に見えるようまとめる（他の debug-item 行と高さ・右寄せを揃える） */
+        .debug-item.debug-xy-pair-row {
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .debug-xy-pair-caption {
+            flex: 0 0 auto;
+            min-width: 4.8em;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .debug-xy-pair-caption label {
+            flex: unset;
+            margin: 0;
+        }
+
+        .debug-xy-pair-chip {
+            display: inline-flex;
+            align-items: center;
+            flex: 0 0 auto;
+            padding: 1px 2px;
+            background: #fff;
+            border: 1px solid #c5cad1;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .debug-xy-pair-chip input[type="number"] {
+            width: 4.25em;
+            margin: 0;
+            padding: 3px 5px;
+            border: none;
+            border-radius: 2px;
+            background: transparent;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            font-size: 0.8rem;
+            box-shadow: none;
+        }
+
+        .debug-xy-pair-chip input[type="number"]:read-only {
+            background: transparent;
+        }
+
+        .debug-xy-pair-chip input[type="number"]:focus {
+            outline: none;
+            background: #f0f4f8;
+        }
+
+        .debug-xy-pair-divider {
+            flex: 0 0 auto;
+            width: 1px;
+            align-self: stretch;
+            min-height: 1.35em;
+            margin: 2px 0;
+            background: #d8dee4;
         }
 
         .full-width {
