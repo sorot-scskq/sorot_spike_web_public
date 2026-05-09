@@ -349,50 +349,13 @@
       "open": false,
       "children": [
         {
-          "label": "scenario",
+          "label": "Lコース",
           "open": false,
           "children": [
             {
               "label": "scenario.json",
               "type": "file",
-              "path": "2026/scenario/scenario.json"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Test",
-      "open": false,
-      "children": [
-        {
-          "label": "scenario",
-          "open": false,
-          "children": [
-            {
-              "label": "quickcheck.json",
-              "type": "file",
-              "path": "Test/scenario/quickcheck.json"
-            },
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "Test/scenario/scenario.json"
-            },
-            {
-              "label": "unittest copy.json",
-              "type": "file",
-              "path": "Test/scenario/unittest copy.json"
-            },
-            {
-              "label": "unittest.json",
-              "type": "file",
-              "path": "Test/scenario/unittest.json"
-            },
-            {
-              "label": "unittest2.json",
-              "type": "file",
-              "path": "Test/scenario/unittest2.json"
+              "path": "2026/Lコース/scenario.json"
             }
           ]
         }

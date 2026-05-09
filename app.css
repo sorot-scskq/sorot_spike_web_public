@@ -207,15 +207,15 @@
             table-layout: fixed;
         }
 
-        /* 列幅: SNO/CNO=3文字、FUNC=4、前進/角度=3、距離=4、Sec=小数含め約5文字分 */
+        /* 列幅: SNO/CNO=3文字、RunMethod の FUNC/FWD/TRN は FUNC 幅を基準に等幅 */
         .scenario-table col.scenario-col-sno,
-        .scenario-table col.scenario-col-cno,
-        .scenario-table col.scenario-col-fwd,
-        .scenario-table col.scenario-col-trn {
+        .scenario-table col.scenario-col-cno {
             width: 3em;
         }
 
-        .scenario-table col.scenario-col-func {
+        .scenario-table col.scenario-col-func,
+        .scenario-table col.scenario-col-fwd,
+        .scenario-table col.scenario-col-trn {
             width: 4em;
         }
 
@@ -761,6 +761,15 @@
             }
         }
 
+        /* シナリオ編集タブの注意（エディタは永続保存されない） */
+        .scenario-edit-warning {
+            color: #c0392b;
+            font-size: 13px;
+            line-height: 1.55;
+            margin: 0 0 10px;
+            font-weight: 600;
+        }
+
         /* シナリオ入力欄の改善 */
         #scenarioInput {
             width: 100%;
@@ -864,11 +873,16 @@
         .left-panel.collapsed {
             padding: 0;
             width: 0;
+            min-width: 0;
             border: 0;
             background: transparent;
             box-shadow: none;
-            /* トグルボタンをコース側に被せて表示する */
-            overflow: visible;
+            /* はみ出し表示を防ぐ（前面カメラ文言などが透けて見えるのを防ぐ） */
+            overflow: hidden;
+        }
+
+        .left-panel.collapsed .camera-preview-wrap {
+            display: none;
         }
 
         .left-panel.collapsed #leftSelectorBody {
@@ -880,8 +894,7 @@
         }
 
         .left-panel.collapsed .left-panel-header {
-            justify-content: center;
-            margin-bottom: 0;
+            display: none;
         }
 
         .left-panel-header {
