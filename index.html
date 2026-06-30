@@ -7,8 +7,8 @@
     <title>My Application</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-GfCb6nVW.js"></script>
-  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-COMDXuAD.js">
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-Df9MlIYe.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-3nLU4UWA.js">
 </head>
 
 <body>
@@ -70,7 +70,10 @@
             <div class="header">
                 <button id="loadScenarioButton" type="button">シナリオ<br/>読み込み</button>
                 <button id="startRunButton" type="button">走行<br/>開始</button>
-                <span style="margin-left:4px;">LAPタイム: <br/><strong id="raceTimerDisplay">00:00.000</strong></span>
+                <span style="margin-left:4px;">経過タイム: <br/><strong id="raceTimerDisplay">00:00.000</strong></span>
+                <span style="margin-left:4px;">LAPゲートタイム: <br/><strong id="lapGateTimerDisplay">00:00.000</strong></span>
+                <span style="margin-left:4px;">残り制限時間: <br/><strong id="countdownTimerDisplay">02:00</strong></span>
+                <span style="margin-left:4px;">コース状態: <br/><strong id="courseStatusDisplay">OK</strong></span>
             </div>
 
             <!-- タブメニュー -->

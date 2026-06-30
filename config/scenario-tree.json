@@ -123,13 +123,13 @@
       "open": false,
       "children": [
         {
-          "label": "0_時間経過 ",
+          "label": "0_時間経過",
           "open": false,
           "children": [
             {
               "label": "scenario.json",
               "type": "file",
-              "path": "02_切替動作確認/0_時間経過 /scenario.json"
+              "path": "02_切替動作確認/0_時間経過/scenario.json"
             }
           ]
         },
