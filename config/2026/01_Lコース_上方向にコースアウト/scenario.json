@@ -26,7 +26,7 @@
     "Comment": "コースアウトに向かう",
     "SNO": 1, "CNO": 3, "PRVSNO": 1, "PRVCNO": 2,
     "RunInfo": { "FUNCNO": 5, "FWD": 100, "TRN": 0, "NOBLNCE": 1 },
-    "SwitchInfo": { "SCJFN": 128, "SCD": 800 },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 3000 },
     "CoordCorrectInfo": {}
   },
   {
