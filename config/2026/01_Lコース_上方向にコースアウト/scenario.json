@@ -1,0 +1,39 @@
+[
+  {
+    "Comment": "LAPゲートまで進む",
+    "SNO": 1, "CNO": 1, "PRVSNO": 1, "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 100
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "回転",
+    "SNO": 1, "CNO": 2, "PRVSNO": 1, "PRVCNO": 1,
+    "RunInfo": { "FUNCNO": 3, "FWD": 0, "TRN": 100, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 32, "SCD": 0, "SCR": 180 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "コースアウトに向かう",
+    "SNO": 1, "CNO": 3, "PRVSNO": 1, "PRVCNO": 2,
+    "RunInfo": { "FUNCNO": 5, "FWD": 100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 800 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "シナリオ終了",
+    "SNO": 0, "CNO": 0, "PRVSNO": 1, "PRVCNO": 3,
+    "RunInfo": {},
+    "SwitchInfo": {},
+    "CoordCorrectInfo": {}
+  }
+]

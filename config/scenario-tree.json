@@ -349,13 +349,35 @@
       "open": false,
       "children": [
         {
-          "label": "Lコース",
+          "label": "00_Lコース",
           "open": false,
           "children": [
             {
               "label": "scenario.json",
               "type": "file",
-              "path": "2026/Lコース/scenario.json"
+              "path": "2026/00_Lコース/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "01_Lコース_上方向にコースアウト",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/01_Lコース_上方向にコースアウト/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "02_Lコース_下方向へコースアウト",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/02_Lコース_下方向へコースアウト/scenario.json"
             }
           ]
         }
