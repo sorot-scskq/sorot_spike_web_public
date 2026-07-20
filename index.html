@@ -7,8 +7,8 @@
     <title>My Application</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-BRc0zJzI.js"></script>
-  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-BnJsbcOv.js">
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-Dagza9xr.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-BgICIwGU.js">
 </head>
 
 <body>
@@ -143,6 +143,20 @@
             <div id="ScenarioTab" class="tab-content">
                 <p class="scenario-edit-warning">ここを書き換えても保存されません。テキストファイルで別管理するか、SOROT_SPIKE_WEB プロジェクトを Clone して JSON を直接編集してください。</p>
                 <textarea id="scenarioInput" placeholder="シナリオを入力してください..."></textarea>
+                <div class="debug-group full-width" style="margin-top: 12px;">
+                    <h4>シナリオ追加（デバッグ / ScenarioControl へ CMD_INSERT_* 送信）</h4>
+                    <p class="scenario-edit-warning" style="margin-top:0;">
+                        上の JSON を ScenarioControl に追加します。シナリオ読込済みの場合は <strong>停止（SNO:0 CNO:0）の直前</strong>へ挿入します。走行開始・キャリブレーションは行いません。
+                    </p>
+                    <div class="msg-traffic-actions">
+                        <button id="debugInsertScenarioButton" type="button">JSON一括追加</button>
+                        <button id="debugInsertCommandButton" type="button">先頭1件追加</button>
+                        <button id="debugInsertFixedSampleButton" type="button">固定: 左エッジPID</button>
+                        <button id="debugInsertFixedLinearButton" type="button">固定: 直線走行</button>
+                        <button id="debugInsertFixedRevolutionButton" type="button">固定: 回転</button>
+                        <button id="debugClearScenarioButton" type="button">状態クリア</button>
+                    </div>
+                </div>
             </div>
 
             <!-- 実行結果タブ -->
