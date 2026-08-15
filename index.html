@@ -7,8 +7,8 @@
     <title>My Application</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-BkrW7NBt.js"></script>
-  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-NYUk94qn.js">
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/main-wwccd4yo.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/app-CWP-k4bQ.js">
 </head>
 
 <body>
@@ -114,6 +114,35 @@
                                 <tbody id="taskExecTableBody"></tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <!-- 無線通信デバイス（WebSocket デバッグ） -->
+                    <div class="debug-group full-width">
+                        <h4>無線通信デバイス接続（WebSocket）</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            Python デバッグサーバ（<code>tools/ws_debug_server</code>）に接続し、受信 JSON を表示・シナリオ適用します。
+                            先に <code>python server.py</code> を起動してください。
+                        </p>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label for="wsServerUrlInput">URL:</label>
+                            <input id="wsServerUrlInput" type="text" value="ws://127.0.0.1:8765" style="min-width:220px;" />
+                            <button id="wsConnectButton" type="button">通信開始</button>
+                            <button id="wsDisconnectButton" type="button" disabled>切断</button>
+                            <span>状態: <strong id="wsConnectionStatus">未接続</strong></span>
+                        </div>
+                        <div class="msg-traffic-actions" style="margin-bottom:8px;">
+                            <button id="wsRequestRouteButton" type="button" disabled>経路要求 (id=3)</button>
+                            <button id="wsRequestHint1Button" type="button" disabled>ヒント1 (id=1)</button>
+                            <button id="wsRequestHint2Button" type="button" disabled>ヒント2 (id=2)</button>
+                            <button id="wsApplyScenarioButton" type="button" disabled>シナリオを適用</button>
+                            <button id="wsApplyAndRunButton" type="button" disabled>適用して走行開始</button>
+                        </div>
+                        <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label><input type="checkbox" id="wsAutoApplyCheckbox" /> 受信時に自動適用</label>
+                            <span>経路情報: <strong id="wsRouteInfo">-</strong></span>
+                        </div>
+                        <label for="wsReceivedJson" style="display:block; margin-bottom:4px;">受信 JSON</label>
+                        <textarea id="wsReceivedJson" class="ws-received-json" placeholder="サーバから受信した JSON がここに表示されます..." readonly></textarea>
                     </div>
 
                     <!-- メッセージ通信（やりとりの見える化） -->

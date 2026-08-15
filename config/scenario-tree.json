@@ -371,6 +371,28 @@
           ]
         },
         {
+          "label": "03_LAP後_ボトルデリバリー",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/03_LAP後_ボトルデリバリー/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "04_ET相撲_ガレージゴール",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/04_ET相撲_ガレージゴール/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "Lコース",
           "open": false,
           "children": [

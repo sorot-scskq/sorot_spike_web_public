@@ -782,6 +782,19 @@
             resize: vertical;
         }
 
+        #wsReceivedJson,
+        .ws-received-json {
+            width: 100%;
+            height: 220px;
+            font-family: monospace;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            background: #fafbfc;
+        }
+
         /* 左ペイン（シナリオ/コース選択） */
         .app-layout {
             display: grid;
