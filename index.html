@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-hAcYYOvI.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-nXx9cxpr.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-d0DHoKUg.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-BBx-Gm9e.js"></script>
 </head>
 
 <body>
@@ -77,6 +77,14 @@
                 <span style="margin-left:4px;">LAPゲートタイム: <br/><strong id="lapGateTimerDisplay">00:00.000</strong></span>
                 <span style="margin-left:4px;">残り制限時間: <br/><strong id="countdownTimerDisplay">02:00</strong></span>
                 <span style="margin-left:4px;">コース状態: <br/><strong id="courseStatusDisplay">OK</strong></span>
+                <label style="margin-left:8px; font-size: 0.85em;">
+                    <input type="checkbox" id="showOutZonesCheckbox">
+                    アウト判定エリア表示
+                </label>
+                <label style="margin-left:8px; font-size: 0.85em;">
+                    <input type="checkbox" id="disableOutDetectionCheckbox">
+                    アウト判定を無効化（画面外のみ判定）
+                </label>
             </div>
 
             <!-- タブメニュー -->

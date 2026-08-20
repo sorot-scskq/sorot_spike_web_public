@@ -26,6 +26,16 @@ coordinates:
     x2: 95
     y2: 528
 
+# アウトゾーン設定（矩形指定）。走行体がこの範囲に触れるとコースアウトと判定する。
+# 座標系は coordinates と同じ（image.width/height を基準としたワールド座標、L/R共通）。
+# 例:
+# out_zones:
+#   - x: 100
+#     y: 100
+#     width: 50
+#     height: 30
+out_zones: []
+
 # 色設定
 colors:
   black:
