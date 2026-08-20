@@ -305,19 +305,15 @@
       "open": false,
       "children": [
         {
-          "label": "quickcheck.json",
-          "type": "file",
-          "path": "2024/quickcheck.json"
-        },
-        {
-          "label": "scenario.json",
-          "type": "file",
-          "path": "2024/scenario.json"
-        },
-        {
-          "label": "unittest.json",
-          "type": "file",
-          "path": "2024/unittest.json"
+          "label": "本番",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2024/本番/scenario.json"
+            }
+          ]
         }
       ]
     },
@@ -326,9 +322,15 @@
       "open": false,
       "children": [
         {
-          "label": "scenario.json",
-          "type": "file",
-          "path": "2025/scenario.json"
+          "label": "本番",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2025/本番/scenario.json"
+            }
+          ]
         }
       ]
     },
