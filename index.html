@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-hAcYYOvI.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Dxm5V5xC.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-BzbrOEa8.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-BbTPyx6o.js"></script>
 </head>
 
 <body>
@@ -24,11 +24,15 @@
                     <details open>
                         <summary>コース</summary>
                         <div class="row">
-                            <label for="yearSelect">年度:</label>
-                            <select id="yearSelect"></select>
+                            <label for="courseSelect">コース:</label>
+                            <select id="courseSelect"></select>
                             <label><input type="radio" name="courseSide" value="L" checked> L</label>
                             <label><input type="radio" name="courseSide" value="R"> R</label>
                             <button id="applyCourseSideButton" type="button">適用</button>
+                        </div>
+                        <div class="row" id="startPositionWrap" hidden>
+                            <label for="startPositionSelect">開始位置:</label>
+                            <select id="startPositionSelect"></select>
                         </div>
                     </details>
                     <details open>

@@ -1,5 +1,5 @@
 {
-  "label": "config",
+  "label": "scenario",
   "open": true,
   "children": [
     {
@@ -305,25 +305,19 @@
       "open": false,
       "children": [
         {
-          "label": "scenario",
-          "open": false,
-          "children": [
-            {
-              "label": "quickcheck.json",
-              "type": "file",
-              "path": "2024/scenario/quickcheck.json"
-            },
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2024/scenario/scenario.json"
-            },
-            {
-              "label": "unittest.json",
-              "type": "file",
-              "path": "2024/scenario/unittest.json"
-            }
-          ]
+          "label": "quickcheck.json",
+          "type": "file",
+          "path": "2024/quickcheck.json"
+        },
+        {
+          "label": "scenario.json",
+          "type": "file",
+          "path": "2024/scenario.json"
+        },
+        {
+          "label": "unittest.json",
+          "type": "file",
+          "path": "2024/unittest.json"
         }
       ]
     },
@@ -332,15 +326,9 @@
       "open": false,
       "children": [
         {
-          "label": "scenario",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2025/scenario/scenario.json"
-            }
-          ]
+          "label": "scenario.json",
+          "type": "file",
+          "path": "2025/scenario.json"
         }
       ]
     },
@@ -400,67 +388,6 @@
               "label": "scenario.json",
               "type": "file",
               "path": "2026/Lコース/scenario.json"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "2026＿難所",
-      "open": false,
-      "children": [
-        {
-          "label": "01_Lコース_上方向にコースアウト",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2026＿難所/01_Lコース_上方向にコースアウト/scenario.json"
-            }
-          ]
-        },
-        {
-          "label": "02_Lコース_下方向へコースアウト",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2026＿難所/02_Lコース_下方向へコースアウト/scenario.json"
-            }
-          ]
-        },
-        {
-          "label": "03_LAP後_ボトルデリバリー",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2026＿難所/03_LAP後_ボトルデリバリー/scenario.json"
-            }
-          ]
-        },
-        {
-          "label": "04_ET相撲_ガレージゴール",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2026＿難所/04_ET相撲_ガレージゴール/scenario.json"
-            }
-          ]
-        },
-        {
-          "label": "Lコース",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2026＿難所/Lコース/scenario.json"
             }
           ]
         }
