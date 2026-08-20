@@ -1,0 +1,52 @@
+# ロボット設定ファイル
+
+width: 40
+height: 40
+scale: 1.20  # 走行距離を1/2にするため (旧1.5)
+color: "gray"
+sensorColor: "red"
+wheelColor: "#399A9C"  # 車輪の色
+axleColor: "black"  # 車軸の色
+
+
+scenario:
+  url: "scenario/scenario.json"
+
+# 初期位置設定
+initial_position:
+  L:
+    x: 455 # 初期X座標（Lコース）黒ライン上・赤矢印位置
+    y: 470 # 初期Y座標（Lコース）赤ボックスの左・上から約1/3
+    angle: 180 # 初期角度（Lコース）左向き（←）
+  R:
+    x: 100 # 初期X座標（Rコース）
+    y: 470  # 初期Y座標（Rコース）
+    angle: 0  # 初期角度（Rコース）
+
+wheel:
+  # radius: 50  # 車輪半径[mm]
+  # interval: 120  # 車輪間隔[mm]
+  radius: 27.5  # 車輪半径[mm]
+  interval: 125  # 車輪間隔[mm]
+
+# 速度制御設定
+speed:
+  sample_num: 10  # サンプル数
+  max_speed: 20.0 # 最大速度
+
+# 方向制御設定
+direction:
+  drive_direction_cnt: 5  # 方向数
+
+# タスク設定
+task:
+  period: 10  # タスク周期[ms]
+
+# センサー設定
+sensors:
+  color:
+    black_threshold: 0  # 黒の閾値
+    white_threshold: 65  # 白の閾値
+  sonar:
+    enabled: true  # ソナー有効/無効
+    max_distance: 200  # 最大検知距離[mm]
