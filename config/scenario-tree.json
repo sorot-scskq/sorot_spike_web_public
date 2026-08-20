@@ -402,17 +402,6 @@
               "path": "2026/Lコース/scenario.json"
             }
           ]
-        },
-        {
-          "label": "scenario",
-          "open": false,
-          "children": [
-            {
-              "label": "scenario.json",
-              "type": "file",
-              "path": "2026/scenario/scenario.json"
-            }
-          ]
         }
       ]
     },
