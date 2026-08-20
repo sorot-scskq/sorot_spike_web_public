@@ -168,6 +168,25 @@
       width: 130px;
     }
 
+    .note-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-top: 6px;
+      color: #444;
+    }
+
+    .note-table th,
+    .note-table td {
+      border: 1px solid #e3e3e3;
+      padding: 3px 5px;
+      text-align: left;
+    }
+
+    .note-table th {
+      background: #f6f8fa;
+    }
+
     .mono {
       font-family: ui-monospace, Menlo, Consolas, monospace;
       font-size: 11px;
@@ -184,7 +203,7 @@
       display: none;
     }
   </style>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/index3-y4EOHEcI.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/index3-9JIj_S--.js"></script>
   <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/assets/robot-YvFOEojr.js">
 </head>
@@ -259,6 +278,7 @@
             <option value="straight" selected>直線</option>
             <option value="sine">S字（サインカーブ）</option>
             <option value="arc">円弧</option>
+            <option value="corner">90度コーナー</option>
           </select>
         </label>
         <label>ライン幅: <span id="lineWidthVal" class="val">4.0</span>
@@ -270,13 +290,13 @@
         <label>開始時のラインからのずれ（追従エッジ側）: <span id="offsetVal" class="val">3.0</span>
           <input id="startOffset" type="range" min="-10" max="10" step="0.5" value="3">
         </label>
-        <label>センサー取り付け位置（車軸からの前方オフセット）: <span id="sensorOffsetVal" class="val">2.0</span>
-          <input id="sensorOffset" type="range" min="0" max="40" step="0.5" value="2">
+        <label>センサー取り付け位置（車軸からの前方オフセット）: <span id="sensorOffsetVal" class="val">12.0</span>
+          <input id="sensorOffset" type="range" min="0" max="40" step="0.5" value="12">
         </label>
         <p class="note">
           走行体はライン幅 20mm を基準に実寸比（車輪間隔 125mm / 車輪径 55mm）で描いています。
-          既定の 2.0 はこの縮尺だと車軸の 10mm 前方にあたり、実機（およそ 100mm 前方 = 20 前後）よりかなり手前です。
-          値を大きくするとアームが伸び、センサーが車体の前に出ます。
+          既定の 12.0 はこの縮尺で車軸の 60mm 前方にあたります。実機（およそ 100mm 前方 = 20 前後）まで
+          伸ばすこともできますが、先読み距離が変わるため既定ゲインのままだと整定しなくなります。
         </p>
         <div id="sineParams" class="hidden">
           <label>S字の振幅: <span id="amplitudeVal" class="val">3.0</span>
@@ -291,12 +311,22 @@
             <input id="radius" type="range" min="5" max="30" step="1" value="15">
           </label>
         </div>
+        <div id="cornerParams" class="hidden">
+          <label>角の丸み（半径）: <span id="cornerRadiusVal" class="val">8</span>
+            <input id="cornerRadius" type="range" min="0" max="40" step="1" value="8">
+          </label>
+        </div>
         <p class="note">
-          曲線コースは既定のゲイン（Kp 2 / Kd 10）では追従できず、途中でラインを外れます。<br>
-          S字は <strong>Kd を 20</strong> 付近まで上げると追従します（RMS 1.6）。
-          円弧は <strong>Kp を 6</strong> 付近まで上げると1周まわれますが、曲率が一定の入力には偏差が残り、
-          ラインの内側を回ります。必要なゲインが形状で違うことを確かめられます。
+          形状によって必要なゲインが違うことを確かめられます。既定（Kp 2 / Kd 10）で追従できるのは
+          直線とS字までで、円弧と90度コーナーはゲインを上げないとラインを外れます。
         </p>
+        <table class="note-table">
+          <tr><th>形状</th><th>ゲインの例</th><th>RMS ずれ</th><th>備考</th></tr>
+          <tr><td>直線</td><td>Kp 2 / Kd 10（既定）</td><td>0.30</td><td>整定 5.4s</td></tr>
+          <tr><td>S字</td><td>Kp 2 / Kd 15</td><td>0.72</td><td>既定のままでもライン上には乗る（0.91）</td></tr>
+          <tr><td>円弧</td><td><strong>Kp 10</strong> / Kd 10</td><td>4.3</td><td>曲率一定の入力には偏差が残り、内側を回る</td></tr>
+          <tr><td>90度コーナー</td><td><strong>Kp 6</strong> / Kd 10</td><td>0.43</td><td>既定だと角で外れる</td></tr>
+        </table>
       </div>
 
       <div class="panel">
@@ -333,8 +363,17 @@
       <div class="panel">
         <h4>表示</h4>
         <label>拡大率: <span id="viewScaleVal" class="val">7.0</span>
-          <input id="viewScale" type="range" min="2" max="30" step="0.5" value="7">
+          <input id="viewScale" type="range" min="1.5" max="40" step="0.5" value="7">
         </label>
+        <div class="buttons">
+          <button id="zoomOutBtn" type="button" title="縮小">−</button>
+          <button id="zoomInBtn" type="button" title="拡大">＋</button>
+          <button id="fitBtn" type="button">全体表示</button>
+        </div>
+        <p class="note">
+          軌跡の上でホイールを回すと拡大・縮小、ドラッグで移動できます。
+          ダブルクリックで全体表示に戻ります。表示を変えても計算結果は変わりません。
+        </p>
         <div class="buttons">
           <button id="resetBtn" type="button">リセット</button>
           <button id="rerunBtn" type="button">再計算</button>
