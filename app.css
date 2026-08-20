@@ -1257,3 +1257,34 @@
         .qc-ok { color: #0a7; }
         .qc-ng { color: #c00; }
         .qc-run { color: #d9800f; }
+
+/* 新しいビルドが公開されたときの通知（sim/version-check.js） */
+.app-update-notice {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 2147483646;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #1f2937;
+    color: #fff;
+    font-size: 0.85em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
+
+.app-update-notice button {
+    font: inherit;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid #6b7280;
+    background: #374151;
+    color: #fff;
+    cursor: pointer;
+}
+
+.app-update-notice button:hover {
+    background: #4b5563;
+}
