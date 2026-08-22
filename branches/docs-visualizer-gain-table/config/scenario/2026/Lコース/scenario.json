@@ -1,0 +1,294 @@
+[
+  {
+    "Comment": "LAPゲートまで進む",
+    "SNO": 1, "CNO": 1, "PRVSNO": 1, "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 5400
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAPゲートを通った後バックする",
+    "SNO": 1, "CNO": 2, "PRVSNO": 1, "PRVCNO": 1,
+    "RunInfo": { "FUNCNO": 5, "FWD": -100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -200
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ET相撲の方向を向く",
+    "SNO": 1, "CNO": 3, "PRVSNO": 1, "PRVCNO": 2,
+    "RunInfo": { "FUNCNO": 3, "FWD": 0, "TRN": -100, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 32, "SCD": 0, "SCR": -150 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ET相撲に向かう",
+    "SNO": 1, "CNO": 4, "PRVSNO": 1, "PRVCNO": 3,
+    "RunInfo": { "FUNCNO": 5, "FWD": 100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 800 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAPゲートを通った後バックする",
+    "SNO": 1, "CNO": 5, "PRVSNO": 1, "PRVCNO": 4,
+    "RunInfo": { "FUNCNO": 5, "FWD": -100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -200
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "次の難所へ回転",
+    "SNO": 1, "CNO": 6, "PRVSNO": 1, "PRVCNO": 5,
+    "RunInfo": { "FUNCNO": 3, "FWD": 0, "TRN": -100, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 32, "SCR": -160 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレースに復帰",
+    "SNO": 1, "CNO": 7, "PRVSNO": 1, "PRVCNO": 6,
+    "RunInfo": { "FUNCNO": 5, "FWD": 100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 300 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレースに復帰",
+    "SNO": 1, "CNO": 8, "PRVSNO": 1, "PRVCNO": 7,
+    "RunInfo": { "FUNCNO": 5, "FWD": 40, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 16, "SCC": 2 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレースに復帰",
+    "SNO": 1, "CNO": 9, "PRVSNO": 1, "PRVCNO": 8,
+    "RunInfo": { "FUNCNO": 3, "FWD": 0, "TRN": -100, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 32, "SCR": -50 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレース",
+    "SNO": 1, "CNO": 10, "PRVSNO": 1, "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 1350 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレース TODO 青ライン切替",
+    "SNO": 1, "CNO": 11, "PRVSNO": 1, "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 200 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAPゲートを通った後バックする",
+    "SNO": 1, "CNO": 12, "PRVSNO": 1, "PRVCNO": 11,
+    "RunInfo": { "FUNCNO": 5, "FWD": -100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -100
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90°回転",
+    "SNO": 1, "CNO": 13, "PRVSNO": 1, "PRVCNO": 12,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 32, "SCR": 60 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90°回転",
+    "SNO": 1, "CNO": 14, "PRVSNO": 1, "PRVCNO": 13,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 32, "SCR": -50 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレース",
+    "SNO": 1, "CNO": 15, "PRVSNO": 1, "PRVCNO": 14,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 500 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレース",
+    "SNO": 1, "CNO": 16, "PRVSNO": 1, "PRVCNO": 15,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 700 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレース",
+    "SNO": 1, "CNO": 17, "PRVSNO": 1, "PRVCNO": 16,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 500 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAPゲートを通った後バックする",
+    "SNO": 1, "CNO": 18, "PRVSNO": 1, "PRVCNO": 17,
+    "RunInfo": { "FUNCNO": 5, "FWD": -100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -100
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90°回転",
+    "SNO": 1, "CNO": 19, "PRVSNO": 1, "PRVCNO": 18,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 32, "SCR": 60 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90°回転",
+    "SNO": 1, "CNO": 20, "PRVSNO": 1, "PRVCNO": 19,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 32, "SCR": -50 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライントレース",
+    "SNO": 1, "CNO": 21, "PRVSNO": 1, "PRVCNO": 20,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 800 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90°回転",
+    "SNO": 1, "CNO": 22, "PRVSNO": 1, "PRVCNO": 21,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 32, "SCR": 90 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ペットボトル置く",
+    "SNO": 1, "CNO": 23, "PRVSNO": 1, "PRVCNO": 22,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 400 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ペットボトルから離れる",
+    "SNO": 1, "CNO": 24, "PRVSNO": 1, "PRVCNO": 23,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -100,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCD": -400 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ガレージに向かう",
+    "SNO": 1, "CNO": 25, "PRVSNO": 1, "PRVCNO": 24,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 32, "SCR": 180 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ガレージに向かう",
+    "SNO": 1, "CNO": 26, "PRVSNO": 1, "PRVCNO": 25,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 100,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": { "SCJFN": 128, "SCR": 180 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "シナリオ終了",
+    "SNO": 0, "CNO": 0, "PRVSNO": 1, "PRVCNO": 26,
+    "RunInfo": {},
+    "SwitchInfo": {},
+    "CoordCorrectInfo": {}
+  }
+]
