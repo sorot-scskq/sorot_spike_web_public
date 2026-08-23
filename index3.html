@@ -252,7 +252,10 @@
         <label>Kd: <span id="kdVal" class="val">10.0</span>
           <input id="kd" type="range" min="0" max="100" step="0.5" value="10.0">
         </label>
-        <p class="note">既定値は追従する状態にしてあります。Kd を 0 に戻すと振動が収まらなくなる様子が見られます。</p>
+        <p class="note">
+          微分項は1周期（10ms）差分なので、以前の「200ms前との差」だった頃より大きな Kd が要ります。
+          直線なら Kd 60 前後で整定が 6.0s から 2.0s に縮みます。Kd を 0 に戻すと振動が収まらなくなる様子が見られます。
+        </p>
         <label>WPER（目標色の割合）: <span id="wperVal" class="val">0</span>
           <input id="wper" type="range" min="-100" max="100" step="5" value="0">
         </label>
@@ -317,16 +320,20 @@
           </label>
         </div>
         <p class="note">
-          形状によって必要なゲインが違うことを確かめられます。既定（Kp 2 / Kd 10）で追従できるのは
-          直線とS字までで、円弧と90度コーナーはゲインを上げないとラインを外れます。
+          形状によって必要なゲインが違うことを確かめられます。微分項を1周期差分に変えてからは
+          Kd を大きく取る必要があり、既定（Kp 2 / Kd 10）でまともに追従するのは直線だけです。
+          S字・円弧・90度コーナーはゲインを上げないとラインを外れます。
         </p>
         <table class="note-table">
           <tr><th>形状</th><th>ゲインの例</th><th>RMS ずれ</th><th>備考</th></tr>
-          <tr><td>直線</td><td>Kp 2 / Kd 10（既定）</td><td>0.30</td><td>整定 5.4s</td></tr>
-          <tr><td>S字</td><td>Kp 2 / Kd 15</td><td>0.72</td><td>既定のままでもライン上には乗る（0.91）</td></tr>
-          <tr><td>円弧</td><td><strong>Kp 10</strong> / Kd 10</td><td>4.3</td><td>曲率一定の入力には偏差が残り、内側を回る</td></tr>
-          <tr><td>90度コーナー</td><td><strong>Kp 6</strong> / Kd 10</td><td>0.43</td><td>既定だと角で外れる</td></tr>
+          <tr><td>直線</td><td>Kp 2 / <strong>Kd 60</strong></td><td>0.19</td><td>整定 2.0s。既定（Kd 10）だと 0.25・整定 6.0s</td></tr>
+          <tr><td>S字</td><td><strong>Kp 6</strong> / <strong>Kd 100</strong></td><td>0.73</td><td>Kd 10 では 13.5 まで悪化して追従しない</td></tr>
+          <tr><td>円弧</td><td><strong>Kp 10</strong> / <strong>Kd 100</strong></td><td>4.4</td><td>曲率一定の入力には偏差が残り、内側を回る</td></tr>
+          <tr><td>90度コーナー</td><td><strong>Kp 8</strong> / <strong>Kd 100</strong></td><td>0.25</td><td>Kd 10 では角で外れる（Kp 6 / Kd 10 で 0.58）</td></tr>
         </table>
+        <p class="note">
+          計測条件: FWD 50 / TRN 0 / Ki 0 / 1000 ステップ / ライン幅 4.0 / ぼけ幅 1.5、その他は既定値。
+        </p>
       </div>
 
       <div class="panel">
