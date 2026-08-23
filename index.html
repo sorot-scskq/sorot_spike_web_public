@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-BzbrOEa8.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-GHgOMpnl.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-CzTJqF3N.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-a855q2sq.js"></script>
 </head>
 
 <body>
@@ -72,6 +72,8 @@
                 <a href="index3.html">ビジュアライザ</a>
                 <!-- 公開サイトのタグ別公開一覧。base はタグごとに変わるため絶対パスで固定する -->
                 <a href="/sorot_spike_web_public/tags/" style="margin-left: 8px;">タグ別公開</a>
+                <!-- ビルド元のコミット。キャッシュで古い版が残っていても、ここを見れば判別できる -->
+                <span id="commitIdDisplay" class="commit-id" title="ビルド元のコミット"></span>
                 <h2 style="margin-bottom: 10px; margin-top: 0;">Sorot-Spikeテストツール</h2>
 
             <div class="header">
@@ -81,6 +83,10 @@
                 <span style="margin-left:4px;">LAPゲートタイム: <br/><strong id="lapGateTimerDisplay">00:00.000</strong></span>
                 <span style="margin-left:4px;">残り制限時間: <br/><strong id="countdownTimerDisplay">02:00</strong></span>
                 <span style="margin-left:4px;">コース状態: <br/><strong id="courseStatusDisplay">OK</strong></span>
+                <label style="margin-left:8px; font-size: 0.85em;">
+                    <input type="checkbox" id="disableOutDetectionCheckbox" checked>
+                    アウト判定を無効化（画面外のみ判定）
+                </label>
             </div>
 
             <!-- タブメニュー -->

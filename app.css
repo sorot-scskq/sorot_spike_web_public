@@ -1288,3 +1288,11 @@
 .app-update-notice button:hover {
     background: #4b5563;
 }
+
+/* ビルド元のコミット ID（ヘッダー上部の控えめな表示） */
+.commit-id {
+    margin-left: 8px;
+    font-size: 0.8em;
+    color: #6b7280;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
