@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-CzTJqF3N.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Bso0KuOM.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-DY-1V0JR.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-7cfsZsqu.js"></script>
 </head>
 
 <body>
@@ -58,6 +58,14 @@
                         <input type="checkbox" id="cameraEnabledCheckbox" checked>
                         カメラON (OFFにすると処理軽量化)
                     </label>
+                    <label class="camera-enabled-toggle">
+                        <input type="checkbox" id="disableOutDetectionCheckbox" checked>
+                        アウト判定を無効化（画面外のみ判定）
+                    </label>
+                    <label class="camera-enabled-toggle">
+                        <input type="checkbox" id="odometryOverlayCheckbox">
+                        自己位置推定を表示 (青のゴースト)
+                    </label>
                 </div>
         </div>
 
@@ -83,10 +91,6 @@
                 <span style="margin-left:4px;">LAPゲートタイム: <br/><strong id="lapGateTimerDisplay">00:00.000</strong></span>
                 <span style="margin-left:4px;">残り制限時間: <br/><strong id="countdownTimerDisplay">02:00</strong></span>
                 <span style="margin-left:4px;">コース状態: <br/><strong id="courseStatusDisplay">OK</strong></span>
-                <label style="margin-left:8px; font-size: 0.85em;">
-                    <input type="checkbox" id="disableOutDetectionCheckbox" checked>
-                    アウト判定を無効化（画面外のみ判定）
-                </label>
             </div>
 
             <!-- タブメニュー -->
@@ -291,6 +295,8 @@
                         <div class="debug-item"><label for="coordDriveDirectionAve">平均進行方向:</label><input type="number" id="coordDriveDirectionAve" value="0" step="0.1" readonly></div>
                         <div class="debug-item"><label for="coordDriveDirectionAveLast">最終平均方向:</label><input type="number" id="coordDriveDirectionAveLast" value="0" step="0.1" readonly></div>
                         <div class="debug-item"><label for="coordIsObstacle">障害物:</label><input type="text" id="coordIsObstacle" value="false" readonly></div>
+                        <div class="debug-item"><label for="odoErrorPx">推定ずれ(px):</label><input type="number" id="odoErrorPx" value="0" step="0.1" readonly title="描画位置と推定位置の距離"></div>
+                        <div class="debug-item"><label for="odoScale">実測スケール(px/mm):</label><input type="text" id="odoScale" value="-" readonly title="推定座標をフィールド座標へ写すスケール（走り出しで実測して確定）"></div>
                     </div>
 
                     <!-- センサー情報 -->
