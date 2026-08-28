@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-DY-1V0JR.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DyFaJrn5.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-CRWPvF6X.js"></script>
 </head>
 
 <body>
@@ -97,6 +97,7 @@
             <div class="tabs">
                 <button class="tab-button active-tab" onclick="openTab(event, 'MainTab')">メイン</button>
                 <button class="tab-button" onclick="openTab(event, 'TaskTab')">タスク/通信</button>
+                <button class="tab-button" onclick="openTab(event, 'GateTab')">ゲート(難所)</button>
                 <button class="tab-button" onclick="openTab(event, 'ScenarioTab')">シナリオ編集</button>
                 <button class="tab-button" onclick="openTab(event, 'OutputTab')">実行結果 (ログ)</button>
             </div>
@@ -186,6 +187,87 @@
             </div>
 
             <!-- シナリオ編集タブ -->
+            <!-- ゲート(難所)タブ: ET ラリー -->
+            <div id="GateTab" class="tab-content">
+                <div class="debug-grid" id="gateSection">
+                    <div class="debug-group full-width">
+                        <h4>ET ラリー ゲート配置</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            ゲートは隣り合ったゲートポジション（<code>GX-Y</code>）の上に設置します。
+                            向きは色ごとに決まっていて（赤=横 / 青=縦 / 黄=横）、通過順は 赤 → 青 → 黄 です。
+                            配置は <code>config/course/&lt;年度&gt;/gates.json</code> で管理します。
+                        </p>
+                        <p id="gateUnavailable" class="scenario-edit-warning" hidden>
+                            このコースには <code>gates.json</code> がありません。
+                        </p>
+
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label for="gatePlacementInput">配置文字列:</label>
+                            <input id="gatePlacementInput" type="text" placeholder="25,35/53,54/12,22" style="min-width:260px;" />
+                            <button id="gateApplyButton" type="button">適用</button>
+                            <span style="color:#666;">ヒントカードと同じ書き方（赤/青/黄 の順）</span>
+                        </div>
+
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label for="gatePatternSelect">パターン:</label>
+                            <select id="gatePatternSelect"></select>
+                            <button id="gateRandomButton" type="button">ランダム配置</button>
+                            <label for="gateSeedInput">シード:</label>
+                            <input id="gateSeedInput" type="number" placeholder="空で毎回変更" style="width:120px;" />
+                            <button id="gateClearButton" type="button">全消去</button>
+                        </div>
+
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label for="gateColorSelect">追加:</label>
+                            <select id="gateColorSelect"></select>
+                            <select id="gatePosASelect"></select>
+                            <span>-</span>
+                            <select id="gatePosBSelect"></select>
+                            <button id="gateAddButton" type="button">このゲートを置く</button>
+                        </div>
+
+                        <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label><input type="checkbox" id="gateVisibleCheckbox" checked /> ゲートを表示</label>
+                            <label><input type="checkbox" id="gatePositionsCheckbox" checked /> ゲートポジションを表示</label>
+                            <span id="gateMessage"></span>
+                        </div>
+
+                        <ul id="gateList" class="gate-list"></ul>
+                    </div>
+
+                    <div class="debug-group full-width">
+                        <h4>ヒントカード</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            5cm 四方の二次元コードがコース上に 2 つあり、ゲート位置を示します（規約 7.3.1）。
+                            内容は現在の配置から自動で決まります。位置はワールド座標で調整できます。
+                        </p>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:6px;">
+                            <span>ヒント1（赤）: <strong id="gateHint1">-</strong></span>
+                            <label for="gateHint1X">X:</label>
+                            <input id="gateHint1X" type="number" step="1" style="width:80px;" />
+                            <label for="gateHint1Y">Y:</label>
+                            <input id="gateHint1Y" type="number" step="1" style="width:80px;" />
+                        </div>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
+                            <span>ヒント2（青/黄）: <strong id="gateHint2">-</strong></span>
+                            <label for="gateHint2X">X:</label>
+                            <input id="gateHint2X" type="number" step="1" style="width:80px;" />
+                            <label for="gateHint2Y">Y:</label>
+                            <input id="gateHint2Y" type="number" step="1" style="width:80px;" />
+                        </div>
+                    </div>
+
+                    <div class="debug-group full-width">
+                        <h4>JSON</h4>
+                        <div class="msg-traffic-actions" style="margin-bottom:8px;">
+                            <button id="gateJsonExportButton" type="button">現在の配置を JSON 化</button>
+                            <button id="gateJsonImportButton" type="button">JSON を読み込む</button>
+                        </div>
+                        <textarea id="gateJsonArea" class="ws-received-json" placeholder="gates.json と同じ形式"></textarea>
+                    </div>
+                </div>
+            </div>
+
             <div id="ScenarioTab" class="tab-content">
                 <p class="scenario-edit-warning">ここを書き換えても保存されません。テキストファイルで別管理するか、SOROT_SPIKE_WEB プロジェクトを Clone して JSON を直接編集してください。</p>
                 <textarea id="scenarioInput" placeholder="シナリオを入力してください..."></textarea>

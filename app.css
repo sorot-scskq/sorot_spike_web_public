@@ -1296,3 +1296,26 @@
     color: #6b7280;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+
+/* ET ラリーのゲート一覧 */
+.gate-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.gate-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+.gate-chip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-radius: 2px;
+}
