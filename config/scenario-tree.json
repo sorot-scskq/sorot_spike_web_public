@@ -392,6 +392,17 @@
               "path": "2026/Lコース/scenario.json"
             }
           ]
+        },
+        {
+          "label": "難所",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/難所/scenario.json"
+            }
+          ]
         }
       ]
     }
