@@ -2,6 +2,23 @@
 共通通信モジュール（送受信対応）。
 
 双方向メッセージ通信（送信・受信・イベント待受・リクエスト/レスポンス）を提供する。
+
+【トランスポートが 2つある理由】
+つなぐ相手が実機とシミュレータで違うので、下回りだけを差し替えられるように
+BaseCommunicator でそろえてある。上に載る処理（ヒントカードの読み取りなど）は
+どちらで動いているかを知らない。
+
+    TcpCommunicator       実機。C++ 制御部（127.0.0.1:12345）と、PC の推論サーバ。
+                          4バイトのビッグエンディアン長ヘッダ + JSON。
+                          C++ 側 PythonCommServer.cpp と同じ形式。
+    WebSocketCommunicator シミュレータ。ブラウザから届く先（/ws/hint-card など）。
+    CallbackCommunicator  PyScript とテスト。関数を 1つ差すだけ。
+
+【4バイト長ヘッダを共通の関数にしている理由】
+この並びだけは C++ とバイト単位で一致していないと通信が成立しない。
+実機のサーバ（ev3_server.py）とクライアント（pc_client.py）が別々に同じ
+処理を持っていると、片方だけ直したときに気づけない。send_packet /
+recv_packet の 1組だけを見ればよいようにしてある。
 """
 
 from __future__ import annotations
@@ -208,6 +225,170 @@ class CallbackCommunicator(BaseCommunicator):
                 handler(data)
             except Exception:  # noqa: BLE001
                 logger.exception("CallbackCommunicator ハンドラエラー")
+
+
+
+# --------------------------------------------------------------------------
+# TCP（実機）
+# --------------------------------------------------------------------------
+
+#: 受け取ってよい 1メッセージの上限[byte]。C++ 側 PythonCommServer.cpp と同じ
+MAX_PACKET_BYTES = 1_000_000
+
+
+def send_packet(sock, payload: Union[dict, str]) -> None:
+    """
+    4バイトのビッグエンディアン長ヘッダを付けて送る。
+
+    C++ 側（PythonCommServer.cpp）と同じ形式。ここを変えると通信が壊れる。
+    """
+    import struct
+
+    text = json.dumps(payload, ensure_ascii=False) if isinstance(payload, dict) else str(payload)
+    body = text.encode("utf-8")
+    sock.sendall(struct.pack("!I", len(body)) + body)
+
+
+def recv_packet(sock) -> str:
+    """
+    4バイトの長ヘッダを読み、その長さぶんを最後まで受け取る。
+
+    :returns: 受け取った文字列。切断・不正な長さなら ""
+    """
+    import struct
+
+    header = b""
+    while len(header) < 4:
+        chunk = sock.recv(4 - len(header))
+        if not chunk:
+            return ""  # 切断
+        header += chunk
+
+    length = struct.unpack("!I", header)[0]
+    if length == 0 or length > MAX_PACKET_BYTES:
+        return ""
+
+    data = b""
+    while len(data) < length:
+        chunk = sock.recv(length - len(data))
+        if not chunk:
+            return ""  # 切断
+        data += chunk
+
+    return data.decode("utf-8")
+
+
+class TcpCommunicator(BaseCommunicator):
+    """
+    TCP を用いた双方向通信クライアント（実機用）。
+
+    走行体の Python から、PC の推論サーバや C++ 制御部へつなぐときに使う。
+    相手がまだ起動していないことがあるので、つながるまで 1秒おきに試す。
+    """
+
+    def __init__(self, host: str = "127.0.0.1", port: int = 49661, timeout: float = 5.0):
+        self.host = host
+        self.port = port
+        self.timeout = timeout
+        self.conn = None
+        self.lock = threading.Lock()
+
+    def connect(self, retry: bool = True) -> bool:
+        """つながるまで試す。つながったら True"""
+        import socket
+
+        while True:
+            try:
+                self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.conn.connect((self.host, self.port))
+                logger.info("接続しました: %s:%s", self.host, self.port)
+                return True
+            except Exception as e:  # noqa: BLE001
+                self.conn = None
+                if not retry:
+                    logger.warning("接続できません: %s:%s (%s)", self.host, self.port, e)
+                    return False
+                logger.warning("相手が未起動。再試行します... %s", e)
+                time.sleep(1)
+
+    def send(self, data: Union[dict, str]) -> None:
+        """データを送る（応答は待たない）"""
+        with self.lock:
+            if self.conn is None and not self.connect(retry=False):
+                return
+            try:
+                send_packet(self.conn, data)
+            except Exception:  # noqa: BLE001
+                logger.exception("TCP 送信に失敗しました: %s:%s", self.host, self.port)
+                self.close()
+
+    def receive(self, timeout: Optional[float] = None) -> Optional[Union[dict, str]]:
+        """メッセージを 1件受け取る。受け取れなければ None"""
+        with self.lock:
+            if self.conn is None and not self.connect(retry=False):
+                return None
+            old = self.conn.gettimeout()
+            try:
+                self.conn.settimeout(timeout if timeout is not None else self.timeout)
+                raw = recv_packet(self.conn)
+                if raw == "":
+                    return None
+                return self._parse_payload(raw)
+            except Exception:  # noqa: BLE001
+                logger.exception("TCP 受信に失敗しました: %s:%s", self.host, self.port)
+                self.close()
+                return None
+            finally:
+                try:
+                    if self.conn is not None:
+                        self.conn.settimeout(old)
+                except Exception:  # noqa: BLE001
+                    pass
+
+    def request(self, data: Union[dict, str],
+                timeout: Optional[float] = None) -> Optional[Union[dict, str]]:
+        """送って、応答を 1件待つ（要求・応答パターン）"""
+        with self.lock:
+            if self.conn is None and not self.connect(retry=False):
+                return None
+            old = self.conn.gettimeout()
+            try:
+                self.conn.settimeout(timeout if timeout is not None else self.timeout)
+                send_packet(self.conn, data)
+                raw = recv_packet(self.conn)
+                if raw == "":
+                    raise ConnectionError("接続が切れました")
+                return self._parse_payload(raw)
+            except Exception:  # noqa: BLE001
+                logger.exception("TCP 要求に失敗しました: %s:%s", self.host, self.port)
+                self.close()
+                return None
+            finally:
+                try:
+                    if self.conn is not None:
+                        self.conn.settimeout(old)
+                except Exception:  # noqa: BLE001
+                    pass
+
+    def _parse_payload(self, raw: str) -> Union[dict, str]:
+        try:
+            return json.loads(raw)
+        except (ValueError, json.JSONDecodeError):
+            return raw
+
+    def on_message(self, callback: Callable[[Any], None]) -> Callable[[Any], None]:
+        """受信ハンドラを登録する。"""
+        raise NotImplementedError("TcpCommunicator は receive / request を使う")
+
+    def close(self) -> None:
+        """接続を閉じる。次に使うときに繋ぎ直す"""
+        try:
+            if self.conn:
+                self.conn.close()
+        except Exception:  # noqa: BLE001
+            logger.exception("TCP 接続の切断でエラー")
+        finally:
+            self.conn = None
 
 
 # 後方互換性エイリアス

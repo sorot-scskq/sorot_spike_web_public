@@ -4,13 +4,16 @@
 ET ラリーのゲート配置は、コース上に立ててある 2枚のヒントカードを読まないと
 分からない（規約 7.3.1、表 7-2）。カードは 5cm 四方の二次元コードで、
 走行体の正面を向いて台に立っている。
-    ヒント1 … 赤ゲートの位置              例 "25,35"
-    ヒント2 … 青ゲートと黄ゲートの位置    例 "53,54/12,22"
+    ヒント1 … 赤ゲートの位置              平文。例 "25,35"
+    ヒント2 … 青ゲートと黄ゲートの位置    暗号文。例 "NKVD6nnS28waG2lbRQlD8A=="
+
+ヒント2 は暗号化されて掲示される。走行体は中身を解釈できないので、読めた
+文字列をそのまま PC 側へ渡し、PC が復号してゲート配置を組み立てる。
 
 【構成（Common モジュールの利用）】
     RobotCamera   … カメラ映像の取得
     QrCodeDecoder … 二次元コードの検出・デコード
-    MessageSender … 上位・サーバーへの送信インターフェース
+    MessageSender … 上位・サーバーへの送信インターフェース（communicator.py）
     HintCardReader … 上記を統合してカードの読み取りと通知を管理
 
 【1枚目と2枚目の見分け方】
@@ -43,6 +46,8 @@ _POSITION_DASH = re.compile(r"^G?(\d)[-_](\d)$")
 _POSITION_PLAIN = re.compile(r"^G?(\d)(\d)$")
 _CARD_NUMBER = re.compile(r"^\s*([12])\s*:\s*(.*)$", re.S)
 _CARD_NUMBER_HEAD = re.compile(r"^\s*([12])\s*:")
+#: 暗号化されたヒントカード2 の見た目（Base64）。1ブロックで 24文字になる
+_ENCRYPTED_LIKE = re.compile(r"^[A-Za-z0-9+/]{16,}={0,2}$")
 
 
 def _parse_position_key(text: str) -> Optional[dict]:
@@ -95,11 +100,30 @@ def parse_hint_card_text(text: Optional[str]) -> list:
     return pairs
 
 
+def is_encrypted_text(text: Optional[str]) -> bool:
+    """
+    暗号化されたヒントカード2 の見た目か（Base64 の塊）。
+
+    本番のヒントカード2 は暗号化されて掲示される。走行体は中身を解釈できず、
+    そのまま PC 側へ渡して復号してもらう。読み取りの失敗（短い断片や記号）を
+    カードとして受け取ってしまわないよう、Base64 の形をしていることは見る。
+    """
+    return bool(text) and bool(_ENCRYPTED_LIKE.match(text.strip()))
+
+
 def identify_hint_card(text: Optional[str]) -> Optional[str]:
     """
     読んだ文字列が 1枚目か 2枚目かを見分ける。
 
-    中身の位置の組の数で決める（表 7-2）。番号が頭に付いていればそちらを優先する。
+    ヒント1 は平文（位置の組が 1つ）、ヒント2 は暗号文で届く（規約 表 7-2）。
+    番号が頭に付いていればそちらを優先する。
+
+        "25,35"                     位置の組が 1つ  → ヒント1
+        "NKVD6nnS28waG2lbRQlD8A=="  暗号文          → ヒント2
+        "53,54/12,22"               位置の組が 2つ  → ヒント2（平文のとき）
+
+    3行目は本番では起きない（ヒント2 は暗号化されている）が、暗号化しない
+    相手（tools/ws_debug_server など）と繋いだときのために残してある。
     """
     prefixed = _card_number_prefix(text)
     if prefixed:
@@ -109,6 +133,8 @@ def identify_hint_card(text: Optional[str]) -> Optional[str]:
     if len(pairs) == 1:
         return HintCard.CARD1
     if len(pairs) >= 2:
+        return HintCard.CARD2
+    if is_encrypted_text(text):
         return HintCard.CARD2
     return None
 
@@ -120,21 +146,21 @@ def identify_hint_card(text: Optional[str]) -> Optional[str]:
 try:
     from camera import RobotCamera
     from qr_decoder import QrCodeDecoder, find_card_panels
-    from sender import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
+    from communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
 except (ImportError, ValueError):
     try:
         from ..Common.camera import RobotCamera
         from ..Common.qr_decoder import QrCodeDecoder, find_card_panels
-        from ..Common.sender import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
+        from ..Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
     except (ImportError, ValueError):
         try:
             from Common.camera import RobotCamera
             from Common.qr_decoder import QrCodeDecoder, find_card_panels
-            from Common.sender import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
+            from Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
         except (ImportError, ValueError):
             from RoughSpot.Python.Common.camera import RobotCamera
             from RoughSpot.Python.Common.qr_decoder import QrCodeDecoder, find_card_panels
-            from RoughSpot.Python.Common.sender import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
+            from RoughSpot.Python.Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
 
 # 後方互換性エイリアス
 HintCardCamera = RobotCamera
@@ -146,13 +172,32 @@ HintCardSender = MessageSender
 # --------------------------------------------------------------------------
 
 
+#: 無線通信デバイスの識別値。ヒントカード1 と 2 で分かれている
+#: （2026/route_receiver.py の IDENTIFIER_HINT_CARD1 / 2 と同じ）
+IDENTIFIER_BY_CARD = {
+    HintCard.CARD1: 1,
+    HintCard.CARD2: 2,
+}
+
+
 def card_to_payload(card: dict) -> dict:
-    """送信する形。JS 側・サーバ側と同じ並びにしておく"""
+    """
+    送信する形。
+
+    PC 側（PC-System_2026 の WebSocketCommunicator）はこの形しか読まない。
+        {"id": 1, "decodeResult": "25,35"}       ヒントカード1 → QR1 として保存
+        {"id": 2, "decodeResult": "53,54/12,22"} ヒントカード2 → QR2 として保存（復号もする）
+
+    送るのは二次元コードから読めた**そのままの文字列**。頭に付けた "1:" / "2:"
+    は外す。カードの番号は id で伝わるうえ、PC 側は中身をゲート座標として
+    そのまま使うため、余計な接頭辞が入ると座標が読めなくなる。
+
+    ゲートの位置に分解した結果（card["gates"]）は送らない。PC 側が自分で
+    分解して最短経路を組み立てるので、走行体が解釈した結果を渡す必要がない。
+    """
     return {
-        "type": "hintCard",
-        "card": card["card"],
-        "text": card["text"],
-        "gates": card["gates"],
+        "id": IDENTIFIER_BY_CARD[card["card"]],
+        "decodeResult": strip_card_number(card["text"]).strip(),
     }
 
 

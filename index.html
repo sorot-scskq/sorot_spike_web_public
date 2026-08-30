@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-DzeZ9j-q.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DrLeXwfm.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-e1Rv_qkz.js"></script>
 </head>
 
 <body>
@@ -219,33 +219,23 @@
                         </div>
                     </div>
 
-                    <!-- 無線通信デバイス（WebSocket デバッグ） -->
+                    <!-- 無線通信デバイス（接続確認） -->
                     <div class="debug-group full-width">
                         <h4>無線通信デバイス接続（WebSocket）</h4>
                         <p class="scenario-edit-warning" style="margin-top:0;">
-                            Python デバッグサーバ（<code>tools/ws_debug_server</code>）に接続し、受信 JSON を表示・シナリオ適用します。
-                            先に <code>python server.py</code> を起動してください。
+                            無線通信デバイス（<code>PC-System_2026</code>、または <code>tools/ws_debug_server</code>）から
+                            走行経路を<strong>一回だけ</strong>取得し、走行中のシナリオへ足します。
+                            繋ぎっぱなしにはしません（毎周期のやりとりは行いません）。
+                            走行中は LAP ゲート通過時に自動で取得されるので、ここは接続を確かめるためのものです。
                         </p>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
                             <label for="wsServerUrlInput">URL:</label>
                             <input id="wsServerUrlInput" type="text" value="ws://127.0.0.1:8765" style="min-width:220px;" />
-                            <button id="wsConnectButton" type="button">通信開始</button>
-                            <button id="wsDisconnectButton" type="button" disabled>切断</button>
+                            <button id="wsFetchRouteButton" type="button">走行経路を取得 (id=3)</button>
                             <span>状態: <strong id="wsConnectionStatus">未接続</strong></span>
                         </div>
-                        <div class="msg-traffic-actions" style="margin-bottom:8px;">
-                            <button id="wsRequestRouteButton" type="button" disabled>経路要求 (identifier=3)</button>
-                            <button id="wsRequestHint1Button" type="button" disabled>ヒント1 (identifier=1)</button>
-                            <button id="wsRequestHint2Button" type="button" disabled>ヒント2 (identifier=2)</button>
-                            <button id="wsApplyScenarioButton" type="button" disabled>シナリオを適用</button>
-                            <button id="wsApplyAndRunButton" type="button" disabled>適用して走行開始</button>
-                        </div>
-                        <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
-                            <label><input type="checkbox" id="wsAutoApplyCheckbox" /> 受信時に自動適用</label>
-                            <span>経路情報: <strong id="wsRouteInfo">-</strong></span>
-                        </div>
                         <label for="wsReceivedJson" style="display:block; margin-bottom:4px;">受信 JSON</label>
-                        <textarea id="wsReceivedJson" class="ws-received-json" placeholder="サーバから受信した JSON がここに表示されます..." readonly></textarea>
+                        <textarea id="wsReceivedJson" class="ws-received-json" placeholder="受信した JSON がここに表示されます..." readonly></textarea>
                     </div>
 
                     <!-- リモートコントロール走行（RemoteControl） -->
