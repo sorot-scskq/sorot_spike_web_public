@@ -29,13 +29,18 @@
           ]
         },
         {
-          "label": "10_外部ソース走行",
+          "label": "10_リモートコントロール走行",
           "open": false,
           "children": [
             {
+              "label": "custom.json",
+              "type": "file",
+              "path": "01_走行動作確認/10_リモートコントロール走行/custom.json"
+            },
+            {
               "label": "scenario.json",
               "type": "file",
-              "path": "01_走行動作確認/10_外部ソース走行/scenario.json"
+              "path": "01_走行動作確認/10_リモートコントロール走行/scenario.json"
             }
           ]
         },
@@ -312,6 +317,17 @@
       ]
     },
     {
+      "label": "10_自動走行(RemoteControl)",
+      "open": false,
+      "children": [
+        {
+          "label": "custom.json",
+          "type": "file",
+          "path": "10_自動走行(RemoteControl)/custom.json"
+        }
+      ]
+    },
+    {
       "label": "2024",
       "open": false,
       "children": [
@@ -390,6 +406,17 @@
               "label": "scenario.json",
               "type": "file",
               "path": "2026/04_ET相撲_ガレージゴール/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "05_ボトルデリバリー_色分岐",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/05_ボトルデリバリー_色分岐/scenario.json"
             }
           ]
         },

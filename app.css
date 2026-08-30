@@ -647,6 +647,47 @@
             color: #333;
         }
 
+        /* カメラの認識結果。行数はその年の認識処理の数で変わるので、
+           固定の欄ではなく縦に積む（sim/vision/recognizers.js） */
+        .vision-readout-item {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .vision-readout {
+            width: 100%;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #333;
+            background-color: #eef;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 2px 4px;
+            margin-top: 2px;
+        }
+
+        .vision-readout-line {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .vision-readout-line.is-lost {
+            color: #888;
+        }
+
+        .vision-readout-swatch {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border: 1px solid #666;
+            border-radius: 2px;
+            flex: none;
+        }
+
         /* XY を1つの入力枠に見えるようまとめる（他の debug-item 行と高さ・右寄せを揃える） */
         .debug-item.debug-xy-pair-row {
             justify-content: space-between;
@@ -1318,4 +1359,304 @@
   height: 12px;
   border: 1px solid rgba(0, 0, 0, 0.45);
   border-radius: 2px;
+}
+
+/* ============================================
+   十字キー（D-pad）コントローラ
+   ============================================ */
+
+.dpad-control-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.dpad-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.dpad-setting-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dpad-setting-row label {
+  min-width: 72px;
+  font-size: 13px;
+}
+
+.dpad-setting-row input[type="range"] {
+  width: 120px;
+}
+
+.dpad-setting-row span {
+  min-width: 28px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dpad-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dpad-row {
+  display: flex;
+  gap: 4px;
+}
+
+.dpad-spacer {
+  width: 60px;
+  height: 60px;
+}
+
+.dpad-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 22px;
+  border: 2px solid #999;
+  border-radius: 8px;
+  background: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s, border-color 0.1s, transform 0.08s;
+  touch-action: manipulation;
+}
+
+.dpad-btn:hover {
+  background: #e0e0e0;
+  border-color: #666;
+}
+
+.dpad-btn:active,
+.dpad-btn.dpad-active {
+  background: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+  transform: scale(0.95);
+}
+
+.dpad-center {
+  background: #ddd;
+  font-size: 16px;
+  border-color: #aaa;
+}
+
+.dpad-center:hover {
+  background: #ccc;
+}
+
+.dpad-center:active,
+.dpad-center.dpad-active {
+  background: #dc3545;
+  color: #fff;
+  border-color: #a71d2a;
+}
+
+.dpad-status-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  min-width: 140px;
+}
+
+.dpad-status-area strong {
+  font-size: 15px;
+}
+
+.status-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.status-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #f8f9fa;
+  color: #333;
+  transition: all 0.1s;
+  text-align: center;
+}
+
+.status-btn:hover {
+  filter: brightness(0.95);
+}
+
+.status-btn:active {
+  transform: scale(0.96);
+}
+
+.status-btn-ok {
+  background: #28a745;
+  color: #fff;
+  border-color: #1e7e34;
+}
+
+.status-btn-ok:hover {
+  background: #218838;
+}
+
+.status-btn-wait {
+  background: #17a2b8;
+  color: #fff;
+  border-color: #117a8b;
+}
+
+.status-btn-wait:hover {
+  background: #138496;
+}
+
+.status-btn-ng {
+  background: #6c757d;
+  color: #fff;
+  border-color: #545b62;
+}
+
+.status-btn-ng:hover {
+  background: #5a6268;
+}
+
+.btn-highlight {
+  background: #007bff !important;
+  color: #fff !important;
+  font-weight: bold;
+  border-color: #0056b3 !important;
+}
+
+.btn-highlight:hover {
+  background: #0069d9 !important;
+}
+
+
+
+/* ============================================
+   カスタムトースト通知（非JavaScript標準alert）
+   ============================================ */
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 90vw;
+  width: 480px;
+  pointer-events: none;
+}
+
+.toast-item {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #222;
+  background: #fff;
+  border-left: 5px solid #007bff;
+  animation: toastSlideDown 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.toast-item.toast-hiding {
+  animation: toastFadeOut 0.2s forwards ease-in;
+}
+
+.toast-item.toast-error {
+  border-left-color: #dc3545;
+  background: #fff5f5;
+}
+
+.toast-item.toast-warning {
+  border-left-color: #ffc107;
+  background: #fffdf0;
+}
+
+.toast-item.toast-info {
+  border-left-color: #17a2b8;
+  background: #f0faff;
+}
+
+.toast-item.toast-success {
+  border-left-color: #28a745;
+  background: #f4fff6;
+}
+
+.toast-icon {
+  font-size: 18px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.toast-body {
+  flex: 1;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+.toast-close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+  padding: 0 4px;
+  margin-left: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.toast-close-btn:hover {
+  color: #333;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+@keyframes toastSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
 }

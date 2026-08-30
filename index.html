@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Application</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <script type="py" async src="/sim/pyscript/bottle_color_bridge.py" config='{"packages": []}'></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-89WORE-Q.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-C8AZ4gV4.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-DzeZ9j-q.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Bur5WiYQ.js"></script>
 </head>
 
 <body>
@@ -54,9 +57,16 @@
                 <div class="camera-preview-wrap camera-preview-in-sidebar">
                     <div class="camera-preview-label">前面カメラ（シミュレーション）</div>
                     <canvas id="cameraView" width="240" height="144" class="camera-view-canvas"></canvas>
+                    <button id="pyDetectBottleColorButton" type="button" class="btn" style="margin-top: 8px; width: 100%; padding: 6px 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 4px;" title="PyScript (Python) で前面カメラの画素を読み取り、中央のボトル色を検知します" onclick="if(!window.pyDetectBottleColor){alert('PyScript (Python) ランタイムをロード中です。\n少々お待ちいただいてから再度お試しください。');}">
+                        <span>🐍</span> 前面カメラ色検知 (PyScript)
+                    </button>
                     <label class="camera-enabled-toggle">
                         <input type="checkbox" id="cameraEnabledCheckbox" checked>
                         カメラON (OFFにすると処理軽量化)
+                    </label>
+                    <label class="camera-enabled-toggle">
+                        <input type="checkbox" id="visionOverlayCheckbox" checked>
+                        認識結果をカメラに重ねる
                     </label>
                     <label class="camera-enabled-toggle">
                         <input type="checkbox" id="disableOutDetectionCheckbox" checked>
@@ -96,6 +106,7 @@
             <!-- タブメニュー -->
             <div class="tabs">
                 <button class="tab-button active-tab" onclick="openTab(event, 'MainTab')">メイン</button>
+                <button class="tab-button" onclick="openTab(event, 'DpadTab')">操作</button>
                 <button class="tab-button" onclick="openTab(event, 'TaskTab')">タスク/通信</button>
                 <button class="tab-button" onclick="openTab(event, 'GateTab')">ゲート(難所)</button>
                 <button class="tab-button" onclick="openTab(event, 'ScenarioTab')">シナリオ編集</button>
@@ -105,6 +116,80 @@
             <!-- タスク追跡オプション（タブ直下 / TaskTab の時だけ表示） -->
             <div id="taskTrackingBar" class="task-exec-options" style="margin: 6px 0 10px; display: none;">
                 <label><input type="checkbox" id="taskTrackingCheckbox" /> タスクを追跡する</label>
+            </div>
+
+            <!-- 操作タブ（十字キー） -->
+            <div id="DpadTab" class="tab-content">
+                <div class="debug-grid">
+                    <div class="debug-group full-width">
+                        <h4>十字キー操作（RemoteControl / FUNCNO 10）</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            十字キーまたはキーボード（矢印キー / WASD / Space:停止 / O:OK送信）で走行体を直接操作します。<br />
+                            ※ キーボード操作はこのタブを開いていなくても効きます（文字の入力中を除く）。<br />
+                            ※ RemoteControl（FUNCNO 10）のシナリオを読み込み、走行開始してから操作してください。
+                        </p>
+
+                        <div class="dpad-control-area">
+                            <!-- PWM 設定 -->
+                            <div class="dpad-settings">
+                                <div class="dpad-setting-row">
+                                    <label for="dpadPwmInput">PWM 出力:</label>
+                                    <input id="dpadPwmInput" type="range" min="10" max="100" value="40" step="5" />
+                                    <span id="dpadPwmValue">40</span>
+                                </div>
+                                <div class="dpad-setting-row">
+                                    <label for="dpadTurnPwmInput">旋回 PWM:</label>
+                                    <input id="dpadTurnPwmInput" type="range" min="10" max="100" value="30" step="5" />
+                                    <span id="dpadTurnPwmValue">30</span>
+                                </div>
+                            </div>
+
+                            <!-- 十字キー -->
+                            <div class="dpad-container">
+                                <div class="dpad-row">
+                                    <div class="dpad-spacer"></div>
+                                    <button id="dpadUp" class="dpad-btn dpad-up" type="button" aria-label="前進">▲</button>
+                                    <div class="dpad-spacer"></div>
+                                </div>
+                                <div class="dpad-row">
+                                    <button id="dpadLeft" class="dpad-btn dpad-left" type="button" aria-label="左旋回">◀</button>
+                                    <button id="dpadStop" class="dpad-btn dpad-center" type="button" aria-label="停止">■</button>
+                                    <button id="dpadRight" class="dpad-btn dpad-right" type="button" aria-label="右旋回">▶</button>
+                                </div>
+                                <div class="dpad-row">
+                                    <div class="dpad-spacer"></div>
+                                    <button id="dpadDown" class="dpad-btn dpad-down" type="button" aria-label="後退">▼</button>
+                                    <div class="dpad-spacer"></div>
+                                </div>
+                            </div>
+
+                            <!-- 状態表示 & Status応答 -->
+                            <div class="dpad-status-area">
+                                <div>状態: <strong id="dpadStatus">停止中</strong></div>
+                                <div>出力: <strong id="dpadCurrentOutput">L=0 R=0</strong></div>
+                                <div style="margin-top: 6px; font-weight: bold; font-size: 12px; color: #555;">切替 Status 応答:</div>
+                                <div class="status-btn-group">
+                                    <button id="dpadStatusOkBtn" class="status-btn status-btn-ok" type="button" title="切替判定（0x0800）を成立させて次のコマンドへ進む">OK (次へ)</button>
+                                    <button id="dpadStatusWaitBtn" class="status-btn status-btn-wait" type="button" title="次のコマンドへ進み、シナリオ待ちフラグを立てる">シナリオ待ち (次へ)</button>
+                                    <button id="dpadStatusNgBtn" class="status-btn status-btn-ng" type="button" title="現在のコマンドを継続する">NG</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr style="margin:12px 0; border:none; border-top:1px solid #ddd;" />
+                        <!-- シナリオ追加（ScenarioControl 経由） -->
+                        <div>
+                            <div style="font-weight: bold; font-size: 13px; margin-bottom: 6px; color: #333;">シナリオ追加（ScenarioControl へ挿入）:</div>
+                            <div class="msg-traffic-actions" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button id="dpadInsertRemoteCommandBtn" type="button" class="btn-highlight" title="FUNCNO 10（RemoteControl）のコマンドを ScenarioControl に追加します">＋ RemoteControl区間を追加</button>
+                                <button id="dpadInsertEditorScenarioBtn" type="button" title="シナリオ編集タブの JSON を追加します">シナリオ編集JSONを追加</button>
+                                <button id="dpadInsertFixedSampleBtn" type="button" title="左エッジPIDサンプルを追加">＋ 左エッジPID</button>
+                                <button id="dpadInsertFixedLinearBtn" type="button" title="直線走行サンプルを追加">＋ 直線走行</button>
+                                <button id="dpadInsertFixedRevolutionBtn" type="button" title="回転サンプルを追加">＋ 回転90度</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- タスク/通信タブ -->
@@ -163,40 +248,65 @@
                         <textarea id="wsReceivedJson" class="ws-received-json" placeholder="サーバから受信した JSON がここに表示されます..." readonly></textarea>
                     </div>
 
-                    <!-- 外部ソース走行（ExternalRunner） -->
+                    <!-- リモートコントロール走行（RemoteControl） -->
                     <div class="debug-group full-width">
-                        <h4>外部ソース走行（ExternalRunner / FUNCNO 10）</h4>
+                        <h4>リモートコントロール走行（RemoteControl / FUNCNO 10）</h4>
                         <p class="scenario-edit-warning" style="margin-top:0;">
-                            走らせ方を毎周期「外部ソース」から受け取る走行方法です。切替は外部ソースが OK を出した時点
+                            走らせ方を毎周期「リモート側」から受け取る走行方法です。切替はリモート側が OK を出した時点
                             （<code>SwitchInfo.SCJFN</code> に <code>2048</code> = <code>0x0800</code>）。
                             ローカルJS なら Python 不要で動きます。WebSocket は
-                            <code>tools/external_source_server</code>（FastAPI）を先に起動してください。
+                            <code>tools/remote_control_server</code>（FastAPI）を先に起動してください。
                         </p>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
-                            <label for="extModeSelect">指令元:</label>
-                            <select id="extModeSelect">
+                            <label for="remoteModeSelect">指令元:</label>
+                            <select id="remoteModeSelect">
                                 <option value="local">ローカルJS</option>
                                 <option value="ws">WebSocket (Python)</option>
                             </select>
-                            <label for="extControllerSelect">ローカル制御:</label>
-                            <select id="extControllerSelect"></select>
+                            <label for="remoteControllerSelect">ローカル制御:</label>
+                            <select id="remoteControllerSelect"></select>
                         </div>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
-                            <label for="extWsUrlInput">URL:</label>
-                            <input id="extWsUrlInput" type="text" value="ws://127.0.0.1:8000/ws/runner" style="min-width:240px;" />
-                            <label for="extSendIntervalInput">送信間隔(ms):</label>
-                            <input id="extSendIntervalInput" type="number" value="20" min="0" step="10" style="width:70px;" />
+                            <label for="remoteWsUrlInput">URL:</label>
+                            <input id="remoteWsUrlInput" type="text" value="ws://127.0.0.1:8000/ws/runner" style="min-width:240px;" />
+                            <label for="remoteSendIntervalInput">送信間隔(ms):</label>
+                            <input id="remoteSendIntervalInput" type="number" value="20" min="0" step="10" style="width:70px;" />
                         </div>
                         <div class="msg-traffic-actions" style="margin-bottom:8px;">
-                            <button id="extStartButton" type="button">外部ソース開始</button>
-                            <button id="extStopButton" type="button" disabled>停止</button>
+                            <button id="remoteStartButton" type="button">リモートコントロール開始</button>
+                            <button id="remoteStopButton" type="button" disabled>停止</button>
                         </div>
                         <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center;">
-                            <span>状態: <strong id="extStatus">未稼働</strong></span>
-                            <span>最新指令: <strong id="extLastCommand">-</strong></span>
+                            <span>状態: <strong id="remoteStatus">未稼働</strong></span>
+                            <span>最新指令: <strong id="remoteLastCommand">-</strong></span>
                         </div>
                         <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center;">
-                            <span id="extStats">-</span>
+                            <span id="remoteStats">-</span>
+                        </div>
+
+                        <hr style="margin:10px 0; border:none; border-top:1px solid #ddd;" />
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            モータ直接操作。走らせ方の計算（PID など）を通さず、左右の PWM をそのまま出します
+                            （<code>RemoteControlBridge.setMotorPwm</code>）。止まった状態で「走らせる」を押すと
+                            走り出し、もう一度押すと止まります。「走行方法に戻す」で元に戻ります。<br />
+                            出力するのは走行方法 <code>RemoteControl</code> なので、
+                            <strong>FUNCNO 10 の区間を走っているあいだだけ効きます</strong>。
+                            その場旋回（左右を逆向き）を出すときは、その区間の <code>TRN</code> が 0 でないこと。
+                        </p>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
+                            <label for="remotePwmLeftInput">左PWM:</label>
+                            <input id="remotePwmLeftInput" type="number" value="30" min="-100" max="100" step="5" style="width:70px;" />
+                            <label for="remotePwmRightInput">右PWM:</label>
+                            <input id="remotePwmRightInput" type="number" value="30" min="-100" max="100" step="5" style="width:70px;" />
+                            <button id="remotePwmApplyButton" type="button">走らせる</button>
+                            <button id="remotePwmReleaseButton" type="button">走行方法に戻す</button>
+                            <span>直接操作: <strong id="remoteDirectStatus">なし</strong></span>
+                        </div>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-top:8px;">
+                            <span>切替 Status 応答:</span>
+                            <button id="remoteStatusOkBtn" class="status-btn status-btn-ok" type="button" title="切替判定（0x0800）を成立させて次のコマンドへ進む">OK (次へ)</button>
+                            <button id="remoteStatusWaitBtn" class="status-btn status-btn-wait" type="button" title="次のコマンドへ進み、シナリオ待ちフラグを立てる">シナリオ待ち (次へ)</button>
+                            <button id="remoteStatusNgBtn" class="status-btn status-btn-ng" type="button" title="現在のコマンドを継続する">NG</button>
                         </div>
                     </div>
 
@@ -301,6 +411,55 @@
                             <button id="gateJsonImportButton" type="button">JSON を読み込む</button>
                         </div>
                         <textarea id="gateJsonArea" class="ws-received-json" placeholder="gates.json と同じ形式"></textarea>
+                    </div>
+
+                    <div class="debug-group full-width" id="bottleSection">
+                        <h4>ボトル配置（ET相撲・ボトルデリバリー）</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            力士ボトル（黒ラベル 500mL）およびキャリーボトル（赤/青/黄ラベル 300mL）の配置を設定します。
+                            画面上のボトルを直接<strong>マウスドラッグして移動</strong>させることもできます。
+                        </p>
+                        <p id="bottleUnavailable" class="scenario-edit-warning" hidden>
+                            このコースには <code>bottles.json</code> がありません。
+                        </p>
+
+                        <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label><input type="checkbox" id="bottleVisibleCheckbox" checked /> ボトルを表示</label>
+                            <label><input type="checkbox" id="bottleGuidesCheckbox" checked /> 土俵・ドロップゾーン等のガイド枠を表示</label>
+                        </div>
+
+                        <!-- 力士ボトル (ET相撲) -->
+                        <div style="background: rgba(0,0,0,0.03); border: 1px solid #ddd; border-radius: 4px; padding: 8px 12px; margin-bottom: 8px;">
+                            <strong style="display:inline-block; margin-bottom:6px;">力士ボトル（ET相撲 500mL 黒ラベル）:</strong>
+                            <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
+                                <label for="sumoPresetSelect">配置プリセット:</label>
+                                <select id="sumoPresetSelect"></select>
+                                <label for="sumoXInput">X:</label>
+                                <input id="sumoXInput" type="number" step="0.5" style="width:75px;" />
+                                <label for="sumoYInput">Y:</label>
+                                <input id="sumoYInput" type="number" step="0.5" style="width:75px;" />
+                                <button id="sumoApplyBtn" type="button">位置適用</button>
+                            </div>
+                        </div>
+
+                        <!-- キャリーボトル (ボトルデリバリー) -->
+                        <div style="background: rgba(0,0,0,0.03); border: 1px solid #ddd; border-radius: 4px; padding: 8px 12px;">
+                            <strong style="display:inline-block; margin-bottom:6px;">キャリーボトル（ボトルデリバリー 350mL）:</strong>
+                            <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
+                                <label for="carryColorSelect">ボトル色:</label>
+                                <select id="carryColorSelect">
+                                    <option value="red">赤色ラベル (Red)</option>
+                                    <option value="blue">青色ラベル (Blue)</option>
+                                    <option value="yellow">黄色ラベル (Yellow)</option>
+                                </select>
+                                <label for="carryXInput">X:</label>
+                                <input id="carryXInput" type="number" step="0.5" style="width:75px;" />
+                                <label for="carryYInput">Y:</label>
+                                <input id="carryYInput" type="number" step="0.5" style="width:75px;" />
+                                <button id="carryApplyBtn" type="button">位置適用</button>
+                                <button id="carryResetBtn" type="button">ピックアップ位置に戻す</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -436,6 +595,12 @@
                         <div class="debug-item">
                             <label for="brightnessValue">明度:</label>
                             <input type="number" id="brightnessValue" value="0" readonly>
+                        </div>
+                        <!-- カメラの認識結果。中身はその年の認識処理が決めるので、
+                             ここには項目を書かない（sim/vision/recognizers.js） -->
+                        <div class="debug-item vision-readout-item">
+                            <label>カメラ認識:</label>
+                            <div id="visionReadout" class="vision-readout">-</div>
                         </div>
                     </div>
 

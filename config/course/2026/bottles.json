@@ -1,0 +1,53 @@
+{
+  "_comment": [
+    "ET相撲（力士ボトル）およびボトルデリバリー（キャリーボトル）の設定。",
+    "Lコースの座標で定義し、Rコースは mirrorX (556) から左右反転して求める（鏡像配置）。",
+    "座標は course.yaml の image.width/height と同じワールド座標[px]。0.2px = 1mm。"
+  ],
+  "mirrorX": 556,
+  "sumo": {
+    "ring": {
+      "center": { "x": 134.5, "y": 399.5 },
+      "radiusPx": 37.4,
+      "radiusMm": 187
+    },
+    "bottle": {
+      "type": "sumo",
+      "capacityMl": 500,
+      "diameterMm": 66,
+      "heightMm": 205,
+      "labelColor": "black",
+      "labelHeightMm": 50,
+      "weightG": 105
+    },
+    "defaultPosition": { "x": 134.5, "y": 399.5 },
+    "presets": [
+      { "name": "土俵中央（規定）", "x": 134.5, "y": 399.5 },
+      { "name": "土俵上寄り", "x": 134.5, "y": 375.0 },
+      { "name": "土俵下寄り", "x": 134.5, "y": 424.0 },
+      { "name": "土俵左寄り", "x": 110.0, "y": 399.5 },
+      { "name": "土俵右寄り", "x": 159.0, "y": 399.5 }
+    ]
+  },
+  "delivery": {
+    "pickupPosition": {
+      "center": { "x": 65.3, "y": 579.7 },
+      "radiusPx": 6.4
+    },
+    "bottle": {
+      "type": "carry",
+      "capacityMl": 350,
+      "diameterMm": 60,
+      "heightMm": 140,
+      "labelHeightMm": 50,
+      "weightG": 105,
+      "defaultColor": "red",
+      "availableColors": ["red", "blue", "yellow"]
+    },
+    "dropZones": [
+      { "color": "red", "name": "赤ゾーン", "x": 483.5, "y": 450.0, "width": 42.0, "height": 42.0 },
+      { "color": "blue", "name": "青ゾーン", "x": 483.5, "y": 511.5, "width": 42.0, "height": 42.0 },
+      { "color": "yellow", "name": "黄ゾーン", "x": 483.5, "y": 573.0, "width": 42.0, "height": 42.0 }
+    ]
+  }
+}

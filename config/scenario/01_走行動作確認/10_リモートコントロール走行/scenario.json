@@ -1,6 +1,6 @@
 [
     {
-        "Comment": "走行方法テスト: EXTERNAL_RUNNER (FUNCNO: 10) — 走らせ方を外部ソース（Python/JS）から受け取る。切替は外部ソースの OK（SCJFN: 2048 = 0x0800）。保険として距離 1000mm も見る（SCJFN: 2048+128 = 2176）",
+        "Comment": "走行方法テスト: REMOTE_CONTROL (FUNCNO: 10) — 走らせ方をリモート側（Python/JS）から受け取る。切替はリモート側の OK（SCJFN: 2048 = 0x0800）。保険として距離 1000mm も見る（SCJFN: 2048+128 = 2176）",
         "SNO": 10,
         "CNO": 1,
         "PRVSNO": 10,
@@ -10,7 +10,7 @@
         "CoordCorrectInfo": {}
     },
     {
-        "Comment": "外部ソースの OK だけで切り替える区間（SCJFN: 2048）。SCD は外部ソースが OK を判断する材料として渡す",
+        "Comment": "リモート側の OK だけで切り替える区間（SCJFN: 2048）。SCD はリモート側が OK を判断する材料として渡す",
         "SNO": 10,
         "CNO": 2,
         "PRVSNO": 10,
