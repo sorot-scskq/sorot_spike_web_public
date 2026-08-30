@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-DGx8gOv1.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-D2OdC5M-.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-89WORE-Q.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-C8AZ4gV4.js"></script>
 </head>
 
 <body>
@@ -161,6 +161,43 @@
                         </div>
                         <label for="wsReceivedJson" style="display:block; margin-bottom:4px;">受信 JSON</label>
                         <textarea id="wsReceivedJson" class="ws-received-json" placeholder="サーバから受信した JSON がここに表示されます..." readonly></textarea>
+                    </div>
+
+                    <!-- 外部ソース走行（ExternalRunner） -->
+                    <div class="debug-group full-width">
+                        <h4>外部ソース走行（ExternalRunner / FUNCNO 10）</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            走らせ方を毎周期「外部ソース」から受け取る走行方法です。切替は外部ソースが OK を出した時点
+                            （<code>SwitchInfo.SCJFN</code> に <code>2048</code> = <code>0x0800</code>）。
+                            ローカルJS なら Python 不要で動きます。WebSocket は
+                            <code>tools/external_source_server</code>（FastAPI）を先に起動してください。
+                        </p>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label for="extModeSelect">指令元:</label>
+                            <select id="extModeSelect">
+                                <option value="local">ローカルJS</option>
+                                <option value="ws">WebSocket (Python)</option>
+                            </select>
+                            <label for="extControllerSelect">ローカル制御:</label>
+                            <select id="extControllerSelect"></select>
+                        </div>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <label for="extWsUrlInput">URL:</label>
+                            <input id="extWsUrlInput" type="text" value="ws://127.0.0.1:8000/ws/runner" style="min-width:240px;" />
+                            <label for="extSendIntervalInput">送信間隔(ms):</label>
+                            <input id="extSendIntervalInput" type="number" value="20" min="0" step="10" style="width:70px;" />
+                        </div>
+                        <div class="msg-traffic-actions" style="margin-bottom:8px;">
+                            <button id="extStartButton" type="button">外部ソース開始</button>
+                            <button id="extStopButton" type="button" disabled>停止</button>
+                        </div>
+                        <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center;">
+                            <span>状態: <strong id="extStatus">未稼働</strong></span>
+                            <span>最新指令: <strong id="extLastCommand">-</strong></span>
+                        </div>
+                        <div class="row" style="gap:12px; flex-wrap:wrap; align-items:center;">
+                            <span id="extStats">-</span>
+                        </div>
                     </div>
 
                     <!-- メッセージ通信（やりとりの見える化） -->

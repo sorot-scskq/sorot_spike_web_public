@@ -29,6 +29,17 @@
           ]
         },
         {
+          "label": "10_外部ソース走行",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "01_走行動作確認/10_外部ソース走行/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "2_右エッジPID走行",
           "open": false,
           "children": [
