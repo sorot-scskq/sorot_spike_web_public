@@ -40,6 +40,13 @@ logger = logging.getLogger(__name__)
 MAX_UPSCALED_LONG_SIDE = 1280
 
 
+#: 板を切り抜くときに足す余白[px]。
+#:
+#: 二次元コードは周りに余白（クワイエットゾーン）が無いと読めない。板の
+#: 外形ちょうどで切ると、白い縁が入らずに読めなくなることがあるため足す。
+PANEL_CROP_MARGIN = 8
+
+
 def _cv2():
     """OpenCV。無ければ None"""
     try:
@@ -132,12 +139,49 @@ class QrCodeDecoder:
             logger.exception("二次元コードの読み取りに失敗しました")
             return None
 
-    def decode(self, frame) -> Optional[str]:
-        """映像から二次元コードの文字列を読む。読めなければ None"""
+    def decode(self, frame, panels=None) -> Optional[str]:
+        """
+        映像から二次元コードの文字列を読む。読めなければ None。
+
+        :param panels: find_card_panels の戻り値。渡すと、その板のところだけを
+                       切り抜いて読む。
+
+        【切り抜いて読む理由】
+        4段の読み取りは、コードが写っている大きさに関係なく映像の全画素ぶんの
+        時間が掛かる。板は映像のごく一部なので、そこだけ切り出せば同じ4段でも
+        桁違いに速い。シミュレータ（960x576, PyScript）の実測で 250ms → 数ms。
+
+        板が1つも見つからないときは、これまでどおり映像まるごとを読む。板の
+        検出は「白い板に黒い模様」を前提にしているので、そう写らない撮り方
+        （コードだけが画面いっぱい等）でも読めるようにしておく。
+        """
+        if panels:
+            for panel in panels:
+                text = self.decode_frame(self._crop_panel(frame, panel))
+                if isinstance(text, str) and text.strip() != "":
+                    return text
+            return None
+
         text = self.decode_frame(frame)
         if isinstance(text, str) and text.strip() != "":
             return text
         return None
+
+    def _crop_panel(self, frame, panel):
+        """板のところを、余白を付けて切り抜く。切り出せなければ元の映像"""
+        if frame is None:
+            return frame
+        try:
+            h, w = frame.shape[:2]
+            x0 = max(0, int(panel["x"]) - PANEL_CROP_MARGIN)
+            y0 = max(0, int(panel["y"]) - PANEL_CROP_MARGIN)
+            x1 = min(w, int(panel["x"]) + int(panel["w"]) + PANEL_CROP_MARGIN)
+            y1 = min(h, int(panel["y"]) + int(panel["h"]) + PANEL_CROP_MARGIN)
+        except (KeyError, TypeError, ValueError):
+            return frame
+        if x1 - x0 < 1 or y1 - y0 < 1:
+            return frame
+        return frame[y0:y1, x0:x1]
 
     def _decode_multi(self, detector, image, label: str) -> Optional[str]:
         """detectAndDecodeMulti で読み、最初に中身のあったものを返す"""

@@ -293,15 +293,20 @@ class HintCardReader:
         if frame is None:
             return None
 
-        text = self.decoder.decode(frame)
-        if text is None and self._panel_resolver is not None:
-            panels = self.decoder.find_card_panels(frame)
-            if panels:
-                try:
-                    text = self._panel_resolver(panels)
-                except Exception:  # noqa: BLE001
-                    logger.exception("カードの中身を補えませんでした")
-                    text = None
+        # 板の在り処を先に見つけ、そこだけを切り抜いて読む。
+        #
+        # 4段の読み取りは、コードが写っている大きさに関係なく映像の全画素ぶんの
+        # 時間が掛かる。板は映像のごく一部なので、切り抜けば同じ4段でも桁違いに
+        # 速い（qr_decoder.QrCodeDecoder.decode）。板が見つからないときは、
+        # これまでどおり映像まるごとを読む。
+        panels = self.decoder.find_card_panels(frame)
+        text = self.decoder.decode(frame, panels=panels)
+        if text is None and self._panel_resolver is not None and panels:
+            try:
+                text = self._panel_resolver(panels)
+            except Exception:  # noqa: BLE001
+                logger.exception("カードの中身を補えませんでした")
+                text = None
 
         return self.accept(text)
 
