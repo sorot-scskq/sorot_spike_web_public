@@ -145,21 +145,21 @@ def identify_hint_card(text: Optional[str]) -> Optional[str]:
 
 try:
     from camera import RobotCamera
-    from qr_decoder import QrCodeDecoder, find_card_panels
+    from qr_decoder import QrCodeDecoder
     from communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
 except (ImportError, ValueError):
     try:
         from ..Common.camera import RobotCamera
-        from ..Common.qr_decoder import QrCodeDecoder, find_card_panels
+        from ..Common.qr_decoder import QrCodeDecoder
         from ..Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
     except (ImportError, ValueError):
         try:
             from Common.camera import RobotCamera
-            from Common.qr_decoder import QrCodeDecoder, find_card_panels
+            from Common.qr_decoder import QrCodeDecoder
             from Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
         except (ImportError, ValueError):
             from RoughSpot.Python.Common.camera import RobotCamera
-            from RoughSpot.Python.Common.qr_decoder import QrCodeDecoder, find_card_panels
+            from RoughSpot.Python.Common.qr_decoder import QrCodeDecoder
             from RoughSpot.Python.Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
 
 # 後方互換性エイリアス
@@ -295,7 +295,7 @@ class HintCardReader:
 
         text = self.decoder.decode(frame)
         if text is None and self._panel_resolver is not None:
-            panels = find_card_panels(frame)
+            panels = self.decoder.find_card_panels(frame)
             if panels:
                 try:
                     text = self._panel_resolver(panels)

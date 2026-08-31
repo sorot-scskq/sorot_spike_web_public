@@ -35,7 +35,7 @@ from .communicator import (
     recv_packet,
     send_packet,
 )
-from .qr_decoder import QrCodeDecoder, decode_file, decode_frame, find_card_panels
+from .qr_decoder import QrCodeDecoder
 from .wireless_device import (
     STATUS_OK,
     RequestOnceReceiver,
@@ -62,11 +62,8 @@ __all__ = [
     "WebSocketCommunicator",
     "WebSocketSender",
     "as_int",
-    "decode_file",
-    "decode_frame",
     "encode_image_to_base64",
     "execute_camera_command",
-    "find_card_panels",
     "get_field",
     "get_identifier",
     "is_status_ok",

@@ -178,9 +178,9 @@ class RobotCamera:
 # handler.py が `from camera import decode_qr_code` で使っているため、
 # 呼び出し側を変えずに済むよう、ここからも見えるようにしておく。
 def decode_qr_code(path: str):
-    """画像ファイルから二次元コードを読む（qr_decoder.decode_file と同じ）"""
+    """画像ファイルから二次元コードを読む（QrCodeDecoder().decode_file と同じ）"""
     try:
-        from qr_decoder import decode_file
+        from qr_decoder import QrCodeDecoder
     except ImportError:
-        from .qr_decoder import decode_file
-    return decode_file(path)
+        from .qr_decoder import QrCodeDecoder
+    return QrCodeDecoder().decode_file(path)

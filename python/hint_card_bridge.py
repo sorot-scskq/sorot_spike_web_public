@@ -66,9 +66,8 @@ await _hint_load_modules()
 from camera import RobotCamera  # noqa: E402
 from hint_card_reader import HintCard, HintCardReader  # noqa: E402
 
-# 前面カメラの canvas（index.html）
+# 読み取りに使う canvas が取れなかったときの逃げ先（表示用・index.html）
 CANVAS_ID = "cameraView"
-FRAME_IMAGE_PATH = "sim_camera_frame.png"
 
 # 読んだ内容の送り先。PC 側（PC-System_2026）の WebSocket と同じ口で、
 # 走行経路の受け取り（route_bridge.py）と同じ宛先。
@@ -81,8 +80,9 @@ def to_js(value):
     return _to_js(value, dict_converter=Object.fromEntries)
 
 
-# 画像ファイル経由で映像を取得する RobotCamera インスタンスを渡して初期化
-reader = HintCardReader(camera=RobotCamera(source=FRAME_IMAGE_PATH))
+# 映像は canvas から直に渡す。RobotCamera.set_frame_source は、まさに
+# シミュレータのために camera.py が用意している口（下の _hint_grab_frame で差す）
+reader = HintCardReader(camera=RobotCamera())
 
 
 # --------------------------------------------------------------------------
@@ -90,24 +90,70 @@ reader = HintCardReader(camera=RobotCamera(source=FRAME_IMAGE_PATH))
 # --------------------------------------------------------------------------
 
 
-def save_canvas_frame(file_path=FRAME_IMAGE_PATH):
-    """前面カメラの canvas を 1枚読み、画像ファイルとして保存する。"""
-    canvas = document.getElementById(CANVAS_ID)
+def _hint_read_canvas():
+    """
+    画素を読む canvas を返す。
+
+    JS 側が読み取り用の高解像度 canvas を持っていればそれを使う
+    （sim/gate/hint-card-camera.js の window.__simHintCard.canvas）。
+    表示用の 240x144 では 5cm のカードが 24px にしかならず、二次元コードの
+    模様として写らない。加えて resolve_panels が返す位置もこの canvas の
+    座標なので、別の canvas を読むと縮尺が食い違って一致しなくなる。
+    """
+    bridge = getattr(window, "__simHintCard", None)
+    canvas = getattr(bridge, "canvas", None) if bridge is not None else None
+    if canvas is not None:
+        return canvas
+    return document.getElementById(CANVAS_ID)
+
+
+def _hint_capture_frame():
+    """
+    読み取り用の映像を、今の景色で描き直してもらう。
+
+    高解像度の映像は毎フレームは描かれていない。1枚が重いので、画素を見る
+    この瞬間にだけ JS へ描かせる（sim/canvas.js の captureReadView）。
+    """
+    bridge = getattr(window, "__simHintCard", None)
+    capture = getattr(bridge, "captureFrame", None) if bridge is not None else None
+    if capture is None:
+        return True   # 描き直す口が無い＝表示用をそのまま読む
+    return bool(capture())
+
+
+def _hint_grab_frame():
+    """
+    canvas を 1枚読み、OpenCV が扱う BGR の配列にして返す。
+
+    RobotCamera.set_frame_source に差す。camera.py がシミュレータ用に
+    用意している口で、実機は同じ RobotCamera を v4l2 の撮影ファイルで使う。
+
+    【PNG を経由しない理由】
+    以前はここで cv2.imwrite し、RobotCamera(source=パス) に読み直させていた。
+    960x576 だと PNG の符号化と復号だけで 1回 100ms を超える。読み取りは
+    200ms おきなので、それだけで走行が止まる。配列のまま渡せば往復が要らない。
+
+    :returns: BGR の配列。読めなければ None
+    """
+    if not _hint_capture_frame():
+        return None
+    canvas = _hint_read_canvas()
     if canvas is None:
-        return False
+        return None
     width = int(canvas.width)
     height = int(canvas.height)
     if width <= 0 or height <= 0:
-        return False
+        return None
 
     ctx = canvas.getContext("2d", to_js({"willReadFrequently": True}))
     image = ctx.getImageData(0, 0, width, height)
     # Uint8ClampedArray → numpy → BGR 画像
     rgba = np.frombuffer(bytearray(image.data.to_py()), dtype=np.uint8)
     rgba = rgba.reshape((height, width, 4))
-    bgr = cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGR)
-    cv2.imwrite(file_path, bgr)
-    return True
+    return cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGR)
+
+
+reader.camera.set_frame_source(_hint_grab_frame)
 
 
 # --------------------------------------------------------------------------
@@ -214,8 +260,8 @@ def read_once():
     """
     毎フレーム JS から呼ばれる。読めたら送り、いまの状態を返す。
 
-    実際に映像を読むのは HINT_READ_INTERVAL_MS おきで、2枚とも読み終えたら
-    それもやめる。呼び出し側は間引きを気にせず、毎フレーム呼んでよい。
+    実際に映像を読むのは前回を終えてから HINT_READ_INTERVAL_MS 後で、2枚とも
+    読み終えたらそれもやめる。呼び出し側は間引きを気にせず、毎フレーム呼んでよい。
 
     :returns: {'card1': str|None, 'card2': str|None, 'placement': str,
                'newCard': str|None, 'panels': int} を JS のオブジェクトにしたもの
@@ -225,16 +271,18 @@ def read_once():
     new_card = None
     now = window.performance.now()
     if not reader.has_read_all() and now >= _hint_next_read_at:
-        _hint_next_read_at = now + HINT_READ_INTERVAL_MS
         _hint_panel_count = 0
         try:
-            if save_canvas_frame():
-                card = reader.read()
-                new_card = card["card"] if card else None
+            card = reader.read()
+            new_card = card["card"] if card else None
         except Exception:  # noqa: BLE001 — 認識で落ちても走行は続ける
             window.console.warn(
                 "[PyScript] ヒントカードの読み取りで失敗: " + traceback.format_exc()
             )
+        finally:
+            # 次の時刻は「終わってから」数える。始めた時刻から数えると、
+            # 1回が間隔より長くなったときに切れ目なく走り続けることになる
+            _hint_next_read_at = window.performance.now() + HINT_READ_INTERVAL_MS
 
     c1 = reader.get_card(HintCard.CARD1)
     c2 = reader.get_card(HintCard.CARD2)
