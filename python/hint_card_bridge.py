@@ -281,8 +281,16 @@ def read_once():
             )
         finally:
             # 次の時刻は「終わってから」数える。始めた時刻から数えると、
-            # 1回が間隔より長くなったときに切れ目なく走り続けることになる
-            _hint_next_read_at = window.performance.now() + HINT_READ_INTERVAL_MS
+            # 1回が間隔より長くなったときに切れ目なく走り続けることになる。
+            #
+            # 読み取りは同期で走るので、走っているあいだは描画もタスクも
+            # 止まる。1回が間隔より長い（実測で 140ms 前後）と、止まって
+            # いる時間の割合が間隔だけでは決まらないため、掛かった時間の
+            # ぶんも空ける。こうすると止まっている割合は半分を超えない。
+            _hint_elapsed = window.performance.now() - now
+            _hint_next_read_at = window.performance.now() + max(
+                HINT_READ_INTERVAL_MS, _hint_elapsed
+            )
 
     c1 = reader.get_card(HintCard.CARD1)
     c2 = reader.get_card(HintCard.CARD2)

@@ -26,6 +26,20 @@ from typing import Optional
 logger = logging.getLogger(__name__)
 
 
+#: 4段目の拡大で作ってよい画像の長辺[px]。
+#:
+#: 拡大は「小さく写って潰れたコードを補う」ための手当てで、元が大きいときは
+#: 情報が増えないまま画素数だけ 4倍になる。実測（PyScript, Pyodide）では
+#: 960x576 を 1920x1152 にすると、この 1段だけで 120ms かかり、4段の合計
+#: 250ms の半分近くを占めていた。
+#:
+#: 実機のカメラは 640x480（camera.py の RobotCamera 既定）なので 2倍でも
+#: 1280 に収まり、これまでどおり拡大して読む。シミュレータの読み取り用
+#: （960x576）はもともと二次元コードが読める大きさで描いているため、
+#: ここで止めても読めるものが読めなくなることはない。
+MAX_UPSCALED_LONG_SIDE = 1280
+
+
 def _cv2():
     """OpenCV。無ければ None"""
     try:
@@ -56,7 +70,7 @@ class QrCodeDecoder:
         1. カラー画像のまま
         2. グレースケール化（色かぶりを落とす）
         3. Otsu の二値化（コントラストを立てる）
-        4. 2倍に拡大（ぼやけ・潰れを補う）
+        4. 2倍に拡大（ぼやけ・潰れを補う。元が大きいときは拡大しない）
     """
 
     def __init__(self) -> None:
@@ -104,12 +118,14 @@ class QrCodeDecoder:
             if found:
                 return found
 
-            # 4. 2倍に拡大してぼやけ・潰れを補う
+            # 4. 2倍に拡大してぼやけ・潰れを補う。
+            #    元がもう大きいときは拡大しない（MAX_UPSCALED_LONG_SIDE）
             h, w = gray.shape[:2]
-            resized = cv2.resize(gray, (w * 2, h * 2), interpolation=cv2.INTER_CUBIC)
-            found = self._decode_multi(detector, resized, "2倍拡大")
-            if found:
-                return found
+            if max(h, w) * 2 <= MAX_UPSCALED_LONG_SIDE:
+                resized = cv2.resize(gray, (w * 2, h * 2), interpolation=cv2.INTER_CUBIC)
+                found = self._decode_multi(detector, resized, "2倍拡大")
+                if found:
+                    return found
 
             return None
         except Exception:  # noqa: BLE001 — 読めなくても走行は続ける
