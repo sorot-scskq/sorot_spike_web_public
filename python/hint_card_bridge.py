@@ -64,6 +64,7 @@ async def _hint_load_modules():
 await _hint_load_modules()
 
 from camera import RobotCamera  # noqa: E402
+from qr_decoder import QrCodeDecoder  # noqa: E402
 from hint_card_reader import HintCard, HintCardReader  # noqa: E402
 
 # 読み取りに使う canvas が取れなかったときの逃げ先（表示用・index.html）
@@ -82,7 +83,56 @@ def to_js(value):
 
 # 映像は canvas から直に渡す。RobotCamera.set_frame_source は、まさに
 # シミュレータのために camera.py が用意している口（下の _hint_grab_frame で差す）
+class _PanelOnlyDecoder(QrCodeDecoder):
+    """
+    板を見つけるところまでで止める読み取り。
+
+    ブラウザの OpenCV（Pyodide の opencv-python）は二次元コードを**復号できない**。
+    検出はするが、復号は必ず空文字を返す。自分で作ったコードを自分に読ませても
+    同じなので、映像の写り方の問題ではなく、復号器（quirc）を外して作られた
+    ものだと分かる。
+
+        cv2.QRCodeEncoder_create().encode(...) → detectAndDecode()
+        → detected=True, decoded=""
+
+    そのため decode_frame の 4段（カラー・グレー・二値化・拡大）は、シミュレータ
+    では必ず失敗する。板 1枚ぶんの切り抜きでも 1回 70ms 掛かり、カードを向けて
+    いるあいだ走行が引っかかる。読めないと分かっているものに掛ける時間なので、
+    ここで止める。
+
+    板を探すところ（find_card_panels）は動くので、そのまま使う。中身は
+    シミュレータ側（JS の resolvePanels）が答える。実機の OpenCV は復号器を
+    持っているので、走行体側のコード（qr_decoder.py）はそのままでよい。
+    """
+
+    def decode(self, frame, panels=None):
+        return None
+
+
+def _cv2_can_decode_qr():
+    """この OpenCV が二次元コードを復号できるか。自分で作って自分で読んでみる"""
+    try:
+        code = cv2.QRCodeEncoder_create().encode("25,35")
+        n = code.shape[0]
+        big = cv2.resize(code, (n * 8, n * 8), interpolation=cv2.INTER_NEAREST)
+        padded = cv2.copyMakeBorder(big, 32, 32, 32, 32, cv2.BORDER_CONSTANT, value=255)
+        decoded, _points, _ = cv2.QRCodeDetector().detectAndDecode(
+            cv2.cvtColor(padded, cv2.COLOR_GRAY2BGR)
+        )
+        return decoded == "25,35"
+    except Exception:  # noqa: BLE001 — 判定に失敗したら「読めない」側に倒す
+        return False
+
+
 reader = HintCardReader(camera=RobotCamera())
+
+if not _cv2_can_decode_qr():
+    reader.decoder = _PanelOnlyDecoder()
+    window.console.info(
+        "[PyScript] この OpenCV は二次元コードを復号できません（Pyodide の "
+        "opencv-python は復号器を持たない）。板の検出までにして、中身は "
+        "シミュレータ側で補います"
+    )
 
 
 # --------------------------------------------------------------------------
