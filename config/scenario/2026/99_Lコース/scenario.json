@@ -1,0 +1,74 @@
+[
+{"Comment":"LAPゲートまで進む",
+    "SNO":99,"CNO":1,"PRVSNO":99,"PRVCNO":0,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":720,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"a",
+    "SNO":99,"CNO":2,"PRVSNO":99,"PRVCNO":1,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":435,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"b",
+    "SNO":99,"CNO":3,"PRVSNO":99,"PRVCNO":2,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":420,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"c",
+    "SNO":99,"CNO":4,"PRVSNO":99,"PRVCNO":3,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":500,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"d",
+    "SNO":99,"CNO":5,"PRVSNO":99,"PRVCNO":4,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":300,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"e",
+    "SNO":99,"CNO":6,"PRVSNO":99,"PRVCNO":5,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":600,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"f",
+    "SNO":99,"CNO":7,"PRVSNO":99,"PRVCNO":6,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":600,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"0",
+    "SNO":99,"CNO":8,"PRVSNO":99,"PRVCNO":7,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1200,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"直線",
+    "SNO":99,"CNO":9,"PRVSNO":99,"PRVCNO":8,
+    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":600,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"色検知",
+    "SNO":99,"CNO":10,"PRVSNO":99,"PRVCNO":9,
+    "RunInfo":{"FUNCNO":1,"FWD":80,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":3,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"LAP以降",
+    "SNO":99,"CNO":11,"PRVSNO":99,"PRVCNO":10,
+    "RunInfo":{"FUNCNO":1,"FWD":60,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":3000,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"g",
+    "SNO":99,"CNO":12,"PRVSNO":99,"PRVCNO":11,
+    "RunInfo":{"FUNCNO":1,"FWD":0,"TRN":0,"KP":3.6,"KI":0,"KD":0,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1000,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+}
+]

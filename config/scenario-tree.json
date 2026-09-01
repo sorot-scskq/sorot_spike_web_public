@@ -421,24 +421,24 @@
           ]
         },
         {
-          "label": "Lコース",
+          "label": "90_難所",
           "open": false,
           "children": [
             {
               "label": "scenario.json",
               "type": "file",
-              "path": "2026/Lコース/scenario.json"
+              "path": "2026/90_難所/scenario.json"
             }
           ]
         },
         {
-          "label": "難所",
+          "label": "99_Lコース",
           "open": false,
           "children": [
             {
               "label": "scenario.json",
               "type": "file",
-              "path": "2026/難所/scenario.json"
+              "path": "2026/99_Lコース/scenario.json"
             }
           ]
         }
