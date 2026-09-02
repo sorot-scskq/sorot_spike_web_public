@@ -151,7 +151,7 @@
 },
 {"Comment":"方向転換",
     "SNO":30,"CNO":4,"PRVSNO":30,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-90,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-50,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
     "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
     "CoordCorrectInfo":{}
 },
