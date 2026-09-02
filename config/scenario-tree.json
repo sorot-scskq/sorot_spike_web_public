@@ -421,6 +421,17 @@
           ]
         },
         {
+          "label": "06_Lコース_ボトルデリバリー",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/06_Lコース_ボトルデリバリー/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "90_難所",
           "open": false,
           "children": [

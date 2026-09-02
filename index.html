@@ -11,8 +11,8 @@
     <script type="py" async src="python/bottle_color_bridge.py" config='{"packages": []}'></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Bi_JaYce.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-CbmXyoFl.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Bo39JMYi.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Ci0V-VRT.js"></script>
 </head>
 
 <body>
@@ -327,6 +327,24 @@
             <!-- ゲート(難所)タブ: ET ラリー -->
             <div id="GateTab" class="tab-content">
                 <div class="debug-grid" id="gateSection">
+                    <!-- 難所の認識を手で叩く -->
+                    <div class="debug-group full-width">
+                        <h4>手動で読む・受け取る</h4>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
+                            走らせずに、難所の認識だけを 1回動かします。走り込みの調整と、認識そのもの・
+                            PC 側（<code>PC-System_2026</code>）とのやりとりの確認を切り離して進められます。
+                            ヒントカードがカメラに写っていないときは、掲示されている中身をそのまま送ります
+                            （どちらで送ったかは「実行結果（ログ）」に出ます）。送り先は「タスク/通信」タブの URL です。
+                        </p>
+                        <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+                            <button id="manualReadBottleButton" type="button" title="前面カメラの映像からキャリーボトルのラベル色を判定し、認識結果の置き場へ入れます。シナリオの色分岐はここを見ます">キャリーボトルの色を読む</button>
+                            <button id="manualReadHint1Button" type="button" title="ヒントカード1（赤ゲートの位置・平文）を読み、PC へ id=1 で送ります">ヒントカード1を読んで送る</button>
+                            <button id="manualReadHint2Button" type="button" title="ヒントカード2（青と黄の位置・暗号文）を読み、PC へ id=2 で送ります">ヒントカード2を読んで送る</button>
+                            <button id="manualFetchRouteButton" type="button" title="PC から走行経路をもらい、走行中のシナリオへ足します（id=3）">走行経路を受け取る</button>
+                        </div>
+                        <div id="manualActionResult" style="min-height:1.2em; font-size:12px; color:#333;">-</div>
+                    </div>
+
                     <div class="debug-group full-width">
                         <h4>ET ラリー ゲート配置</h4>
                         <p class="scenario-edit-warning" style="margin-top:0;">

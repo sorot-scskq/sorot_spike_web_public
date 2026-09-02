@@ -11,7 +11,7 @@ axleColor: "black"  # 車軸の色
 
 # シナリオの既定値。config/scenario/ からの相対パス
 scenario:
-  url: "2026/Lコース/scenario.json"
+  url: "2026/99_Lコース/scenario.json"
 
 # 初期位置設定
 # 名前付きで複数定義できる。2つ以上あると画面に「開始位置」の選択が出る。

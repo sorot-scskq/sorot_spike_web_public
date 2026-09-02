@@ -1,0 +1,806 @@
+[
+  {
+    "Comment": "LAPゲートまで進む",
+    "SNO": 1,
+    "CNO": 1,
+    "PRVSNO": 1,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 670,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "a",
+    "SNO": 1,
+    "CNO": 2,
+    "PRVSNO": 1,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 435,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "b（減速。KP は FWD に比例するので、舵の効きが変わらないよう上げてある）",
+    "SNO": 1,
+    "CNO": 3,
+    "PRVSNO": 1,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 6.0,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 420,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "c（減速。KP は FWD に比例するので、舵の効きが変わらないよう上げてある）",
+    "SNO": 1,
+    "CNO": 4,
+    "PRVSNO": 1,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 10.7,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 500,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ほぼ直角の左コーナー（約 310,57）。減速して曲がる。EdgePidRunning は KP を FWD に比例させるので、減速したぶん KP を上げて舵の効きを保つ",
+    "SNO": 1,
+    "CNO": 5,
+    "PRVSNO": 1,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 30,
+      "TRN": 0,
+      "KP": 12.0,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ほぼ直角の左コーナー（約 310,57）。減速して曲がる。EdgePidRunning は KP を FWD に比例させるので、減速したぶん KP を上げて舵の効きを保つ",
+    "SNO": 1,
+    "CNO": 6,
+    "PRVSNO": 1,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 30,
+      "TRN": 0,
+      "KP": 21.3,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "f（減速。KP は FWD に比例するので、舵の効きが変わらないよう上げてある）",
+    "SNO": 1,
+    "CNO": 7,
+    "PRVSNO": 1,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 10.7,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "0",
+    "SNO": 1,
+    "CNO": 8,
+    "PRVSNO": 1,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1200,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直線",
+    "SNO": 1,
+    "CNO": 9,
+    "PRVSNO": 1,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下側の青線（約 185,699）を見るまで進む。ここは実機でも外れるので大きく減速する。EdgePidRunning は舵を FWD に比例させるので、減速したぶん KP を上げる",
+    "SNO": 1,
+    "CNO": 10,
+    "PRVSNO": 1,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 25,
+      "TRN": 0,
+      "KP": 14.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青線を見たあと、キャリーボトルの手前まで進む（青線検知の位置から約 295mm）",
+    "SNO": 1,
+    "CNO": 11,
+    "PRVSNO": 1,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 25,
+      "TRN": 0,
+      "KP": 14.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青線を抜けたところからキャリーボトルへ寄せる。ここで捕捉できることが多い",
+    "SNO": 2,
+    "CNO": 1,
+    "PRVSNO": 1,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 25,
+      "TRN": 0,
+      "KP": 14.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 100
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "キャリーボトルへゆっくり押し込む。捕捉できる幅は車体前面から 75〜125mm しかない",
+    "SNO": 3,
+    "CNO": 1,
+    "PRVSNO": 2,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 30,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "止まってカメラの判定を待つ。色は抱えた瞬間に決まるので、押し込んだ後で待つ",
+    "SNO": 3,
+    "CNO": 2,
+    "PRVSNO": 3,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 1000
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ラベルなら赤ゾーンへ運ぶシナリオ（SNO 10）へ飛ぶ。当たらなければ次のコマンドを見る",
+    "SNO": 3,
+    "CNO": 3,
+    "PRVSNO": 3,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 10,
+      "JMPSNO": 10
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ラベルなら青ゾーンへ運ぶシナリオ（SNO 11）へ飛ぶ。当たらなければ次のコマンドを見る",
+    "SNO": 3,
+    "CNO": 4,
+    "PRVSNO": 3,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 11,
+      "JMPSNO": 11
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ラベルなら黄ゾーンへ運ぶシナリオ（SNO 12）へ飛ぶ。当たらなければ次のコマンドを見る",
+    "SNO": 3,
+    "CNO": 5,
+    "PRVSNO": 3,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 12,
+      "JMPSNO": 12
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色が分からなかった。運ばないと点にならないので、既定の置き場として赤ゾーン（SNO 10）へ運ぶ",
+    "SNO": 3,
+    "CNO": 6,
+    "PRVSNO": 3,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 13,
+      "JMPSNO": 10
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ここへは来ない想定（上の 4つでどれかに当たる）。念のため赤ゾーンへ",
+    "SNO": 3,
+    "CNO": 7,
+    "PRVSNO": 3,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 10
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ゾーンの高さへ向く（上）。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）（SCR は相対角度。ボトルには南を向いて着くので、180 度回して北を向く）",
+    "SNO": 10,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 180
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ゾーンの高さまで運ぶ（520mm）",
+    "SNO": 10,
+    "CNO": 2,
+    "PRVSNO": 10,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 520
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーンの方向（右）へ向く。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）（SCR は相対角度。北を向いた状態から右へ 90 度）",
+    "SNO": 10,
+    "CNO": 3,
+    "PRVSNO": 10,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 90
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ゾーンまで運ぶ。抱えたボトルは車体の 108mm 先にあるので、その分だけ手前で止まる（2088mm）",
+    "SNO": 10,
+    "CNO": 4,
+    "PRVSNO": 10,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 2088
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下がってボトルを赤ゾーンに置く。アームに引く力は無いので、下がればボトルはその場に残る",
+    "SNO": 10,
+    "CNO": 5,
+    "PRVSNO": 10,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -40,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ。ここで飛ばないと、次の色のルートへ流れ込んでしまう",
+    "SNO": 10,
+    "CNO": 6,
+    "PRVSNO": 10,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 20
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ゾーンの高さへ向く（上）。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）（SCR は相対角度。ボトルには南を向いて着くので、180 度回して北を向く）",
+    "SNO": 11,
+    "CNO": 1,
+    "PRVSNO": 11,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 180
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ゾーンの高さまで運ぶ（212mm）",
+    "SNO": 11,
+    "CNO": 2,
+    "PRVSNO": 11,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 212
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーンの方向（右）へ向く。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）（SCR は相対角度。北を向いた状態から右へ 90 度）",
+    "SNO": 11,
+    "CNO": 3,
+    "PRVSNO": 11,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 90
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ゾーンまで運ぶ。抱えたボトルは車体の 108mm 先にあるので、その分だけ手前で止まる（2088mm）",
+    "SNO": 11,
+    "CNO": 4,
+    "PRVSNO": 11,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 2088
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下がってボトルを青ゾーンに置く。アームに引く力は無いので、下がればボトルはその場に残る",
+    "SNO": 11,
+    "CNO": 5,
+    "PRVSNO": 11,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -40,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ。ここで飛ばないと、次の色のルートへ流れ込んでしまう",
+    "SNO": 11,
+    "CNO": 6,
+    "PRVSNO": 11,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 20
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ゾーンの高さへ向く（下）。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）（SCR は相対角度。ボトルには南を向いて着くので、180 度回して北を向く）",
+    "SNO": 12,
+    "CNO": 1,
+    "PRVSNO": 12,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ゾーンの高さまで運ぶ（95mm）",
+    "SNO": 12,
+    "CNO": 2,
+    "PRVSNO": 12,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 95
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーンの方向（右）へ向く。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）（SCR は相対角度。北を向いた状態から右へ 90 度）",
+    "SNO": 12,
+    "CNO": 3,
+    "PRVSNO": 12,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 90
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ゾーンまで運ぶ。抱えたボトルは車体の 108mm 先にあるので、その分だけ手前で止まる（2088mm）",
+    "SNO": 12,
+    "CNO": 4,
+    "PRVSNO": 12,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 2088
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下がってボトルを黄ゾーンに置く。アームに引く力は無いので、下がればボトルはその場に残る",
+    "SNO": 12,
+    "CNO": 5,
+    "PRVSNO": 12,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -40,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ。ここで飛ばないと、次の色のルートへ流れ込んでしまう",
+    "SNO": 12,
+    "CNO": 6,
+    "PRVSNO": 12,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 20
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わり。停止する",
+    "SNO": 20,
+    "CNO": 1,
+    "PRVSNO": 20,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 500
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "シナリオ終了。受け取った走行経路は PRVSNO/PRVCNO が指す運び終わりの直後に入る",
+    "SNO": 0,
+    "CNO": 0,
+    "PRVSNO": 20,
+    "PRVCNO": 1,
+    "RunInfo": {},
+    "SwitchInfo": {},
+    "CoordCorrectInfo": {}
+  }
+]
