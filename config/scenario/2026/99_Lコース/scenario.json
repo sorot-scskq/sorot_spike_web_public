@@ -152,7 +152,7 @@
 {"Comment":"方向転換",
     "SNO":99,"CNO":26,"PRVSNO":99,"PRVCNO":25,
     "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-90,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-100,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
     "CoordCorrectInfo":{}
 },
 {"Comment":"直進",

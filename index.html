@@ -11,8 +11,8 @@
     <script type="py" async src="python/bottle_color_bridge.py" config='{"packages": []}'></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Bo39JMYi.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DvE0Gjzp.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-C0wKZIlb.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Bd7JkILL.js"></script>
 </head>
 
 <body>
@@ -76,6 +76,23 @@
                         <input type="checkbox" id="odometryOverlayCheckbox">
                         自己位置推定を表示 (青のゴースト)
                     </label>
+                    <label class="camera-enabled-toggle" title="描画の上限。走りには影響しません（位置の更新はタスク周期で回っています）">
+                        描画:
+                        <select id="presentFpsSelect">
+                            <option value="60">60 fps</option>
+                            <option value="30">30 fps</option>
+                        </select>
+                    </label>
+                    <label class="camera-enabled-toggle" title="走行体が出す sorot_spike/trajectory.csv を読み込んで、コースへ重ねます">
+                        実機の軌跡を重ねる:
+                        <input type="file" id="realTrajectoryFile" accept=".csv,.txt,.log" style="max-width:180px;">
+                    </label>
+                    <label class="camera-enabled-toggle" id="realTrajectoryRunRow" style="display:none;">
+                        走行:
+                        <select id="realTrajectoryRunSelect" style="max-width:200px;"></select>
+                        <button type="button" id="realTrajectoryClearButton">消す</button>
+                    </label>
+                    <div id="realTrajectoryStatus" style="font-size:12px; color:#333;"></div>
                 </div>
         </div>
 
