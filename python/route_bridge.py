@@ -208,12 +208,34 @@ async def _route_setup():
         """走行やり直し用"""
         receiver.reset()
 
+    def connect():
+        """
+        先に繋ぐ（走行開始のとき）。
+
+        ふだんは経路が要るとき（LAPゲート通過時）に初めて繋ぐが、PC-System と
+        結合するとキャリブレーションの時点で接続が要る。走り出してから繋ぐのでは
+        間に合わないので、走行開始でここを呼ぶ。
+
+        WS モードの PC-System は接続した瞬間に経路（id=3）を送ってくるので、
+        受け取り口と同じ接続でなければならない。別に張ると、welcome の経路を
+        取りこぼす。
+        """
+        try:
+            communicator.connect()
+            return True
+        except Exception:  # noqa: BLE001 — 繋がらなくても走行は続ける
+            window.console.warn(
+                "[PyScript] 走行経路の受け取り先へ繋げません: " + traceback.format_exc()
+            )
+            return False
+
     # window.__simPython は Python 側の窓口をまとめる入れ物。認識処理ごとに
     # 別々の PyScript が足していくので、丸ごと代入せず自分の枠だけを足す
     if not hasattr(window, "__simPython") or window.__simPython is None:
         window.__simPython = to_obj({})
     window.__simPython.route = to_obj({
         "lapGatePassed": create_proxy(lap_gate_passed),
+        "connect": create_proxy(connect),
         "getState": create_proxy(get_state),
         "reset": create_proxy(reset),
     })

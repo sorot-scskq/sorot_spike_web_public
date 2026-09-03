@@ -274,6 +274,18 @@ def send_card(payload):
     if bridge is not None and hasattr(bridge, "onSent"):
         bridge.onSent(to_js(payload))
 
+    # 実機相当のモードでは JS 側が送る。走行開始で張った接続に、実機と同じ形
+    # （identifier + request_id + qr_data）で流す。ここで自前の接続からデバッグ形式を
+    # 送ると、PC 側は identifier の無い要求を受け取って「未対応の要求識別子」になる
+    if bridge is not None and hasattr(bridge, "sendToPc"):
+        try:
+            if bridge.sendToPc(payload.get("id"), payload.get("decodeResult")):
+                return
+        except Exception:  # noqa: BLE001 — 送れなくても読み取りは続ける
+            window.console.warn(
+                "[PyScript] ヒントカードの送信（実機相当）で失敗: " + traceback.format_exc()
+            )
+
     global _hint_socket, _hint_ws_unavailable
     if _hint_ws_unavailable:
         return  # 送り先が居ないと分かっている。毎回試すとログが埋まる

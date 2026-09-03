@@ -11,8 +11,8 @@
     <script type="py" async src="python/bottle_color_bridge.py" config='{"packages": []}'></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-C0wKZIlb.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-C199BvpE.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Y2hJEEm_.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DWVvCvQ2.js"></script>
 </head>
 
 <body>
@@ -118,6 +118,16 @@
                 <span style="margin-left:4px;">LAPゲートタイム: <br/><strong id="lapGateTimerDisplay">00:00.000</strong></span>
                 <span style="margin-left:4px;">残り制限時間: <br/><strong id="countdownTimerDisplay">02:00</strong></span>
                 <span style="margin-left:4px;">コース状態: <br/><strong id="courseStatusDisplay">OK</strong></span>
+                <!-- PC-System の待ち受けポート。走行開始のときにここへ繋ぐ -->
+                <span style="margin-left:12px;">PC-System ポート: <br/>
+                    <input id="pcSystemPortInput" type="number" min="1" max="65535" value="8765"
+                           style="width:80px;" title="走行開始のときにこのポートへ繋ぎます" />
+                    <select id="pcSystemModeSelect" title="PC-System の COMM_MODE に合わせます">
+                        <option value="ws_tcp">実機相当 (WS_TCP)</option>
+                        <option value="ws_debug">デバッグ (WS_DEBUG)</option>
+                    </select>
+                    <strong id="pcSystemStatus" style="margin-left:6px;">未接続</strong>
+                </span>
             </div>
 
             <!-- タブメニュー -->
