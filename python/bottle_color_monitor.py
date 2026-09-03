@@ -90,6 +90,14 @@ class BottleColorClassifier:
         return {'color': best, 'coverage': coverage, 'counts': counts}
 
 
+# 「最後に見えた色」を使ってよい古さ[フレーム]。
+#
+# 30fps で 60フレーム = 2秒。ボトルへ寄せてから抱えるまでは 1秒ほどなので、
+# 寄せながら見えていた色は充分に届く。それより古いものは、別の場面で見た色を
+# 誤って採る恐れがあるので使わない。
+LAST_SEEN_MAX_AGE = 60
+
+
 class BottleColorMonitor:
     """
     カメラ映像からキャリーボトルの色を読み、抱えた色を保持・管理するモニタクラス。
@@ -103,6 +111,12 @@ class BottleColorMonitor:
             'coverage': 0.0,
             'counts': {'red': 0, 'blue': 0, 'yellow': 0},
             'held': BottleColor.NONE,
+            # 最後に見えた色と、それが何フレーム前か。
+            # 抱えた瞬間はラベルがカメラに写らない（近すぎて画角の下に外れる）ので、
+            # 「いま見えている色」だけでは永久に判定できない。近づきながら見えて
+            # いた色を覚えておき、抱えたときにそれを採用する。
+            'last_seen': BottleColor.NONE,
+            'last_seen_age': 0,
         }
 
     def set_options(self, options: Dict[str, Any]):
@@ -124,14 +138,37 @@ class BottleColorMonitor:
             self.color_info['color'] = result['color']
             self.color_info['coverage'] = result['coverage']
             self.color_info['counts'] = result['counts']
+            if result['color'] != BottleColor.NONE:
+                self.color_info['last_seen'] = result['color']
+                self.color_info['last_seen_age'] = 0
+            else:
+                self.color_info['last_seen_age'] += 1
             return result['color']
         except Exception:
             return self.color_info['color']
 
     def hold(self) -> str:
-        """いま見えている色を「抱えた色」として覚える（初回のみ）。"""
-        if self.color_info['held'] == BottleColor.NONE and self.color_info['color'] != BottleColor.NONE:
+        """
+        抱えた色を覚える（初回のみ）。
+
+        いま見えていればそれを、見えていなければ「最後に見えた色」を採る。
+
+        抱えた瞬間、ボトルはカメラに近すぎてラベルが画角の下に外れる
+        （シミュレータの実測で、写るのは 180mm 以遠。アームで挟む位置は
+        54〜125mm）。「いま見えている色」しか採らないと、抱えたあとは
+        いつまでも判定できず、未判定の逃げ道（SCV 13）へ落ちる。
+
+        古すぎる記憶は使わない。ボトルから離れたまま抱えたことになった
+        （すり抜けなど）ときに、まったく別のときに見た色を採らないため。
+        """
+        if self.color_info['held'] != BottleColor.NONE:
+            return self.color_info['held']
+
+        if self.color_info['color'] != BottleColor.NONE:
             self.color_info['held'] = self.color_info['color']
+        elif (self.color_info['last_seen'] != BottleColor.NONE
+                and self.color_info['last_seen_age'] <= LAST_SEEN_MAX_AGE):
+            self.color_info['held'] = self.color_info['last_seen']
         return self.color_info['held']
 
     def release(self):
@@ -157,3 +194,5 @@ class BottleColorMonitor:
         self.color_info['coverage'] = 0.0
         self.color_info['counts'] = {'red': 0, 'blue': 0, 'yellow': 0}
         self.color_info['held'] = BottleColor.NONE
+        self.color_info['last_seen'] = BottleColor.NONE
+        self.color_info['last_seen_age'] = 0

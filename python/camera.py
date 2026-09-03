@@ -141,6 +141,16 @@ class RobotCamera:
         if isinstance(self.source, int):
             cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
             cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
+            # 溜め込みを 1枚にする。
+            #
+            # read() は「次の1枚」を返すので、取り込みが撮影より遅いと古い順に
+            # 溜まったものが返る。走行体は動いているので、これは「さっき居た
+            # 場所の映像」を見ることになる。
+            #
+            # キャリーボトルの色は、ボトルの 449mm〜249mm 手前でしか読めない
+            # （それより近いとラベルが画角の下へ外れる）。この区間は 200mm しか
+            # なく、通過に 0.5秒ほど。数枚ぶん遅れるだけで区間の外の映像を見る。
+            cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
         self._capture = cap
         return True
 
@@ -166,6 +176,27 @@ class RobotCamera:
             return None
         ok, frame = self._capture.read()
         return frame if ok else None
+
+    def grab_latest(self, drop: int = 2) -> Any:
+        """
+        溜まっているぶんを捨てて、いちばん新しい映像を取る。
+
+        CAP_PROP_BUFFERSIZE はドライバによっては効かない。効かなかったときの
+        ための保険として、読み捨ててから 1枚取る。捨てるのは待ち時間なので、
+        必要なだけにとどめる（既定 2枚）。
+
+        取り込み口を差してあるとき（シミュレータ）と静止画のときは、そもそも
+        溜まらないので grab() と同じ。
+
+        :param drop: 読み捨てる枚数
+        """
+        if self._frame_source is not None or self._is_image_file():
+            return self.grab()
+        if not self.open():
+            return None
+        for _ in range(max(0, drop)):
+            self._capture.grab()      # デコードせずに捨てる（read より軽い）
+        return self.grab()
 
     def close(self) -> None:
         """カメラを閉じる。"""
