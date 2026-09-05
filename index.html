@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Y2hJEEm_.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DWVvCvQ2.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-C-h74Evk.js"></script>
 </head>
 
 <body>
@@ -55,44 +55,46 @@
                 </div>
 
                 <div class="camera-preview-wrap camera-preview-in-sidebar">
-                    <div class="camera-preview-label">前面カメラ（シミュレーション）</div>
+                    <div class="camera-preview-label">前面カメラ</div>
                     <canvas id="cameraView" width="240" height="144" class="camera-view-canvas"></canvas>
-                    <button id="pyDetectBottleColorButton" type="button" class="btn" style="margin-top: 8px; width: 100%; padding: 6px 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 4px;" title="PyScript (Python) で前面カメラの画素を読み取り、中央のボトル色を検知します" onclick="if(!window.pyDetectBottleColor){alert('PyScript (Python) ランタイムをロード中です。\n少々お待ちいただいてから再度お試しください。');}">
-                        <span>🐍</span> 前面カメラ色検知 (PyScript)
+                    <button id="pyDetectBottleColorButton" type="button" class="btn py-detect-button" title="PyScript (Python) で前面カメラの画素を読み取り、中央のボトル色を検知します" onclick="if(!window.pyDetectBottleColor){alert('PyScript (Python) ランタイムをロード中です。\n少々お待ちいただいてから再度お試しください。');}">
+                        <span>🐍</span> 色検知 (PyScript)
                     </button>
-                    <label class="camera-enabled-toggle">
-                        <input type="checkbox" id="cameraEnabledCheckbox" checked>
-                        カメラON (OFFにすると処理軽量化)
-                    </label>
-                    <label class="camera-enabled-toggle">
-                        <input type="checkbox" id="visionOverlayCheckbox" checked>
-                        認識結果をカメラに重ねる
-                    </label>
-                    <label class="camera-enabled-toggle">
-                        <input type="checkbox" id="disableOutDetectionCheckbox" checked>
-                        アウト判定を無効化（画面外のみ判定）
-                    </label>
-                    <label class="camera-enabled-toggle">
-                        <input type="checkbox" id="odometryOverlayCheckbox">
-                        自己位置推定を表示 (青のゴースト)
-                    </label>
+                    <!-- 表示の切り替え。縦に積むと画面を食うので2列に折る -->
+                    <div class="toggle-grid">
+                        <label class="camera-enabled-toggle" title="OFFにすると前面カメラを描かなくなり、処理が軽くなります">
+                            <input type="checkbox" id="cameraEnabledCheckbox" checked>
+                            カメラON
+                        </label>
+                        <label class="camera-enabled-toggle" title="認識処理が見た範囲・見つけた場所をカメラ映像に重ねます">
+                            <input type="checkbox" id="visionOverlayCheckbox" checked>
+                            認識結果を重ねる
+                        </label>
+                        <label class="camera-enabled-toggle" title="コース外へ出ても止めず、画面の外に出たときだけアウトにします">
+                            <input type="checkbox" id="disableOutDetectionCheckbox" checked>
+                            アウト判定を無効化
+                        </label>
+                        <label class="camera-enabled-toggle" title="自己位置推定の位置を青のゴーストで重ねます">
+                            <input type="checkbox" id="odometryOverlayCheckbox">
+                            自己位置推定
+                        </label>
+                    </div>
                     <label class="camera-enabled-toggle" title="描画の上限。走りには影響しません（位置の更新はタスク周期で回っています）">
                         描画:
-                        <select id="presentFpsSelect">
-                            <option value="60">60 fps</option>
-                            <option value="30">30 fps</option>
-                        </select>
+                        <select id="presentFpsSelect"></select>
                     </label>
-                    <label class="camera-enabled-toggle" title="走行体が出す sorot_spike/trajectory.csv を読み込んで、コースへ重ねます">
-                        実機の軌跡を重ねる:
-                        <input type="file" id="realTrajectoryFile" accept=".csv,.txt,.log" style="max-width:180px;">
-                    </label>
-                    <label class="camera-enabled-toggle" id="realTrajectoryRunRow" style="display:none;">
-                        走行:
-                        <select id="realTrajectoryRunSelect" style="max-width:200px;"></select>
-                        <button type="button" id="realTrajectoryClearButton">消す</button>
-                    </label>
-                    <div id="realTrajectoryStatus" style="font-size:12px; color:#333;"></div>
+                    <details class="side-details">
+                        <summary>実機の軌跡を重ねる</summary>
+                        <label class="camera-enabled-toggle" title="走行体が出す sorot_spike/trajectory.csv を読み込んで、コースへ重ねます">
+                            <input type="file" id="realTrajectoryFile" accept=".csv,.txt,.log">
+                        </label>
+                        <label class="camera-enabled-toggle" id="realTrajectoryRunRow" style="display:none;">
+                            走行:
+                            <select id="realTrajectoryRunSelect"></select>
+                            <button type="button" id="realTrajectoryClearButton">消す</button>
+                        </label>
+                        <div id="realTrajectoryStatus" class="side-status"></div>
+                    </details>
                 </div>
         </div>
 
@@ -103,32 +105,48 @@
                 <canvas id="trailCanvas" width="500" height="750" class="custom-canvas" style="pointer-events: none;"></canvas>
             </div>
 
-            <div style="margin-left: 10px;">
-                <a href="index3.html">ビジュアライザ</a>
-                <!-- 公開サイトのタグ別公開一覧。base はタグごとに変わるため絶対パスで固定する -->
-                <a href="/sorot_spike_web_public/tags/" style="margin-left: 8px;">タグ別公開</a>
-                <!-- ビルド元のコミット。キャッシュで古い版が残っていても、ここを見れば判別できる -->
-                <span id="commitIdDisplay" class="commit-id" title="ビルド元のコミット"></span>
-                <h2 style="margin-bottom: 10px; margin-top: 0;">Sorot-Spikeテストツール</h2>
+            <div class="main-column">
+                <!-- 題名・リンク・ビルド元コミットを1行にまとめる -->
+                <div class="app-titlebar">
+                    <h1 class="app-title">Sorot-Spike テストツール</h1>
+                    <a href="index3.html">ビジュアライザ</a>
+                    <!-- 公開サイトのタグ別公開一覧。base はタグごとに変わるため絶対パスで固定する -->
+                    <a href="/sorot_spike_web_public/tags/">タグ別公開</a>
+                    <!-- ビルド元のコミット。キャッシュで古い版が残っていても、ここを見れば判別できる -->
+                    <span id="commitIdDisplay" class="commit-id" title="ビルド元のコミット"></span>
+                </div>
 
+            <!-- 走行の操作と計測値。見出しと値を積んだ小さな枠を並べる -->
             <div class="header">
-                <button id="loadScenarioButton" type="button">シナリオ<br/>読み込み</button>
-                <button id="startRunButton" type="button">走行<br/>開始</button>
-                <span style="margin-left:4px;">経過タイム: <br/><strong id="raceTimerDisplay">00:00.000</strong></span>
-                <span style="margin-left:4px;">LAPゲートタイム: <br/><strong id="lapGateTimerDisplay">00:00.000</strong></span>
-                <span style="margin-left:4px;">残り制限時間: <br/><strong id="countdownTimerDisplay">02:00</strong></span>
-                <span style="margin-left:4px;">コース状態: <br/><strong id="courseStatusDisplay">OK</strong></span>
+                <button id="loadScenarioButton" type="button" class="header-action">シナリオ読み込み</button>
+                <button id="startRunButton" type="button" class="header-action">走行開始</button>
+                <!-- 同じシナリオを何回続けて走らせるか。2以上にすると軌跡を重ねて残す -->
+                <span class="hud-item">
+                    <span class="hud-label">走行回数</span>
+                    <input id="runCountInput" type="number" min="1" max="20" value="1"
+                           title="同じシナリオを続けて走らせる回数。2以上にすると、回ごとに色を変えて軌跡を重ねます" />
+                </span>
+                <span class="hud-item"><span class="hud-label">経過タイム</span><strong id="raceTimerDisplay" class="hud-value">00:00.000</strong></span>
+                <span class="hud-item"><span class="hud-label">LAPゲート</span><strong id="lapGateTimerDisplay" class="hud-value">00:00.000</strong></span>
+                <span class="hud-item"><span class="hud-label">残り制限時間</span><strong id="countdownTimerDisplay" class="hud-value">02:00</strong></span>
+                <span class="hud-item"><span class="hud-label">コース状態</span><strong id="courseStatusDisplay" class="hud-value">OK</strong></span>
                 <!-- PC-System の待ち受けポート。走行開始のときにここへ繋ぐ -->
-                <span style="margin-left:12px;">PC-System ポート: <br/>
-                    <input id="pcSystemPortInput" type="number" min="1" max="65535" value="8765"
-                           style="width:80px;" title="走行開始のときにこのポートへ繋ぎます" />
-                    <select id="pcSystemModeSelect" title="PC-System の COMM_MODE に合わせます">
-                        <option value="ws_tcp">実機相当 (WS_TCP)</option>
-                        <option value="ws_debug">デバッグ (WS_DEBUG)</option>
-                    </select>
-                    <strong id="pcSystemStatus" style="margin-left:6px;">未接続</strong>
+                <span class="hud-item hud-item-wide">
+                    <span class="hud-label">PC-System</span>
+                    <span class="hud-row">
+                        <input id="pcSystemPortInput" type="number" min="1" max="65535" value="8765"
+                               title="走行開始のときにこのポートへ繋ぎます" />
+                        <select id="pcSystemModeSelect" title="PC-System の COMM_MODE に合わせます">
+                            <option value="ws_tcp">実機相当 (WS_TCP)</option>
+                            <option value="ws_debug">デバッグ (WS_DEBUG)</option>
+                        </select>
+                        <strong id="pcSystemStatus" class="hud-value">未接続</strong>
+                    </span>
                 </span>
             </div>
+
+            <!-- 連続走行の結果。回ごとに、コースへ描いた軌跡と同じ色の印を出す -->
+            <div id="runResults" class="run-results" hidden></div>
 
             <!-- タブメニュー -->
             <div class="tabs">
@@ -150,11 +168,14 @@
                 <div class="debug-grid">
                     <div class="debug-group full-width">
                         <h4>十字キー操作（RemoteControl / FUNCNO 10）</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>使い方（キーボード操作・FUNCNO 10 のシナリオが要ること）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             十字キーまたはキーボード（矢印キー / WASD / Space:停止 / O:OK送信）で走行体を直接操作します。<br />
                             ※ キーボード操作はこのタブを開いていなくても効きます（文字の入力中を除く）。<br />
                             ※ RemoteControl（FUNCNO 10）のシナリオを読み込み、走行開始してから操作してください。
                         </p>
+                        </details>
 
                         <div class="dpad-control-area">
                             <!-- PWM 設定 -->
@@ -203,10 +224,10 @@
                             </div>
                         </div>
 
-                        <hr style="margin:12px 0; border:none; border-top:1px solid #ddd;" />
+                        <hr class="group-sep" />
                         <!-- シナリオ追加（ScenarioControl 経由） -->
                         <div>
-                            <div style="font-weight: bold; font-size: 13px; margin-bottom: 6px; color: #333;">シナリオ追加（ScenarioControl へ挿入）:</div>
+                            <div class="sub-box-title">シナリオ追加（ScenarioControl へ挿入）:</div>
                             <div class="msg-traffic-actions" style="display: flex; gap: 8px; flex-wrap: wrap;">
                                 <button id="dpadInsertRemoteCommandBtn" type="button" class="btn-highlight" title="FUNCNO 10（RemoteControl）のコマンドを ScenarioControl に追加します">＋ RemoteControl区間を追加</button>
                                 <button id="dpadInsertEditorScenarioBtn" type="button" title="シナリオ編集タブの JSON を追加します">シナリオ編集JSONを追加</button>
@@ -225,7 +246,7 @@
                     <!-- タスク実行状況 -->
                     <div class="debug-group full-width">
                         <h4>タスク実行状況 (10ms ループ)</h4>
-                        <div style="max-height: 240px; overflow: auto;">
+                        <div class="table-scroll table-scroll-tall">
                             <table class="task-exec-table">
                                 <thead>
                                     <tr>
@@ -249,12 +270,15 @@
                     <!-- 無線通信デバイス（接続確認） -->
                     <div class="debug-group full-width">
                         <h4>無線通信デバイス接続（WebSocket）</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>何をするところか（経路を一回だけ取りにいく。走行中は自動）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             無線通信デバイス（<code>PC-System_2026</code>、または <code>tools/ws_debug_server</code>）から
                             走行経路を<strong>一回だけ</strong>取得し、走行中のシナリオへ足します。
                             繋ぎっぱなしにはしません（毎周期のやりとりは行いません）。
                             走行中は LAP ゲート通過時に自動で取得されるので、ここは接続を確かめるためのものです。
                         </p>
+                        </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
                             <label for="wsServerUrlInput">URL:</label>
                             <input id="wsServerUrlInput" type="text" value="ws://127.0.0.1:8765" style="min-width:220px;" />
@@ -268,12 +292,15 @@
                     <!-- リモートコントロール走行（RemoteControl） -->
                     <div class="debug-group full-width">
                         <h4>リモートコントロール走行（RemoteControl / FUNCNO 10）</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>リモートコントロール走行とは（切替はリモート側の OK）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             走らせ方を毎周期「リモート側」から受け取る走行方法です。切替はリモート側が OK を出した時点
                             （<code>SwitchInfo.SCJFN</code> に <code>2048</code> = <code>0x0800</code>）。
                             ローカルJS なら Python 不要で動きます。WebSocket は
                             <code>tools/remote_control_server</code>（FastAPI）を先に起動してください。
                         </p>
+                        </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
                             <label for="remoteModeSelect">指令元:</label>
                             <select id="remoteModeSelect">
@@ -301,8 +328,10 @@
                             <span id="remoteStats">-</span>
                         </div>
 
-                        <hr style="margin:10px 0; border:none; border-top:1px solid #ddd;" />
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <hr class="group-sep" />
+                        <details class="note">
+                            <summary>モータ直接操作の注意（FUNCNO 10 の区間だけ効く）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             モータ直接操作。走らせ方の計算（PID など）を通さず、左右の PWM をそのまま出します
                             （<code>RemoteControlBridge.setMotorPwm</code>）。止まった状態で「走らせる」を押すと
                             走り出し、もう一度押すと止まります。「走行方法に戻す」で元に戻ります。<br />
@@ -310,6 +339,7 @@
                             <strong>FUNCNO 10 の区間を走っているあいだだけ効きます</strong>。
                             その場旋回（左右を逆向き）を出すときは、その区間の <code>TRN</code> が 0 でないこと。
                         </p>
+                        </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
                             <label for="remotePwmLeftInput">左PWM:</label>
                             <input id="remotePwmLeftInput" type="number" value="30" min="-100" max="100" step="5" style="width:70px;" />
@@ -333,7 +363,7 @@
                         <div class="msg-traffic-actions">
                             <button id="msgTrafficDownloadCSV" type="button">CSVダウンロード</button>
                         </div>
-                        <div style="max-height: 200px; overflow: auto; margin-bottom: 8px;">
+                        <div class="table-scroll">
                             <table id="msgTrafficTable" class="task-exec-table">
                                 <thead>
                                     <tr>
@@ -357,12 +387,15 @@
                     <!-- 難所の認識を手で叩く -->
                     <div class="debug-group full-width">
                         <h4>手動で読む・受け取る</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>何をするところか（走らせずに認識だけ 1回動かす）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             走らせずに、難所の認識だけを 1回動かします。走り込みの調整と、認識そのもの・
                             PC 側（<code>PC-System_2026</code>）とのやりとりの確認を切り離して進められます。
                             ヒントカードがカメラに写っていないときは、掲示されている中身をそのまま送ります
                             （どちらで送ったかは「実行結果（ログ）」に出ます）。送り先は「タスク/通信」タブの URL です。
                         </p>
+                        </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
                             <button id="manualReadBottleButton" type="button" title="前面カメラの映像からキャリーボトルのラベル色を判定し、認識結果の置き場へ入れます。シナリオの色分岐はここを見ます">キャリーボトルの色を読む</button>
                             <button id="manualReadHint1Button" type="button" title="ヒントカード1（赤ゲートの位置・平文）を読み、PC へ id=1 で送ります">ヒントカード1を読んで送る</button>
@@ -374,11 +407,14 @@
 
                     <div class="debug-group full-width">
                         <h4>ET ラリー ゲート配置</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>ゲートの置き方（向きと通過順、gates.json のこと）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             ゲートは隣り合ったゲートポジション（<code>GX-Y</code>）の上に設置します。
                             向きは色ごとに決まっていて（赤=横 / 青=縦 / 黄=横）、通過順は 赤 → 青 → 黄 です。
                             配置は <code>config/course/&lt;年度&gt;/gates.json</code> で管理します。
                         </p>
+                        </details>
                         <p id="gateUnavailable" class="scenario-edit-warning" hidden>
                             このコースには <code>gates.json</code> がありません。
                         </p>
@@ -419,10 +455,13 @@
 
                     <div class="debug-group full-width">
                         <h4>ヒントカード</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>ヒントカードとは（規約 7.3.1／中身は配置から自動）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             5cm 四方の二次元コードがコース上に 2 つあり、ゲート位置を示します（規約 7.3.1）。
                             内容は現在の配置から自動で決まります。位置はワールド座標で調整できます。
                         </p>
+                        </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:6px;">
                             <span>ヒント1（赤）: <strong id="gateHint1">-</strong></span>
                             <label for="gateHint1X">X:</label>
@@ -450,10 +489,13 @@
 
                     <div class="debug-group full-width" id="bottleSection">
                         <h4>ボトル配置（ET相撲・ボトルデリバリー）</h4>
-                        <p class="scenario-edit-warning" style="margin-top:0;">
+                        <details class="note">
+                            <summary>ボトルの置き方（画面上でドラッグしても動かせる）</summary>
+                            <p class="scenario-edit-warning" style="margin-top:0;">
                             力士ボトル（黒ラベル 500mL）およびキャリーボトル（赤/青/黄ラベル 300mL）の配置を設定します。
                             画面上のボトルを直接<strong>マウスドラッグして移動</strong>させることもできます。
                         </p>
+                        </details>
                         <p id="bottleUnavailable" class="scenario-edit-warning" hidden>
                             このコースには <code>bottles.json</code> がありません。
                         </p>
@@ -464,8 +506,8 @@
                         </div>
 
                         <!-- 力士ボトル (ET相撲) -->
-                        <div style="background: rgba(0,0,0,0.03); border: 1px solid #ddd; border-radius: 4px; padding: 8px 12px; margin-bottom: 8px;">
-                            <strong style="display:inline-block; margin-bottom:6px;">力士ボトル（ET相撲 500mL 黒ラベル）:</strong>
+                        <div class="sub-box">
+                            <strong class="sub-box-title">力士ボトル（ET相撲 500mL 黒ラベル）:</strong>
                             <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
                                 <label for="sumoPresetSelect">配置プリセット:</label>
                                 <select id="sumoPresetSelect"></select>
@@ -478,8 +520,8 @@
                         </div>
 
                         <!-- キャリーボトル (ボトルデリバリー) -->
-                        <div style="background: rgba(0,0,0,0.03); border: 1px solid #ddd; border-radius: 4px; padding: 8px 12px;">
-                            <strong style="display:inline-block; margin-bottom:6px;">キャリーボトル（ボトルデリバリー 350mL）:</strong>
+                        <div class="sub-box">
+                            <strong class="sub-box-title">キャリーボトル（ボトルデリバリー 350mL）:</strong>
                             <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center;">
                                 <label for="carryColorSelect">ボトル色:</label>
                                 <select id="carryColorSelect">
@@ -505,9 +547,12 @@
                 <textarea id="scenarioInput" placeholder="シナリオを入力してください..."></textarea>
                 <div class="debug-group full-width" style="margin-top: 12px;">
                     <h4>シナリオ追加（デバッグ / ScenarioControl へ CMD_INSERT_* 送信）</h4>
-                    <p class="scenario-edit-warning" style="margin-top:0;">
+                    <details class="note">
+                        <summary>追加のしかた（停止コマンドの直前へ入る。走行開始はしない）</summary>
+                        <p class="scenario-edit-warning" style="margin-top:0;">
                         上の JSON を ScenarioControl に追加します。シナリオ読込済みの場合は <strong>停止（SNO:0 CNO:0）の直前</strong>へ挿入します。走行開始・キャリブレーションは行いません。
                     </p>
+                    </details>
                     <div class="msg-traffic-actions">
                         <button id="debugInsertScenarioButton" type="button">JSON一括追加</button>
                         <button id="debugInsertCommandButton" type="button">先頭1件追加</button>
@@ -521,10 +566,9 @@
 
             <!-- 実行結果タブ -->
             <div id="OutputTab" class="tab-content">
-                <div id="outputArea" style="margin-top: 5px; border: 1px solid #ccc; padding: 10px;">
-                    <h2 style="margin-top:0;">実行結果</h2>
-                    <pre id="outputContent"
-                        style="max-height: 600px; overflow-y: auto; white-space: pre-wrap; margin:0;"></pre>
+                <!-- 見出しはタブ名（実行結果）と重なるので置かない -->
+                <div id="outputArea">
+                    <pre id="outputContent"></pre>
                 </div>
             </div>
 

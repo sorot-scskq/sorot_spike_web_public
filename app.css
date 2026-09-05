@@ -28,16 +28,176 @@
             color: #222;
         }
 
+        /* 題名・リンク・ビルド元コミットを1行に収める。
+           以前は h2 とリンクの行が別々で、それだけで 60px 使っていた */
+        .app-titlebar {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .app-title {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .app-titlebar a {
+            font-size: 0.8rem;
+        }
+
         .header {
-            margin: 10px 0;
-            padding: 10px;
+            margin: 0 0 8px;
+            padding: 6px 8px;
             background-color: #e7e9ec;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 6px;
             color: #333;
             border-radius: 8px;
             border: 1px solid #d7dbe0;
+        }
+
+        /* 走行の操作ボタン。汎用 button の余白（10px）だと縦に伸びる */
+        .header .header-action {
+            margin: 0;
+            padding: 6px 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* 見出しを小さく上に、値を下に積む計測値の枠 */
+        .hud-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1px;
+            padding: 2px 8px;
+            border-left: 1px solid #d0d4d9;
+            white-space: nowrap;
+        }
+
+        .hud-item:first-of-type {
+            border-left: none;
+        }
+
+        .hud-label {
+            font-size: 0.65rem;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        .hud-value {
+            font-size: 0.9rem;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.2;
+        }
+
+        .hud-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* .header select / .header label より後で効くよう、詳細度を上げてある */
+        .header .hud-row input[type="number"] {
+            width: 66px;
+            padding: 1px 4px;
+            font-size: 0.8rem;
+        }
+
+        .header .hud-row select {
+            padding: 1px 4px;
+            font-size: 0.8rem;
+        }
+
+        .header .hud-item input[type="number"]#runCountInput {
+            width: 48px;
+            padding: 1px 4px;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        /* 走らせている最中の走行開始ボタン（押すと中止） */
+        .header .header-action.is-running {
+            background-color: #fdecea;
+            border-color: #e0a29a;
+            color: #a83226;
+        }
+
+        /*
+         * 連続走行の結果。
+         * 印の色はコースへ描いた軌跡と同じにしてあるので、
+         * 「×だったのはこの色の線」と目で追える（sim/dom-ui/run-repeat.js）。
+         */
+        .run-results {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding: 4px 8px;
+            background: #f1f3f5;
+            border: 1px solid #d7dbe0;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+
+        .run-results-title {
+            font-weight: 700;
+            color: #333;
+            margin-right: 4px;
+        }
+
+        .run-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 1px 7px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+
+        .run-chip-ok {
+            background: #e6f4ea;
+            border-color: #b7dfc4;
+            color: #1e6b34;
+        }
+
+        .run-chip-ng {
+            background: #fdecea;
+            border-color: #f0b7b0;
+            color: #a83226;
+        }
+
+        /* 配達の結果。ねらったゾーンに置けたか、何mm ずれたか */
+        .run-chip-delivery {
+            margin-left: 4px;
+            padding-left: 5px;
+            border-left: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .run-chip-delivery.is-ok {
+            color: #1e6b34;
+            font-weight: 700;
+        }
+
+        .run-chip-delivery.is-ng {
+            color: #a83226;
+        }
+
+        .run-chip-swatch {
+            width: 9px;
+            height: 9px;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.35);
+            flex: none;
         }
 
         /* ステータスパネルのスタイル */
@@ -52,14 +212,15 @@
             border: 1px solid #d7dbe0;
         }
 
+        /* 「Running 実行中」の1行。値の並びと同じ高さに収めて1行ぶん節約する */
         .status-panel-summary {
-            width: 100%;
-            font-size: 0.9rem;
+            flex: 0 0 auto;
+            align-self: center;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #333;
-            margin-bottom: 4px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid #e2e5ea;
+            padding-right: 8px;
+            border-right: 1px solid #e2e5ea;
         }
 
         .status-item {
@@ -82,10 +243,10 @@
 
         .progress-bar-container {
             width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
+            height: 4px;
+            background: rgba(0, 0, 0, 0.08);
             border-radius: 3px;
-            margin-top: 10px;
+            margin-top: 3px;
             overflow: hidden;
         }
 
@@ -494,13 +655,13 @@
         .task-exec-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.72rem;
         }
 
         .task-exec-table th,
         .task-exec-table td {
             border: 1px solid #ddd;
-            padding: 6px 8px;
+            padding: 2px 5px;
             text-align: left;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
             white-space: nowrap;
@@ -597,9 +758,9 @@
         .debug-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            font-size: 0.8rem;
-            margin-top: 10px;
+            gap: 6px;
+            font-size: 0.75rem;
+            margin-top: 6px;
             max-width: 1100px;
         }
 
@@ -607,23 +768,23 @@
             background: #f1f3f5;
             border: 1px solid #cfd4da;
             border-radius: 6px;
-            padding: 6px 10px;
+            padding: 4px 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .debug-group h4 {
-            margin: 0 0 6px 0;
-            font-size: 0.9rem;
+            margin: 0 0 4px 0;
+            font-size: 0.8rem;
             color: #444;
             border-bottom: 2px solid #e9ecef;
-            padding-bottom: 3px;
+            padding-bottom: 2px;
         }
 
         .debug-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3px;
+            margin-bottom: 1px;
         }
 
         .debug-item label {
@@ -756,7 +917,8 @@
         /* タブ画面用のスタイル */
         .tabs {
             display: flex;
-            margin-bottom: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
             border-bottom: 2px solid #ddd;
         }
 
@@ -765,13 +927,14 @@
             border: none;
             outline: none;
             cursor: pointer;
-            padding: 8px 16px;
+            margin: 0 6px 0 0;
+            padding: 5px 10px;
             transition: 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             color: #555;
             border-bottom: 3px solid transparent;
-            margin-right: 10px;
+            white-space: nowrap;
         }
 
         .tab-button:hover {
@@ -805,35 +968,135 @@
         /* シナリオ編集タブの注意（エディタは永続保存されない） */
         .scenario-edit-warning {
             color: #c0392b;
-            font-size: 13px;
-            line-height: 1.55;
-            margin: 0 0 10px;
+            font-size: 12px;
+            line-height: 1.45;
+            margin: 0 0 6px;
             font-weight: 600;
+        }
+
+        /*
+         * 長い説明は折りたたむ。
+         *
+         * どれも読む値打ちのある説明だが、開いたままだと 1つで 4〜5行を使い、
+         * ゲートタブでは説明だけで画面 1枚ぶんになっていた。要約の1行を出して
+         * おき、必要なときだけ開く。
+         */
+        .note {
+            margin: 0 0 6px;
+        }
+
+        .note > summary {
+            color: #c0392b;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style-position: outside;
+        }
+
+        .note > summary:hover {
+            color: #922b21;
+        }
+
+        .note > .scenario-edit-warning {
+            margin: 4px 0 0 14px;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* 枠の中の小見出し（力士ボトル / キャリーボトル など） */
+        .sub-box {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-bottom: 6px;
+        }
+
+        .sub-box-title {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 0.78rem;
+            color: #333;
+        }
+
+        /* 枠の中の区切り線 */
+        .group-sep {
+            margin: 8px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        /* 表のスクロール枠。行が増えても枠の高さは変えない */
+        .table-scroll {
+            max-height: 160px;
+            overflow: auto;
+            margin-bottom: 6px;
+        }
+
+        .table-scroll-tall {
+            max-height: 200px;
+        }
+
+        /* 実行結果（ログ）。見出しはタブ名にあるので枠だけ */
+        #outputArea {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            padding: 6px 8px;
+        }
+
+        #outputContent {
+            max-height: 62vh;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* タブの中のボタン。既定の button（margin 10px / padding 10px）だと縦に伸びる */
+        .tab-content button {
+            margin: 3px 4px 3px 0;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .tab-content .dpad-btn {
+            margin: 0;
+            padding: 0;
+        }
+
+        .tab-content h4 + .row,
+        .tab-content .row {
+            margin-bottom: 4px;
         }
 
         /* シナリオ入力欄の改善 */
         #scenarioInput {
             width: 100%;
-            height: 400px;
+            height: 320px;
             font-family: monospace;
-            padding: 10px;
+            padding: 6px 8px;
             box-sizing: border-box;
             border-radius: 5px;
             border: 1px solid #ccc;
             resize: vertical;
+            font-size: 12px;
         }
 
         #wsReceivedJson,
         .ws-received-json {
             width: 100%;
-            height: 220px;
+            height: 120px;
             font-family: monospace;
-            padding: 10px;
+            padding: 6px 8px;
             box-sizing: border-box;
             border-radius: 5px;
             border: 1px solid #ccc;
             resize: vertical;
             background: #fafbfc;
+            font-size: 12px;
         }
 
         /* 左ペイン（シナリオ/コース選択） */
@@ -895,11 +1158,70 @@
         .camera-enabled-toggle {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 6px;
-            font-size: 12px;
+            gap: 4px;
+            margin-top: 4px;
+            font-size: 11px;
             color: #444;
             user-select: none;
+        }
+
+        /* 表示の切り替え。1行1つで縦に積むとサイドバーを食うので2列に折る */
+        .toggle-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 6px;
+            margin-top: 4px;
+        }
+
+        .toggle-grid .camera-enabled-toggle {
+            margin-top: 2px;
+            overflow: hidden;
+        }
+
+        .toggle-grid input[type="checkbox"] {
+            flex: none;
+            margin: 0;
+        }
+
+        /* サイドバーの折りたたみ（実機の軌跡など、いつも要るわけではないもの） */
+        .side-details {
+            margin-top: 6px;
+            font-size: 11px;
+            color: #444;
+        }
+
+        .side-details > summary {
+            cursor: pointer;
+            color: #333;
+        }
+
+        .side-details input[type="file"],
+        .side-details select {
+            max-width: 100%;
+            font-size: 11px;
+        }
+
+        .side-status {
+            font-size: 11px;
+            color: #333;
+        }
+
+        /* サイドバーの色検知ボタン。以前は要素へ直に書いていた見た目 */
+        .py-detect-button {
+            margin: 6px 0 0;
+            width: 100%;
+            padding: 5px 8px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
 
         .left-panel {
@@ -1368,16 +1690,16 @@
 .dpad-control-area {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 16px;
   align-items: center;
-  padding: 16px 0;
+  padding: 6px 0;
 }
 
 .dpad-settings {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-width: 200px;
+  gap: 6px;
+  min-width: 190px;
 }
 
 .dpad-setting-row {
@@ -1417,14 +1739,14 @@
 }
 
 .dpad-spacer {
-  width: 60px;
-  height: 60px;
+  width: 46px;
+  height: 46px;
 }
 
 .dpad-btn {
-  width: 60px;
-  height: 60px;
-  font-size: 22px;
+  width: 46px;
+  height: 46px;
+  font-size: 18px;
   border: 2px solid #999;
   border-radius: 8px;
   background: #f0f0f0;

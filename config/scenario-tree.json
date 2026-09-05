@@ -432,6 +432,50 @@
           ]
         },
         {
+          "label": "07_Lコース_ETラリー経路埋め込み",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/07_Lコース_ETラリー経路埋め込み/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "08_Lコース_赤ラベル(実機20260903)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/08_Lコース_赤ラベル(実機20260903)/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "09_Lコース_青ラベル(実機20260903)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/09_Lコース_青ラベル(実機20260903)/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "10_Lコース_黄ラベル(実機20260903)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/10_Lコース_黄ラベル(実機20260903)/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "90_難所",
           "open": false,
           "children": [

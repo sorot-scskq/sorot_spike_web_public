@@ -1,380 +1,2008 @@
 [
-{"Comment":"LAPゲートまで進む",
-    "SNO":10,"CNO":1,"PRVSNO":10,"PRVCNO":0,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":480,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"a",
-    "SNO":10,"CNO":2,"PRVSNO":10,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":435,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"b",
-    "SNO":10,"CNO":3,"PRVSNO":10,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":420,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"c",
-    "SNO":10,"CNO":4,"PRVSNO":10,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":500,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"d",
-    "SNO":10,"CNO":5,"PRVSNO":10,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":300,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"e",
-    "SNO":10,"CNO":6,"PRVSNO":10,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":600,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"f",
-    "SNO":10,"CNO":7,"PRVSNO":10,"PRVCNO":6,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":600,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"0",
-    "SNO":10,"CNO":8,"PRVSNO":10,"PRVCNO":7,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":6.4,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1200,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"直線",
-    "SNO":10,"CNO":9,"PRVSNO":10,"PRVCNO":8,
-    "RunInfo":{"FUNCNO":1,"FWD":100,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":600,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"青線を検知するまで走る。速度を上げると検知位置がずれて以降の配達が外れる",
-    "SNO":10,"CNO":10,"PRVSNO":10,"PRVCNO":9,
-    "RunInfo":{"FUNCNO":1,"FWD":80,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":3,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"LAPゲート（y=528）を速度を落とさずに通過する。ここで落とすとゲート到達タイムに直接効く",
-    "SNO":20,"CNO":1,"PRVSNO":10,"PRVCNO":10,
-    "RunInfo":{"FUNCNO":5,"FWD":80,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":150,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ボトルへ寄せる。ここも直進（置き場の丸を踏むため）",
-    "SNO":20,"CNO":2,"PRVSNO":20,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":5,"FWD":25,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"キャリーボトルへゆっくり押し込む。捕捉できる幅は車体前面から 75〜108mm",
-    "SNO":20,"CNO":3,"PRVSNO":20,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":5,"FWD":30,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":250,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"色が決まるのを待つ。色は抱えた瞬間に確定するので、カメラが1周期(33ms)回れば足りる。認識が混み合ったときのために少し余裕を持たせている",
-    "SNO":20,"CNO":4,"PRVSNO":20,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":1,"SCT":300,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"LAP以降",
-    "SNO":20,"CNO":5,"PRVSNO":20,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":8,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"旋回",
-    "SNO":20,"CNO":6,"PRVSNO":20,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":200,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":10,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ボトルを抱えたまま、ゾーンの手前（3色とも真北になる高さ）まで右エッジで上がる",
-    "SNO":20,"CNO":7,"PRVSNO":20,"PRVCNO":6,
-    "RunInfo":{"FUNCNO":2,"FWD":60,"TRN":0,"KP":15,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1430,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"赤ラベルなら赤ゾーンへ運ぶ（SNO 21）。当たらなければ次のコマンドを見る",
-    "SNO":20,"CNO":8,"PRVSNO":20,"PRVCNO":7,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":10,"SCX":0,"SCY":0,"JMPSNO":21},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"青ラベルなら青ゾーンへ運ぶ（SNO 22）。当たらなければ次のコマンドを見る",
-    "SNO":20,"CNO":9,"PRVSNO":20,"PRVCNO":8,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":11,"SCX":0,"SCY":0,"JMPSNO":22},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"黄ラベルなら黄ゾーンへ運ぶ（SNO 23）。当たらなければ次のコマンドを見る",
-    "SNO":20,"CNO":10,"PRVSNO":20,"PRVCNO":9,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":12,"SCX":0,"SCY":0,"JMPSNO":23},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"色が分からなかった。運ばないと点にならないので既定の赤ゾーンへ",
-    "SNO":20,"CNO":11,"PRVSNO":20,"PRVCNO":10,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":13,"SCX":0,"SCY":0,"JMPSNO":21},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ここへは来ない想定。念のため赤ゾーンへ",
-    "SNO":20,"CNO":12,"PRVSNO":20,"PRVCNO":11,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0,"JMPSNO":21},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"真北へ向き直す。進入時の向きが 2°ずれていて、北へ運ぶ距離に比例して東へ流れる",
-    "SNO":21,"CNO":1,"PRVSNO":20,"PRVCNO":12,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-20,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-1,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"赤ゾーンの高さまで真北へ運ぶ。ここだけが色で違う距離",
-    "SNO":21,"CNO":2,"PRVSNO":21,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":5,"FWD":50,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1080,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゾーンの方（東）を向く。ここから先は3色とも同じなので合流点に置く",
-    "SNO":21,"CNO":3,"PRVSNO":21,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゾーンの真上まで寄せる。抱えたボトルは車体の約107mm前にあるので、ここは短くてよい",
-    "SNO":21,"CNO":4,"PRVSNO":21,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":5,"FWD":40,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":25,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"下がってボトルを置く。アームに引く力は無いので、下がればボトルはその場に残る。深く下がると合流点が西へずれて以降のコース取りが崩れる",
-    "SNO":21,"CNO":5,"PRVSNO":21,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":5,"FWD":-50,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":-70,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"コースの向き（北）へ戻す",
-    "SNO":21,"CNO":6,"PRVSNO":21,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"合流点へ戻る。赤ゾーンからの距離なので色ごとに違う。色は置いた瞬間に消えるので、ここを共通処理にはできない",
-    "SNO":21,"CNO":7,"PRVSNO":21,"PRVCNO":6,
-    "RunInfo":{"FUNCNO":5,"FWD":-60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":-185,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"運び終わりへ飛ぶ",
-    "SNO":21,"CNO":8,"PRVSNO":21,"PRVCNO":7,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0,"JMPSNO":29},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"真北へ向き直す。進入時の向きが 2°ずれていて、北へ運ぶ距離に比例して東へ流れる",
-    "SNO":22,"CNO":1,"PRVSNO":21,"PRVCNO":8,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-20,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-1,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"青ゾーンの高さまで真北へ運ぶ。ここだけが色で違う距離",
-    "SNO":22,"CNO":2,"PRVSNO":22,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":5,"FWD":50,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":773,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゾーンの方（東）を向く。ここから先は3色とも同じなので合流点に置く",
-    "SNO":22,"CNO":3,"PRVSNO":22,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゾーンの真上まで寄せる。抱えたボトルは車体の約107mm前にあるので、ここは短くてよい",
-    "SNO":22,"CNO":4,"PRVSNO":22,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":5,"FWD":40,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":25,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"下がってボトルを置く。アームに引く力は無いので、下がればボトルはその場に残る。深く下がると合流点が西へずれて以降のコース取りが崩れる",
-    "SNO":22,"CNO":5,"PRVSNO":22,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":5,"FWD":-50,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":-70,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"コースの向き（北）へ戻す",
-    "SNO":22,"CNO":6,"PRVSNO":22,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"合流点へ戻る。青ゾーンからの距離なので色ごとに違う。色は置いた瞬間に消えるので、ここを共通処理にはできない",
-    "SNO":22,"CNO":7,"PRVSNO":22,"PRVCNO":6,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":120,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"運び終わりへ飛ぶ",
-    "SNO":22,"CNO":8,"PRVSNO":22,"PRVCNO":7,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0,"JMPSNO":29},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"真北へ向き直す。進入時の向きが 2°ずれていて、北へ運ぶ距離に比例して東へ流れる",
-    "SNO":23,"CNO":1,"PRVSNO":22,"PRVCNO":8,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-20,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-1,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"黄ゾーンの高さまで真北へ運ぶ。ここだけが色で違う距離",
-    "SNO":23,"CNO":2,"PRVSNO":23,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":5,"FWD":50,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":465,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゾーンの方（東）を向く。ここから先は3色とも同じなので合流点に置く",
-    "SNO":23,"CNO":3,"PRVSNO":23,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゾーンの真上まで寄せる。抱えたボトルは車体の約107mm前にあるので、ここは短くてよい",
-    "SNO":23,"CNO":4,"PRVSNO":23,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":5,"FWD":40,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":25,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"下がってボトルを置く。アームに引く力は無いので、下がればボトルはその場に残る。深く下がると合流点が西へずれて以降のコース取りが崩れる",
-    "SNO":23,"CNO":5,"PRVSNO":23,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":5,"FWD":-50,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":-70,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"コースの向き（北）へ戻す",
-    "SNO":23,"CNO":6,"PRVSNO":23,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"合流点へ戻る。黄ゾーンからの距離なので色ごとに違う。色は置いた瞬間に消えるので、ここを共通処理にはできない",
-    "SNO":23,"CNO":7,"PRVSNO":23,"PRVCNO":6,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":430,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"運び終わりへ飛ぶ",
-    "SNO":23,"CNO":8,"PRVSNO":23,"PRVCNO":7,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0,"JMPSNO":29},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ETラリーの入口まで進む。右エッジ走行だと合流点の位置しだいで向きが振れるので直進にする",
-    "SNO":29,"CNO":1,"PRVSNO":23,"PRVCNO":8,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ETラリーのグリッド（西）へ向き直る。経路はこの後に入るので、向きを変えてから渡す",
-    "SNO":30,"CNO":1,"PRVSNO":29,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-50,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ETラリーの経路が届くまで待つ。届いた経路はこのコマンドの直後へ入る（SW_ROUTE / SCV=1=ETラリー）",
-    "SNO":30,"CNO":2,"PRVSNO":30,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":4096,"SCT":3000,"SCD":0,"SCR":0,"SCC":0,"SCV":1,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"直進",
-    "SNO":40,"CNO":1,"PRVSNO":30,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1300,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"旋回",
-    "SNO":40,"CNO":2,"PRVSNO":40,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":60,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"押し出し",
-    "SNO":40,"CNO":3,"PRVSNO":40,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"バック",
-    "SNO":40,"CNO":4,"PRVSNO":40,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":5,"FWD":-60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":-300,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ライン方向へ旋回",
-    "SNO":40,"CNO":5,"PRVSNO":40,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-60,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"黒検知",
-    "SNO":50,"CNO":1,"PRVSNO":40,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":2,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"50進む",
-    "SNO":50,"CNO":2,"PRVSNO":50,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":50,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"90旋回",
-    "SNO":50,"CNO":3,"PRVSNO":50,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-150,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-90,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"50進む",
-    "SNO":50,"CNO":4,"PRVSNO":50,"PRVCNO":3,
-    "RunInfo":{"FUNCNO":2,"FWD":60,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":500,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"青検知",
-    "SNO":50,"CNO":5,"PRVSNO":50,"PRVCNO":4,
-    "RunInfo":{"FUNCNO":2,"FWD":60,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":3,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"直線",
-    "SNO":50,"CNO":6,"PRVSNO":50,"PRVCNO":5,
-    "RunInfo":{"FUNCNO":2,"FWD":60,"TRN":0,"KP":3.6,"KI":0,"KD":100,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゴールイン",
-    "SNO":90,"CNO":1,"PRVSNO":50,"PRVCNO":6,
-    "RunInfo":{"FUNCNO":5,"FWD":60,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":130,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"ゴールで止まる。FWD 0 なので距離では切れない（時間で切る）",
-    "SNO":90,"CNO":2,"PRVSNO":90,"PRVCNO":1,
-    "RunInfo":{"FUNCNO":1,"FWD":0,"TRN":0,"KP":3.6,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":1,"SCT":1000,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-},
-{"Comment":"終了。PRVSNO/PRVCNO は直前のコマンドへ向ける。ここを別の場所へ向けると、読み込み時にその直後へ並べ替えられて途中で終わってしまう",
-    "SNO":0,"CNO":0,"PRVSNO":90,"PRVCNO":2,
-    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
-    "SwitchInfo":{"SCJFN":0,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
-    "CoordCorrectInfo":{}
-}
+  {
+    "Comment": "LAPゲートまで進む",
+    "SNO": 10,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 480,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "a",
+    "SNO": 10,
+    "CNO": 2,
+    "PRVSNO": 10,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 435,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "b",
+    "SNO": 10,
+    "CNO": 3,
+    "PRVSNO": 10,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 420,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "c",
+    "SNO": 10,
+    "CNO": 4,
+    "PRVSNO": 10,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 500,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "d",
+    "SNO": 10,
+    "CNO": 5,
+    "PRVSNO": 10,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "e",
+    "SNO": 10,
+    "CNO": 6,
+    "PRVSNO": 10,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "f",
+    "SNO": 10,
+    "CNO": 7,
+    "PRVSNO": 10,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "0",
+    "SNO": 10,
+    "CNO": 8,
+    "PRVSNO": 10,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1200,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直線",
+    "SNO": 10,
+    "CNO": 9,
+    "PRVSNO": 10,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色検知",
+    "SNO": 10,
+    "CNO": 10,
+    "PRVSNO": 10,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 80,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAP以降",
+    "SNO": 10,
+    "CNO": 11,
+    "PRVSNO": 10,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 8,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 800,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 20,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 200,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 10,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "a",
+    "SNO": 20,
+    "CNO": 2,
+    "PRVSNO": 20,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 15,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 2000,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーン手前の最初の青い目印。ここまでは 3色とも同じ道 / 色検知",
+    "SNO": 20,
+    "CNO": 3,
+    "PRVSNO": 20,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ラベルなら赤ゾーンへ運ぶ（SNO 21）。当たらなければ次のコマンドを見る",
+    "SNO": 20,
+    "CNO": 4,
+    "PRVSNO": 20,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 10,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 21
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ラベルなら青ゾーンへ運ぶ（SNO 22）。当たらなければ次のコマンドを見る",
+    "SNO": 20,
+    "CNO": 5,
+    "PRVSNO": 20,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 11,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 22
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ラベルなら黄ゾーンへ運ぶ（SNO 23）。当たらなければ次のコマンドを見る",
+    "SNO": 20,
+    "CNO": 6,
+    "PRVSNO": 20,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 12,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 23
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色が分からなかった。運ばないと点にならないので既定の赤ゾーンへ",
+    "SNO": 20,
+    "CNO": 7,
+    "PRVSNO": 20,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 13,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 21
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ここへは来ない想定。念のため赤ゾーンへ",
+    "SNO": 20,
+    "CNO": 8,
+    "PRVSNO": 20,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 21
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+    "SNO": 21,
+    "CNO": 1,
+    "PRVSNO": 20,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青前の青検知",
+    "SNO": 21,
+    "CNO": 2,
+    "PRVSNO": 21,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+    "SNO": 21,
+    "CNO": 3,
+    "PRVSNO": 21,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤前の青検知",
+    "SNO": 21,
+    "CNO": 4,
+    "PRVSNO": 21,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 21,
+    "CNO": 5,
+    "PRVSNO": 21,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 21,
+    "CNO": 6,
+    "PRVSNO": 21,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 21,
+    "CNO": 7,
+    "PRVSNO": 21,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 21,
+    "CNO": 8,
+    "PRVSNO": 21,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 21,
+    "CNO": 9,
+    "PRVSNO": 21,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ボトル置き前進",
+    "SNO": 21,
+    "CNO": 10,
+    "PRVSNO": 21,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退",
+    "SNO": 21,
+    "CNO": 11,
+    "PRVSNO": 21,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -160,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "方向転換。ここを出るときの向きを黄にそろえる（-178.9度）。合流点なのに色ごとに向きが違っていて、このあと直進1300mm 走るあいだに横へ流れ、土俵に着く位置が色で変わっていた",
+    "SNO": 21,
+    "CNO": 12,
+    "PRVSNO": 21,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -90,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -191.3,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ",
+    "SNO": 21,
+    "CNO": 13,
+    "PRVSNO": 21,
+    "PRVCNO": 12,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 29
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【青ルート ここから】青ゾーンまでは目印を1つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+    "SNO": 22,
+    "CNO": 1,
+    "PRVSNO": 21,
+    "PRVCNO": 13,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青前の青検知",
+    "SNO": 22,
+    "CNO": 2,
+    "PRVSNO": 22,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 22,
+    "CNO": 3,
+    "PRVSNO": 22,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 22,
+    "CNO": 4,
+    "PRVSNO": 22,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 22,
+    "CNO": 5,
+    "PRVSNO": 22,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 22,
+    "CNO": 6,
+    "PRVSNO": 22,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 22,
+    "CNO": 7,
+    "PRVSNO": 22,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ボトル置き前進",
+    "SNO": 22,
+    "CNO": 8,
+    "PRVSNO": 22,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退",
+    "SNO": 22,
+    "CNO": 9,
+    "PRVSNO": 22,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -160,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 22,
+    "CNO": 10,
+    "PRVSNO": 22,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -100,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進",
+    "SNO": 22,
+    "CNO": 11,
+    "PRVSNO": 22,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青検知",
+    "SNO": 22,
+    "CNO": 12,
+    "PRVSNO": 22,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゲート前調整",
+    "SNO": 22,
+    "CNO": 13,
+    "PRVSNO": 22,
+    "PRVCNO": 12,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 100,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "方向転換。ここを出るときの向きを黄にそろえる（-178.9度）。-100度だと 16度よけいに回り、直進1300mmで 360mm 横へ流れてガレージへの入りが崩れていた",
+    "SNO": 22,
+    "CNO": 14,
+    "PRVSNO": 22,
+    "PRVCNO": 13,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -90,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -84.1,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ",
+    "SNO": 22,
+    "CNO": 15,
+    "PRVSNO": 22,
+    "PRVCNO": 14,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 29
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【黄ルート ここから】黄ゾーンは手前なので、SNO 20/3 の青だけで着く / 30旋回",
+    "SNO": 23,
+    "CNO": 1,
+    "PRVSNO": 22,
+    "PRVCNO": 15,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 23,
+    "CNO": 2,
+    "PRVSNO": 23,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 23,
+    "CNO": 3,
+    "PRVSNO": 23,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 23,
+    "CNO": 4,
+    "PRVSNO": 23,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 23,
+    "CNO": 5,
+    "PRVSNO": 23,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ボトル置き前進",
+    "SNO": 23,
+    "CNO": 6,
+    "PRVSNO": 23,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退",
+    "SNO": 23,
+    "CNO": 7,
+    "PRVSNO": 23,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -160,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 23,
+    "CNO": 8,
+    "PRVSNO": 23,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -100,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進",
+    "SNO": 23,
+    "CNO": 9,
+    "PRVSNO": 23,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 450,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青検知",
+    "SNO": 23,
+    "CNO": 10,
+    "PRVSNO": 23,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゲート前調整",
+    "SNO": 23,
+    "CNO": 11,
+    "PRVSNO": 23,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 100,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "方向転換。3色の向きはこれに合わせる（-178.9度）。ここは触らない",
+    "SNO": 23,
+    "CNO": 12,
+    "PRVSNO": 23,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ",
+    "SNO": 23,
+    "CNO": 13,
+    "PRVSNO": 23,
+    "PRVCNO": 12,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 29
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【3色の合流点】ET相撲の土俵へ向かう。ここから先は 3色とも同じ / 直進",
+    "SNO": 29,
+    "CNO": 1,
+    "PRVSNO": 23,
+    "PRVCNO": 13,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 40,
+    "CNO": 1,
+    "PRVSNO": 29,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 60,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "押し出し",
+    "SNO": 40,
+    "CNO": 2,
+    "PRVSNO": 40,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 800,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "バック",
+    "SNO": 40,
+    "CNO": 3,
+    "PRVSNO": 40,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライン方向へ旋回",
+    "SNO": 40,
+    "CNO": 4,
+    "PRVSNO": 40,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -60,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黒検知",
+    "SNO": 50,
+    "CNO": 1,
+    "PRVSNO": 40,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 2,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 50,
+    "CNO": 2,
+    "PRVSNO": 50,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90旋回",
+    "SNO": 50,
+    "CNO": 3,
+    "PRVSNO": 50,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 50,
+    "CNO": 4,
+    "PRVSNO": 50,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 500,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青検知",
+    "SNO": 50,
+    "CNO": 5,
+    "PRVSNO": 50,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直線",
+    "SNO": 50,
+    "CNO": 6,
+    "PRVSNO": 50,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 800,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゴールイン",
+    "SNO": 90,
+    "CNO": 1,
+    "PRVSNO": 50,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 130,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "g（ゴール後に止まって待つ。元の「走行距離1000mm」は FWD 0 では成立しないので時間待ちにした）",
+    "SNO": 90,
+    "CNO": 2,
+    "PRVSNO": 90,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 1000,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "終了。PRVSNO/PRVCNO は直前のコマンドへ向ける。ここを別の場所へ向けると、読み込み時にその直後へ並べ替えられて途中で終わってしまう",
+    "SNO": 0,
+    "CNO": 0,
+    "PRVSNO": 90,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 0,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  }
 ]
