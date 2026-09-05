@@ -47,6 +47,16 @@ initial_position:
       x: 491  # Lコースの反転（mirrorX 556 - 65）
       y: 625
       angle: 270
+    
+  力士ボトル確認位置:
+    L:
+      x: 65   # キャリーボトルの真下
+      y: 300  # ボトルから約45px（225mm）手前
+      angle: 70 # 上向き（↑）。ボトルを正面に見る
+    R:
+      x: 491  # Lコースの反転（mirrorX 556 - 65）
+      y: 300
+      angle: 120
 
 wheel:
   # radius: 50  # 車輪半径[mm]

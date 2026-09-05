@@ -1207,6 +1207,11 @@
         }
 
         /* サイドバーの色検知ボタン。以前は要素へ直に書いていた見た目 */
+        /*
+         * サイドバーの PyScript ボタン。
+         * 色だけ修飾クラスで変える（色検知は青、力士ボトルは緑）。
+         * 大きさや余白を各ボタンに直書きすると、片方だけ揃わなくなる。
+         */
         .py-detect-button {
             margin: 6px 0 0;
             width: 100%;
@@ -1222,6 +1227,11 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
+        }
+
+        /* 力士ボトルの位置特定。色検知（青）と見分けるため緑にする */
+        .py-detect-button.is-locate {
+            background: #059669;
         }
 
         .left-panel {

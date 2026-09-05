@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Y2hJEEm_.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DDmH0K7w.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-DqC2zfTU.js"></script>
 </head>
 
 <body>
@@ -59,6 +59,9 @@
                     <canvas id="cameraView" width="240" height="144" class="camera-view-canvas"></canvas>
                     <button id="pyDetectBottleColorButton" type="button" class="btn py-detect-button" title="PyScript (Python) で前面カメラの画素を読み取り、中央のボトル色を検知します" onclick="if(!window.pyDetectBottleColor){alert('PyScript (Python) ランタイムをロード中です。\n少々お待ちいただいてから再度お試しください。');}">
                         <span>🐍</span> 色検知 (PyScript)
+                    </button>
+                    <button id="pyDetectBottleLocateButton" type="button" class="btn py-detect-button is-locate" title="PyScript + OpenCV で黒ラベル力士ボトルの位置（左右 -100〜+100）を検知します" onclick="if(!window.pyDetectBottleLocate){alert('OpenCV (PyScript) をロード中です。\n2026 コースを開くか、数十秒待ってから再度お試しください。');}">
+                        <span>🐍</span> 力士ボトル位置特定 (OpenCV)
                     </button>
                     <!-- 表示の切り替え。縦に積むと画面を食うので2列に折る -->
                     <div class="toggle-grid">
