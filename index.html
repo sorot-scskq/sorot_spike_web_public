@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Y2hJEEm_.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-BnWVCyA1.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-BSaEIuLh.js"></script>
 </head>
 
 <body>
@@ -143,6 +143,8 @@
                             <option value="ws_tcp">実機相当 (WS_TCP)</option>
                             <option value="ws_debug">デバッグ (WS_DEBUG)</option>
                         </select>
+                        <button id="pcSystemConnectButton" type="button"
+                                title="無線通信デバイス（PC-System_2026）へ今すぐ繋ぎます。走行開始でも繋がりますが、走らせる前にヒントカードを送りたいときはここから">接続</button>
                         <strong id="pcSystemStatus" class="hud-value">未接続</strong>
                     </span>
                 </span>
@@ -400,10 +402,10 @@
                         </p>
                         </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
-                            <button id="manualReadBottleButton" type="button" title="前面カメラの映像からキャリーボトルのラベル色を判定し、認識結果の置き場へ入れます。シナリオの色分岐はここを見ます">キャリーボトルの色を読む</button>
-                            <button id="manualReadHint1Button" type="button" title="ヒントカード1（赤ゲートの位置・平文）を読み、PC へ id=1 で送ります">ヒントカード1を読んで送る</button>
-                            <button id="manualReadHint2Button" type="button" title="ヒントカード2（青と黄の位置・暗号文）を読み、PC へ id=2 で送ります">ヒントカード2を読んで送る</button>
-                            <button id="manualFetchRouteButton" type="button" title="PC から走行経路をもらい、走行中のシナリオへ足します（id=3）">走行経路を受け取る</button>
+                            <button id="manualReadBottleButton" type="button" title="前面カメラの映像からキャリーボトルのラベル色を判定し、認識結果の置き場へ入れます。シナリオの色分岐はここを見ます。実機相当 (WS_TCP) のときは、実機と同じく絵を identifier 2 で PC へも送ります（返るのは位置。色ではありません）">キャリーボトルの色を読む</button>
+                            <button id="manualReadHint1Button" type="button" title="ヒントカード1（赤ゲートの位置・平文）を読んで PC へ送ります。実機相当 (WS_TCP) なら identifier 4、デバッグ (WS_DEBUG) なら id=1">ヒントカード1を読んで送る</button>
+                            <button id="manualReadHint2Button" type="button" title="ヒントカード2（青と黄の位置・暗号文）を読んで PC へ送ります。実機相当 (WS_TCP) なら identifier 5、デバッグ (WS_DEBUG) なら id=2">ヒントカード2を読んで送る</button>
+                            <button id="manualFetchRouteButton" type="button" title="PC から走行経路をもらい、走行中のシナリオへ足します。実機相当 (WS_TCP) なら identifier 6、デバッグ (WS_DEBUG) なら id=3">走行経路を受け取る</button>
                         </div>
                         <div id="manualActionResult" style="min-height:1.2em; font-size:12px; color:#333;">-</div>
                     </div>

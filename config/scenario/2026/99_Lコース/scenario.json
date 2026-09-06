@@ -1628,7 +1628,7 @@
     "CoordCorrectInfo": {}
   },
   {
-    "Comment": "【3色の合流点】ET相撲の土俵へ向かう。ここから先は 3色とも同じ / 直進",
+    "Comment": "【3色の合流点】ここから先は 3色とも同じ / ETラリーの入口まで進む。右エッジ走行だと合流点の位置しだいで向きが振れるので直進にする",
     "SNO": 29,
     "CNO": 1,
     "PRVSNO": 23,
@@ -1645,7 +1645,7 @@
     "SwitchInfo": {
       "SCJFN": 128,
       "SCT": 0,
-      "SCD": 1300,
+      "SCD": 100,
       "SCR": 0,
       "SCC": 0,
       "SCV": 0,
@@ -1655,27 +1655,27 @@
     "CoordCorrectInfo": {}
   },
   {
-    "Comment": "旋回",
-    "SNO": 40,
+    "Comment": "ETラリーの経路が届くまで待つ。届いた経路はこのコマンドの直後へ入る（SW_ROUTE / SCV=1=ETラリー）。入口の向きは経路が自分で作るので、ここでは向きを変えない。SCT は待つ上限で、届かなければETラリーを飛ばす",
+    "SNO": 30,
     "CNO": 1,
     "PRVSNO": 29,
     "PRVCNO": 1,
     "RunInfo": {
-      "FUNCNO": 3,
+      "FUNCNO": 5,
       "FWD": 0,
-      "TRN": 150,
+      "TRN": 0,
       "KP": 0,
       "KI": 0,
       "KD": 0,
       "NOBLNCE": 1
     },
     "SwitchInfo": {
-      "SCJFN": 32,
-      "SCT": 0,
+      "SCJFN": 4096,
+      "SCT": 8000,
       "SCD": 0,
-      "SCR": 60,
+      "SCR": 0,
       "SCC": 0,
-      "SCV": 0,
+      "SCV": 1,
       "SCX": 0,
       "SCY": 0
     },
@@ -1684,8 +1684,8 @@
   {
     "Comment": "押し出し",
     "SNO": 40,
-    "CNO": 2,
-    "PRVSNO": 40,
+    "CNO": 1,
+    "PRVSNO": 30,
     "PRVCNO": 1,
     "RunInfo": {
       "FUNCNO": 5,
@@ -1711,9 +1711,9 @@
   {
     "Comment": "バック",
     "SNO": 40,
-    "CNO": 3,
+    "CNO": 2,
     "PRVSNO": 40,
-    "PRVCNO": 2,
+    "PRVCNO": 1,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": -60,
@@ -1738,9 +1738,9 @@
   {
     "Comment": "ライン方向へ旋回",
     "SNO": 40,
-    "CNO": 4,
+    "CNO": 3,
     "PRVSNO": 40,
-    "PRVCNO": 3,
+    "PRVCNO": 2,
     "RunInfo": {
       "FUNCNO": 3,
       "FWD": 0,
@@ -1767,7 +1767,7 @@
     "SNO": 50,
     "CNO": 1,
     "PRVSNO": 40,
-    "PRVCNO": 4,
+    "PRVCNO": 3,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": 60,

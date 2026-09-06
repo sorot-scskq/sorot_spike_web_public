@@ -476,6 +476,17 @@
           ]
         },
         {
+          "label": "11_ETラリー",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/11_ETラリー/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "90_難所",
           "open": false,
           "children": [
