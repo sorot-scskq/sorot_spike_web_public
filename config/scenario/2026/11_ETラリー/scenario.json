@@ -1,10 +1,65 @@
 [
   {
-    "Comment": "ETラリーだけを試すシナリオ。開始位置は「難所」を選ぶこと（走行体をグリッドの入口に、西を向けて置く）。走り出すと PC-System に繋がるので、そのあと画面の「パターン」で難所を選ぶ。ヒントカード2枚が読み込み済みとして送られ、2秒おいて経路を頼む",
+    "Comment": "【1】ヒントカード1・2を取得して PC へ送る。ETラリーだけを試すので、カードが掲示されているボトル区間は走らない。掲示されている中身を、カメラで読んだのと同じ文字列・同じ口から送る（SimAction / sim/dom-ui/scenario-sim-action.js）。開始位置は「難所」を選ぶこと",
+    "SimAction": "sendHintCards",
+    "SNO": 10,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 500,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【2】2秒待つ。PC はカードを受け取ってから二次元コードを読んでゲートの配置を組み立てる。間を置かずに経路を頼むと、カード2 のぶんが入っていない状態で計算されることがある（実際に頼むのは sim/dom-ui/pc-system-client.js が同じ 2秒で行う）",
+    "SNO": 10,
+    "CNO": 2,
+    "PRVSNO": 10,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 2000,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【3】リモートコントロールで経路が追加されるのを待つ（SW_ROUTE / SCV=1=ETラリー）。届いた経路はこのコマンドの直後、終了コマンドの手前へ入る。SCT=0 は届くまで待ち続ける",
     "SNO": 30,
     "CNO": 1,
-    "PRVSNO": 30,
-    "PRVCNO": 0,
+    "PRVSNO": 10,
+    "PRVCNO": 2,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": 0,
@@ -27,7 +82,7 @@
     "CoordCorrectInfo": {}
   },
   {
-    "Comment": "終了コマンド。受け取った経路は 30/1 の直後、このコマンドの手前へ入る",
+    "Comment": "【4】終了コマンド。受け取った経路は 30/1 とここの間に入るので、経路が届いた時点でその走行が始まる",
     "SNO": 0,
     "CNO": 0,
     "PRVSNO": 30,
