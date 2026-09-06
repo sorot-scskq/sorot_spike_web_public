@@ -1655,7 +1655,7 @@
     "CoordCorrectInfo": {}
   },
   {
-    "Comment": "ETラリーの経路が届くまで待つ。届いた経路はこのコマンドの直後へ入る（SW_ROUTE / SCV=1=ETラリー）。入口の向きは経路が自分で作るので、ここでは向きを変えない。SCT は待つ上限で、届かなければETラリーを飛ばす",
+    "Comment": "ETラリーの経路が届くまで待つ。届いた経路はこのコマンドの直後へ入る（SW_ROUTE / SCV=1=ETラリー）。入口の向きは経路が自分で作るので、ここでは向きを変えない。SCT は待つ上限で、過ぎたら下の「届かなかったとき」へ進む",
     "SNO": 30,
     "CNO": 1,
     "PRVSNO": 29,
@@ -1682,11 +1682,93 @@
     "CoordCorrectInfo": {}
   },
   {
+    "Comment": "経路が届いていれば、ETラリーを走り終えているので ET相撲へ飛ぶ（SCV=21）。届かなかったときだけ次のコマンドへ進む",
+    "SNO": 30,
+    "CNO": 2,
+    "PRVSNO": 30,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 21,
+      "SCX": 0,
+      "SCY": 0,
+      "JMPSNO": 40
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【届かなかったとき】ETラリーを飛ばして ET相撲の土俵へ向かう。29/1 で 100mm 進んだぶんを引いた残り",
+    "SNO": 30,
+    "CNO": 3,
+    "PRVSNO": 30,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1200,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "【届かなかったとき】土俵へ向き直る。経路が届いたときは経路の末尾が向けてくれるので、ここは通らない",
+    "SNO": 30,
+    "CNO": 4,
+    "PRVSNO": 30,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 60,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
     "Comment": "押し出し",
     "SNO": 40,
     "CNO": 1,
     "PRVSNO": 30,
-    "PRVCNO": 1,
+    "PRVCNO": 4,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": 60,
