@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-Y2hJEEm_.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-D5ZGg_HH.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-CrfcK07v.js"></script>
 </head>
 
 <body>
@@ -403,8 +403,8 @@
                         </details>
                         <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
                             <button id="manualReadBottleButton" type="button" title="前面カメラの映像からキャリーボトルのラベル色を判定し、認識結果の置き場へ入れます。シナリオの色分岐はここを見ます。実機相当 (WS_TCP) のときは、実機と同じく絵を identifier 2 で PC へも送ります（返るのは位置。色ではありません）">キャリーボトルの色を読む</button>
-                            <button id="manualReadHint1Button" type="button" title="ヒントカード1（赤ゲートの位置・平文）を読んで PC へ送ります。実機相当 (WS_TCP) なら identifier 4、デバッグ (WS_DEBUG) なら id=1">ヒントカード1を読んで送る</button>
-                            <button id="manualReadHint2Button" type="button" title="ヒントカード2（青と黄の位置・暗号文）を読んで PC へ送ります。実機相当 (WS_TCP) なら identifier 5、デバッグ (WS_DEBUG) なら id=2">ヒントカード2を読んで送る</button>
+                            <button id="manualReadHint1Button" type="button" title="ヒントカード1（赤ゲートの位置・平文）を PC へ送ります。送るのは画面に掲示されている中身で、カメラの読み取りは通しません。実機相当 (WS_TCP) なら identifier 4、デバッグ (WS_DEBUG) なら id=1">ヒントカード1を送る</button>
+                            <button id="manualReadHint2Button" type="button" title="ヒントカード2（青と黄の位置・暗号文）を PC へ送ります。送るのは画面に掲示されている中身で、カメラの読み取りは通しません。実機相当 (WS_TCP) なら identifier 5、デバッグ (WS_DEBUG) なら id=2">ヒントカード2を送る</button>
                             <button id="manualFetchRouteButton" type="button" title="PC から走行経路をもらい、走行中のシナリオへ足します。実機相当 (WS_TCP) なら identifier 6、デバッグ (WS_DEBUG) なら id=3">走行経路を受け取る</button>
                         </div>
                         <div id="manualActionResult" style="min-height:1.2em; font-size:12px; color:#333;">-</div>
