@@ -52,7 +52,8 @@ def _es_to_js(value):
 async def _es_load_modules():
     # /python/ で配られている（vite.config.js の PYTHON_SOURCE_DIRS）
     for name in ('config.py', 'bottle_locator.py', 'remote_control.py', 'et_sumo.py'):
-        response = await pyfetch(f'python/{name}')
+        # 書き換えた Python を読み直させるため、ブラウザのキャッシュを使わない
+        response = await pyfetch(f'python/{name}', cache='no-store')
         if not response.ok:
             raise RuntimeError(f'python/{name} を取得できませんでした（HTTP {response.status}）')
         with open(name, 'w') as out:
@@ -159,6 +160,14 @@ def _es_start():
     return True
 
 
+def _es_restart():
+    """差さっているときだけ、力士寄せを作り直す（走り直すとき。sim/dom-ui/scenario-state.js）"""
+    bridge = window.REMOTECONTROL
+    if bridge is None or _es_state['proxy'] is None or not bridge.hasController():
+        return False
+    return _es_start()
+
+
 def _es_stop():
     bridge = window.REMOTECONTROL
     if bridge is not None:
@@ -171,10 +180,22 @@ def _es_history_json():
     return json.dumps(list(_es_history), ensure_ascii=False)
 
 
+def _es_state_json():
+    """力士寄せの内部状態（止まったときに、どこで待っているかを見る）"""
+    control = remote_control.RemoteControl.get_instance()._controller
+    if control is None:
+        return json.dumps({'controller': None})
+    keys = ('_state', '_cmd_seq', '_shooting', '_shot_done', '_seen', '_start_distance',
+            '_step_mm', '_bearing_deg', '_start_direction', '_target_rad', '_turn', '_scan_index')
+    return json.dumps({k.lstrip('_'): getattr(control, k, None) for k in keys}, ensure_ascii=False, default=str)
+
+
 window.simEtSumo = _es_to_js({
     'start': _es_start,
+    'restart': _es_restart,
     'stop': _es_stop,
     'history': _es_history_json,
+    'state': _es_state_json,
 })
 
 console.log('PyScript: et_sumo_bridge.py のバインドが完了しました。')

@@ -192,6 +192,7 @@ class SumoApproach:
         self._shot_done = False
         self._state = "shoot"
         self._cmd_seq: Optional[int] = None
+        self._tick = 0
         self._start_distance = 0.0
         self._step_mm = 0.0
         self._bearing_deg = 0.0
@@ -240,8 +241,12 @@ class SumoApproach:
         if obs.sno != self.sno:
             return None     # 担当の区間ではない
 
-        if obs.cmd_seq != self._cmd_seq:
-            # 区間に入り直したら、撮影から始める
+        # 区間に入り直したら、撮影から始める。通し番号が同じでも、区間の中の周期番号（tick）が
+        # 戻っていれば入り直している（走行体を起動し直すと、通し番号はまた同じ値から振られる）
+        tick = int(obs.tick or 0)
+        restarted = tick < self._tick
+        self._tick = tick
+        if obs.cmd_seq != self._cmd_seq or restarted:
             self._cmd_seq = obs.cmd_seq
             self._state = "shoot"
             self._scan_index = 0
