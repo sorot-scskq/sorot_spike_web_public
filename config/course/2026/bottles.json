@@ -2,7 +2,8 @@
   "_comment": [
     "ET相撲（力士ボトル）およびボトルデリバリー（キャリーボトル）の設定。",
     "Lコースの座標で定義し、Rコースは mirrorX (556) から左右反転して求める（鏡像配置）。",
-    "座標は course.yaml の image.width/height と同じワールド座標[px]。0.2px = 1mm。"
+    "座標は course.yaml の image.width/height と同じワールド座標[px]。0.2px = 1mm。",
+    "力士ボトルは、既定では走るたびに土俵の中のランダムな場所に置く（はみ出さない範囲）。sumo.randomPosition を false にすると defaultPosition に固定する。"
   ],
   "mirrorX": 556,
   "sumo": {

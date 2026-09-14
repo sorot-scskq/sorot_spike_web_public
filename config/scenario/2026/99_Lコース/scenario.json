@@ -1764,11 +1764,39 @@
     "CoordCorrectInfo": {}
   },
   {
-    "Comment": "押し出し",
+    "Comment": "力士寄せ（リモートコントロール / 走行体の Python src/RoughSpot/Python/2026/et_sumo.py）。前面カメラで寄り、近く（280mm 以内）で正面（±5度）に見えたら OK。掴んだかは見ない。押し出しは次のコマンド。経路が届いたとき（30/2 から SNO 40 へ飛ぶ）も、届かなかったとき（30/4 の向き直りのあと）も、ここから始まる",
     "SNO": 40,
     "CNO": 1,
     "PRVSNO": 30,
     "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 18,
+      "FWD": 40,
+      "TRN": 40,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 2048,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "押し出し（向きは 40/1 の力士寄せで合わせ済み）",
+    "SNO": 40,
+    "CNO": 2,
+    "PRVSNO": 40,
+    "PRVCNO": 1,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": 60,
@@ -1793,9 +1821,9 @@
   {
     "Comment": "バック",
     "SNO": 40,
-    "CNO": 2,
+    "CNO": 3,
     "PRVSNO": 40,
-    "PRVCNO": 1,
+    "PRVCNO": 2,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": -60,
@@ -1820,9 +1848,9 @@
   {
     "Comment": "ライン方向へ旋回",
     "SNO": 40,
-    "CNO": 3,
+    "CNO": 4,
     "PRVSNO": 40,
-    "PRVCNO": 2,
+    "PRVCNO": 3,
     "RunInfo": {
       "FUNCNO": 3,
       "FWD": 0,
@@ -1849,7 +1877,7 @@
     "SNO": 50,
     "CNO": 1,
     "PRVSNO": 40,
-    "PRVCNO": 3,
+    "PRVCNO": 4,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": 60,

@@ -487,6 +487,17 @@
           ]
         },
         {
+          "label": "13_ET相撲単体",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/13_ET相撲単体/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "90_難所",
           "open": false,
           "children": [

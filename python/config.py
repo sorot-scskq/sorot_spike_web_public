@@ -69,6 +69,19 @@ PC_TIMEOUT = 5.0  # デフォルトのタイムアウト時間（秒）
 #: その年の設定モジュール。★毎年ここだけ変える
 SEASON_CONFIG_MODULE = "config_2026"
 
+# --------------------------------------------------------------------------
+# リモートコントロール走行（remote_control.py）。値は実機（sorot_spike の
+# RoughSpot/Python/Common/config.py）と同じ。
+# --------------------------------------------------------------------------
+#: C++ とのやりとりに使う置き場。実機のラズパイでは tmpfs（シミュレータは使わない）
+COMM_DIR = "/dev/shm"
+#: C++ が最新の観測を置き、Python が応答を1通ずつ置く
+#: （sorot_remote_cmd.<通し番号10桁>.json。C++ が順に引き取って消す）
+COMM_REMOTE_OBS_FILE = COMM_DIR + "/sorot_remote_obs.json"
+COMM_REMOTE_CMD_PREFIX = "sorot_remote_cmd."
+#: 観測が置き直されたかを見にいく間隔[s]。C++ は10msごとに置くので、それより短くする
+REMOTE_POLL_INTERVAL = 0.005
+
 def load_season():
     """
     その年の設定（使う識別値と待ち時間）を重ねる。走行体の起動時に 1回呼ぶ。
