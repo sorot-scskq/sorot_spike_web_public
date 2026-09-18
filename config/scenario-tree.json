@@ -487,6 +487,17 @@
           ]
         },
         {
+          "label": "12_実機custom(sorot_spike)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/12_実機custom(sorot_spike)/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "13_ET相撲単体",
           "open": false,
           "children": [
@@ -494,6 +505,39 @@
               "label": "scenario.json",
               "type": "file",
               "path": "2026/13_ET相撲単体/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "14_ETラリー_経路サンプル",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/14_ETラリー_経路サンプル/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "15_ETラリー_向き補正",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/15_ETラリー_向き補正/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "16_ETラリー_向き保持のみ",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/16_ETラリー_向き保持のみ/scenario.json"
             }
           ]
         },

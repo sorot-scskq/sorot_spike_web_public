@@ -11,8 +11,8 @@
     <script type="py" async src="python/bottle_color_bridge.py" config='{"packages": []}'></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-YAa1K7H1.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-wwA494w8.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/robot-shape-CHPzpWcL.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Dz7243RF.js"></script>
 </head>
 
 <body>
@@ -65,7 +65,7 @@
                     </button>
                     <!-- 表示の切り替え。縦に積むと画面を食うので2列に折る -->
                     <div class="toggle-grid">
-                        <label class="camera-enabled-toggle" title="OFFにすると前面カメラを描かなくなり、処理が軽くなります">
+                        <label class="camera-enabled-toggle" title="OFFにすると前面カメラを描かなくなり、処理が軽くなります。ETラリーの経路（15_ETラリー_向き補正）では、OFFのあいだ向きの補正もしません。走らせながら入れ外しすると、同じ経路で直す／直さないを見比べられます">
                             <input type="checkbox" id="cameraEnabledCheckbox" checked>
                             カメラON
                         </label>
@@ -81,7 +81,31 @@
                             <input type="checkbox" id="odometryOverlayCheckbox">
                             自己位置推定
                         </label>
+                        <label class="camera-enabled-toggle" title="ETラリー: 前面カメラでグリッドに対する向きのずれを測り、本当のずれと並べて映像に重ねます（走行体の Python を PyScript で動かす。初回は OpenCV の読み込みに数十秒）">
+                            <input type="checkbox" id="gridHeadingCheckbox">
+                            向きのずれを測る
+                        </label>
+                        <label class="camera-enabled-toggle" title="その場旋回を抜けるたびに、画面上の向きだけを σ0.7°（実機の実測）ずらします。オドメトリはずれを知りません">
+                            <input type="checkbox" id="turnErrorCheckbox">
+                            旋回に誤差を入れる
+                        </label>
+                        <label class="camera-enabled-toggle" title="直進すると 100mm あたり 0.44°（実機の実測）曲がる癖を入れます。オドメトリもこのずれを見るので、向き保持直進（FUNCNO 19）なら打ち消せます">
+                            <input type="checkbox" id="driveErrorCheckbox">
+                            直進に誤差を入れる
+                        </label>
+                        <label class="camera-enabled-toggle" title="上の2つの誤差の大きさをまとめて何倍にするか。×1 が実機の実測（旋回 σ0.7°、直進 0.44°/100mm）。効いているかを目で見たいときは ×2 あたりがよく分かります。大きくしすぎると、1回のずれが 5°を超えて補正を当てない回が増えます（実機と同じ安全側の決まり）。補正あり／なしを比べるときは同じ倍率にしてください。走り直したときから変わります">
+                            誤差の大きさ:
+                            <select id="errorScaleSelect">
+                                <option value="1">実機どおり(×1)</option>
+                                <option value="2">×2</option>
+                                <option value="3">×3</option>
+                                <option value="5">×5</option>
+                            </select>
+                        </label>
                     </div>
+                    <button id="gridHeadingCorrectButton" type="button" class="btn py-detect-button" title="ETラリー: 1枚撮って向きのずれを測り、いちばん近い 45度刻み（0°系・45°系）の向きへ戻す小さな旋回を、いま走っている行の直後に入れます。旋回の途中なら、旋回が終わってから撮ります">
+                        <span>🧭</span> 向きを補正（45°刻みへ）
+                    </button>
                     <label class="camera-enabled-toggle" title="描画の上限。走りには影響しません（位置の更新はタスク周期で回っています）">
                         描画:
                         <select id="presentFpsSelect"></select>
@@ -629,19 +653,58 @@
                     <!-- ロボット位置・姿勢・モーター・エンコーダ（統合） -->
                     <div class="debug-group">
                         <h4>位置・姿勢・モーター</h4>
+                        <!-- 縦に積むと場所を食うので、組になる値は 1行に並べる -->
                         <div class="debug-item debug-xy-pair-row">
-                            <span class="debug-xy-pair-caption"><label for="xCoord">XY座標</label></span>
-                            <div class="debug-xy-pair-chip" role="group" aria-label="XY座標">
+                            <span class="debug-xy-pair-caption"><label for="xCoord">XY / 角度</label></span>
+                            <div class="debug-xy-pair-chip" role="group" aria-label="XY座標と角度(度)">
                                 <input type="number" id="xCoord" value="0" step="0.1" readonly title="X">
                                 <span class="debug-xy-pair-divider" aria-hidden="true"></span>
                                 <input type="number" id="yCoord" value="0" step="0.1" readonly title="Y">
+                                <span class="debug-xy-pair-divider" aria-hidden="true"></span>
+                                <input type="number" id="angle" value="0" step="1" readonly title="角度(度)">
                             </div>
                         </div>
-                        <div class="debug-item"><label for="angle">角度(度):</label><input type="number" id="angle" value="0" step="1" readonly></div>
-                        <div class="debug-item"><label for="leftPower">左PWM:</label><input type="number" id="leftPower" min="-100" max="100" step="1" value="0"></div>
-                        <div class="debug-item"><label for="encL">左カウント:</label><input type="number" id="encL" value="0" readonly></div>
-                        <div class="debug-item"><label for="rightPower">右PWM:</label><input type="number" id="rightPower" min="-100" max="100" step="1" value="0"></div>
-                        <div class="debug-item"><label for="encR">右カウント:</label><input type="number" id="encR" value="0" readonly></div>
+                        <div class="debug-item debug-xy-pair-row">
+                            <span class="debug-xy-pair-caption"><label for="leftPower">左 PWM / 数</label></span>
+                            <div class="debug-xy-pair-chip" role="group" aria-label="左のPWMとカウント">
+                                <input type="number" id="leftPower" min="-100" max="100" step="1" value="0" title="左PWM">
+                                <span class="debug-xy-pair-divider" aria-hidden="true"></span>
+                                <input type="number" id="encL" value="0" readonly title="左カウント">
+                            </div>
+                        </div>
+                        <div class="debug-item debug-xy-pair-row">
+                            <span class="debug-xy-pair-caption"><label for="rightPower">右 PWM / 数</label></span>
+                            <div class="debug-xy-pair-chip" role="group" aria-label="右のPWMとカウント">
+                                <input type="number" id="rightPower" min="-100" max="100" step="1" value="0" title="右PWM">
+                                <span class="debug-xy-pair-divider" aria-hidden="true"></span>
+                                <input type="number" id="encR" value="0" readonly title="右カウント">
+                            </div>
+                        </div>
+                        <h4 class="debug-subhead" title="シミュレータが知っている本当の姿勢との差。走行体の判断には使っていない">推定との誤差</h4>
+                        <div class="debug-item debug-xy-pair-row">
+                            <span class="debug-xy-pair-caption"><label for="camHeadingEst" title="サイドバーの「向きのずれを測る」を入れたときに出る。グリッド（45度刻み）に対する向きのずれ">カメラ 向き</label></span>
+                            <div class="debug-xy-pair-chip" role="group" aria-label="カメラで測った向きのずれと、その誤差">
+                                <input type="text" id="camHeadingEst" value="-" readonly title="カメラで測った、グリッドに対する向きのずれ(度)">
+                                <span class="debug-xy-pair-divider" aria-hidden="true"></span>
+                                <input type="text" id="camHeadingErr" value="-" readonly title="測った値 − 測ったときの本当のずれ(度)">
+                            </div>
+                        </div>
+                        <div class="debug-item debug-xy-pair-row">
+                            <span class="debug-xy-pair-caption"><label for="gridDevNow" title="ETラリー: いちばん近い45度刻み（グリッドの向き）から、いまどれだけずれて直進しているか。走り終わりに、最大と平均を実行結果（ログ）へ出します">向き ずれ/最大</label></span>
+                            <div class="debug-xy-pair-chip" role="group" aria-label="グリッドからの向きのずれと、その走行での最大">
+                                <input type="text" id="gridDevNow" value="-" readonly title="いまの直進の行での、45度刻みからのずれ(度)">
+                                <span class="debug-xy-pair-divider" aria-hidden="true"></span>
+                                <input type="text" id="gridDevMax" value="-" readonly title="この走行での最大のずれ(度)">
+                            </div>
+                        </div>
+                        <div class="debug-item debug-xy-pair-row">
+                            <span class="debug-xy-pair-caption"><label for="odoHeadingErr" title="自己位置推定（オドメトリ）が思っている姿勢と、本当の姿勢の差">自己位置 角/距</label></span>
+                            <div class="debug-xy-pair-chip" role="group" aria-label="自己位置推定の角度の誤差と距離の誤差">
+                                <input type="text" id="odoHeadingErr" value="-" readonly title="本当の向き − 推定の向き(度)">
+                                <span class="debug-xy-pair-divider" aria-hidden="true"></span>
+                                <input type="text" id="odoDistErr" value="-" readonly title="本当の位置と推定の位置の距離(mm)">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="debug-group">

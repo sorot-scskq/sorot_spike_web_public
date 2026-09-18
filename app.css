@@ -892,6 +892,27 @@
             box-shadow: none;
         }
 
+        /* 推定との誤差など、文字で出す値（+0.12° のように符号と単位を付ける） */
+        .debug-xy-pair-chip input[type="text"] {
+            width: 4.25em;
+            margin: 0;
+            padding: 3px 5px;
+            border: none;
+            border-radius: 2px;
+            background: transparent;
+            text-align: right;
+            font-family: inherit;
+            font-variant-numeric: tabular-nums;
+            font-size: 0.8rem;
+            box-shadow: none;
+        }
+
+        .debug-group h4.debug-subhead {
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: #666;
+        }
+
         .debug-xy-pair-chip input[type="number"]:read-only {
             background: transparent;
         }
