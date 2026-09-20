@@ -1,6 +1,6 @@
 [
   {
-    "Comment": "【ET相撲単体】力士寄せ（リモートコントロール / 走行体の Python src/RoughSpot/Python/2026/et_sumo.py）。前面カメラで寄り、近く（280mm 以内）で正面（±5度）に見えたら OK。掴んだかは見ない。押し出しは次のコマンド。開始位置は ET相撲_到達位置 か ET相撲_正面。シミュレータの指令元は「走行体の Python (PyScript / et_sumo.py)」",
+    "Comment": "力士寄せと押し出し（リモートコントロール / 走行体の Python src/RoughSpot/Python/2026/et_sumo_avoid_green.py）。前面カメラで寄り、近くで正面に見えたら、押し出す先に写った緑の手前まで自分で押し出してから OK。緑の手前までで土俵を出せない向きなら回り込む。押し出しはここで行うので、シナリオには置かない",
     "SNO": 40,
     "CNO": 1,
     "PRVSNO": 40,
@@ -28,38 +28,11 @@
     "CoordCorrectInfo": {}
   },
   {
-    "Comment": "押し出し（向きは 40/1 の力士寄せで合わせ済み）",
+    "Comment": "バック（押し出した道を戻る）",
     "SNO": 40,
     "CNO": 2,
     "PRVSNO": 40,
     "PRVCNO": 1,
-    "RunInfo": {
-      "FUNCNO": 5,
-      "FWD": 60,
-      "TRN": 0,
-      "KP": 0,
-      "KI": 0,
-      "KD": 0,
-      "NOBLNCE": 1
-    },
-    "SwitchInfo": {
-      "SCJFN": 128,
-      "SCT": 0,
-      "SCD": 800,
-      "SCR": 0,
-      "SCC": 0,
-      "SCV": 0,
-      "SCX": 0,
-      "SCY": 0
-    },
-    "CoordCorrectInfo": {}
-  },
-  {
-    "Comment": "バック",
-    "SNO": 40,
-    "CNO": 3,
-    "PRVSNO": 40,
-    "PRVCNO": 2,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": -60,
@@ -84,9 +57,9 @@
   {
     "Comment": "ライン方向へ旋回",
     "SNO": 40,
-    "CNO": 4,
+    "CNO": 3,
     "PRVSNO": 40,
-    "PRVCNO": 3,
+    "PRVCNO": 2,
     "RunInfo": {
       "FUNCNO": 3,
       "FWD": 0,
@@ -113,7 +86,7 @@
     "SNO": 0,
     "CNO": 0,
     "PRVSNO": 40,
-    "PRVCNO": 4,
+    "PRVCNO": 3,
     "RunInfo": {
       "FUNCNO": 5,
       "FWD": 0,

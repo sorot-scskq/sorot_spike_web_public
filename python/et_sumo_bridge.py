@@ -11,6 +11,7 @@ handle_observation を直接呼ぶ。応答は実機と同じく次の周期に�
   Common/remote_control.py   リモート側の窓口（観測 → 応答 {"messages": [...]}）
   Common/bottle_locator.py   力士ボトルを映像から探す
   2026/et_sumo.py            力士寄せの段取り
+  2026/et_sumo_avoid_green.py  緑の場所を避ける版（et_sumo.py を継承）。シミュレータはこちらを差す
 
 ここで差し替えるのは、実機でしか用意できない2つだけ。
 
@@ -51,7 +52,8 @@ def _es_to_js(value):
 
 async def _es_load_modules():
     # /python/ で配られている（vite.config.js の PYTHON_SOURCE_DIRS）
-    for name in ('config.py', 'bottle_locator.py', 'remote_control.py', 'et_sumo.py'):
+    for name in ('config.py', 'bottle_locator.py', 'remote_control.py', 'et_sumo.py',
+                 'et_sumo_avoid_green.py'):
         # 書き換えた Python を読み直させるため、ブラウザのキャッシュを使わない
         response = await pyfetch(f'python/{name}', cache='no-store')
         if not response.ok:
@@ -63,6 +65,7 @@ async def _es_load_modules():
 await _es_load_modules()
 
 import et_sumo  # noqa: E402
+import et_sumo_avoid_green  # noqa: E402
 import remote_control  # noqa: E402
 
 # --- 実機でしか用意できないものの差し替え ---------------------------------------
@@ -115,11 +118,14 @@ def _es_trace_locator(control):
 
     def traced():
         pose = read()
+        green = getattr(control, '_green', None) or {}
+        extra = {'push_green_mm': green.get('push_green_mm'), 'ahead_mm': green.get('ahead_mm'),
+                 'blind': green.get('blind_green')}
         if pose.get('found'):
             _es_note('photo', found=True, distance_mm=round(pose['distance_mm']),
-                     bearing_deg=round(math.degrees(pose['bearing_rad']), 1))
+                     bearing_deg=round(math.degrees(pose['bearing_rad']), 1), **extra)
         else:
-            _es_note('photo', found=False)
+            _es_note('photo', found=False, **extra)
         return pose
 
     control.locator.read = traced
@@ -148,8 +154,8 @@ def _es_start():
         console.error('et_sumo: RemoteControlBridge（window.REMOTECONTROL）がありません')
         return False
     remote_control.RemoteControl.reset_instance()
-    control = et_sumo.attach(frame_source=_es_frame_source, geometry=et_sumo.SIM_CAMERA,
-                             run_later=_es_run_later)
+    control = et_sumo_avoid_green.attach(frame_source=_es_frame_source, geometry=et_sumo.SIM_CAMERA,
+                                         run_later=_es_run_later)
     _es_trace_locator(control)
     _es_history.clear()
     _es_state['last_cmd'] = None
@@ -186,7 +192,8 @@ def _es_state_json():
     if control is None:
         return json.dumps({'controller': None})
     keys = ('_state', '_cmd_seq', '_shooting', '_shot_done', '_seen', '_start_distance',
-            '_step_mm', '_bearing_deg', '_start_direction', '_target_rad', '_turn', '_scan_index')
+            '_step_mm', '_bearing_deg', '_start_direction', '_target_rad', '_turn', '_scan_index',
+            '_plan', '_orbits', '_orbit_side', '_green')
     return json.dumps({k.lstrip('_'): getattr(control, k, None) for k in keys}, ensure_ascii=False, default=str)
 
 
