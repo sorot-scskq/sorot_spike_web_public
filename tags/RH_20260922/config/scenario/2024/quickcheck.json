@@ -1,7 +1,0 @@
-{
-  "label": "動作確認",
-  "suites": [
-    { "label": "基本動作", "path": "scenario/unittest.json" }
-  ]
-}
-
