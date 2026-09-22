@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>RunMethod ビジュアライザ（PID シミュレーション）</title>
+  <style>
+    .commit-id {
+      margin-left: 10px;
+      font-size: 0.55em;
+      font-weight: normal;
+      color: #6b7280;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      vertical-align: middle;
+    }
+    body {
+      font-family: sans-serif;
+      margin: 12px;
+      color: #222;
+    }
+
+    h2 {
+      margin: 0 0 4px;
+    }
+
+    .lead {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .layout {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .panel {
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .panel h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #0a4a7a;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+    }
+
+    .controls {
+      width: 330px;
+      flex: none;
+    }
+
+    .controls .panel+.panel {
+      margin-top: 12px;
+    }
+
+    label {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    label>input[type=range] {
+      width: 100%;
+    }
+
+    label>input[type=number],
+    label>select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 3px;
+    }
+
+    .val {
+      font-weight: bold;
+      color: #0077cc;
+    }
+
+    /* 実サイズは visualizer.js がウィンドウ幅に合わせて設定する */
+    canvas {
+      background: #fafafa;
+      border: 1px solid #ccc;
+      display: block;
+      max-width: 100%;
+    }
+
+    .results {
+      flex: 1;
+      min-width: 420px;
+    }
+
+    #info {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .metric {
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      padding: 6px 8px;
+      background: #fafbfc;
+    }
+
+    .metric .k {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .metric .v {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0a4a7a;
+    }
+
+    .note {
+      font-size: 11px;
+      color: #666;
+      margin: 6px 0 0;
+      line-height: 1.5;
+    }
+
+    .formula {
+      font-size: 11px;
+      color: #444;
+      background: #f6f8fa;
+      border-radius: 4px;
+      padding: 8px;
+      line-height: 1.7;
+    }
+
+    .buttons {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .playback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .playback #seek {
+      flex: 1;
+    }
+
+    .playback #playPauseBtn {
+      min-width: 116px;
+    }
+
+    .playback .inline {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .playback .inline input[type=range] {
+      width: 130px;
+    }
+
+    .note-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-top: 6px;
+      color: #444;
+    }
+
+    .note-table th,
+    .note-table td {
+      border: 1px solid #e3e3e3;
+      padding: 3px 5px;
+      text-align: left;
+    }
+
+    .note-table th {
+      background: #f6f8fa;
+    }
+
+    .mono {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: #444;
+      white-space: nowrap;
+    }
+
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .start-fields {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .scenario-warn {
+      color: #b26500;
+    }
+
+    textarea#scenarioJsonText {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+    }
+
+    .scenario-table-wrap {
+      max-height: 320px;
+      overflow: auto;
+      border: 1px solid #eee;
+    }
+
+    .scenario-table {
+      border-collapse: collapse;
+      font-size: 11px;
+      width: 100%;
+    }
+
+    .scenario-table th,
+    .scenario-table td {
+      border: 1px solid #eee;
+      padding: 2px 4px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .scenario-table th {
+      position: sticky;
+      top: 0;
+      background: #f5f7f9;
+      color: #0a4a7a;
+      z-index: 1;
+    }
+
+    .scenario-table td.text {
+      text-align: left;
+    }
+
+    .scenario-table td.comment {
+      text-align: left;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .scenario-table input {
+      width: 52px;
+      box-sizing: border-box;
+      padding: 1px 2px;
+      font-size: 11px;
+      text-align: right;
+      border: 1px solid #dcdcdc;
+    }
+
+    .scenario-table tr.running {
+      background: #e3f2fd;
+    }
+
+    .scenario-table tr.unsupported {
+      background: #f0f0f0;
+      color: #888;
+    }
+
+    .scenario-table tr.end td {
+      color: #888;
+    }
+  </style>
+  <!-- コース画像（course.yaml の PDF）を描くために使う。index.html と同じ版 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/tags/RH_20260922/assets/index3-DfU5KnkL.js"></script>
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/tags/RH_20260922/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/sorot_spike_web_public/tags/RH_20260922/assets/ScenarioJsonLoader-C_irdn9_.js">
+</head>
+
+<body><!-- tag-preview-nav --><a href="../" style="position:fixed;left:8px;bottom:8px;z-index:2147483647;font:12px/1.4 system-ui,sans-serif;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;text-decoration:none;opacity:.55" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">&#8592; タグ一覧</a>
+  <h2>RunMethod パラメータ &amp; 軌跡プレビュー
+    <!-- ビルド元のコミット。キャッシュで古い版が残っていても、ここを見れば判別できる -->
+    <span id="commitIdDisplay" class="commit-id" title="ビルド元のコミット"></span>
+  </h2>
+  <p class="lead">
+    実機と同じ <code>src/RunMethod/EdgePidRunning.js</code> を、仮想コース（白地に黒ライン）の上で走らせます。
+    Kp / Ki / Kd を動かすと軌跡と偏差の応答が変わります。
+  </p>
+
+  <div class="layout">
+    <div class="controls">
+      <div class="panel">
+        <h4>走行方式</h4>
+        <label>走らせ方
+          <select id="driveMode">
+            <option value="single" selected>RunMethod 単体（1区間だけ見る）</option>
+            <option value="scenario">シナリオ（実機と同じ手順で通す）</option>
+          </select>
+        </label>
+        <div id="singleParams">
+        <label>RunMethod
+          <select id="methodSelect">
+            <option value="edgepid_left" selected>EdgePidRunning（左エッジ / FUNCNO 1）</option>
+            <option value="edgepid_right">EdgePidRunning（右エッジ / FUNCNO 2）</option>
+            <option value="linear">LinearRunning（FUNCNO 5）</option>
+            <option value="revolution">RevolutionRunning（FUNCNO 3）</option>
+          </select>
+        </label>
+
+        <label>Forward (FWD): <span id="fwdVal" class="val">50</span>
+          <input id="fwd" type="range" min="-100" max="100" value="50">
+        </label>
+
+        <label>Turn (TRN): <span id="trnVal" class="val">0</span>
+          <input id="trn" type="range" min="-100" max="100" value="0">
+        </label>
+
+        </div>
+
+        <label>シミュレーション時間: <span id="stepsVal" class="val">1000</span> ステップ
+          <input id="steps" type="range" min="50" max="6000" step="50" value="1000">
+        </label>
+      </div>
+
+      <div class="panel hidden" id="scenarioPanel">
+        <h4>シナリオ</h4>
+        <label>シナリオ
+          <select id="scenarioSelect"></select>
+        </label>
+        <p class="note" id="scenarioStatus">シナリオを読み込みます…</p>
+        <p class="note scenario-warn hidden" id="scenarioUnsupported"></p>
+        <p class="note">
+          本体シミュレータ（index.html）や画面なし走行（tools/headless-run）と同じ手順で流します。
+          読み込みは <code>src/ScenarioJsonLoader.js</code>、実行は Sorot / ScenarioControl /
+          Navigator / RunControl をそのまま回します。区間の入り口の姿勢は前の区間の出口で
+          決まるので、1区間だけ見ていたときとは結果が変わります。<br>
+          コース画像と組み合わせると、実際のコースの上で区間ごとの KP / KD を追い込めます。
+        </p>
+        <p class="note">
+          本体と同じに走ることは、画面なし走行と突き合わせて確かめています。
+          2026/99_Lコース を コース画像4倍 / スポット10mm / Ts 0.01 / 本体と同じモータの模型
+          で流すと、37コマンドすべて同じ順に通り、SNO40/CNO1（ET相撲のリモート）まで届きます。
+        </p>
+        <table class="note-table">
+          <tr><th>コマンド</th><th>画面なし走行</th><th>この画面</th></tr>
+          <tr><td>SNO10/CNO11（LAPゲート）</td><td>5395mm (67,512)</td><td>5429mm (68,517)</td></tr>
+          <tr><td>SNO20/CNO3</td><td>8195mm (458,655)</td><td>8223mm (458,657)</td></tr>
+          <tr><td>SNO21/CNO11</td><td>9281mm (500,480)</td><td>9292mm (500,491)</td></tr>
+          <tr><td>SNO40/CNO1（到達点）</td><td>10421mm (209,468)</td><td>10752mm (213,444)</td></tr>
+        </table>
+        <div class="buttons">
+          <button id="scenarioReloadBtn" type="button">読み直す</button>
+          <button id="scenarioCopyBtn" type="button">JSONをコピー</button>
+          <button id="scenarioDownloadBtn" type="button">JSONを保存</button>
+        </div>
+        <p class="note">
+          表の数値を書き換えるとその場で走り直します。変えたぶんは
+          <code>public/config/scenario/…/scenario.json</code> には保存されません。
+          追い込めたら「JSONを保存」か「JSONをコピー」でファイルへ戻してください。
+          走行方法や切替条件など、表に無いものは下のテキスト欄で直せます。
+        </p>
+        <label>シナリオ JSON（直接編集できます）
+          <textarea id="scenarioJsonText" rows="8" spellcheck="false"></textarea>
+        </label>
+        <div class="buttons">
+          <button id="scenarioApplyJsonBtn" type="button">このJSONで走らせる</button>
+        </div>
+        <p class="note" id="scenarioJsonError"></p>
+      </div>
+
+      <div class="panel" id="pidPanel">
+        <h4>PID パラメータ（RunInfo）</h4>
+        <label>Kp: <span id="kpVal" class="val">2.0</span>
+          <input id="kp" type="range" min="0" max="10" step="0.1" value="2.0">
+        </label>
+        <label>Ki: <span id="kiVal" class="val">0.00</span>
+          <input id="ki" type="range" min="0" max="2" step="0.01" value="0.00">
+        </label>
+        <label>Kd: <span id="kdVal" class="val">10.0</span>
+          <input id="kd" type="range" min="0" max="100" step="0.5" value="10.0">
+        </label>
+        <p class="note">
+          微分項は1周期（10ms）差分なので、以前の「200ms前との差」だった頃より大きな Kd が要ります。
+          直線なら Kd 60 前後で整定が 6.0s から 2.0s に縮みます。Kd を 0 に戻すと振動が収まらなくなる様子が見られます。
+        </p>
+        <label>WPER（目標色の割合）: <span id="wperVal" class="val">0</span>
+          <input id="wper" type="range" min="-100" max="100" step="5" value="0">
+        </label>
+
+        <div class="formula" style="margin-top:8px">
+          目標反射光 = (黒 + 白) / 2 − (黒 − 白) × WPER / 100<br>
+          → 現在の目標値: <span id="thresholdVal" class="val">32.5</span>
+        </div>
+
+        <label>キャリブレーション 黒 (mCalBlack)
+          <input id="calBlack" type="number" value="0" step="1">
+        </label>
+        <label>キャリブレーション 白 (mCalWhite)
+          <input id="calWhite" type="number" value="65" step="1">
+        </label>
+        <p class="note">既定値は <code>public/config/2026/robot.yaml</code> の black_threshold / white_threshold と同じです。</p>
+      </div>
+
+      <div class="panel">
+        <h4>仮想コース</h4>
+        <label>形状
+          <select id="courseShape">
+            <option value="straight" selected>直線</option>
+            <option value="sine">S字（サインカーブ）</option>
+            <option value="arc">円弧</option>
+            <option value="corner">90度コーナー</option>
+            <option value="image">コース画像（実際のコース）</option>
+          </select>
+        </label>
+
+        <div id="imageParams" class="hidden">
+          <label>コース
+            <select id="courseYear"></select>
+          </label>
+          <label>L / R
+            <select id="courseSide">
+              <option value="L" selected>Lコース</option>
+              <option value="R">Rコース</option>
+            </select>
+          </label>
+          <label>画像の細かさ
+            <select id="fieldScale">
+              <option value="1">等倍（1画素 5mm・本体と同じ）</option>
+              <option value="2">2倍（1画素 2.5mm）</option>
+              <option value="4" selected>4倍（1画素 1.25mm）</option>
+              <option value="8">8倍（1画素 0.625mm）</option>
+            </select>
+          </label>
+          <p class="note" id="courseImageStatus">コース画像を読み込みます…</p>
+          <p class="note">
+            コースの PDF はベクタなので、大きく描くほど本当に細かくなります。
+            ワールド座標（開始位置・ライン幅 4px・走行体の縮尺）は倍率を変えても動きません。<br>
+            効くのは<strong>線の位置の正確さ</strong>です。等倍では線の縁が 5mm に丸められ、
+            線として読む幅も釣り合い点も 1mm ほどずれます。実測（スタート直後の縦線を
+            0.1mm 刻みで横切って測定、スポット 10mm）:
+          </p>
+          <table class="note-table">
+            <tr><th>倍率</th><th>1画素</th><th>線として読む幅</th><th>左エッジの釣り合い点</th></tr>
+            <tr><td>等倍</td><td>5mm</td><td>20.9mm</td><td>511.02</td></tr>
+            <tr><td>2倍</td><td>2.5mm</td><td>22.3mm</td><td>511.02</td></tr>
+            <tr><td>4倍</td><td>1.25mm</td><td>20.5mm</td><td>511.20</td></tr>
+            <tr><td>8倍</td><td>0.63mm</td><td>20.1mm</td><td>511.24</td></tr>
+          </table>
+          <p class="note">
+            実際の線幅は 20mm なので、4倍で十分近づき、8倍にしてもほとんど動きません。
+            8倍は読み込みが 0.5 秒ほどかかり、画素だけで 100MB 使います。<br>
+            なお、<strong>反射光の滑らかさは倍率では変わりません</strong>。線の縁は本当に段差なので、
+            点で読む限りどれだけ細かくしても 32.5 の段差が出ます。滑らかさはスポット径の役目です。<br>
+            倍率を変えるとゲインの意味も変わります。等倍の画像は線の縁が 5mm ぶんぼけていて
+            勾配がゆるく、細かくするほど勾配が立ちます。同じ Kp でも効きが強くなるので、
+            倍率を変えたら Kp を取り直してください（FWD 50 / α 5.0 / Ts 0.01 では
+            等倍 Kp 6 が、4倍では Kp 4 のほうがきれいに追従します）。
+          </p>
+          <label>カラーセンサーのスポット径[mm]: <span id="sensorSpotVal" class="val">10</span>
+            <input id="sensorSpot" type="range" min="0" max="30" step="1" value="10">
+          </label>
+          <p class="note">
+            実機のカラーセンサーは点ではなく、直径 10mm ほどの範囲の平均を読みます。
+            ここを <strong>0</strong> にすると本体シミュレータとまったく同じ「真下の 2 画素」に
+            なりますが、コース画像は 1px = 5mm しかないため反射光が 5mm 刻みの階段になり、
+            段の中では偏差が動きません。エッジ追従の比例帯が消えて 5mm 単位のオン・オフに
+            なるので、舵が効かなくなります（直線でも 150mm ほど同じ値を読み続けます）。
+            既定の 10 は実機に合わせた値です。
+          </p>
+          <p class="note">
+            本体シミュレータ（index.html）と同じコース画像・同じ画素の読み方
+            （<code>sim/sensor-sampling.js</code>）で走らせます。1px = 5mm、黒ラインは 4px です。
+            線の上の色つき区間や灰色の印も、本体と同じく線として読みます。
+            走り方も本体と同じくオドメトリの進みぶんで動かすので、
+            ここで合わせたゲインはそのままシナリオへ持っていけます。
+          </p>
+          <p class="note">
+            走った距離と速さは軌跡の下に出ます。実機は FWD 50 でおよそ 240mm/s ですが、
+            既定のモータモデル（α 1.0）だと 54mm/s しか出ません。実機の速さで見るには
+            <strong>α 5.0 / Ts 0.01</strong> にしてください（268mm/s）。Ts は制御の周期でもあり、
+            0.04 のままだと 1 周期で 12mm 進んでしまい、幅 20mm の線をまたいで追従できません。
+            速さが変わると微分項の効きも変わるので、Kd は速さを決めてから合わせます。
+          </p>
+        </div>
+        <div id="shapeParams">
+          <label>ライン幅: <span id="lineWidthVal" class="val">4.0</span>
+            <input id="lineWidth" type="range" min="1" max="12" step="0.5" value="4">
+          </label>
+          <label>境界のぼけ幅（センサースポット径）: <span id="rampVal" class="val">1.5</span>
+            <input id="ramp" type="range" min="0.1" max="6" step="0.1" value="1.5">
+          </label>
+          <label>開始時のラインからのずれ（追従エッジ側）: <span id="offsetVal" class="val">3.0</span>
+            <input id="startOffset" type="range" min="-10" max="10" step="0.5" value="3">
+          </label>
+        </div>
+        <label>センサー取り付け位置（車軸からの前方オフセット）: <span id="sensorOffsetVal" class="val">12.0</span>
+          <input id="sensorOffset" type="range" min="0" max="40" step="0.5" value="12">
+        </label>
+        <p class="note">
+          走行体はライン幅 20mm を基準に実寸比（車輪間隔 125mm / 車輪径 55mm）で描いています。
+          既定の 12.0 はこの縮尺で車軸の 60mm 前方にあたります。実機（およそ 100mm 前方 = 20 前後）まで
+          伸ばすこともできますが、先読み距離が変わるため既定ゲインのままだと整定しなくなります。
+        </p>
+        <div id="sineParams" class="hidden">
+          <label>S字の振幅: <span id="amplitudeVal" class="val">3.0</span>
+            <input id="amplitude" type="range" min="0" max="15" step="0.5" value="3">
+          </label>
+          <label>S字の波長: <span id="wavelengthVal" class="val">40</span>
+            <input id="wavelength" type="range" min="5" max="80" step="1" value="40">
+          </label>
+        </div>
+        <div id="arcParams" class="hidden">
+          <label>円弧の半径: <span id="radiusVal" class="val">15</span>
+            <input id="radius" type="range" min="5" max="30" step="1" value="15">
+          </label>
+        </div>
+        <div id="cornerParams" class="hidden">
+          <label>角の丸み（半径）: <span id="cornerRadiusVal" class="val">8</span>
+            <input id="cornerRadius" type="range" min="0" max="40" step="1" value="8">
+          </label>
+        </div>
+        <div id="shapeNotes">
+        <p class="note">
+          形状によって必要なゲインが違うことを確かめられます。微分項を1周期差分に変えてからは
+          Kd を大きく取る必要があり、既定（Kp 2 / Kd 10）でまともに追従するのは直線だけです。
+          S字・円弧・90度コーナーはゲインを上げないとラインを外れます。
+        </p>
+        <table class="note-table">
+          <tr><th>形状</th><th>ゲインの例</th><th>RMS ずれ</th><th>備考</th></tr>
+          <tr><td>直線</td><td>Kp 2 / <strong>Kd 60</strong></td><td>0.19</td><td>整定 2.0s。既定（Kd 10）だと 0.25・整定 6.0s</td></tr>
+          <tr><td>S字</td><td><strong>Kp 6</strong> / <strong>Kd 100</strong></td><td>0.73</td><td>Kd 10 では 13.5 まで悪化して追従しない</td></tr>
+          <tr><td>円弧</td><td><strong>Kp 10</strong> / <strong>Kd 100</strong></td><td>4.4</td><td>曲率一定の入力には偏差が残り、内側を回る</td></tr>
+          <tr><td>90度コーナー</td><td><strong>Kp 8</strong> / <strong>Kd 100</strong></td><td>0.25</td><td>Kd 10 では角で外れる（Kp 6 / Kd 10 で 0.58）</td></tr>
+        </table>
+        <p class="note">
+          計測条件: FWD 50 / TRN 0 / Ki 0 / 1000 ステップ / ライン幅 4.0 / ぼけ幅 1.5、その他は既定値。
+        </p>
+        </div>
+      </div>
+
+      <div class="panel hidden" id="startPanel">
+        <h4>開始位置</h4>
+        <label>名前つきの開始位置
+          <select id="startPreset"></select>
+        </label>
+        <div class="start-fields">
+          <label>X
+            <input id="startX" type="number" value="515" step="1">
+          </label>
+          <label>Y
+            <input id="startY" type="number" value="30" step="1">
+          </label>
+          <label>向き[度]
+            <input id="startAngle" type="number" value="90" step="1">
+          </label>
+        </div>
+        <div class="buttons">
+          <button id="pickStartBtn" type="button">クリックで置く</button>
+          <button id="startResetBtn" type="button">名前の位置へ戻す</button>
+        </div>
+        <p class="note">
+          名前つきの位置は <code>public/config/course/&lt;年度&gt;/robot.yaml</code> の
+          <code>initial_position</code> をそのまま読んでいます。本体シミュレータの
+          「開始位置」と同じものです。難所だけを何度も試したいときは、そこに位置を足してください。<br>
+          数値を直に打っても変えられます。「クリックで置く」を押してから軌跡の上を
+          押すとその場所へ、押したまま動かすと向きも決まります（Shift を押しながらでも同じ）。
+        </p>
+      </div>
+
+      <div class="panel">
+        <h4>モータモデル（エンコーダ）</h4>
+        <label>模型
+          <select id="motorModel">
+            <option value="model" selected>ビジュアライザの模型（遅れを作る）</option>
+            <option value="sorot">本体シミュレータと同じ（SorotMotor）</option>
+          </select>
+        </label>
+        <p class="note">
+          本体（<code>src/Sensor/SorotMotor.js</code> の getCount）は遅れを持ちません。
+          PWM にそのまま比例してカウントが増えるだけで、
+          <code>count += 0.01 × PWM × max_speed</code> です。実機で詰めたシナリオを
+          再現したいときはこちら。<br>
+          ビジュアライザの模型は慣性と摩擦を持ち、PID の遅れが軌跡に出ます。
+          Kp / Kd を動かしたときの振動やオーバーシュートを見たいときはこちら。
+          どちらで走るかで速さも応答も大きく変わるので、ゲインは模型ごとに取り直してください。
+          下の表のゲインはビジュアライザの模型で測ったものです。
+          「走らせ方」をシナリオにすると、本体と同じ模型へ自動で切り替えます。
+        </p>
+        <div id="motorParams" class="hidden">
+        <label>Ts（サンプリング周期 [s]）: <span id="tsVal" class="val">0.04</span>
+          <input id="ts" type="range" min="0.01" max="0.2" step="0.01" value="0.04">
+        </label>
+        <label>α（PWM→トルク）: <span id="alphaVal" class="val">1.0</span>
+          <input id="alpha" type="range" min="0.1" max="5" step="0.1" value="1.0">
+        </label>
+        <label>β（粘性摩擦）: <span id="betaVal" class="val">0.5</span>
+          <input id="beta" type="range" min="0.1" max="2" step="0.1" value="0.5">
+        </label>
+        <label>J（慣性モーメント）: <span id="jVal" class="val">0.010</span>
+          <input id="j" type="range" min="0" max="0.1" step="0.005" value="0.01">
+        </label>
+        <label>τ_c（クーロン摩擦）: <span id="taucVal" class="val">0.10</span>
+          <input id="tauc" type="range" min="0" max="1" step="0.01" value="0.1">
+        </label>
+        <label>τ_load（負荷トルク）: <span id="taulVal" class="val">0.10</span>
+          <input id="taul" type="range" min="0" max="1" step="0.01" value="0.1">
+        </label>
+        <label>PWM 一次遅れ係数: <span id="pwmFilterVal" class="val">0.20</span>
+          <input id="pwmFilter" type="range" min="0.05" max="1" step="0.05" value="0.2">
+        </label>
+
+        <div class="formula" style="margin-top:8px">
+          ω += Ts × (α·u − β·ω − J·τ<sub>c</sub>·sign(ω) − J·τ<sub>load</sub>)<br>
+          θ += Ts × ω &nbsp;/&nbsp; エンコーダ値 = floor(θ)<br>
+          現在値: θ = <span id="thetaVal" class="val">0</span> / ω = <span id="omegaVal" class="val">0</span>
+        </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>表示</h4>
+        <label>拡大率: <span id="viewScaleVal" class="val">7.0</span>
+          <input id="viewScale" type="range" min="0.3" max="40" step="0.1" value="7">
+        </label>
+        <div class="buttons">
+          <button id="zoomOutBtn" type="button" title="縮小">−</button>
+          <button id="zoomInBtn" type="button" title="拡大">＋</button>
+          <button id="fitBtn" type="button">全体表示</button>
+        </div>
+        <p class="note">
+          軌跡の上でホイールを回すと拡大・縮小、ドラッグで移動できます。
+          ダブルクリックで全体表示に戻ります。表示を変えても計算結果は変わりません。
+        </p>
+        <div class="buttons">
+          <button id="resetBtn" type="button">リセット</button>
+          <button id="rerunBtn" type="button">再計算</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="results">
+      <div class="panel">
+        <h4>軌跡</h4>
+        <canvas id="preview" width="560" height="420"></canvas>
+
+        <div class="playback">
+          <button id="playPauseBtn" type="button">⏸ 一時停止</button>
+          <input id="seek" type="range" min="0" max="1000" step="1" value="0">
+          <span id="playTime" class="mono">0.00 s</span>
+        </div>
+        <div class="playback">
+          <label class="inline">再生速度: <span id="speedVal" class="val">4.0</span>×
+            <input id="speed" type="range" min="0.5" max="10" step="0.5" value="4">
+          </label>
+          <span id="liveReadout" class="mono"></span>
+        </div>
+
+        <div id="info"></div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="k">オーバーシュート</div>
+            <div class="v" id="mOvershoot">-</div>
+          </div>
+          <div class="metric">
+            <div class="k">整定時間</div>
+            <div class="v" id="mSettling">-</div>
+          </div>
+          <div class="metric">
+            <div class="k">定常偏差</div>
+            <div class="v" id="mSteady">-</div>
+          </div>
+          <div class="metric">
+            <div class="k">RMS 偏差</div>
+            <div class="v" id="mRms">-</div>
+          </div>
+        </div>
+        <p class="note">
+          指標はラインエッジからのずれ（ワールド単位）で計算しています。0 に収束するほど良い追従です。<br>
+          反射光は白／黒で飽和するため、偏差そのものではなく実際のずれを見ています。
+        </p>
+      </div>
+
+      <div class="panel hidden" id="scenarioTablePanel" style="margin-top:12px">
+        <h4>シナリオのコマンド（数値は書き換えられます）</h4>
+        <div class="scenario-table-wrap">
+          <table class="scenario-table" id="scenarioTable"></table>
+        </div>
+        <p class="note">
+          再生中の行に色が付きます。灰色の行はこの画面では走らせられない走行方法
+          （カメラや実機の画像解析）で、そこに来ると止まります。
+        </p>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h4>時系列（PID の応答）</h4>
+        <canvas id="chart" width="560" height="480"></canvas>
+        <p class="note">
+          1段目: カラーセンサーの反射光と目標値 / 2段目: PID が見ている偏差 /
+          3段目: ラインエッジからの実際のずれ（指標はこれを使用） /
+          4段目: RunControl へ渡る turn と積分項（ワインドアップの確認用）。
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
