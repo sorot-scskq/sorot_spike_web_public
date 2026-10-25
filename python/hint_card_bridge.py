@@ -31,6 +31,17 @@ from js import Object, document, window
 from pyodide.ffi import create_proxy, to_js as _to_js
 from pyodide.http import pyfetch
 
+
+async def _sim_ffi_load():
+    """JS の null を None にそろえる共通の関数（sim/pyscript/sim_ffi.py）を取り込む"""
+    response = await pyfetch("python/sim_ffi.py", cache="no-store")
+    with open("sim_ffi.py", "w") as out:
+        out.write(await response.string())
+
+
+await _sim_ffi_load()
+from sim_ffi import js_value  # noqa: E402
+
 # --------------------------------------------------------------------------
 # 依存の用意
 #
@@ -55,7 +66,11 @@ async def _hint_load_modules():
     動かすので、ループ変数を素のトップレベルに置くと、別の Python が
     await している隙に書き換えてしまう。
     """
-    for name in ("camera.py", "qr_decoder.py", "communicator.py", "hint_card_reader.py"):
+    # opencv.py は camera.py が先頭で読む。config.py / camera_tuning.py は camera.py が
+    # 使うときに読む（走行体の版にそろえたときに増えた。2026-10）。hint_card.py は
+    # ヒントカードの規約の読み解き（走行体の1本）
+    for name in ("opencv.py", "config.py", "camera_tuning.py", "hint_card.py", "camera.py",
+                 "qr_decoder.py", "communicator.py", "hint_card_reader.py"):
         response = await pyfetch(f"python/{name}")
         with open(name, "w") as out:
             out.write(await response.string())
@@ -65,7 +80,7 @@ await _hint_load_modules()
 
 from camera import RobotCamera  # noqa: E402
 from qr_decoder import QrCodeDecoder  # noqa: E402
-from hint_card_reader import HintCard, HintCardReader  # noqa: E402
+from hint_card_reader import HintCard, HintCardReader, parse_hint_card_text  # noqa: E402
 
 # 読み取りに使う canvas が取れなかったときの逃げ先（表示用・index.html）
 CANVAS_ID = "cameraView"
@@ -100,12 +115,12 @@ class _PanelOnlyDecoder(QrCodeDecoder):
     いるあいだ走行が引っかかる。読めないと分かっているものに掛ける時間なので、
     ここで止める。
 
-    板を探すところ（find_card_panels）は動くので、そのまま使う。中身は
+    板を探すところ（find_card_rects）は動くので、そのまま使う。中身は
     シミュレータ側（JS の resolvePanels）が答える。実機の OpenCV は復号器を
     持っているので、走行体側のコード（qr_decoder.py）はそのままでよい。
     """
 
-    def decode(self, frame, panels=None):
+    def decode(self, frame, rects=None, zxing_only=False):
         return None
 
 
@@ -150,11 +165,11 @@ def _hint_read_canvas():
     模様として写らない。加えて resolve_panels が返す位置もこの canvas の
     座標なので、別の canvas を読むと縮尺が食い違って一致しなくなる。
     """
-    bridge = getattr(window, "__simHintCard", None)
-    canvas = getattr(bridge, "canvas", None) if bridge is not None else None
+    bridge = js_value(getattr(window, "__simHintCard", None))
+    canvas = js_value(getattr(bridge, "canvas", None)) if bridge is not None else None
     if canvas is not None:
         return canvas
-    return document.getElementById(CANVAS_ID)
+    return js_value(document.getElementById(CANVAS_ID))
 
 
 def _hint_capture_frame():
@@ -164,8 +179,8 @@ def _hint_capture_frame():
     高解像度の映像は毎フレームは描かれていない。1枚が重いので、画素を見る
     この瞬間にだけ JS へ描かせる（sim/canvas.js の captureReadView）。
     """
-    bridge = getattr(window, "__simHintCard", None)
-    capture = getattr(bridge, "captureFrame", None) if bridge is not None else None
+    bridge = js_value(getattr(window, "__simHintCard", None))
+    capture = js_value(getattr(bridge, "captureFrame", None)) if bridge is not None else None
     if capture is None:
         return True   # 描き直す口が無い＝表示用をそのまま読む
     return bool(capture())
@@ -225,7 +240,7 @@ def resolve_panels(panels):
     global _hint_panel_count
     _hint_panel_count = len(panels)
 
-    bridge = getattr(window, "__simHintCard", None)
+    bridge = js_value(getattr(window, "__simHintCard", None))
     if bridge is None or not hasattr(bridge, "resolvePanels"):
         return None
     text = bridge.resolvePanels(to_js(panels))
@@ -255,8 +270,8 @@ def _on_hint_ws_error(_event):
 
 
 def _hint_ws_url():
-    bridge = getattr(window, "__simHintCard", None)
-    url = getattr(bridge, "wsUrl", None) if bridge is not None else None
+    bridge = js_value(getattr(window, "__simHintCard", None))
+    url = js_value(getattr(bridge, "wsUrl", None)) if bridge is not None else None
     return url if isinstance(url, str) and url != "" else HINT_DEFAULT_WS_URL
 
 
@@ -270,7 +285,7 @@ def send_card(payload):
     """
     text = json.dumps(payload, ensure_ascii=False)
 
-    bridge = getattr(window, "__simHintCard", None)
+    bridge = js_value(getattr(window, "__simHintCard", None))
     if bridge is not None and hasattr(bridge, "onSent"):
         bridge.onSent(to_js(payload))
 
@@ -373,6 +388,29 @@ def hint_reset():
     _hint_panel_count = 0
 
 
+def mark_read(card_number, text):
+    """
+    カメラを介さない別経路（sim/dom-ui/hint-card-preload.js の SCRIPT起点プリロード）が
+    先に PC-System へ送った内容を、ここでも「読んだ」ことにする。
+
+    プリロードは reader.accept() を通らず直接 PC-System へ送るため、何もしないと
+    reader.cards はプリロードの送信を知らないまま残る。その状態で走行体のカメラが
+    物理的にカードへ近づくと、read_once() が「まだ読んでいないカード」として
+    もう一度読み取り・送信してしまう（同じ内容の二重送信）。
+
+    accept() と違い、ここでは送信（sender.send）もカード別ハンドラも呼ばない。
+    プリロード側が既に送信済みなので、二重に送らないようにするためにここへ来ている
+    """
+    if not isinstance(text, str) or text.strip() == "":
+        return
+    card_key = HintCard.CARD1 if card_number == 1 else HintCard.CARD2
+    reader.cards[card_key] = {
+        "card": card_key,
+        "text": text,
+        "gates": parse_hint_card_text(text),
+    }
+
+
 reader.set_panel_resolver(resolve_panels)
 reader.set_sender(send_card)
 
@@ -380,10 +418,11 @@ reader.set_sender(send_card)
 # window.__simPython は Python 側の窓口をまとめる入れ物で、認識処理ごとに
 # 別々の PyScript が足していく。丸ごと代入すると、先に載った別の処理
 # （走行経路の受け取りなど）を消してしまうので、自分の枠だけを足す。
-if not hasattr(window, "__simPython") or window.__simPython is None:
+if not hasattr(window, "__simPython") or js_value(window.__simPython) is None:
     window.__simPython = to_js({})
 window.__simPython.hintCard = to_js({
     "read": create_proxy(read_once),
     "reset": create_proxy(hint_reset),
+    "markRead": create_proxy(mark_read),
 })
 window.console.log("[PyScript] ヒントカードの読み取り（hint_card_reader.py）を読み込みました")

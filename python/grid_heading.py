@@ -50,7 +50,12 @@ import cv2
 import numpy as np
 
 # 目印の格子の間隔[mm]（競技規約。灰色の丸も QR の四角も同じ）
-GRID_STEP_MM = 255.0
+#
+# **245.0mm は現地のメジャー実測**（2026-09-22、4マスで 980mm）。公式コース図のベクタからは
+# 250mm と読めたが、実測を採る。向きだけなら当てはめの倍率 s が食い違いを吸収するが、
+# **位置（grid_position.py）はここが直に効く**。
+# シミュレータのマットが違う間隔なら Options.grid_step_mm で渡す。
+GRID_STEP_MM = 245.0
 # 目印の大きさ[mm]
 MARKER_SIZE_MM = 50.0
 
@@ -193,6 +198,17 @@ class HeadingResult:
     """何で測ったか。'markers'（目印）/ 'line'（黒線）"""
     line_deviation_deg: float | None = None
     """黒線だけで測った値（黒線が見えたとき）"""
+    offset_mm: tuple | None = None
+    """格子の中での走行体の居場所[mm]。格子の軸に沿った (第1軸, 第2軸)。
+
+    **いちばん近い格子点からの端数**として位置の打ち直しに使う（grid_position.py）。
+    どの格子点かは分からないので、これだけでは絶対位置にならない。
+    目印で測れたときだけ入る（黒線では出ない）。
+    """
+    axis_deg: float | None = None
+    """格子の第1軸が走行体から見てどちらを向いているか[度]（offset_mm と同じ当てはめの φ）"""
+    scale: float | None = None
+    """当てはめの倍率。1 から離れていればカメラの定数がずれている"""
     points: list = field(default_factory=list)
     """使った目印（d, l[mm], 種類）。確かめる用"""
 
@@ -205,18 +221,90 @@ class Options:
     lateral_mm: float = 800.0
     res_mm: float = 2.5
     supersample: int = 3
+    # 格子の間隔[mm]。シミュレータのマットが違うときだけ変える
+    grid_step_mm: float = GRID_STEP_MM
     # 当てはめの合格ライン
     min_markers: int = 3
     max_residual_mm: float = 8.0
     max_sigma_deg: float = 0.6
     outlier_mm: float = 20.0
+    #: 格子の間隔の比に許すずれ。1.0 からこれ以上離れたら捨てる
+    #:
+    #: **2026-09-22 のLコース実機で 0.05 から広げた。** 目印が8個きれいに写って
+    #: いる回が 0.889 / 0.905 / 0.916 / 0.920 / 0.936 / 0.936 / 0.937 / 0.950 で
+    #: 落ちていた。**8回とも 1 未満**で、ばらつきではなく系統的に約5%小さい。
+    #: 格子への当てはまり（max_residual_mm）は通っているので一様な縮尺のずれで、
+    #: **向きの答えは汚れない**（一様な拡大縮小は回転を生まない）。
+    #:
+    #: 止めたい誤検出は格子の取り違え（1つ飛ばし・丸とQRの混同）で、比は
+    #: 0.5 / 0.707 / 1.414 に出る。0.15 の窓（0.85〜1.15）はどれも通さない。
+    #:
+    #: **5%ずれている原因そのものは未解明。** GRID_STEP_MM 245.0（実測 98cm÷4 と
+    #: 一致）かカメラの実効の高さ 199.5mm（199.5÷0.95≒210mm）のどちらか
+    #:
+    #: **ただの得ではない。** 22:02 の走行の絵13枚で回すと、目印で測れる回が
+    #: 5回増える一方、**黒線だけで測れていた2回が落ちる**（目印の答えが通るように
+    #: なり、黒線との食い違いの検査 max_line_disagree_deg に引っかかるため。
+    #: 目印 -0.85° 対 黒線 -3.59°、目印 +1.31° 対 黒線 -0.01°）。差し引き 4回→7回。
+    #: 落ちるほうは検算されていない黒線だけの答えなので、捨てるのは設計どおり
+    max_scale_error: float = 0.15
     # 黒線
     use_lines: bool = True
     line_min_len_mm: float = 150.0
     line_max_width_mm: float = 32.0
-    line_max_rms_mm: float = 0.1
+    #: 黒線のまっすぐさの許容[mm]。**0.1 では実機の絵で1本も見つからない**
+    #: （2026-09-21、Lコースの実写で確認。0.5 以上で見つかる）。合成画像では
+    #: 0.1 で通るが、実機は布のうねり・レンズの歪み・圧縮のノイズが乗る。
+    #: 答えは許容を変えても動かない（俯角14〜26°×画角46〜62°の16通りで
+    #: 中央値 +0.02°、幅 -0.07〜+0.25°）。**黒線の向きは校正に鈍い。**
+    #:
+    #: **2.0 にしてあるのは、コースの線が実際に曲がっているため。** 1.0 では、
+    #: 画面の奥で線がカーブに入っている絵で 0本 になった（同じ日の別の1枚では
+    #: 1.0 で見つかる）。2.0 なら両方で見つかり、誤検出は増えない（4.0 や 8.0
+    #: まで緩めても見つかる本数は 1本 のまま）。
+    line_max_rms_mm: float = 2.0
     line_min_px: float = 3.0
-    max_line_disagree_deg: float = 1.0
+
+    #: 目印の答えと黒線の答えが、これ以上ずれたら両方捨てる[度]
+    #:
+    #: **2026-09-23 16時台に 1.0 → 2.5 へ広げた。** 取り付けが動いたあとの実画像
+    #: 105枚で、両方の答えが出た28枚の食い違いを測った。
+    #:
+    #:   0.0 0.1 0.1 0.1 0.2 0.2 0.3 0.4 0.5 0.5 0.5 0.7 0.7 0.8 0.8
+    #:   1.0 1.0 1.1 1.3 1.4 1.5 1.6 1.9 2.5 2.9 │ 4.8 5.0 7.5
+    #:                                            ↑ ここに切れ目がある
+    #:
+    #: **1.0 は正常な測りの半分を捨てていた**（28枚中15枚しか通らない）。
+    #: 2つの方式はどちらも ±1° 程度の散らばりを持つので、差は `√2` 倍に開く。
+    #: 目印の当てはめ自身の σ が 0.6°（`max_sigma_deg`）、黒線が ±1° 程度なら、
+    #: **正常でも 1.2° 前後は出る。**
+    #:
+    #: 2.5 にすると **目印で測れる回が 36 → 45（+25%）** に増え、
+    #: **外れ値の 4.8 / 5.0 / 7.5° は通らない。** 新たに通る回は、目印と黒線が
+    #: 同じ符号・近い値で並ぶ（+8.62 対 +7.02、-2.75 対 -3.79、+5.15 対 +3.22）。
+    #: **誤検出なら値が揃わない。**
+    #:
+    #: 3.0 にしても 46 で頭打ちなので、**切れ目（4.8）に余裕を残して 2.5 にした。**
+    #:
+    #: 目印の数が多いほど信用できる（9個以上なら食い違いの中央値 0.44°、
+    #: 4〜5個なら 1.14°）。数で門を変える案もあるが、まずは1つの値で様子を見る
+    max_line_disagree_deg: float = 2.5
+    #: 目印で検算できないまま黒線だけで測ったときに、信じるずれの上限[度]
+    #:
+    #: **黒線だけの答えは検算されていない。** 目印が3個そろえば食い違いを見て
+    #: 捨てられるが（`max_line_disagree_deg`）、そろわないと黒線の答えがそのまま通る。
+    #: ETラリーの格子には外周の黒線が無いので、そこでは床のコードの辺や布の筋を
+    #: 線として拾い、**辺の選び方を1つ間違えるだけで答えが飛ぶ**。
+    #:
+    #: 2026-09-22 のLコース実機（27回測って6回成立）で、はっきり2つに割れた。
+    #:
+    #:   -1.50 / -1.24 / -0.32°   目印 3個 / 3個 / 2個   ← もっともらしい
+    #:   +8.93 / +10.59 / +12.80° 目印 2個 / 2個 / 1個   ← 誤検出
+    #:
+    #: **旋回が ±2° に収まった今、連続する旋回の間に 9〜13° の実誤差は出ない。**
+    #: C++ 側の上限（`HEADING_CORRECT_MAX_DEG` 15°）はずれを ±22.5° に畳んだ
+    #: あとの「大物」しか止められず、ここは通ってしまう。だから手前で切る。
+    line_only_max_deg: float = 5.0
 
 
 # ---------------------------------------------------------------------------
@@ -455,7 +543,7 @@ def _wrap(a: float, period: float) -> float:
     return (a + period / 2) % period - period / 2
 
 
-def _initial_rotation(pts: np.ndarray, kinds: list[str]):
+def _initial_rotation(pts: np.ndarray, kinds: list[str], step: float = GRID_STEP_MM):
     """同じ種類の目印どうしで、1〜2マス離れた組の向きから回転のおおよそを出す"""
     acc = 0j
     count = 0
@@ -466,7 +554,7 @@ def _initial_rotation(pts: np.ndarray, kinds: list[str]):
                 v = pts[idx[b]] - pts[idx[a]]
                 length = math.hypot(*v)
                 for m in (1, 2):
-                    if abs(length - m * GRID_STEP_MM) < 0.08 * m * GRID_STEP_MM:
+                    if abs(length - m * step) < 0.08 * m * step:
                         # 4倍角で平均すると、90度違いの向きが同じ所へ重なる
                         acc += length ** 2 * complex(math.cos(4 * math.atan2(v[1], v[0])),
                                                      math.sin(4 * math.atan2(v[1], v[0])))
@@ -476,13 +564,18 @@ def _initial_rotation(pts: np.ndarray, kinds: list[str]):
     return math.atan2(acc.imag, acc.real) / 4, count
 
 
-def _fit_lattice(pts: np.ndarray, kinds: list[str], theta0: float, outlier_mm: float):
+def _fit_lattice(pts: np.ndarray, kinds: list[str], theta0: float, outlier_mm: float,
+                 pitch: float = GRID_STEP_MM):
     """
     目印を格子に当てはめる。
 
     走行体から見た点 p を、グリッドの座標へ q = s·R(φ)·p + t と写したとき、
     丸は格子点 (i, j)·step、QR はマスの中心 (i+½, j+½)·step に乗るはず。
     φ, s, t を Gauss-Newton で詰める。φ が求める回転。
+
+    **t は「格子の中のどこに居るか」。** 走行体（p = 0）が写る先がそのまま t なので、
+    いちばん近い格子点からの端数として位置の打ち直しに使える（grid_position.py）。
+    格子の間隔を実寸で置いてあるので t の単位は mm（カメラ側のずれは倍率 s に出る）。
     """
     offs = np.array([0.5 if k == 'qr' else 0.0 for k in kinds])
     phi, s = theta0, 1.0
@@ -491,15 +584,15 @@ def _fit_lattice(pts: np.ndarray, kinds: list[str], theta0: float, outlier_mm: f
     q = pts @ rot(-phi).T
     t = np.zeros(2)
     for ax in range(2):
-        frac = (q[:, ax] / GRID_STEP_MM - offs) * 2 * math.pi
+        frac = (q[:, ax] / pitch - offs) * 2 * math.pi
         c = np.exp(1j * frac).mean()
-        t[ax] = -math.atan2(c.imag, c.real) / (2 * math.pi) * GRID_STEP_MM
+        t[ax] = -math.atan2(c.imag, c.real) / (2 * math.pi) * pitch
     use = np.ones(len(pts), bool)
     for _ in range(3):
         for _ in range(8):
             R = rot(-phi)
             q = s * pts @ R.T + t
-            node = (np.round(q / GRID_STEP_MM - offs[:, None]) + offs[:, None]) * GRID_STEP_MM
+            node = (np.round(q / pitch - offs[:, None]) + offs[:, None]) * pitch
             r = (q - node)[use]
             # ヤコビアン（φ, s, tx, ty）
             dR = np.array([[-math.sin(-phi), -math.cos(-phi)], [math.cos(-phi), -math.sin(-phi)]]) * -1
@@ -516,7 +609,7 @@ def _fit_lattice(pts: np.ndarray, kinds: list[str], theta0: float, outlier_mm: f
             if abs(step[0]) < 1e-7:
                 break
         q = s * pts @ rot(-phi).T + t
-        node = (np.round(q / GRID_STEP_MM - offs[:, None]) + offs[:, None]) * GRID_STEP_MM
+        node = (np.round(q / pitch - offs[:, None]) + offs[:, None]) * pitch
         err = np.hypot(*(q - node).T)
         new_use = err < outlier_mm
         if (new_use == use).all():
@@ -543,7 +636,7 @@ def _fit_lattice(pts: np.ndarray, kinds: list[str], theta0: float, outlier_mm: f
             sigma = math.degrees(math.sqrt(max(cov[0, 0], 0)))
         except np.linalg.LinAlgError:
             sigma = None
-    return phi, s, use, rms, sigma
+    return phi, s, t, use, rms, sigma
 
 
 def _to_deviation(psi_deg: float) -> tuple[int, float]:
@@ -600,6 +693,11 @@ def estimate_heading(image_bgr: np.ndarray, cam: CameraConstants, opt: Options |
         return by_markers
     if by_lines is not None:
         dev, system, sigma, count = by_lines
+        if abs(dev) > opt.line_only_max_deg:
+            return HeadingResult(ok=False, markers=by_markers.markers, source='line',
+                                 line_deviation_deg=round(dev, 4),
+                                 reason=f'黒線だけの答え {dev:+.2f}° が上限 {opt.line_only_max_deg:.1f}° を'
+                                        f'超える（目印 {by_markers.markers} 個では検算できない）')
         return HeadingResult(ok=True, deviation_deg=round(dev, 4), system=system, sigma_deg=round(sigma, 4),
                              markers=by_markers.markers, source='line', line_deviation_deg=round(dev, 4),
                              reason=f'目印では測れず（{by_markers.reason}）、黒線 {count} 本で測った')
@@ -617,11 +715,12 @@ def _estimate_by_markers(top, valid, opt: Options) -> HeadingResult:
                     for r, c, _ in found])
     kinds = [k for _, _, k in found]
 
-    theta0, _pairs = _initial_rotation(pts, kinds)
+    theta0, _pairs = _initial_rotation(pts, kinds, opt.grid_step_mm)
     if theta0 is None:
         return HeadingResult(ok=False, markers=len(found), reason='格子の間隔で並んだ目印の組が無い')
 
-    phi, scale, use, rms, sigma = _fit_lattice(pts, kinds, theta0, opt.outlier_mm)
+    phi, scale, offset, use, rms, sigma = _fit_lattice(pts, kinds, theta0, opt.outlier_mm,
+                                                       opt.grid_step_mm)
     n_use = int(use.sum())
     base = dict(markers=n_use, rejected=len(found) - n_use, residual_mm=round(rms, 2),
                 points=[(round(float(p[0]), 1), round(float(p[1]), 1), k)
@@ -630,7 +729,7 @@ def _estimate_by_markers(top, valid, opt: Options) -> HeadingResult:
         return HeadingResult(ok=False, reason=f'格子に乗る目印が {n_use} 個しか無い', **base)
     if rms > opt.max_residual_mm:
         return HeadingResult(ok=False, reason=f'格子への当てはまりが悪い（{rms:.1f}mm）', **base)
-    if abs(scale - 1) > 0.05:
+    if abs(scale - 1) > opt.max_scale_error:
         return HeadingResult(ok=False, reason=f'格子の間隔が合わない（{scale:.3f}倍）', **base)
     if sigma is None or sigma > opt.max_sigma_deg:
         return HeadingResult(ok=False, sigma_deg=sigma, reason=f'回転が定まらない（σ {sigma}）', **base)
@@ -638,7 +737,10 @@ def _estimate_by_markers(top, valid, opt: Options) -> HeadingResult:
     # φ はグリッドの軸が走行体から見てどちらを向いているか。走行体の向きはその逆
     system, dev = _to_deviation(-math.degrees(phi))
     return HeadingResult(ok=True, deviation_deg=round(dev, 4), system=system,
-                         sigma_deg=round(sigma, 4), source='markers', **base)
+                         sigma_deg=round(sigma, 4), source='markers',
+                         offset_mm=(round(float(offset[0]), 2), round(float(offset[1]), 2)),
+                         axis_deg=round(math.degrees(phi), 4), scale=round(float(scale), 5),
+                         **base)
 
 
 def main() -> None:

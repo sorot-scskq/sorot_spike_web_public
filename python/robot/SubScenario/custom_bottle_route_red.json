@@ -1,0 +1,30 @@
+[
+    {
+        "Comment": "赤ラベル: custom.json の運び先の選択（20/9）を赤ゾーン（SNO 21）へ向ける",
+        "SNO": 20,
+        "CNO": 9,
+        "PRVSNO": 20,
+        "PRVCNO": 8,
+        "RunInfo": {
+            "FUNCNO": 5,
+            "FWD": 0,
+            "TRN": 0,
+            "KP": 0,
+            "KI": 0,
+            "KD": 0,
+            "NOBLNCE": 1
+        },
+        "SwitchInfo": {
+            "SCJFN": 2,
+            "SCT": 0,
+            "SCD": 0,
+            "SCR": 0,
+            "SCC": 0,
+            "SCV": 0,
+            "SCX": 0,
+            "SCY": 0,
+            "JMPSNO": 21
+        },
+        "CoordCorrectInfo": {}
+    }
+]

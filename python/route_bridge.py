@@ -38,6 +38,17 @@ from js import Object, window
 from pyodide.ffi import create_proxy, to_js as _to_js
 from pyodide.http import pyfetch
 
+
+async def _sim_ffi_load():
+    """JS の null を None にそろえる共通の関数（sim/pyscript/sim_ffi.py）を取り込む"""
+    response = await pyfetch("python/sim_ffi.py", cache="no-store")
+    with open("sim_ffi.py", "w") as out:
+        out.write(await response.string())
+
+
+await _sim_ffi_load()
+from sim_ffi import js_value  # noqa: E402
+
 #: 無線通信デバイスの既定の宛先（tools/ws_debug_server）
 ROUTE_DEFAULT_WS_URL = "ws://127.0.0.1:8765"
 
@@ -64,11 +75,11 @@ async def _route_setup():
 
     def bridge():
         """JS 側の口（sim/dom-ui/route-receiver-client.js）"""
-        return getattr(window, "__simRoute", None)
+        return js_value(getattr(window, "__simRoute", None))
 
     def ws_url():
         js_side = bridge()
-        url = getattr(js_side, "wsUrl", None) if js_side is not None else None
+        url = js_value(getattr(js_side, "wsUrl", None)) if js_side is not None else None
         return url if isinstance(url, str) and url != "" else ROUTE_DEFAULT_WS_URL
 
     # -- 送り口（ブラウザの WebSocket）-------------------------------------
@@ -231,7 +242,7 @@ async def _route_setup():
 
     # window.__simPython は Python 側の窓口をまとめる入れ物。認識処理ごとに
     # 別々の PyScript が足していくので、丸ごと代入せず自分の枠だけを足す
-    if not hasattr(window, "__simPython") or window.__simPython is None:
+    if not hasattr(window, "__simPython") or js_value(window.__simPython) is None:
         window.__simPython = to_obj({})
     window.__simPython.route = to_obj({
         "lapGatePassed": create_proxy(lap_gate_passed),
@@ -247,7 +258,7 @@ async def _route_setup():
 
 # 同じスクリプトが 2回実行されることがある。2回目は何もしない
 # （受け取り器が 2つできると、1回の応答でシナリオが二重に挿し込まれる）
-if getattr(getattr(window, "__simPython", None), "route", None) is None:
+if js_value(getattr(js_value(getattr(window, "__simPython", None)), "route", None)) is None:
     await _route_setup()
 else:
     window.console.log("[PyScript] 走行経路の受け取りは読み込み済み。二重実行を飛ばします")

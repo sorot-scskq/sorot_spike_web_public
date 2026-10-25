@@ -8,9 +8,9 @@
     from config_2025 import USED_JUDG, TIMEOUT_CONFIG
 
 【ファイル名に年が入っている理由】
-シミュレータは Python を /python/<ファイル名> という**平らな置き場**へ配る
-（vite.config.js の python-assets）。年ごとのフォルダに同じ名前のファイルが
-あると、あとの年で上書きされて片方が消える。名前は全体で 1つにすること。
+年のフォルダは sys.path に足して読む（Common/config.py の add_season_to_path）。
+同じ名前のファイルが年ごとにあると、先に見つかったほうが読まれてどちらか
+分からなくなる。名前は全体で 1つにすること。
 """
 
 from config import JUDG_BOTTLE, JUDG_GATE, JUDG_MINIFIGURE, JUDG_PLARAIL

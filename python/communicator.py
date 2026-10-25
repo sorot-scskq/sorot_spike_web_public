@@ -3,22 +3,23 @@
 
 双方向メッセージ通信（送信・受信・イベント待受・リクエスト/レスポンス）を提供する。
 
-【トランスポートが 2つある理由】
-つなぐ相手が実機とシミュレータで違うので、下回りだけを差し替えられるように
-BaseCommunicator でそろえてある。上に載る処理（ヒントカードの読み取りなど）は
-どちらで動いているかを知らない。
+【下回りを差し替えられるようにしてある理由】
+上に載る処理（ヒントカードの読み取りなど）が、どの通信でつながっているかを
+知らずに済むようにするため。BaseCommunicator でそろえてある。
 
-    TcpCommunicator       実機。C++ 制御部（127.0.0.1:12345）と、PC の推論サーバ。
-                          4バイトのビッグエンディアン長ヘッダ + JSON。
-                          C++ 側 PythonCommServer.cpp と同じ形式。
-    WebSocketCommunicator シミュレータ。ブラウザから届く先（/ws/hint-card など）。
-    CallbackCommunicator  PyScript とテスト。関数を 1つ差すだけ。
+    TcpCommunicator       TCP でつなぐ相手がいるとき用。4バイトのビッグエンディアン
+                          長ヘッダ + JSON で、C++ 側 PythonCommServer.cpp と同じ形式。
+                          **走行体の本番の道ではない**（C++ とはファイル、PC とは
+                          WebSocket。pc_client.py）
+    CallbackCommunicator  テスト用。関数を 1つ差すだけ
+    WebSocketCommunicator メッセージを1通ずつやりとりする用（枠付けなし）。
+                          sorot_spike_web（シミュレータ）と同じ形。走行体が PC へ
+                          送るときは枠付きなので、そちらは pc_client.py を使う
 
 【4バイト長ヘッダを共通の関数にしている理由】
 この並びだけは C++ とバイト単位で一致していないと通信が成立しない。
-実機のサーバ（ev3_server.py）とクライアント（pc_client.py）が別々に同じ
-処理を持っていると、片方だけ直したときに気づけない。send_packet /
-recv_packet の 1組だけを見ればよいようにしてある。
+送る側と受ける側が別々に同じ処理を持っていると、片方だけ直したときに
+気づけない。PacketCodec の1つだけを見ればよいようにしてある。
 """
 
 from __future__ import annotations
@@ -51,6 +52,10 @@ class BaseCommunicator:
 class WebSocketCommunicator(BaseCommunicator):
     """
     WebSocket を用いた双方向通信クライアント。
+
+    **走行体では使っていない。** 走行体は TcpCommunicator でつながる。
+    無線通信デバイスと WebSocket で話す必要が出たときのために残してある
+    （使うには websockets を入れること）。
 
     - 送信: send(data)
     - 単発受信: receive(timeout)
@@ -185,7 +190,7 @@ class WebSocketCommunicator(BaseCommunicator):
 
 
 class CallbackCommunicator(BaseCommunicator):
-    """関数コールバックを用いた送受信クラス（PyScript やテスト環境用）。"""
+    """関数コールバックを用いた送受信クラス（テスト用）。"""
 
     def __init__(
         self,
@@ -219,7 +224,7 @@ class CallbackCommunicator(BaseCommunicator):
         return callback
 
     def dispatch(self, data: Any) -> None:
-        """受信データを登録済みハンドラへ通知する（テスト・シミュレータからの模擬受信）。"""
+        """受信データを登録済みハンドラへ通知する（テストからの模擬受信）。"""
         for handler in list(self._handlers):
             try:
                 handler(data)
@@ -232,50 +237,90 @@ class CallbackCommunicator(BaseCommunicator):
 # TCP（実機）
 # --------------------------------------------------------------------------
 
-#: 受け取ってよい 1メッセージの上限[byte]。C++ 側 PythonCommServer.cpp と同じ
-MAX_PACKET_BYTES = 1_000_000
-
-
-def send_packet(sock, payload: Union[dict, str]) -> None:
+class PacketCodec:
     """
-    4バイトのビッグエンディアン長ヘッダを付けて送る。
+    4バイトのビッグエンディアン長ヘッダ ＋ UTF-8 の JSON。
 
-    C++ 側（PythonCommServer.cpp）と同じ形式。ここを変えると通信が壊れる。
+    **C++ 側（PythonCommServer.cpp）とバイト単位で一致していないと通信が成立しない。**
+    ここ1つにまとめてあるのは、送る側と受ける側が別々に同じ処理を持つと、片方だけ
+    直したときに気づけないため。
+
+        pack / unpack … WebSocket のフレーム1通ぶん（pc_client.py）
+        send / recv   … TCP のストリーム（TcpCommunicator）
     """
-    import struct
 
-    text = json.dumps(payload, ensure_ascii=False) if isinstance(payload, dict) else str(payload)
-    body = text.encode("utf-8")
-    sock.sendall(struct.pack("!I", len(body)) + body)
+    #: 受け取ってよい 1メッセージの上限[byte]。C++ 側 PythonCommServer.cpp と同じ
+    MAX_BYTES = 1_000_000
 
+    @classmethod
+    def pack(cls, payload: Union[dict, str]) -> bytes:
+        """長ヘッダを付けたバイト列にする"""
+        import struct
 
-def recv_packet(sock) -> str:
-    """
-    4バイトの長ヘッダを読み、その長さぶんを最後まで受け取る。
+        text = (json.dumps(payload, ensure_ascii=False)
+                if isinstance(payload, dict) else str(payload))
+        body = text.encode("utf-8")
+        return struct.pack("!I", len(body)) + body
 
-    :returns: 受け取った文字列。切断・不正な長さなら ""
-    """
-    import struct
+    @classmethod
+    def unpack(cls, raw: bytes) -> Optional[str]:
+        """
+        長ヘッダ付きのバイト列から中身を取り出す（WebSocket のフレーム1通ぶん）。
 
-    header = b""
-    while len(header) < 4:
-        chunk = sock.recv(4 - len(header))
-        if not chunk:
-            return ""  # 切断
-        header += chunk
+        ストリーム（TCP）と違って切れ目は運ぶ側が持っているので、ヘッダと中身の
+        長さが合っているかだけを見る。
 
-    length = struct.unpack("!I", header)[0]
-    if length == 0 or length > MAX_PACKET_BYTES:
-        return ""
+        :returns: 中身の文字列。形が違えば None
+        """
+        import struct
 
-    data = b""
-    while len(data) < length:
-        chunk = sock.recv(length - len(data))
-        if not chunk:
-            return ""  # 切断
-        data += chunk
+        if not isinstance(raw, (bytes, bytearray)):
+            return None
+        if len(raw) < 4:
+            logger.warning("フレームが短すぎます（%dバイト）", len(raw))
+            return None
 
-    return data.decode("utf-8")
+        length = struct.unpack("!I", bytes(raw[:4]))[0]
+        body = bytes(raw[4:])
+        if length != len(body):
+            # ヘッダを信じて読む。送り側が枠付けを忘れていると、ここで気づける
+            logger.warning("長ヘッダ（%d）と中身（%dバイト）が合いません", length, len(body))
+            body = body[:length]
+        return body.decode("utf-8", errors="replace")
+
+    @classmethod
+    def send(cls, sock, payload: Union[dict, str]) -> None:
+        """長ヘッダを付けて送る（TCP）"""
+        sock.sendall(cls.pack(payload))
+
+    @classmethod
+    def recv(cls, sock) -> str:
+        """
+        長ヘッダを読み、その長さぶんを最後まで受け取る（TCP）。
+
+        :returns: 受け取った文字列。切断・不正な長さなら ""
+        """
+        import struct
+
+        header = b""
+        while len(header) < 4:
+            chunk = sock.recv(4 - len(header))
+            if not chunk:
+                return ""  # 切断
+            header += chunk
+
+        length = struct.unpack("!I", header)[0]
+        if length == 0 or length > cls.MAX_BYTES:
+            return ""
+
+        data = b""
+        while len(data) < length:
+            chunk = sock.recv(length - len(data))
+            if not chunk:
+                return ""  # 切断
+            data += chunk
+
+        return data.decode("utf-8")
 
 
 class TcpCommunicator(BaseCommunicator):
@@ -317,7 +362,7 @@ class TcpCommunicator(BaseCommunicator):
             if self.conn is None and not self.connect(retry=False):
                 return
             try:
-                send_packet(self.conn, data)
+                PacketCodec.send(self.conn, data)
             except Exception:  # noqa: BLE001
                 logger.exception("TCP 送信に失敗しました: %s:%s", self.host, self.port)
                 self.close()
@@ -330,7 +375,7 @@ class TcpCommunicator(BaseCommunicator):
             old = self.conn.gettimeout()
             try:
                 self.conn.settimeout(timeout if timeout is not None else self.timeout)
-                raw = recv_packet(self.conn)
+                raw = PacketCodec.recv(self.conn)
                 if raw == "":
                     return None
                 return self._parse_payload(raw)
@@ -354,8 +399,8 @@ class TcpCommunicator(BaseCommunicator):
             old = self.conn.gettimeout()
             try:
                 self.conn.settimeout(timeout if timeout is not None else self.timeout)
-                send_packet(self.conn, data)
-                raw = recv_packet(self.conn)
+                PacketCodec.send(self.conn, data)
+                raw = PacketCodec.recv(self.conn)
                 if raw == "":
                     raise ConnectionError("接続が切れました")
                 return self._parse_payload(raw)

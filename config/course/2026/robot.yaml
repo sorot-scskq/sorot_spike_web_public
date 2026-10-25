@@ -89,7 +89,12 @@ wheel:
   # radius: 50  # 車輪半径[mm]
   # interval: 120  # 車輪間隔[mm]
   radius: 27.5  # 車輪半径[mm]
-  interval: 125  # 車輪間隔[mm]
+  # 車輪間隔[mm]。走行体の C++ と同じ値（Device/HWMonitor.cpp の NXT_WHEEL_INTERVAL /
+  # NXT_WHEEL_TURN_SLIP、7384b4c）。旋回の計算には interval × turn_slip（実効 115.47mm）を使う。
+  # 以前は 125 で、同じ左右差でも回る量が実機より約 8% 少なく、前へ進みながら回る行
+  # （FUNCNO 3 の FWD≠0）の弧が膨らんでいた
+  interval: 112.0  # 物理トレッド
+  turn_slip: 1.031  # 旋回の横滑りぶん
 
 # 速度制御設定
 speed:

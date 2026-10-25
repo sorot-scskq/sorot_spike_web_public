@@ -39,6 +39,17 @@ from pyodide.ffi import create_once_callable, create_proxy
 from pyodide.ffi import to_js as _to_js
 from pyodide.http import pyfetch
 
+
+async def _sim_ffi_load():
+    """JS の null を None にそろえる共通の関数（sim/pyscript/sim_ffi.py）を取り込む"""
+    response = await pyfetch("python/sim_ffi.py", cache="no-store")
+    with open("sim_ffi.py", "w") as out:
+        out.write(await response.string())
+
+
+await _sim_ffi_load()
+from sim_ffi import js_value  # noqa: E402
+
 # OpenCV（位置特定で使う）
 await pyodide_js.loadPackage(['numpy', 'opencv-python'])
 
@@ -52,7 +63,8 @@ def _es_to_js(value):
 
 async def _es_load_modules():
     # /python/ で配られている（vite.config.js の PYTHON_SOURCE_DIRS）
-    for name in ('config.py', 'bottle_locator.py', 'remote_control.py', 'et_sumo.py',
+    # opencv.py は et_sumo.py が絵を残すときに読む（走行体の版にそろえたときに増えた）
+    for name in ('opencv.py', 'config.py', 'bottle_locator.py', 'remote_control.py', 'et_sumo.py',
                  'et_sumo_avoid_green.py'):
         # 書き換えた Python を読み直させるため、ブラウザのキャッシュを使わない
         response = await pyfetch(f'python/{name}', cache='no-store')
@@ -81,7 +93,7 @@ def _es_frame_source():
     if now - _es_frame['at'] < _ES_FRAME_REUSE_MS:
         return _es_frame['bgr']
     bgr = None
-    manager = getattr(window, 'canvasManager', None)
+    manager = js_value(getattr(window, 'canvasManager', None))
     if manager is not None and manager.captureReadView():
         canvas = manager.readCanvas
         width, height = int(canvas.width), int(canvas.height)
@@ -149,7 +161,7 @@ def _es_on_observation(js_observation):
 
 def _es_start():
     """力士寄せを差し直し、RemoteControlBridge に差す。走らせるたびに段取りを頭から始める"""
-    bridge = window.REMOTECONTROL
+    bridge = js_value(getattr(window, 'REMOTECONTROL', None))
     if bridge is None:
         console.error('et_sumo: RemoteControlBridge（window.REMOTECONTROL）がありません')
         return False
@@ -168,14 +180,14 @@ def _es_start():
 
 def _es_restart():
     """差さっているときだけ、力士寄せを作り直す（走り直すとき。sim/dom-ui/scenario-state.js）"""
-    bridge = window.REMOTECONTROL
+    bridge = js_value(getattr(window, 'REMOTECONTROL', None))
     if bridge is None or _es_state['proxy'] is None or not bridge.hasController():
         return False
     return _es_start()
 
 
 def _es_stop():
-    bridge = window.REMOTECONTROL
+    bridge = js_value(getattr(window, 'REMOTECONTROL', None))
     if bridge is not None:
         bridge.clearController()
     remote_control.RemoteControl.reset_instance()

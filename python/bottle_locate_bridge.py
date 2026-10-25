@@ -17,6 +17,17 @@ from js import Object, alert, console, document, window
 from pyodide.ffi import to_js as _to_js
 from pyodide.http import pyfetch
 
+
+async def _sim_ffi_load():
+    """JS の null を None にそろえる共通の関数（sim/pyscript/sim_ffi.py）を取り込む"""
+    response = await pyfetch("python/sim_ffi.py", cache="no-store")
+    with open("sim_ffi.py", "w") as out:
+        out.write(await response.string())
+
+
+await _sim_ffi_load()
+from sim_ffi import js_value  # noqa: E402
+
 # OpenCV（実機と同じ処理を通す）
 await pyodide_js.loadPackage(['numpy', 'opencv-python'])
 
@@ -47,7 +58,7 @@ def _bl_to_js(value):
 
 
 def _bl_get_canvas_frame(canvas_id=CANVAS_ID):
-    canvas = document.getElementById(canvas_id)
+    canvas = js_value(document.getElementById(canvas_id))
     if canvas is None:
         return None
     width = int(canvas.width)
@@ -106,7 +117,7 @@ def _bl_reset():
 
 
 # window.__simPython は認識処理ごとの窓口をまとめる（上書きしない）
-if not hasattr(window, '__simPython') or window.__simPython is None:
+if not hasattr(window, '__simPython') or js_value(window.__simPython) is None:
     window.__simPython = _bl_to_js({})
 window.__simPython.bottleLocate = _bl_to_js({
     'read': _bl_read_frame,
@@ -117,7 +128,7 @@ window.__simPython.bottleLocate = _bl_to_js({
 
 window.pyDetectBottleLocate = _bl_detect_and_alert
 
-btn = document.getElementById('pyDetectBottleLocateButton')
+btn = js_value(document.getElementById('pyDetectBottleLocateButton'))
 if btn:
     btn.onclick = _bl_detect_and_alert
 

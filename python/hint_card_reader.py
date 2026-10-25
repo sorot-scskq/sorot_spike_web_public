@@ -31,112 +31,10 @@ from typing import Any, Callable, Iterable, Optional
 
 logger = logging.getLogger(__name__)
 
-class HintCard:
-    """カードの種類"""
-
-    CARD1 = "card1"
-    CARD2 = "card2"
-
-
 # --------------------------------------------------------------------------
 # カードの中身の解釈
 # --------------------------------------------------------------------------
 
-_POSITION_DASH = re.compile(r"^G?(\d)[-_](\d)$")
-_POSITION_PLAIN = re.compile(r"^G?(\d)(\d)$")
-_CARD_NUMBER = re.compile(r"^\s*([12])\s*:\s*(.*)$", re.S)
-_CARD_NUMBER_HEAD = re.compile(r"^\s*([12])\s*:")
-#: 暗号化されたヒントカード2 の見た目（Base64）。1ブロックで 24文字になる
-_ENCRYPTED_LIKE = re.compile(r"^[A-Za-z0-9+/]{16,}={0,2}$")
-
-
-def _parse_position_key(text: str) -> Optional[dict]:
-    """位置の呼び名（"25" や "G2-5"）を {'x': .., 'y': ..} にする"""
-    if not isinstance(text, str):
-        return None
-    t = text.strip().upper()
-    m = _POSITION_DASH.match(t) or _POSITION_PLAIN.match(t)
-    if not m:
-        return None
-    return {"x": int(m.group(1)), "y": int(m.group(2))}
-
-
-def strip_card_number(text: Optional[str]) -> str:
-    """頭に付いた "1:" / "2:" を外した本文"""
-    m = _CARD_NUMBER.match(text or "")
-    return m.group(2) if m else (text or "")
-
-
-def _card_number_prefix(text: Optional[str]) -> Optional[str]:
-    """頭に付いた "1:" / "2:" から読み取れるカード番号"""
-    m = _CARD_NUMBER_HEAD.match(text or "")
-    if not m:
-        return None
-    return HintCard.CARD1 if m.group(1) == "1" else HintCard.CARD2
-
-
-def parse_hint_card_text(text: Optional[str]) -> list:
-    """
-    ヒントカードの中身を、ゲートの位置の組に分解する。
-
-    "25,35/53,54" のように、ゲート 1つぶんが "始点,終点"、ゲート同士は "/" 区切り。
-    """
-    if not isinstance(text, str):
-        return []
-    body = strip_card_number(text).strip()
-    if body == "":
-        return []
-
-    pairs = []
-    for chunk in re.split(r"[/\n]", body):
-        parts = [s.strip() for s in chunk.split(",")]
-        parts = [s for s in parts if s != ""]
-        if len(parts) != 2:
-            continue
-        a = _parse_position_key(parts[0])
-        b = _parse_position_key(parts[1])
-        if a and b:
-            pairs.append({"a": a, "b": b})
-    return pairs
-
-
-def is_encrypted_text(text: Optional[str]) -> bool:
-    """
-    暗号化されたヒントカード2 の見た目か（Base64 の塊）。
-
-    本番のヒントカード2 は暗号化されて掲示される。走行体は中身を解釈できず、
-    そのまま PC 側へ渡して復号してもらう。読み取りの失敗（短い断片や記号）を
-    カードとして受け取ってしまわないよう、Base64 の形をしていることは見る。
-    """
-    return bool(text) and bool(_ENCRYPTED_LIKE.match(text.strip()))
-
-
-def identify_hint_card(text: Optional[str]) -> Optional[str]:
-    """
-    読んだ文字列が 1枚目か 2枚目かを見分ける。
-
-    ヒント1 は平文（位置の組が 1つ）、ヒント2 は暗号文で届く（規約 表 7-2）。
-    番号が頭に付いていればそちらを優先する。
-
-        "25,35"                     位置の組が 1つ  → ヒント1
-        "NKVD6nnS28waG2lbRQlD8A=="  暗号文          → ヒント2
-        "53,54/12,22"               位置の組が 2つ  → ヒント2（平文のとき）
-
-    3行目は本番では起きない（ヒント2 は暗号化されている）が、暗号化しない
-    相手（tools/ws_debug_server など）と繋いだときのために残してある。
-    """
-    prefixed = _card_number_prefix(text)
-    if prefixed:
-        return prefixed
-
-    pairs = parse_hint_card_text(text)
-    if len(pairs) == 1:
-        return HintCard.CARD1
-    if len(pairs) >= 2:
-        return HintCard.CARD2
-    if is_encrypted_text(text):
-        return HintCard.CARD2
-    return None
 
 
 # --------------------------------------------------------------------------
@@ -161,6 +59,22 @@ except (ImportError, ValueError):
             from RoughSpot.Python.Common.camera import RobotCamera
             from RoughSpot.Python.Common.qr_decoder import QrCodeDecoder
             from RoughSpot.Python.Common.communicator import CallbackSender as BaseCallbackSender, MessageSender, WebSocketSender as BaseWebSocketSender
+
+# 規約（表 7-2）の読み解きは、走行体の 2026/hint_card.py に一本化する。
+#
+# 走行体では hint_card.py（文字列の読み方）と hint_card_capture.py（撮って読む）に
+# 分かれた。シミュレータはまだ分ける前のこのファイルを使っているが、**同じ規約の
+# 解釈を2か所に置くと必ず食い違う**ので、読み解きだけは走行体の1本を読む。
+# 名前は今までどおり使えるようにしてある（呼ぶ側とテストを変えない）。
+from hint_card import HintCard, HintCardText          # noqa: E402,F401
+
+_parse_position_key = HintCardText._position           # noqa: SLF001 — 走行体の1本を使う
+_card_number_prefix = HintCardText._card_number_prefix  # noqa: SLF001
+strip_card_number = HintCardText.strip_card_number
+parse_hint_card_text = HintCardText.parse
+is_encrypted_text = HintCardText.is_encrypted
+identify_hint_card = HintCardText.identify
+
 
 # 後方互換性エイリアス
 HintCardCamera = RobotCamera
@@ -255,7 +169,7 @@ class HintCardReader:
         """
         検出されたカード領域から文字列を解決するリゾルバを設定する。
 
-        :param fn: (panels) -> str|None。panels は find_card_panels の戻り値
+        :param fn: (panels) -> str|None。panels は find_card_rects の戻り値
         """
         self._panel_resolver = fn if callable(fn) else None
 
@@ -299,8 +213,8 @@ class HintCardReader:
         # 時間が掛かる。板は映像のごく一部なので、切り抜けば同じ4段でも桁違いに
         # 速い（qr_decoder.QrCodeDecoder.decode）。板が見つからないときは、
         # これまでどおり映像まるごとを読む。
-        panels = self.decoder.find_card_panels(frame)
-        text = self.decoder.decode(frame, panels=panels)
+        panels = self.decoder.find_card_rects(frame)
+        text = self.decoder.decode(frame, rects=panels)
         if text is None and self._panel_resolver is not None and panels:
             try:
                 text = self._panel_resolver(panels)

@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Application</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
+    <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
     <script type="py" async src="python/bottle_color_bridge.py" config='{"packages": []}'></script>
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/ScenarioJsonLoader-C_z6VCsu.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-CrlY9br5.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/ScenarioJsonLoader-BGN8ixhb.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Bw2mG9_I.js"></script>
 </head>
 
 <body>
@@ -84,6 +84,14 @@
                         <label class="camera-enabled-toggle" title="ETラリー: 前面カメラでグリッドに対する向きのずれを測り、本当のずれと並べて映像に重ねます（走行体の Python を PyScript で動かす。初回は OpenCV の読み込みに数十秒）">
                             <input type="checkbox" id="gridHeadingCheckbox">
                             向きのずれを測る
+                        </label>
+                        <label class="camera-enabled-toggle" title="ETラリー: 前面カメラでゲートの柱の足元を見つけ、いまの姿勢のまま通れるかを判じます（走行体の gate_finder / gate_check_task を PyScript で動かす）。ふだんはシナリオの SCRIPT「2026/recog/gate_check.py」の行だけ見張ります。入れると走り出しから走り終わりまで見張ります">
+                            <input type="checkbox" id="gateCheckCheckbox">
+                            ゲートを見張る
+                        </label>
+                        <label class="camera-enabled-toggle" title="ETラリー: 見張りで見えたいちばん近いゲートの中心へ、向き保持の目標を振って寄せます（走行体の gate_steer）。走行体は既定で切ってあり、sorot_spike/gate_steer.txt に 1 を書くと入ります。これはその置き場を書きます">
+                            <input type="checkbox" id="gateSteerCheckbox">
+                            ゲートへ寄せる
                         </label>
                         <label class="camera-enabled-toggle" title="その場旋回を抜けるたびに、画面上の向きだけを σ0.7°（実機の実測）ずらします。オドメトリはずれを知りません">
                             <input type="checkbox" id="turnErrorCheckbox">

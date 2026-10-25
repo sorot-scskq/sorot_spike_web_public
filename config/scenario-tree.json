@@ -542,6 +542,28 @@
           ]
         },
         {
+          "label": "17_実機custom_Left(sorot_spike)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/17_実機custom_Left(sorot_spike)/scenario.json"
+            }
+          ]
+        },
+        {
+          "label": "18_実機custom_Right(sorot_spike)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/18_実機custom_Right(sorot_spike)/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "90_難所",
           "open": false,
           "children": [

@@ -11,6 +11,17 @@ from js import alert, console, document, window
 from pyodide.http import pyfetch
 
 
+async def _sim_ffi_load():
+    """JS の null を None にそろえる共通の関数（sim/pyscript/sim_ffi.py）を取り込む"""
+    response = await pyfetch("python/sim_ffi.py", cache="no-store")
+    with open("sim_ffi.py", "w") as out:
+        out.write(await response.string())
+
+
+await _sim_ffi_load()
+from sim_ffi import js_value  # noqa: E402
+
+
 class PyScriptColorBridge:
     """
     PyScript / ブラウザ DOM と BottleColorMonitor を接続するシミュレータ専用ブリッジ。
@@ -22,7 +33,7 @@ class PyScriptColorBridge:
 
     def get_canvas_frame(self, canvas_id="cameraView"):
         """指定 canvas から画素データを取得する。"""
-        canvas = document.getElementById(canvas_id)
+        canvas = js_value(document.getElementById(canvas_id))
         if not canvas:
             return None
 
@@ -68,7 +79,7 @@ class PyScriptColorBridge:
 
     def setup(self, button_id="pyDetectBottleColorButton"):
         """DOMイベントと window グローバルへのエクスポートを行う。"""
-        btn = document.getElementById(button_id)
+        btn = js_value(document.getElementById(button_id))
         if btn:
             btn.onclick = self.detect_and_alert
 
@@ -90,7 +101,9 @@ bridge = PyScriptColorBridge()
 async def _init():
     global BottleColor, BottleColorClassifier, BottleColorMonitor, ColorConverter
     try:
-        for _mod_name in ("bottle_color.py", "color_converter.py", "bottle_color_monitor.py"):
+        # opencv.py は bottle_color_monitor.py が画像をまとめて数えるときに読む
+        for _mod_name in ("opencv.py", "bottle_color.py", "color_converter.py",
+                          "bottle_color_monitor.py"):
             _resp = await pyfetch(f"python/{_mod_name}")
             with open(_mod_name, "w") as _f:
                 _f.write(await _resp.string())
