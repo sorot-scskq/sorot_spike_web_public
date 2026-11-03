@@ -1,0 +1,2063 @@
+[
+  {
+    "Comment": "【ETラリー 向き補正つき】14_ETラリー_経路サンプル（PC が返した経路そのまま）に、実機の route_register.py と同じ書き換えを当てたもの。直進は向き保持直進（FUNCNO 19）、旋回の直後の直進には向きを測る SCRIPT が付く。開始位置は「難所」。サイドバーの「旋回に誤差を入れる」を入れて、14 と見比べる。【ETラリーの経路サンプル】sorot_spike/Tests/fixtures/pc_route_sample.json（PC-System_2026 が実際に返した経路、ヒント1 25,35 / ヒント2 53,54/12,22）を、PC を使わずに単体で走らせる。開始位置は「難所」を選ぶこと。向きのずれを見るときは、サイドバーの「向きのずれを測る」「旋回に誤差を入れる」を入れる。1行目: 直進 320mm",
+    "SNO": 1,
+    "CNO": 1,
+    "PRVSNO": 1,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 320,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 2,
+    "PRVSNO": 1,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 3,
+    "PRVSNO": 1,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 4,
+    "PRVSNO": 1,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 5,
+    "PRVSNO": 1,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 6,
+    "PRVSNO": 1,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 7,
+    "PRVSNO": 1,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 8,
+    "PRVSNO": 1,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 9,
+    "PRVSNO": 1,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め後退 339mm",
+    "SNO": 1,
+    "CNO": 10,
+    "PRVSNO": 1,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 11,
+    "PRVSNO": 1,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 12,
+    "PRVSNO": 1,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 13,
+    "PRVSNO": 1,
+    "PRVCNO": 12,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 14,
+    "PRVSNO": 1,
+    "PRVCNO": 13,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 15,
+    "PRVSNO": 1,
+    "PRVCNO": 14,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 16,
+    "PRVSNO": 1,
+    "PRVCNO": 15,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 17,
+    "PRVSNO": 1,
+    "PRVCNO": 16,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 18,
+    "PRVSNO": 1,
+    "PRVCNO": 17,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 19,
+    "PRVSNO": 1,
+    "PRVCNO": 18,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 20,
+    "PRVSNO": 1,
+    "PRVCNO": 19,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 21,
+    "PRVSNO": 1,
+    "PRVCNO": 20,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 22,
+    "PRVSNO": 1,
+    "PRVCNO": 21,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 23,
+    "PRVSNO": 1,
+    "PRVCNO": 22,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 24,
+    "PRVSNO": 1,
+    "PRVCNO": 23,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右90度回転",
+    "SNO": 1,
+    "CNO": 25,
+    "PRVSNO": 1,
+    "PRVCNO": 24,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 26,
+    "PRVSNO": 1,
+    "PRVCNO": 25,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 27,
+    "PRVSNO": 1,
+    "PRVCNO": 26,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 28,
+    "PRVSNO": 1,
+    "PRVCNO": 27,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 29,
+    "PRVSNO": 1,
+    "PRVCNO": 28,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 30,
+    "PRVSNO": 1,
+    "PRVCNO": 29,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 31,
+    "PRVSNO": 1,
+    "PRVCNO": 30,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め後退 339mm",
+    "SNO": 1,
+    "CNO": 32,
+    "PRVSNO": 1,
+    "PRVCNO": 31,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 33,
+    "PRVSNO": 1,
+    "PRVCNO": 32,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 34,
+    "PRVSNO": 1,
+    "PRVCNO": 33,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 35,
+    "PRVSNO": 1,
+    "PRVCNO": 34,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 36,
+    "PRVSNO": 1,
+    "PRVCNO": 35,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 37,
+    "PRVSNO": 1,
+    "PRVCNO": 36,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 38,
+    "PRVSNO": 1,
+    "PRVCNO": 37,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 39,
+    "PRVSNO": 1,
+    "PRVCNO": 38,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 40,
+    "PRVSNO": 1,
+    "PRVCNO": 39,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 41,
+    "PRVSNO": 1,
+    "PRVCNO": 40,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 42,
+    "PRVSNO": 1,
+    "PRVCNO": 41,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 43,
+    "PRVSNO": 1,
+    "PRVCNO": 42,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 44,
+    "PRVSNO": 1,
+    "PRVCNO": 43,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 45,
+    "PRVSNO": 1,
+    "PRVCNO": 44,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 46,
+    "PRVSNO": 1,
+    "PRVCNO": 45,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右90度回転",
+    "SNO": 1,
+    "CNO": 47,
+    "PRVSNO": 1,
+    "PRVCNO": 46,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 48,
+    "PRVSNO": 1,
+    "PRVCNO": 47,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 49,
+    "PRVSNO": 1,
+    "PRVCNO": 48,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 50,
+    "PRVSNO": 1,
+    "PRVCNO": 49,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 51,
+    "PRVSNO": 1,
+    "PRVCNO": 50,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 52,
+    "PRVSNO": 1,
+    "PRVCNO": 51,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 53,
+    "PRVSNO": 1,
+    "PRVCNO": 52,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め後退 339mm",
+    "SNO": 1,
+    "CNO": 54,
+    "PRVSNO": 1,
+    "PRVCNO": 53,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 55,
+    "PRVSNO": 1,
+    "PRVCNO": 54,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 56,
+    "PRVSNO": 1,
+    "PRVCNO": 55,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 57,
+    "PRVSNO": 1,
+    "PRVCNO": 56,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 58,
+    "PRVSNO": 1,
+    "PRVCNO": 57,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 59,
+    "PRVSNO": 1,
+    "PRVCNO": 58,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 60,
+    "PRVSNO": 1,
+    "PRVCNO": 59,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退 240mm",
+    "SNO": 1,
+    "CNO": 61,
+    "PRVSNO": 1,
+    "PRVCNO": 60,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 62,
+    "PRVSNO": 1,
+    "PRVCNO": 61,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左45度回転",
+    "SNO": 1,
+    "CNO": 63,
+    "PRVSNO": 1,
+    "PRVCNO": 62,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め直進 339mm",
+    "SNO": 1,
+    "CNO": 64,
+    "PRVSNO": 1,
+    "PRVCNO": 63,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 65,
+    "PRVSNO": 1,
+    "PRVCNO": 64,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 66,
+    "PRVSNO": 1,
+    "PRVCNO": 65,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進 240mm",
+    "SNO": 1,
+    "CNO": 67,
+    "PRVSNO": 1,
+    "PRVCNO": 66,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": 70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 240,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "右45度回転",
+    "SNO": 1,
+    "CNO": 68,
+    "PRVSNO": 1,
+    "PRVCNO": 67,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "斜め後退 339mm",
+    "SNO": 1,
+    "CNO": 69,
+    "PRVSNO": 1,
+    "PRVCNO": 68,
+    "RunInfo": {
+      "FUNCNO": 19,
+      "FWD": -70,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0,
+      "SCRIPT": "2026/recog/grid_heading.py"
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -339,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "左90度回転",
+    "SNO": 1,
+    "CNO": 70,
+    "PRVSNO": 1,
+    "PRVCNO": 69,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -70,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "JMPSNO": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "終了",
+    "SNO": 0,
+    "CNO": 0,
+    "PRVSNO": 1,
+    "PRVCNO": 70,
+    "RunInfo": {
+      "FUNCNO": 1
+    },
+    "SwitchInfo": {},
+    "CoordCorrectInfo": {}
+  }
+]

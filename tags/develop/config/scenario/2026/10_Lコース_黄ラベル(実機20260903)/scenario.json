@@ -1,0 +1,1055 @@
+[
+  {
+    "Comment": "LAPゲートまで進む",
+    "SNO": 10,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 480,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "a",
+    "SNO": 10,
+    "CNO": 2,
+    "PRVSNO": 10,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 435,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "b",
+    "SNO": 10,
+    "CNO": 3,
+    "PRVSNO": 10,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 420,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "c",
+    "SNO": 10,
+    "CNO": 4,
+    "PRVSNO": 10,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 500,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "d",
+    "SNO": 10,
+    "CNO": 5,
+    "PRVSNO": 10,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "e",
+    "SNO": 10,
+    "CNO": 6,
+    "PRVSNO": 10,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "f",
+    "SNO": 10,
+    "CNO": 7,
+    "PRVSNO": 10,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "0",
+    "SNO": 10,
+    "CNO": 8,
+    "PRVSNO": 10,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 6.4,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1200,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直線",
+    "SNO": 10,
+    "CNO": 9,
+    "PRVSNO": 10,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 600,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色検知",
+    "SNO": 10,
+    "CNO": 10,
+    "PRVSNO": 10,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 80,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAP以降",
+    "SNO": 10,
+    "CNO": 11,
+    "PRVSNO": 10,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 50,
+      "TRN": 0,
+      "KP": 8,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 800,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 20,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 200,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 10,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "a",
+    "SNO": 20,
+    "CNO": 2,
+    "PRVSNO": 20,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 15,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 2000,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色検知",
+    "SNO": 20,
+    "CNO": 3,
+    "PRVSNO": 20,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 20,
+    "CNO": 4,
+    "PRVSNO": 20,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 20,
+    "CNO": 5,
+    "PRVSNO": 20,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 20,
+    "CNO": 6,
+    "PRVSNO": 20,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 30,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 20,
+    "CNO": 7,
+    "PRVSNO": 20,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "30旋回",
+    "SNO": 20,
+    "CNO": 8,
+    "PRVSNO": 20,
+    "PRVCNO": 7,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 45,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ボトル置き前進",
+    "SNO": 20,
+    "CNO": 9,
+    "PRVSNO": 20,
+    "PRVCNO": 8,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 150,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "後退",
+    "SNO": 20,
+    "CNO": 10,
+    "PRVSNO": 20,
+    "PRVCNO": 9,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -160,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 20,
+    "CNO": 11,
+    "PRVSNO": 20,
+    "PRVCNO": 10,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -100,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進",
+    "SNO": 30,
+    "CNO": 1,
+    "PRVSNO": 20,
+    "PRVCNO": 11,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 450,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青検知",
+    "SNO": 30,
+    "CNO": 2,
+    "PRVSNO": 30,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゲート前調整",
+    "SNO": 30,
+    "CNO": 3,
+    "PRVSNO": 30,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 100,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "方向転換",
+    "SNO": 30,
+    "CNO": 4,
+    "PRVSNO": 30,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直進",
+    "SNO": 40,
+    "CNO": 1,
+    "PRVSNO": 30,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "旋回",
+    "SNO": 40,
+    "CNO": 2,
+    "PRVSNO": 40,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 60,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "押し出し",
+    "SNO": 40,
+    "CNO": 3,
+    "PRVSNO": 40,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 800,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "バック",
+    "SNO": 40,
+    "CNO": 4,
+    "PRVSNO": 40,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライン方向へ旋回",
+    "SNO": 40,
+    "CNO": 5,
+    "PRVSNO": 40,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -60,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黒検知",
+    "SNO": 50,
+    "CNO": 1,
+    "PRVSNO": 40,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 2,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 50,
+    "CNO": 2,
+    "PRVSNO": 50,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 50,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "90旋回",
+    "SNO": 50,
+    "CNO": 3,
+    "PRVSNO": 50,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -90,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "50進む",
+    "SNO": 50,
+    "CNO": 4,
+    "PRVSNO": 50,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 500,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青検知",
+    "SNO": 50,
+    "CNO": 5,
+    "PRVSNO": 50,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 16,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 3,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "直線",
+    "SNO": 50,
+    "CNO": 6,
+    "PRVSNO": 50,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 2,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 800,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゴールイン",
+    "SNO": 90,
+    "CNO": 1,
+    "PRVSNO": 50,
+    "PRVCNO": 6,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 130,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ガレージ停止。ここで走行を終える（停止コマンド）。PRVSNO/PRVCNO は直前のコマンドへ向けること",
+    "SNO": 0,
+    "CNO": 0,
+    "PRVSNO": 90,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": 1000,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  }
+]

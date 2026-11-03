@@ -1,0 +1,16 @@
+[
+    {
+        "Comment":"シナリオ24: 座標補正テスト: 全体補正 (ACAF: 0x07) - 座標補正テスト: 全体補正",
+        "SNO":24, "CNO":1,"PRVSNO":24,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":0,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":1,"SCT":100,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{"CAPX":50,"CAPY":50,"CAPR":30,"ACAF":7}
+    },
+    {
+        "Comment": "シナリオ24: 終了コマンド",
+        "SNO": 0, "CNO": 1, "PRVSNO": 24, "PRVCNO": 1,
+        "RunInfo": {},
+        "SwitchInfo": {},
+        "CoordCorrectInfo": {}
+    }
+]

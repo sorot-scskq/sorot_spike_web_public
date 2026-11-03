@@ -1,0 +1,56 @@
+[
+  {
+    "Comment": "LAPゲートまで進む（Lコース本番と同じ）",
+    "SNO": 1, "CNO": 1, "PRVSNO": 1, "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 1,
+      "FWD": 100,
+      "TRN": 0,
+      "KP": 10, "KI": 0, "KD": 1,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 5400
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "LAPゲート通過後バックする",
+    "SNO": 1, "CNO": 2, "PRVSNO": 1, "PRVCNO": 1,
+    "RunInfo": { "FUNCNO": 5, "FWD": -100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -200
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ボトルデリバリー置き場の方向を向く（ET相撲 SCR:-150 の代わり）",
+    "SNO": 1, "CNO": 3, "PRVSNO": 1, "PRVCNO": 2,
+    "RunInfo": { "FUNCNO": 3, "FWD": 0, "TRN": -100, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 32, "SCD": 0, "SCR": -90 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ボトルデリバリー置き場へ向かう（ET相撲 SCD:800 の代わり）",
+    "SNO": 1, "CNO": 4, "PRVSNO": 1, "PRVCNO": 3,
+    "RunInfo": { "FUNCNO": 5, "FWD": 100, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 700 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "置き場で微調整（距離・角度はシミュレータ上で要調整）",
+    "SNO": 1, "CNO": 5, "PRVSNO": 1, "PRVCNO": 4,
+    "RunInfo": { "FUNCNO": 5, "FWD": 50, "TRN": 0, "NOBLNCE": 1 },
+    "SwitchInfo": { "SCJFN": 128, "SCD": 150 },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "シナリオ終了",
+    "SNO": 0, "CNO": 0, "PRVSNO": 1, "PRVCNO": 5,
+    "RunInfo": {},
+    "SwitchInfo": {},
+    "CoordCorrectInfo": {}
+  }
+]

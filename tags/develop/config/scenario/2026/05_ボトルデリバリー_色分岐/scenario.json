@@ -1,0 +1,507 @@
+[
+  {
+    "Comment": "キャリーボトルへゆっくり押し込む。捕捉できる幅は車体前面から 75〜125mm しかないので、そこで止めようとせず押し込んで確実に触れる。前面カメラはこのあいだにラベル色を読む",
+    "SNO": 1,
+    "CNO": 1,
+    "PRVSNO": 1,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 30,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色を見るところ（SNO 2）へ",
+    "SNO": 1,
+    "CNO": 2,
+    "PRVSNO": 1,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 2
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "止まってカメラの判定を待つ。ここで色が決まらないと赤へ回すので、カメラが数フレーム回るだけ待つ",
+    "SNO": 2,
+    "CNO": 1,
+    "PRVSNO": 2,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 1000
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ラベルなら赤ゾーンへ運ぶシナリオ（SNO 10）へ飛ぶ。当たらなければ次のコマンドを見る",
+    "SNO": 2,
+    "CNO": 2,
+    "PRVSNO": 2,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 10,
+      "JMPSNO": 10
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ラベルなら青ゾーンへ運ぶシナリオ（SNO 11）へ飛ぶ。当たらなければ次のコマンドを見る",
+    "SNO": 2,
+    "CNO": 3,
+    "PRVSNO": 2,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 11,
+      "JMPSNO": 11
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ラベルなら黄ゾーンへ運ぶシナリオ（SNO 12）へ飛ぶ。当たらなければ次のコマンドを見る",
+    "SNO": 2,
+    "CNO": 4,
+    "PRVSNO": 2,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 12,
+      "JMPSNO": 12
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "色が分からなかった。運ばないと点にならないので、既定の置き場として赤ゾーン（SNO 10）へ運ぶ",
+    "SNO": 2,
+    "CNO": 5,
+    "PRVSNO": 2,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 13,
+      "JMPSNO": 10
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ここへは来ない想定（上の 4つでどれかに当たる）。念のため赤ゾーンへ",
+    "SNO": 2,
+    "CNO": 6,
+    "PRVSNO": 2,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 10
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ゾーンの高さへ向く（上）。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）",
+    "SNO": 10,
+    "CNO": 1,
+    "PRVSNO": 10,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ゾーンの高さまで運ぶ（520mm）",
+    "SNO": 10,
+    "CNO": 2,
+    "PRVSNO": 10,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 520
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーンの方向（右）へ向く。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）",
+    "SNO": 10,
+    "CNO": 3,
+    "PRVSNO": 10,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 90
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "赤ゾーンまで運ぶ。抱えたボトルは車体の 108mm 先にあるので、その分だけ手前で止まる（2088mm）",
+    "SNO": 10,
+    "CNO": 4,
+    "PRVSNO": 10,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 2088
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下がってボトルを赤ゾーンに置く。アームに引く力は無いので、下がればボトルはその場に残る",
+    "SNO": 10,
+    "CNO": 5,
+    "PRVSNO": 10,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -40,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ。ここで飛ばないと、次の色のルートへ流れ込んでしまう",
+    "SNO": 10,
+    "CNO": 6,
+    "PRVSNO": 10,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 99
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ゾーンの高さへ向く（上）。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）",
+    "SNO": 11,
+    "CNO": 1,
+    "PRVSNO": 11,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": 50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ゾーンの高さまで運ぶ（212mm）",
+    "SNO": 11,
+    "CNO": 2,
+    "PRVSNO": 11,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 212
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーンの方向（右）へ向く。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）",
+    "SNO": 11,
+    "CNO": 3,
+    "PRVSNO": 11,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 90
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "青ゾーンまで運ぶ。抱えたボトルは車体の 108mm 先にあるので、その分だけ手前で止まる（2088mm）",
+    "SNO": 11,
+    "CNO": 4,
+    "PRVSNO": 11,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 2088
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下がってボトルを青ゾーンに置く。アームに引く力は無いので、下がればボトルはその場に残る",
+    "SNO": 11,
+    "CNO": 5,
+    "PRVSNO": 11,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -40,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ。ここで飛ばないと、次の色のルートへ流れ込んでしまう",
+    "SNO": 11,
+    "CNO": 6,
+    "PRVSNO": 11,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 99
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ゾーンの高さへ向く（下）。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）",
+    "SNO": 12,
+    "CNO": 1,
+    "PRVSNO": 12,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 180
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ゾーンの高さまで運ぶ（95mm）",
+    "SNO": 12,
+    "CNO": 2,
+    "PRVSNO": 12,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 95
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ゾーンの方向（右）へ向く。旋回は遅めにする（速いと行き過ぎて、そのあとの直進が斜めに流れる）",
+    "SNO": 12,
+    "CNO": 3,
+    "PRVSNO": 12,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -50,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCR": 90
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "黄ゾーンまで運ぶ。抱えたボトルは車体の 108mm 先にあるので、その分だけ手前で止まる（2088mm）",
+    "SNO": 12,
+    "CNO": 4,
+    "PRVSNO": 12,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 60,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": 2088
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "下がってボトルを黄ゾーンに置く。アームに引く力は無いので、下がればボトルはその場に残る",
+    "SNO": 12,
+    "CNO": 5,
+    "PRVSNO": 12,
+    "PRVCNO": 4,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -40,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCD": -250
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わりへ飛ぶ。ここで飛ばないと、次の色のルートへ流れ込んでしまう",
+    "SNO": 12,
+    "CNO": 6,
+    "PRVSNO": 12,
+    "PRVCNO": 5,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 2,
+      "SCV": 0,
+      "JMPSNO": 99
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "運び終わり。停止する",
+    "SNO": 99,
+    "CNO": 1,
+    "PRVSNO": 99,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 1,
+      "SCT": 500
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "シナリオ終了",
+    "SNO": 0,
+    "CNO": 0,
+    "PRVSNO": 99,
+    "PRVCNO": 1,
+    "RunInfo": {},
+    "SwitchInfo": {},
+    "CoordCorrectInfo": {}
+  }
+]
