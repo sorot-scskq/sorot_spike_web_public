@@ -564,6 +564,17 @@
           ]
         },
         {
+          "label": "19_点検X(sorot_spike)",
+          "open": false,
+          "children": [
+            {
+              "label": "scenario.json",
+              "type": "file",
+              "path": "2026/19_点検X(sorot_spike)/scenario.json"
+            }
+          ]
+        },
+        {
           "label": "90_難所",
           "open": false,
           "children": [
