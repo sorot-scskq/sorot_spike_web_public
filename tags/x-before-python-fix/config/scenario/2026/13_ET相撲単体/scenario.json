@@ -1,0 +1,111 @@
+[
+  {
+    "Comment": "力士寄せと押し出し（リモートコントロール / 走行体の Python src/RoughSpot/Python/2026/et_sumo_avoid_green.py）。前面カメラで寄り、近くで正面に見えたら、押し出す先に写った緑の手前まで自分で押し出してから OK。緑の手前までで土俵を出せない向きなら回り込む。押し出しはここで行うので、シナリオには置かない",
+    "SNO": 40,
+    "CNO": 1,
+    "PRVSNO": 40,
+    "PRVCNO": 0,
+    "RunInfo": {
+      "FUNCNO": 18,
+      "FWD": 40,
+      "TRN": 40,
+      "KP": 3.6,
+      "KI": 0,
+      "KD": 100,
+      "NOBLNCE": 1,
+      "WPER": 0
+    },
+    "SwitchInfo": {
+      "SCJFN": 2048,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "バック（押し出した道を戻る）",
+    "SNO": 40,
+    "CNO": 2,
+    "PRVSNO": 40,
+    "PRVCNO": 1,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": -60,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 128,
+      "SCT": 0,
+      "SCD": -300,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "ライン方向へ旋回",
+    "SNO": 40,
+    "CNO": 3,
+    "PRVSNO": 40,
+    "PRVCNO": 2,
+    "RunInfo": {
+      "FUNCNO": 3,
+      "FWD": 0,
+      "TRN": -150,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 32,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": -60,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  },
+  {
+    "Comment": "終了",
+    "SNO": 0,
+    "CNO": 0,
+    "PRVSNO": 40,
+    "PRVCNO": 3,
+    "RunInfo": {
+      "FUNCNO": 5,
+      "FWD": 0,
+      "TRN": 0,
+      "KP": 0,
+      "KI": 0,
+      "KD": 0,
+      "NOBLNCE": 1
+    },
+    "SwitchInfo": {
+      "SCJFN": 0,
+      "SCT": 0,
+      "SCD": 0,
+      "SCR": 0,
+      "SCC": 0,
+      "SCV": 0,
+      "SCX": 0,
+      "SCY": 0
+    },
+    "CoordCorrectInfo": {}
+  }
+]

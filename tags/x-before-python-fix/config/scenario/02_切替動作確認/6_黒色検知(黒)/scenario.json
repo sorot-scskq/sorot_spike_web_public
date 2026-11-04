@@ -1,0 +1,16 @@
+[
+    {
+        "Comment":"シナリオ15: スイッチテスト: 黒色検知 (SW_COLOR - SCJFN: 16, BLACK) - スイッチテスト: 黒色検知 (SW_COLOR - BLACK)",
+        "SNO":15, "CNO":1,"PRVSNO":15,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":6,"FWD":10,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1,"WPER":0},
+        "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":2,"SCV":0,"JMPSNO":0,"SCX":0,"SCY":0},
+        "CoordCorrectInfo":{}
+    },
+    {
+        "Comment": "シナリオ15: 終了コマンド",
+        "SNO": 0, "CNO": 1, "PRVSNO": 15, "PRVCNO": 1,
+        "RunInfo": {},
+        "SwitchInfo": {},
+        "CoordCorrectInfo": {}
+    }
+]

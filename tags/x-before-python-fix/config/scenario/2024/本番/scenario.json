@@ -1,0 +1,241 @@
+[
+    { "Comment":"いきなり早くするとコースアウトするため、徐々に早く",
+        "SNO":99, "CNO":1,"PRVSNO":0,"PRVCNO":0,
+        "RunInfo":{"FUNCNO":1,"FWD":35,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { "SNO":99, "CNO":2,"PRVSNO":99,"PRVCNO":1,
+        "RunInfo":{"FUNCNO":1,"FWD":55,"TRN":0,"KP":3,"KI":0,"KD":2,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":2700,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { "SNO":99, "CNO":3,"PRVSNO":99,"PRVCNO":2,
+        "RunInfo":{"FUNCNO":1,"FWD":40,"TRN":0,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":150,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"1回目カーブはじめ",
+        "SNO":99, "CNO":5,"PRVSNO":99,"PRVCNO":3,
+        "RunInfo":{"FUNCNO":1,"FWD":35,"TRN":5,"KP":10,"KI":0,"KD":4,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":500,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"1回目カーブおわり",
+        "SNO":99, "CNO":6,"PRVSNO":99,"PRVCNO":5,
+        "RunInfo":{"FUNCNO":1,"FWD":35,"TRN":10,"KP":10,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":200,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { "SNO":99, "CNO":8,"PRVSNO":99,"PRVCNO":7,
+        "RunInfo":{"FUNCNO":1,"FWD":45,"TRN":0,"KP":5,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":150,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { "SNO":99, "CNO":9,"PRVSNO":99,"PRVCNO":8,
+        "RunInfo":{"FUNCNO":1,"FWD":45,"TRN":0,"KP":5,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":100,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "SNO":99, "CNO":10,"PRVSNO":99,"PRVCNO":9,
+        "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":1100,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "SNO":99, "CNO":11,"PRVSNO":99,"PRVCNO":10,
+        "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":50,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"2回目カーブ",
+        "SNO":99, "CNO":12,"PRVSNO":99,"PRVCNO":11,
+        "RunInfo":{"FUNCNO":1,"FWD":35,"TRN":5,"KP":8,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":180,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "SNO":99, "CNO":13,"PRVSNO":99,"PRVCNO":12,
+        "RunInfo":{"FUNCNO":1,"FWD":35,"TRN":10,"KP":10,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":220,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "SNO":99, "CNO":14,"PRVSNO":99,"PRVCNO":13,
+        "RunInfo":{"FUNCNO":1,"FWD":50,"TRN":0,"KP":5,"KI":0,"KD":3,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"ダブルループ侵入",
+        "SNO":99, "CNO":15,"PRVSNO":99,"PRVCNO":14,
+        "RunInfo":{"FUNCNO":5,"FWD":40,"TRN":25,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":150,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"真円エッジ走行",
+        "SNO":99, "CNO":16,"PRVSNO":99,"PRVCNO":15,
+        "RunInfo":{"FUNCNO":2,"FWD":40,"TRN":5,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"撮影用右回転",
+        "SNO":99, "CNO":17,"PRVSNO":99,"PRVCNO":16,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":70,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"撮影用停止",
+        "SNO":99, "CNO":18,"PRVSNO":99,"PRVCNO":17,
+        "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":1,"SCT":1000,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"撮影用左回転",
+        "SNO":99, "CNO":19,"PRVSNO":99,"PRVCNO":18,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-70,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"真円エッジ走行",
+        "SNO":99, "CNO":20,"PRVSNO":99,"PRVCNO":19,
+        "RunInfo":{"FUNCNO":2,"FWD":40,"TRN":0,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"楕円侵入",
+        "SNO":99, "CNO":21,"PRVSNO":99,"PRVCNO":20,
+        "RunInfo":{"FUNCNO":5,"FWD":40,"TRN":-10,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":16,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"楕円エッジ走行",
+        "SNO":99, "CNO":22,"PRVSNO":99,"PRVCNO":21,
+        "RunInfo":{"FUNCNO":1,"FWD":40,"TRN":-5,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"1撮影用左回転",
+        "SNO":99, "CNO":23,"PRVSNO":99,"PRVCNO":22,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-60,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"1撮影用停止",
+        "SNO":99, "CNO":24,"PRVSNO":99,"PRVCNO":23,
+        "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":1,"SCT":1000,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"1撮影用右回転",
+        "SNO":99, "CNO":25,"PRVSNO":99,"PRVCNO":24,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":60,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"楕円エッジ走行",
+        "SNO":99, "CNO":26,"PRVSNO":99,"PRVCNO":25,
+        "RunInfo":{"FUNCNO":1,"FWD":40,"TRN":-5,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":400,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"2撮影用左回転",
+        "SNO":99, "CNO":27,"PRVSNO":99,"PRVCNO":26,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-100,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"2撮影用前進",
+        "SNO":99, "CNO":28,"PRVSNO":99,"PRVCNO":27,
+        "RunInfo":{"FUNCNO":5,"FWD":40,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":150,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"2撮影用停止",
+        "SNO":99, "CNO":29,"PRVSNO":99,"PRVCNO":28,
+        "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":1,"SCT":1000,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"2撮影用後退",
+        "SNO":99, "CNO":30,"PRVSNO":99,"PRVCNO":29,
+        "RunInfo":{"FUNCNO":5,"FWD":-40,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":-150,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"2撮影用右回転",
+        "SNO":99, "CNO":31,"PRVSNO":99,"PRVCNO":30,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":70,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"楕円エッジ走行",
+        "SNO":99, "CNO":32,"PRVSNO":99,"PRVCNO":31,
+        "RunInfo":{"FUNCNO":1,"FWD":40,"TRN":-5,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":500,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"3撮影用左回転",
+        "SNO":99, "CNO":33,"PRVSNO":99,"PRVCNO":32,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":-100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":-60,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"3撮影用停止",
+        "SNO":99, "CNO":34,"PRVSNO":99,"PRVCNO":33,
+        "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":3,"KI":0,"KD":1,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":1,"SCT":1000,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"3撮影用右回転",
+        "SNO":99, "CNO":35,"PRVSNO":99,"PRVCNO":34,
+        "RunInfo":{"FUNCNO":3,"FWD":0,"TRN":100,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":32,"SCT":0,"SCD":0,"SCR":60,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"楕円エッジ走行",
+        "SNO":99, "CNO":36,"PRVSNO":99,"PRVCNO":35,
+        "RunInfo":{"FUNCNO":1,"FWD":40,"TRN":-5,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":800,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"真円エッジ走行 9/14真円侵入まで 侵入後未着手",
+        "SNO":99, "CNO":37,"PRVSNO":99,"PRVCNO":36,
+        "RunInfo":{"FUNCNO":2,"FWD":40,"TRN":5,"KP":6,"KI":0,"KD":5,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":2000,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    },
+    { 
+        "Comment":"停止",
+        "SNO":99, "CNO":38,"PRVSNO":99,"PRVCNO":37,
+        "RunInfo":{"FUNCNO":1,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+        "SwitchInfo":{"SCJFN":128,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":0},
+        "CoordCorrectInfo":{}
+    }
+]
