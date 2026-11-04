@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/sorot_spike_web_public/app.css">
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
   <script type="module" crossorigin src="/sorot_spike_web_public/assets/ScenarioJsonLoader-BGN8ixhb.js"></script>
-  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-Bwu72WwQ.js"></script>
+  <script type="module" crossorigin src="/sorot_spike_web_public/assets/app-796AVq4C.js"></script>
 </head>
 
 <body>
@@ -77,6 +77,10 @@
                             <input type="checkbox" id="disableOutDetectionCheckbox" checked>
                             アウト判定を無効化
                         </label>
+                        <label class="camera-enabled-toggle" title="区間（CNO）が変わった場所に、走行体の残像と S:SNO C:CNO を残します。外すと隠します（隠しているあいだも記録は続け、入れ直すとそれまでの分が出ます）">
+                            <input type="checkbox" id="scenarioMarkerCheckbox" checked>
+                            CNOの残像
+                        </label>
                         <label class="camera-enabled-toggle" title="自己位置推定の位置を青のゴーストで重ねます">
                             <input type="checkbox" id="odometryOverlayCheckbox">
                             自己位置推定
@@ -138,6 +142,8 @@
                 <canvas id="pdf" width="500" height="750" class="custom-canvas"></canvas>
                 <canvas id="field" width="500" height="750" class="custom-canvas"></canvas>
                 <canvas id="trailCanvas" width="500" height="750" class="custom-canvas" style="pointer-events: none;"></canvas>
+                <!-- CNO が変わるたびの残像。軌跡とは別の層にして、入り切りできるようにする -->
+                <canvas id="scenarioMarkerCanvas" width="500" height="750" class="custom-canvas" style="pointer-events: none;"></canvas>
             </div>
 
             <div class="main-column">
