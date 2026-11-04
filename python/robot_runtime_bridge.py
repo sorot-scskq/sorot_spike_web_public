@@ -1108,7 +1108,8 @@ for _rr_name in ('script_runner', 'et_sumo', 'remote_control', 'gate_check_task'
                  'floor_code', 'floor_code_observer', 'floor_code_gate', 'scenario_rows',
                  'ground_plane', 'hint_card_capture', 'qr_decoder', 'handler',
                  'bottle_color_task', 'bottle_color_reader', 'hint_card_advance', 'scenario_update',
-                 'config_2026', 'qr_turn_correction', 'qr_steer', 'correction_photo', 'floor_code_reader'):
+                 'config_2026', 'qr_turn_correction', 'qr_steer', 'correction_photo', 'floor_code_reader',
+                 'turn_check'):
     _rr_logger = logging.getLogger(_rr_name)
     _rr_logger.addHandler(_rr_handler)
     _rr_logger.setLevel(logging.INFO)

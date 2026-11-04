@@ -25,6 +25,7 @@ C++ が判定結果を取りにいくたびに詰まる。
 """
 
 import logging
+import math
 import os
 import threading
 import time
@@ -78,6 +79,56 @@ READ_CODE_IDS = 1
 #: コードを読むときの縦の引き伸ばし。実機の1枚では 3.0 がいちばん当たった
 #: （`Common/floor_code.py`）。**1つに絞ってある**。全部試すと 200ms を超える
 CODE_STRETCH_FACTORS = (3.0,)
+
+#: 測った向きのずれで、**自己位置の向き**も打ち直すか（置き場が無いときの既定）。
+#:
+#: 向き保持の目標を直すだけだと、車体は格子に向き直るが、自己位置の向き（x/y を積む向き）は
+#: 旋回の残差を抱えたまま残る。点検 X を誤差を大きくして回すと、自己位置が 1周で数百 mm 外れ、
+#: 位置の打ち直し（`grid_position.py`）も「向きの打ち直しが大きい」で通らなかった。
+#: 同じ1枚の測った値を、自己位置の向きにも当てる（ACAF 0x04。位置は動かさない）。
+#:
+#: 2026-10-31 に止めた `heading_fix`（QR を復号して四隅から向きを出す旧い道）とは別物で、
+#: 当てる値は向き保持の目標に当てているのと**同じ測り方**（目印・床のコードの格子）。
+#: 黒線で測った回は格子に沿っているとは限らないので当てない。
+FIX_POSE_HEADING = True
+
+#: `FIX_POSE_HEADING` を走行体で切り替える置き場（1行目に 1 か 0）
+FIX_POSE_HEADING_SWITCH = "./sorot_spike/pose_heading_fix.txt"
+
+#: 自己位置の向きの打ち直しに使う測り方。格子そのものを見て測ったものだけ
+FIX_POSE_HEADING_SOURCES = ("markers", "floorcode")
+
+#: 格子の向きの刻み[度]。経路は 45度刻みで格子に沿う
+GRID_DIRECTION_STEP_DEG = 45.0
+
+#: 自己位置の向きを1回で動かす上限[度]。C++ 側の上限（`COORD_CORRECT_MAX_DEG`、10度）と同じ。
+#:
+#: 超えたときは**見送らずに上限まで寄せる**。寄せ先は「いちばん近い格子の向き＋測ったずれ」で
+#: 決まっているので、自己位置のずれが 22.5度未満なら向きは正しい。誤差を大きくした点検 X では
+#: 旋回のたびにずれが積もり、10度を超えた回を見送っていると二度と追いつけなかった
+FIX_POSE_HEADING_MAX_DEG = 10.0
+
+
+def wrap180(deg: float) -> float:
+    """角度を (-180, 180] へ"""
+    value = (float(deg) + 180.0) % 360.0 - 180.0
+    return 180.0 if value == -180.0 else value
+
+
+def pose_heading_fix(pose_heading_deg: float, deviation_deg: float,
+                     step_deg: float = GRID_DIRECTION_STEP_DEG) -> float:
+    """
+    自己位置の向きを、いくら動かせば「格子の向き＋測ったずれ」になるか[度]。
+
+    測ったずれは「車体の向き − いちばん近い格子の向き」（時計回りが正。自己位置の向きと同じ回り）。
+    自己位置の座標系は走り出しの向きが格子に沿っているので、格子の向きは 45度の倍数になる。
+    自己位置の向きにいちばん近い倍数を、いま沿っている格子の向きとみなす
+    （自己位置のずれが 22.5度を超えると取り違えるが、そこまでずれる前に毎行直る）。
+    """
+    heading = float(pose_heading_deg)
+    grid = round(heading / step_deg) * step_deg
+    return wrap180(grid + float(deviation_deg) - heading)
+
 
 #: 測れなかった理由を、ファイル名に入れる短い綴りへ直す表
 #:
@@ -226,6 +277,8 @@ class HeadingTask:
         """
         with self._lock:
             captured_at = self._clock()
+            # 撮った時点の自己位置。自己位置の向きの打ち直しは、この向きから測る
+            captured_pose = self.pose_now() if self._fix_pose_heading_enabled() else None
             try:
                 result = self._reader.read()
             except Exception:  # noqa: BLE001 — 測れなくても走行は続ける
@@ -248,7 +301,10 @@ class HeadingTask:
                 return None
             self._photo(result)
             # 同じ1枚から位置も出す。**向きより後**（Docs/position_correction_design.md 5.5）
-            self.fix_position(result)
+            if self.fix_position(result) is None:
+                # 位置を打ち直さなかった回は、自己位置の向きだけを打ち直す
+                # （位置を打ち直した回は、向きもそちらに入っている）
+                self.fix_pose_heading(result, captured_pose)
             return result
 
     def _try_fallback(self, failed: dict) -> Optional[dict]:
@@ -319,6 +375,41 @@ class HeadingTask:
             return
         from correction_photo import CorrectionPhoto
         CorrectionPhoto.shared().record(frame, str(result.get("source")), result["deviation_deg"])
+
+    @staticmethod
+    def _fix_pose_heading_enabled() -> bool:
+        from route_register import SwitchFile
+        return bool(SwitchFile.read(FIX_POSE_HEADING_SWITCH, FIX_POSE_HEADING))
+
+    def fix_pose_heading(self, result: Dict[str, Any],
+                         pose: Optional[Dict[str, Any]]) -> Optional[float]:
+        """測ったずれで、自己位置の向きだけを打ち直す（ACAF 0x04。`FIX_POSE_HEADING`）。
+
+        :param pose: 撮った時点の自己位置。無ければ打ち直さない
+        :returns: 動かした量[度]。打ち直さなければ None
+        """
+        if pose is None or not self._fix_pose_heading_enabled():
+            return None
+        if result.get("source") not in FIX_POSE_HEADING_SOURCES:
+            return None
+        heading = pose.get("heading")
+        deviation = result.get("deviation_deg")
+        if not isinstance(heading, (int, float)) or not isinstance(deviation, (int, float)):
+            return None
+        dr = pose_heading_fix(heading, deviation)
+        if abs(dr) > FIX_POSE_HEADING_MAX_DEG:
+            logger.info("自己位置の向きのずれ %+.1f度 は大きいので、%+.0f度 だけ寄せます", dr,
+                        math.copysign(FIX_POSE_HEADING_MAX_DEG, dr))
+            dr = math.copysign(FIX_POSE_HEADING_MAX_DEG, dr)
+        self._coord_seq += 1
+        store = ResultStore.get_instance()
+        store.set("coord_dx", 0.0)
+        store.set("coord_dy", 0.0)
+        store.set("coord_dr", round(dr, 2))
+        store.set("coord_seq", self._coord_seq)
+        logger.info("自己位置の向きを打ち直します %+.2f°（%s %+.2f°・自己位置 %.1f°）（%d回目）",
+                    dr, result.get("source"), deviation, heading, self._coord_seq)
+        return dr
 
     def fix_position(self, result: Dict[str, Any]) -> Optional[dict]:
         """測った1枚から、自己位置の位置の打ち直し量を出して判定結果に載せる。

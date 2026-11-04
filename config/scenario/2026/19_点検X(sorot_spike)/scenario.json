@@ -1,10 +1,226 @@
 [
  {
+  "Comment": "【点検・スタート】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
+  "SNO": 60,
+  "CNO": 1,
+  "PRVSNO": 60,
+  "PRVCNO": 0,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 50,
+   "TRN": 0,
+   "KP": 16,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+  "SNO": 60,
+  "CNO": 2,
+  "PRVSNO": 60,
+  "PRVCNO": 1,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 150,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/2（赤の運び先）青前の青検知",
+  "SNO": 60,
+  "CNO": 3,
+  "PRVSNO": 60,
+  "PRVCNO": 2,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+  "SNO": 60,
+  "CNO": 4,
+  "PRVSNO": 60,
+  "PRVCNO": 3,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 170,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/4（赤の運び先）赤前の青検知",
+  "SNO": 60,
+  "CNO": 5,
+  "PRVSNO": 60,
+  "PRVCNO": 4,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/10（赤の運び先）前進",
+  "SNO": 60,
+  "CNO": 6,
+  "PRVSNO": 60,
+  "PRVCNO": 5,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 40,
+   "TRN": 0,
+   "KP": 3,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 100,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/11（赤の運び先）30旋回",
+  "SNO": 60,
+  "CNO": 7,
+  "PRVSNO": 60,
+  "PRVCNO": 6,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": 70,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検・スタート】本番 21/12（赤の運び先）30旋回",
+  "SNO": 60,
+  "CNO": 8,
+  "PRVSNO": 60,
+  "PRVCNO": 7,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": -70,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 32,
+   "SCT": 4000,
+   "SCD": 0,
+   "SCR": -100,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
   "Comment": "【点検】組A・1回目（FWD 70・TRN 80・5周）。止まって待つ（3秒）。向きの目標を捨てる。ゲートの確認を走り終わりまで起こす",
   "SNO": 61,
   "CNO": 1,
-  "PRVSNO": 61,
-  "PRVCNO": 0,
+  "PRVSNO": 60,
+  "PRVCNO": 8,
   "RunInfo": {
    "SCRIPT": "2026/recog/gate_check_until_end.py",
    "FUNCNO": 3,
@@ -2674,7 +2890,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 62,
   "CNO": 86,
   "PRVSNO": 62,
@@ -2694,7 +2910,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -2704,7 +2920,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 62,
   "CNO": 87,
   "PRVSNO": 62,
@@ -2733,7 +2949,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 62,
   "CNO": 88,
   "PRVSNO": 62,
@@ -2763,7 +2979,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 62,
   "CNO": 89,
   "PRVSNO": 62,
@@ -2792,11 +3008,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 62,
   "CNO": 90,
   "PRVSNO": 62,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 62,
+  "CNO": 91,
+  "PRVSNO": 62,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -2821,9 +3064,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 62,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 62,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -2848,9 +3091,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 62,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 62,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -2875,9 +3118,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 62,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 62,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -2902,9 +3145,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 62,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 62,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -2929,9 +3172,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 62,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 62,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -2956,9 +3199,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 62,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 62,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -2983,9 +3226,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 62,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 62,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -3010,9 +3253,9 @@
  {
   "Comment": "【組A・1回目（FWD 70・TRN 80・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 62,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 62,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -3039,7 +3282,7 @@
   "SNO": 63,
   "CNO": 1,
   "PRVSNO": 62,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -5708,7 +5951,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 64,
   "CNO": 86,
   "PRVSNO": 64,
@@ -5728,7 +5971,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -5738,7 +5981,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 64,
   "CNO": 87,
   "PRVSNO": 64,
@@ -5767,7 +6010,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 64,
   "CNO": 88,
   "PRVSNO": 64,
@@ -5797,7 +6040,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 64,
   "CNO": 89,
   "PRVSNO": 64,
@@ -5826,11 +6069,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 64,
   "CNO": 90,
   "PRVSNO": 64,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 64,
+  "CNO": 91,
+  "PRVSNO": 64,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -5855,9 +6125,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 64,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 64,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -5882,9 +6152,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 64,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 64,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -5909,9 +6179,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 64,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 64,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -5936,9 +6206,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 64,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 64,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -5963,9 +6233,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 64,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 64,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -5990,9 +6260,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 64,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 64,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -6017,9 +6287,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 64,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 64,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -6044,9 +6314,9 @@
  {
   "Comment": "【組B・1回目（FWD 80・TRN 90・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 64,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 64,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -6073,7 +6343,7 @@
   "SNO": 65,
   "CNO": 1,
   "PRVSNO": 64,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -8742,7 +9012,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 66,
   "CNO": 86,
   "PRVSNO": 66,
@@ -8762,7 +9032,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -8772,7 +9042,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 66,
   "CNO": 87,
   "PRVSNO": 66,
@@ -8801,7 +9071,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 66,
   "CNO": 88,
   "PRVSNO": 66,
@@ -8831,7 +9101,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 66,
   "CNO": 89,
   "PRVSNO": 66,
@@ -8860,11 +9130,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 66,
   "CNO": 90,
   "PRVSNO": 66,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 66,
+  "CNO": 91,
+  "PRVSNO": 66,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -8889,9 +9186,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 66,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 66,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -8916,9 +9213,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 66,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 66,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -8943,9 +9240,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 66,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 66,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -8970,9 +9267,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 66,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 66,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -8997,9 +9294,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 66,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 66,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -9024,9 +9321,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 66,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 66,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -9051,9 +9348,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 66,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 66,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -9078,9 +9375,9 @@
  {
   "Comment": "【組C・1回目（FWD 80・TRN 80・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 66,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 66,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -9107,7 +9404,7 @@
   "SNO": 67,
   "CNO": 1,
   "PRVSNO": 66,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -11776,7 +12073,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 68,
   "CNO": 86,
   "PRVSNO": 68,
@@ -11796,7 +12093,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -11806,7 +12103,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 68,
   "CNO": 87,
   "PRVSNO": 68,
@@ -11835,7 +12132,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 68,
   "CNO": 88,
   "PRVSNO": 68,
@@ -11865,7 +12162,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 68,
   "CNO": 89,
   "PRVSNO": 68,
@@ -11894,11 +12191,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 68,
   "CNO": 90,
   "PRVSNO": 68,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 68,
+  "CNO": 91,
+  "PRVSNO": 68,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -11923,9 +12247,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 68,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 68,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -11950,9 +12274,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 68,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 68,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -11977,9 +12301,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 68,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 68,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -12004,9 +12328,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 68,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 68,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -12031,9 +12355,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 68,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 68,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -12058,9 +12382,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 68,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 68,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -12085,9 +12409,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 68,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 68,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -12112,9 +12436,9 @@
  {
   "Comment": "【組D・1回目（FWD 60・TRN 70・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 68,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 68,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -12141,7 +12465,7 @@
   "SNO": 69,
   "CNO": 1,
   "PRVSNO": 68,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -14810,7 +15134,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 70,
   "CNO": 86,
   "PRVSNO": 70,
@@ -14830,7 +15154,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -14840,7 +15164,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 70,
   "CNO": 87,
   "PRVSNO": 70,
@@ -14869,7 +15193,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 70,
   "CNO": 88,
   "PRVSNO": 70,
@@ -14899,7 +15223,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 70,
   "CNO": 89,
   "PRVSNO": 70,
@@ -14928,11 +15252,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 70,
   "CNO": 90,
   "PRVSNO": 70,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 70,
+  "CNO": 91,
+  "PRVSNO": 70,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -14957,9 +15308,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 70,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 70,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -14984,9 +15335,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 70,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 70,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -15011,9 +15362,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 70,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 70,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -15038,9 +15389,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 70,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 70,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -15065,9 +15416,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 70,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 70,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -15092,9 +15443,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 70,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 70,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -15119,9 +15470,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 70,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 70,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -15146,9 +15497,9 @@
  {
   "Comment": "【組A・2回目（FWD 70・TRN 80・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 70,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 70,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -15175,7 +15526,7 @@
   "SNO": 71,
   "CNO": 1,
   "PRVSNO": 70,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -17844,7 +18195,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 72,
   "CNO": 86,
   "PRVSNO": 72,
@@ -17864,7 +18215,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -17874,7 +18225,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 72,
   "CNO": 87,
   "PRVSNO": 72,
@@ -17903,7 +18254,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 72,
   "CNO": 88,
   "PRVSNO": 72,
@@ -17933,7 +18284,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 72,
   "CNO": 89,
   "PRVSNO": 72,
@@ -17962,11 +18313,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 72,
   "CNO": 90,
   "PRVSNO": 72,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 72,
+  "CNO": 91,
+  "PRVSNO": 72,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -17991,9 +18369,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 72,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 72,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -18018,9 +18396,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 72,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 72,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -18045,9 +18423,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 72,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 72,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -18072,9 +18450,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 72,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 72,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -18099,9 +18477,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 72,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 72,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -18126,9 +18504,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 72,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 72,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -18153,9 +18531,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 72,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 72,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -18180,9 +18558,9 @@
  {
   "Comment": "【組B・2回目（FWD 80・TRN 90・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 72,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 72,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -18209,7 +18587,7 @@
   "SNO": 73,
   "CNO": 1,
   "PRVSNO": 72,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -20878,7 +21256,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】直進 124mm[34→][mm:G1-1 614,860→614,984]（コードの行の間へ）",
+  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
   "SNO": 74,
   "CNO": 86,
   "PRVSNO": 74,
@@ -20898,7 +21276,7 @@
   "SwitchInfo": {
    "SCJFN": 128,
    "SCT": 0,
-   "SCD": 124,
+   "SCD": 210,
    "SCR": 0,
    "SCC": 0,
    "SCV": 0,
@@ -20908,7 +21286,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,984→614,984]（南→東）",
+  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
   "SNO": 74,
   "CNO": 87,
   "PRVSNO": 74,
@@ -20937,7 +21315,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,984→1080,984]（黒線の手前まで）",
+  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
   "SNO": 74,
   "CNO": 88,
   "PRVSNO": 74,
@@ -20967,7 +21345,7 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,984→1080,984]（東→北東。黒線へ斜めに乗る）",
+  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
   "SNO": 74,
   "CNO": 89,
   "PRVSNO": 74,
@@ -20996,11 +21374,38 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
   "SNO": 74,
   "CNO": 90,
   "PRVSNO": 74,
   "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 74,
+  "CNO": 91,
+  "PRVSNO": 74,
+  "PRVCNO": 90,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 40,
@@ -21025,9 +21430,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
   "SNO": 74,
-  "CNO": 91,
+  "CNO": 92,
   "PRVSNO": 74,
-  "PRVCNO": 90,
+  "PRVCNO": 91,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 50,
@@ -21052,9 +21457,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 74,
-  "CNO": 92,
+  "CNO": 93,
   "PRVSNO": 74,
-  "PRVCNO": 91,
+  "PRVCNO": 92,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -21079,9 +21484,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
   "SNO": 74,
-  "CNO": 93,
+  "CNO": 94,
   "PRVSNO": 74,
-  "PRVCNO": 92,
+  "PRVCNO": 93,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -21106,9 +21511,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
   "SNO": 74,
-  "CNO": 94,
+  "CNO": 95,
   "PRVSNO": 74,
-  "PRVCNO": 93,
+  "PRVCNO": 94,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -21133,9 +21538,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
   "SNO": 74,
-  "CNO": 95,
+  "CNO": 96,
   "PRVSNO": 74,
-  "PRVCNO": 94,
+  "PRVCNO": 95,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 60,
@@ -21160,9 +21565,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/10（赤の運び先）前進",
   "SNO": 74,
-  "CNO": 96,
+  "CNO": 97,
   "PRVSNO": 74,
-  "PRVCNO": 95,
+  "PRVCNO": 96,
   "RunInfo": {
    "FUNCNO": 2,
    "FWD": 40,
@@ -21187,9 +21592,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/11（赤の運び先）30旋回",
   "SNO": 74,
-  "CNO": 97,
+  "CNO": 98,
   "PRVSNO": 74,
-  "PRVCNO": 96,
+  "PRVCNO": 97,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -21214,9 +21619,9 @@
  {
   "Comment": "【組C・2回目（FWD 80・TRN 80・5周）・戻り】本番 21/12（赤の運び先）30旋回",
   "SNO": 74,
-  "CNO": 98,
+  "CNO": 99,
   "PRVSNO": 74,
-  "PRVCNO": 97,
+  "PRVCNO": 98,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -21243,7 +21648,7 @@
   "SNO": 75,
   "CNO": 1,
   "PRVSNO": 74,
-  "PRVCNO": 98,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 3,
    "FWD": 0,
@@ -23883,11 +24288,428 @@
   "CoordCorrectInfo": {}
  },
  {
-  "Comment": "【点検】終わり。止まる",
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】左45度回転[34→34][mm:G1-1 614,860→614,860]（南西→南）",
+  "SNO": 76,
+  "CNO": 85,
+  "PRVSNO": 76,
+  "PRVCNO": 84,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": -80,
+   "KP": 2,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1,
+   "WPER": 0,
+   "ARMANG": -200
+  },
+  "SwitchInfo": {
+   "SCJFN": 33,
+   "SCT": 4000,
+   "SCD": 0,
+   "SCR": -45,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】直進 210mm[34→][mm:G1-1 614,860→614,1070]",
+  "SNO": 76,
+  "CNO": 86,
+  "PRVSNO": 76,
+  "PRVCNO": 85,
+  "RunInfo": {
+   "FUNCNO": 19,
+   "FWD": 70,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1,
+   "WPER": 0,
+   "ARMANG": -200,
+   "SCRIPT": "2026/recog/grid_heading.py"
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 210,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】左90度回転[mm:G1-1 614,1070→614,1070]（南→東）",
+  "SNO": 76,
+  "CNO": 87,
+  "PRVSNO": 76,
+  "PRVCNO": 86,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": -80,
+   "KP": 2,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1,
+   "WPER": 0,
+   "ARMANG": -200
+  },
+  "SwitchInfo": {
+   "SCJFN": 33,
+   "SCT": 4000,
+   "SCD": 0,
+   "SCR": -90,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】直進 466mm[mm:G1-1 614,1070→1080,1070]（黒線の手前まで）",
+  "SNO": 76,
+  "CNO": 88,
+  "PRVSNO": 76,
+  "PRVCNO": 87,
+  "RunInfo": {
+   "FUNCNO": 19,
+   "FWD": 70,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1,
+   "WPER": 0,
+   "ARMANG": -200,
+   "SCRIPT": "2026/recog/grid_heading.py"
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 466,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】左45度回転[mm:G1-1 1080,1070→1080,1070]（東→北東。黒線へ斜めに乗り、y≈990 で横切る）",
+  "SNO": 76,
+  "CNO": 89,
+  "PRVSNO": 76,
+  "PRVCNO": 88,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": -80,
+   "KP": 2,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1,
+   "WPER": 0,
+   "ARMANG": -200
+  },
+  "SwitchInfo": {
+   "SCJFN": 33,
+   "SCT": 4000,
+   "SCD": 0,
+   "SCR": -45,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】止まってカラーセンサを色を読む向きに切り替える（600ms。切り替え直後の値を黒と取らないため）",
+  "SNO": 76,
+  "CNO": 90,
+  "PRVSNO": 76,
+  "PRVCNO": 89,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 0,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 600,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】遅く北東へ。黒（SCC 2）を見たら止まる。4秒で諦める（SCJFN 17 = 時間＋色）",
+  "SNO": 76,
+  "CNO": 91,
+  "PRVSNO": 76,
+  "PRVCNO": 90,
+  "RunInfo": {
+   "FUNCNO": 5,
+   "FWD": 40,
+   "TRN": 0,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 17,
+   "SCT": 4000,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 2,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 20/8 と同じ。右エッジでなぞって青の目印（y≈805）で止まる",
+  "SNO": 76,
+  "CNO": 92,
+  "PRVSNO": 76,
+  "PRVCNO": 91,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 50,
+   "TRN": 0,
+   "KP": 16,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/1（赤の運び先）【赤ルート ここから】赤ゾーンは青・黄より奥にあるので、目印を2つ多く数える / 目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+  "SNO": 76,
+  "CNO": 93,
+  "PRVSNO": 76,
+  "PRVCNO": 92,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 150,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/2（赤の運び先）青前の青検知",
+  "SNO": 76,
+  "CNO": 94,
+  "PRVSNO": 76,
+  "PRVCNO": 93,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/3（赤の運び先）目印を1つ抜ける（150mm）。元は黒検知だったが、右エッジ走行中はセンサーが線のフチにいて黒にならず、何秒も成立しないまま次の目印まで行き過ぎていた。目印は高さ90mm・間隔220mmなので、150mm進めば目印の先・次の目印の手前で止まる",
+  "SNO": 76,
+  "CNO": 95,
+  "PRVSNO": 76,
+  "PRVCNO": 94,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 170,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/4（赤の運び先）赤前の青検知",
+  "SNO": 76,
+  "CNO": 96,
+  "PRVSNO": 76,
+  "PRVCNO": 95,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 60,
+   "TRN": 0,
+   "KP": 3.6,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 3,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/10（赤の運び先）前進",
+  "SNO": 76,
+  "CNO": 97,
+  "PRVSNO": 76,
+  "PRVCNO": 96,
+  "RunInfo": {
+   "FUNCNO": 2,
+   "FWD": 40,
+   "TRN": 0,
+   "KP": 3,
+   "KI": 0,
+   "KD": 100,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 128,
+   "SCT": 0,
+   "SCD": 100,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/11（赤の運び先）30旋回",
+  "SNO": 76,
+  "CNO": 98,
+  "PRVSNO": 76,
+  "PRVCNO": 97,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": 70,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 16,
+   "SCT": 0,
+   "SCD": 0,
+   "SCR": 0,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【組D・2回目（FWD 60・TRN 70・5周）・戻り】本番 21/12（赤の運び先）30旋回",
+  "SNO": 76,
+  "CNO": 99,
+  "PRVSNO": 76,
+  "PRVCNO": 98,
+  "RunInfo": {
+   "FUNCNO": 3,
+   "FWD": 0,
+   "TRN": -70,
+   "KP": 0,
+   "KI": 0,
+   "KD": 0,
+   "NOBLNCE": 1
+  },
+  "SwitchInfo": {
+   "SCJFN": 32,
+   "SCT": 4000,
+   "SCD": 0,
+   "SCR": -100,
+   "SCC": 0,
+   "SCV": 0,
+   "SCX": 0,
+   "SCY": 0
+  },
+  "CoordCorrectInfo": {}
+ },
+ {
+  "Comment": "【点検】終わり。入口で止まる",
   "SNO": 90,
   "CNO": 1,
   "PRVSNO": 76,
-  "PRVCNO": 84,
+  "PRVCNO": 99,
   "RunInfo": {
    "FUNCNO": 5,
    "FWD": 0,

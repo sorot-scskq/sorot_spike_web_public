@@ -25,6 +25,43 @@ logger = logging.getLogger(__name__)
 #: シナリオの SCRIPT に書く名前（`wait_rows` が待ちの行を探すのに使う）
 SCRIPT_PATH = "2026/recog/qr_turn_correction.py"
 
+#: 直しの旋回のあと、**止まったまま向き保持で目標の向きまで回しきる**か（置き場が無いときの既定）。
+#:
+#: 2026-11-04 の点検 X（20:58）で、入口の 7〜11° の直しの旋回は、旋回の行の間に 2〜4° しか回らなかった
+#: （行は 0.1 秒ほどで終わる。小さい旋回ではエンコーダは回りきったことになるが、車体は回りきっていない）。
+#: 残りは1周目の最初の直進（200mm）を走りながら向き保持が回していて、毎組同じ向きに横へずれていた
+#: （1周目の頭の行が、どの組もそろって 40〜100mm ずれる）。
+#: 旋回の目標は「旋回の前の向き＋SCR」で決まっているので、その直後に前へ進まない向き保持の行
+#: （FUNCNO 19・FWD 0）を挟めば、ジャイロを見て止まったまま回しきってから走り出せる。
+SETTLE = True
+
+#: `SETTLE` を走行体で切り替える置き場（1行目に 1 か 0）
+SETTLE_SWITCH = "./sorot_spike/qr_turn_settle.txt"
+
+#: 止まったまま合わせる時間[ms]
+SETTLE_MS = 800
+
+#: 止まったまま合わせる行の CNO（直しの旋回の CNO に足す）。CNO は 255 まで
+SETTLE_CNO_OFFSET = 200
+
+
+def settle_row(sno: int, turn_cno: int) -> dict:
+    """直しの旋回のすぐあとに入れる、前へ進まない向き保持の行（目標の向きまで止まったまま回す）"""
+    return {
+        "Comment": "QR角度補正の旋回のあと、止まったまま向き保持で回しきる",
+        "SNO": sno,
+        "CNO": turn_cno + SETTLE_CNO_OFFSET,
+        "PRVSNO": sno,
+        "PRVCNO": turn_cno,
+        # **TRN は 0 にしない。** C++ の RunControl は FWD 0・TRN 0 を「停止」とみなしてモータを止める
+        # （その場旋回のときは、走行方法が出した turn を各輪の PWM にする）。向き保持（FUNCNO 19）は TRN の値を
+        # 使わないので、0 以外なら何でもよい
+        "RunInfo": {"FUNCNO": 19, "FWD": 0, "TRN": 1, "KP": 0, "KI": 0, "KD": 0, "NOBLNCE": 1},
+        "SwitchInfo": {"SCJFN": 1, "SCT": SETTLE_MS, "SCD": 0, "SCR": 0,
+                       "SCC": 0, "SCV": 0, "SCX": 0, "SCY": 0},
+        "CoordCorrectInfo": {},
+    }
+
 
 class QrTurnCorrection:
     SNO = 20
@@ -42,6 +79,19 @@ class QrTurnCorrection:
     UPDATE_TIMEOUT_SECONDS = 1.0
 
     _instance: Optional["QrTurnCorrection"] = None
+
+    #: 走行中に差し込んだ待ちの行（`turn_check.py`）。(SNO, CNO) → (差し替える CNO, 測る時間[s])
+    _registered: dict = {}
+
+    @classmethod
+    def register_wait_row(cls, sno: int, wait_cno: int, turn_cno: int,
+                          sample_seconds: Optional[float] = None) -> None:
+        """走行中に差し込んだ待ちの行を覚える。ファイルには無いので `wait_rows` が拾えない"""
+        cls._registered[(sno, wait_cno)] = (turn_cno, sample_seconds)
+
+    @classmethod
+    def clear_registered_wait_rows(cls) -> None:
+        cls._registered = {}
 
     @classmethod
     def shared(cls) -> "QrTurnCorrection":
@@ -126,6 +176,8 @@ class QrTurnCorrection:
         入口を何度も通るので、29/2 だけでは足りない。
         """
         rows = dict(self.WAIT_ROWS)
+        for key, (turn_cno, _) in self._registered.items():
+            rows[key] = turn_cno
         try:
             from scenario_rows import ScenarioRows
             for sno, cno in ScenarioRows.shared().rows_with_script(SCRIPT_PATH):
@@ -154,6 +206,22 @@ class QrTurnCorrection:
                        self.SNO, self.WAIT_CNO)
         return (self.SNO, self.WAIT_CNO)
 
+    def _settle_here(self) -> bool:
+        """直しの旋回のあとに、止まったまま回しきる行を入れるか。
+
+        入口（シナリオのファイルにある待ちの行）だけ。旋回のたびに差し込む待ちの行（`turn_check.py`）は
+        CNO の空きが足りないので入れない
+        """
+        if self.active in self._registered:
+            return False
+        if self._turn_cno() + SETTLE_CNO_OFFSET > 255:
+            return False
+        try:
+            from route_register import SwitchFile
+            return bool(SwitchFile.read(SETTLE_SWITCH, SETTLE))
+        except Exception:  # noqa: BLE001 — 読めなければ既定
+            return SETTLE
+
     def _turn_cno(self) -> int:
         return self.wait_rows()[self.active]
 
@@ -165,7 +233,9 @@ class QrTurnCorrection:
 
         deviations = []
         self.last_frame = None
-        deadline = time.monotonic() + self.SAMPLE_SECONDS
+        registered = self._registered.get(self.active)
+        seconds = registered[1] if registered and registered[1] else self.SAMPLE_SECONDS
+        deadline = time.monotonic() + seconds
         while time.monotonic() < deadline:
             result = reader.read()
             if result.get("ok"):
@@ -182,8 +252,10 @@ class QrTurnCorrection:
             time.sleep(0.02)
         if self.mailbox.pending():
             return False
-        if not self.mailbox.place_rows([self.correction_row(scr, self.active[0], self.active[1],
-                                                            self._turn_cno())]):
+        rows = [self.correction_row(scr, self.active[0], self.active[1], self._turn_cno())]
+        if self._settle_here():
+            rows.append(settle_row(self.active[0], self._turn_cno()))
+        if not self.mailbox.place_rows(rows):
             return False
 
         deadline = time.monotonic() + self.UPDATE_TIMEOUT_SECONDS

@@ -110,6 +110,46 @@ def tilt_min_remain_mm(speed_mm_s: float) -> float:
     return float(speed_mm_s) * (PUBLISH_INTERVAL + HOLD_CATCHUP_S) + END_MARGIN_MM
 
 
+#: 速さをまだ測れていないとき（行に入った直後）、指令の速さ（FWD）から決めるか。
+#:
+#: 2026-11-04 の点検 X（20:33）では、寄せなかった 229 回のうち 56 回が「速さがまだ分からない」だった
+#: （ET_2026_REHEARSAL#94）。行の頭はちょうど床のコードが前に見えている所なので、ここで決めたい。
+SPEED_FROM_FWD = True
+
+#: `SPEED_FROM_FWD` を走行体で切り替える置き場（1行目に 1 か 0）
+SPEED_FROM_FWD_SWITCH = "./sorot_spike/qr_steer_speed_fwd.txt"
+
+
+def speed_from_fwd(fwd: float) -> Optional[float]:
+    """
+    指令の速さ（FWD）から、走る速さ[mm/秒]を見積もる。前へ進まないなら None。
+
+    実機の記録で FWD 70 が約 307mm/秒、80 が約 366mm/秒（`tilt_min_remain_mm` の説明と同じ値）。
+    その2点を通る直線で見積もる。測れるようになれば、測った値を使う
+    """
+    fwd = abs(float(fwd or 0))
+    if fwd <= 0:
+        return None
+    return max(50.0, 307.0 + (fwd - 70.0) * (366.0 - 307.0) / 10.0)
+
+
+#: 振った分を**行の中で戻しきれなくても**振るか（置き場が無いときの既定）。
+#:
+#: 経路の多くの行は、振って戻すのに要る距離（FWD 70 で約 570mm）より短く、2026-11-04 の点検 X では
+#: 「行の残りが足りない」で 56 回寄せなかった。入れると、振りが効く距離（向き保持が追いつくまで
+#: `HOLD_CATCHUP_S` ＋ `END_MARGIN_MM`）が残っていれば振る。戻しきれなかった分は旋回の目標に残るが、
+#: 次の直進の行の頭で測る向きの補正（`heading_task`。この行の振りと同じ口）で戻る。
+CARRY_TILT = False
+
+#: `CARRY_TILT` を走行体で切り替える置き場（1行目に 1 か 0）
+CARRY_TILT_SWITCH = "./sorot_spike/qr_steer_carry.txt"
+
+
+def tilt_effective_remain_mm(speed_mm_s: float) -> float:
+    """振りが効く（向き保持が追いつく）のに要る行の残り[mm]。戻す分は数えない"""
+    return float(speed_mm_s) * HOLD_CATCHUP_S + END_MARGIN_MM
+
+
 #: 床のコードを読む間隔[秒]。ゲートの確認は 0.15秒おきに映像を渡してくるが、毎枚読むと CPU を食う
 READ_INTERVAL = 0.3
 
@@ -137,7 +177,8 @@ class QrAim:
     def decide(self, codes: List[Any], grid_deviation_deg: Optional[float],
                gate_lateral_left_mm: Optional[float] = None,
                remaining_mm: Optional[float] = None,
-               speed_mm_s: Optional[float] = None, diagonal: bool = False) -> Aim:
+               speed_mm_s: Optional[float] = None, diagonal: bool = False,
+               carry: bool = False) -> Aim:
         """
         :param codes: 見えたコード（`x_mm` 前・`y_mm` 左[mm]、カメラの真下から）
         :param grid_deviation_deg: 格子に対する走行体の向きのずれ[度]（時計回りが正）
@@ -158,7 +199,7 @@ class QrAim:
         target = self._pick(ahead, gate_lateral_left_mm) if ahead else None
 
         why_square = ("斜めの行（隣のコードが横に 177mm しか離れず取り違える）" if diagonal
-                      else self._why_square(target, remaining_mm, bool(ahead), speed_mm_s))
+                      else self._why_square(target, remaining_mm, bool(ahead), speed_mm_s, carry))
         if why_square:
             return self._square(g, why_square, target)
 
@@ -170,7 +211,7 @@ class QrAim:
 
     @staticmethod
     def _why_square(target: Optional[tuple], remaining_mm: Optional[float], any_ahead: bool,
-                    speed_mm_s: Optional[float] = None) -> str:
+                    speed_mm_s: Optional[float] = None, carry: bool = False) -> str:
         """振らずに戻す理由。振ってよければ空文字"""
         if target is None:
             return ("狙うコードを決められない（横 %.0fmm を超え、ゲートで確かめられない）" % UNAMBIGUOUS_MM
@@ -179,7 +220,8 @@ class QrAim:
             return "行の残りが分からない"
         if speed_mm_s is None:
             return "速さがまだ分からない"
-        need = tilt_min_remain_mm(speed_mm_s)
+        # 戻しきれなくても振るときは、振りが効く距離だけあればよい（CARRY_TILT）
+        need = tilt_effective_remain_mm(speed_mm_s) if carry else tilt_min_remain_mm(speed_mm_s)
         if remaining_mm < need:
             return "行の残り %.0fmm（戻すには %.0fmm 要る・速さ %.0fmm/秒）" % (remaining_mm, need, speed_mm_s)
         if target[0] <= SQUARE_UP_MM:
@@ -287,8 +329,9 @@ class QrSteer:
         gate_left = self._gate_left(gate)
         aim = QrAim().decide(found.codes, result.get("deviation_deg"), gate_left,
                              remaining_mm=self._row_remaining(row, travelled),
-                             speed_mm_s=self._speed() if self._speed is not None else self._measured_speed(),
-                             diagonal=(result.get("system") == 45))
+                             speed_mm_s=self._speed_now(row),
+                             diagonal=(result.get("system") == 45),
+                             carry=self._carry_tilt())
         if aim.deviation_deg is None:
             logger.debug("横の補正なし（%d/%d）: %s", pose.sno, pose.cno, aim.reason)
             return None
@@ -320,6 +363,19 @@ class QrSteer:
         self._samples.append((now, dist))
         self._samples = [(t, d) for t, d in self._samples if now - t <= 3 * SPEED_WINDOW_S]
         return dist - self._row_start_dist
+
+    def _speed_now(self, row: Optional[dict]) -> Optional[float]:
+        """いまの速さ[mm/秒]。測れていなければ、指令の速さ（FWD）から見積もる（`SPEED_FROM_FWD`）"""
+        if self._speed is not None:
+            return self._speed()
+        measured = self._measured_speed()
+        if measured is not None or row is None or not SwitchFile.read(SPEED_FROM_FWD_SWITCH, SPEED_FROM_FWD):
+            return measured
+        return speed_from_fwd((row.get("RunInfo") or {}).get("FWD", 0))
+
+    @staticmethod
+    def _carry_tilt() -> bool:
+        return bool(SwitchFile.read(CARRY_TILT_SWITCH, CARRY_TILT))
 
     def _measured_speed(self) -> Optional[float]:
         """いまの行の、直近 `SPEED_WINDOW_S` 秒以上の自己位置から出した速さ[mm/秒]。足りなければ None"""

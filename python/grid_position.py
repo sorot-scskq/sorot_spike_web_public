@@ -84,7 +84,11 @@ MAX_HEADING_DEG = 10.0
 #:
 #: 向きが合っていない間は、いちばん近いコードの取り違えが起きやすい。
 #: 向きは `Utillity/HeadingHold.h` が 1回 3度ずつ直すので、数回で下回る。
-MAX_DEVIATION_DEG = 6.0
+#:
+#: **10度に広げた（2026-11-04、シミュレータ）。** 向きは測るのが行の頭の1回だけなので、旋回の残差が
+#: 大きいと（誤差を大きくした点検 X）、6度では位置を出せる回がほとんど無かった。位置は当てはめた
+#: 格子の軸から出しているので車体の向きには頼らず、隣のコードへの取り違えは `MAX_OFFSET_MM` で弾く。
+MAX_DEVIATION_DEG = 10.0
 
 #: 位置を出すのに要る目印の数。向き（3個）より多くする
 #:
@@ -104,6 +108,14 @@ ANCHOR_Y = 0.0
 
 #: 格子の軸が自己位置の x 軸から何度回っているか[度]
 ANCHOR_ANGLE_DEG = 0.0
+
+#: "learn" で格子の置き場を決めるとき、軸の向きをこの刻みにそろえる[度]。0 ならそろえない。
+#:
+#: 自己位置の座標系は走り出しの向きが基準で、走り出しは格子に沿って置く（点検 X はヒントカード2の
+#: 所で東向き）。だから格子の軸は自己位置の x 軸から 90度の倍数のどれかになる。
+#: そろえないと、置き場を決めた1回の自己位置の向きのずれがそのまま軸に入り、以後の打ち直しが
+#: 全部その角度で斜めになる（誤差を大きくした点検 X で「向き +11.21°」で覚えてしまった）。
+ANCHOR_SNAP_STEP_DEG = 90.0
 
 
 def wrap_deg(deg: float) -> float:
@@ -172,7 +184,10 @@ class GridAnchor:
         self.x = x
         self.y = y
         if angle_deg is not None:
-            self.axes = GridAxes(fold(angle_deg, 90.0))
+            angle = fold(angle_deg, 90.0)
+            if ANCHOR_SNAP_STEP_DEG:
+                angle = fold(round(angle / ANCHOR_SNAP_STEP_DEG) * ANCHOR_SNAP_STEP_DEG, 90.0)
+            self.axes = GridAxes(angle)
         self.known = True
 
 
