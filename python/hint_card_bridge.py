@@ -78,6 +78,26 @@ async def _hint_load_modules():
 
 await _hint_load_modules()
 
+
+def _hint_add_sender_aliases():
+    """
+    communicator.py に、hint_card_reader.py が使う古い名前（〜Sender）を足す。
+
+    走行体の communicator.py は、取り込んだ版（4410ac5、走行体 STABLE 9835f37）で末尾の別名
+    `MessageSender = BaseCommunicator` などを消した。走行体側ではもう hint_card_reader.py を使って
+    いないが、シミュレータのページ側のヒントカードの読み取りはまだこれを読むので、
+    `CallbackSender を import できない` で止まっていた。src/ は変えず、ここで同じ別名を足す
+    """
+    import communicator
+    for old, new in (("MessageSender", "BaseCommunicator"),
+                     ("WebSocketSender", "WebSocketCommunicator"),
+                     ("CallbackSender", "CallbackCommunicator")):
+        if not hasattr(communicator, old):
+            setattr(communicator, old, getattr(communicator, new))
+
+
+_hint_add_sender_aliases()
+
 from camera import RobotCamera  # noqa: E402
 from qr_decoder import QrCodeDecoder  # noqa: E402
 from hint_card_reader import HintCard, HintCardReader, parse_hint_card_text  # noqa: E402
