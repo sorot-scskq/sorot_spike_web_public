@@ -33,6 +33,7 @@ from bottle_color import BottleColor
 from opencv import OpenCv
 from robot_pose import RobotPose
 from gate_steer import GateSteer
+from qr_steer import QrSteer
 from route_register import SwitchFile
 
 try:
@@ -353,6 +354,11 @@ class GateCheckTask:
             GateSteer.get_instance().consider(result.nearest)
         except Exception:   # noqa: BLE001 — 寄せられなくても見張りは続ける
             logger.exception("ゲートへ寄せるのに失敗しました")
+        # 床のコードの真ん中を通るように横位置を直す。同じ1枚を使う（カメラを2つの流れから読まない）
+        try:
+            QrSteer.get_instance().consider(frame, result.nearest)
+        except Exception:   # noqa: BLE001 — 直せなくても見張りは続ける
+            logger.exception("床のコードで横位置を直すのに失敗しました")
 
     def _close(self, track: GateTrack) -> None:
         """見えなくなったゲートを記録へ落とす。**ロックの中から呼ぶ**"""

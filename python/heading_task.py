@@ -35,7 +35,6 @@ try:
 except ImportError:  # パッケージとして読み込まれた場合
     from .heading_reader import ROBOT_CAMERA, HeadingReader
 
-from floor_code import FloorCodeDecoder
 from grid_position import GridPositionFixer
 from pose import PoseReader
 from robot_pose import RobotPose
@@ -60,7 +59,7 @@ logger = logging.getLogger(__name__)
 SNAPSHOT_DIR = "./sorot_spike/RoughSpot/PhotoImage/heading"
 
 #: 残す枚数の上限。走行を重ねても溢れないよう、古いものから消す
-SNAPSHOT_KEEP = 80
+SNAPSHOT_KEEP = 400
 
 #: 0 にすると保存しない。**本番は 0 にすること**
 SNAPSHOT_ENABLE = 1
@@ -163,6 +162,13 @@ def _make_floor_code_fallback(task: Any) -> Optional[Any]:
         return None
 
 
+#: 向きのずれを出したあと、次を受け付けるまでの時間[秒]。
+#: C++ は届いた値を「いまの目標」からずらし、いつの絵で測ったかを見ない。
+#: 向き保持が追いつく前に撮った絵は同じずれをもう一度写すので、出すと二重に当たる。
+#: そこで、最後に出してからこの時間がたったあとに撮った絵の値だけを通す
+PUBLISH_SETTLE_SECONDS = 1.0
+
+
 class HeadingTask:
     """SCRIPT で指示された区間で、向きのずれを 1回測る。"""
 
@@ -200,14 +206,17 @@ class HeadingTask:
         self._lock = threading.Lock()
         #: 測れた回数。C++ はこれが増えたときだけ取り込む
         self._seq = 0
+        #: 出す口は複数の流れ（ここ・横の補正・ゲートへの寄せ）から呼ばれる
+        self._publish_lock = threading.Lock()
+        #: 最後に出した時刻（time.monotonic）
+        self._last_publish_at: Optional[float] = None
+        self._clock: Callable[[], float] = time.monotonic
         #: 位置を打ち直した回数。C++ はこれが増えたときだけ取り込む（向きとは別に数える）
         self._coord_seq = 0
         #: 直近の結果（確かめる用）
         self.last: Optional[dict] = None
         #: デバッグ画像の置き場（テストで差し替える）
         self.snapshot_dir = SNAPSHOT_DIR
-        #: 床のコードの中身を読む口。読めても当てるのには使わない（READ_CODE_IDS）
-        self._decoder = FloorCodeDecoder(CODE_STRETCH_FACTORS)
 
     def measure(self, request_id: int = 0) -> Optional[dict]:
         """
@@ -216,6 +225,7 @@ class HeadingTask:
         :returns: 測れた結果。測れなければ None
         """
         with self._lock:
+            captured_at = self._clock()
             try:
                 result = self._reader.read()
             except Exception:  # noqa: BLE001 — 測れなくても走行は続ける
@@ -231,9 +241,12 @@ class HeadingTask:
                     return None
                 result = alt
 
-            self.publish(result["deviation_deg"],
-                         source=result.get("source"), markers=result.get("markers"),
-                         elapsed_ms=result.get("elapsed_ms", 0))
+            if self.publish(result["deviation_deg"],
+                            source=result.get("source"), markers=result.get("markers"),
+                            elapsed_ms=result.get("elapsed_ms", 0),
+                            captured_at=captured_at) is None:
+                return None
+            self._photo(result)
             # 同じ1枚から位置も出す。**向きより後**（Docs/position_correction_design.md 5.5）
             self.fix_position(result)
             return result
@@ -267,23 +280,45 @@ class HeadingTask:
         return alt
 
     def publish(self, deviation_deg: float, source: Any = None,
-                markers: Any = None, elapsed_ms: float = 0.0) -> int:
+                markers: Any = None, elapsed_ms: float = 0.0,
+                captured_at: Optional[float] = None) -> Optional[int]:
         """
         測ったずれを判定結果に載せる（C++ が向き保持の目標を直す）。
 
-        **測る道が2つあるので、載せる口はここ1つにしてある。** 目印・黒線で測る
-        こちらと、床の二次元コードで測る `heading_fix_task` が、**同じ通し番号**を
+        **出す流れが複数あるので、載せる口はここ1つにしてある。** 目印・黒線で測る
+        こちら、横の補正（`qr_steer`）、ゲートへの寄せ（`gate_steer`）が、**同じ通し番号**を
         使う（別々に数えると、C++ 側の「増えた回だけ取り込む」が噛み合わない）。
 
-        :returns: 載せた通し番号
+        **前に出した値を向き保持が追い終える前に撮った絵の値は捨てる**（`PUBLISH_SETTLE_SECONDS`）。
+
+        :param captured_at: その値を測った絵を撮った時刻（time.monotonic）。
+                            省くと「いま − elapsed_ms」
+        :returns: 載せた通し番号。捨てたら None
         """
-        self._seq += 1
-        store = ResultStore.get_instance()
-        store.set("heading_dev", round(float(deviation_deg), 2))
-        store.set("heading_seq", self._seq)
-        logger.info("向きのずれ %+.2f°（%s・目印%s個・%.0fms・%d回目）",
-                    deviation_deg, source, markers, elapsed_ms, self._seq)
-        return self._seq
+        with self._publish_lock:
+            now = self._clock()
+            taken = captured_at if captured_at is not None else now - float(elapsed_ms or 0.0) / 1000.0
+            last = self._last_publish_at
+            if last is not None and taken < last + PUBLISH_SETTLE_SECONDS:
+                logger.info("向きのずれ %+.2f°（%s）を捨てました（%.2f秒前に出した値を向き保持が追っている間に撮った絵）",
+                            deviation_deg, source, now - last)
+                return None
+            self._seq += 1
+            self._last_publish_at = now
+            store = ResultStore.get_instance()
+            store.set("heading_dev", round(float(deviation_deg), 2))
+            store.set("heading_seq", self._seq)
+            logger.info("向きのずれ %+.2f°（%s・目印%s個・%.0fms・%d回目）",
+                        deviation_deg, source, markers, elapsed_ms, self._seq)
+            return self._seq
+
+    def _photo(self, result: Dict[str, Any]) -> None:
+        """当てた前後の写真を残す（`correction_photo`）。測った絵は目印の道具が持っている"""
+        frame = getattr(self._reader, "last_frame", None)
+        if frame is None:
+            return
+        from correction_photo import CorrectionPhoto
+        CorrectionPhoto.shared().record(frame, str(result.get("source")), result["deviation_deg"])
 
     def fix_position(self, result: Dict[str, Any]) -> Optional[dict]:
         """測った1枚から、自己位置の位置の打ち直し量を出して判定結果に載せる。
@@ -371,16 +406,8 @@ class HeadingTask:
         実機で「1枚に何個読めるか」を数えるために回している。
         読めなくても、失敗しても、走行は続ける。
         """
-        if not READ_CODE_IDS:
-            return []
-        frame = self._reader.last_frame
-        if frame is None:
-            return []
-        try:
-            return self._decoder.read_ids(frame)
-        except Exception:  # noqa: BLE001 — 読めなくても走行は続ける
-            logger.exception("床のコードの読み取りに失敗しました")
-            return []
+        # 床のコードの中身（A1〜D4）は読まない（復号はやめた。位置の打ち直しも止めてある）
+        return []
 
     def pose_now(self) -> Dict[str, Any]:
         """撮った時点の自己位置。

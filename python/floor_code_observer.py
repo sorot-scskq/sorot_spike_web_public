@@ -217,7 +217,13 @@ class FloorCodeObserver:
             points = self.plane.to_floor([(u, v)], image_size)
             point = points[0] if points else None
             return None if point is None else (float(point[0]), float(point[1]))
-        return self._camera_for(image_size).image_to_ground(u, v)
+        ground = self._camera_for(image_size).image_to_ground(u, v)
+        if ground is None:
+            return None
+        # **image_to_ground の横は右が正。** こちらは左が正（C++ の自己位置と同じ）なので
+        # 裏返す。裏返さないと向きのずれの符号が逆になる（Docs/heading_correction.md 2.3）
+        forward, right = ground
+        return (float(forward), -float(right))
 
     def _camera_for(self, image_size: Any):
         """その映像の大きさに合わせたカメラの定数（画角・俯角・高さは変わらない）"""

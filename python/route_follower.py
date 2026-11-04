@@ -455,6 +455,20 @@ class RouteFollower:
                 return None
             return self.numbering.row_index(key, len(self.plan))
 
+    def row_now(self, key):
+        """`(SNO, CNO)` の行を、書き直した後の値で返す。経路の外・経路を見ていなければ None
+
+        書き直した `SCD`/`SCR` は C++ へ置いた行にしか無い（`ScenarioRows` は元の経路のまま）。
+        行の残りを使う側（横の補正）はこちらを見る。
+        """
+        with self._lock:
+            if self.plan is None or self.numbering is None:
+                return None
+            index = self.numbering.row_index(key, len(self.plan))
+            if index is None:
+                return None
+            return self.plan.rows[index].emit(*self.numbering.numbers_for(index))
+
     def rows_ahead(self, count, current_key=None):
         """いま走っている行の `count` 行先。経路に入る前は先頭からの番号
 

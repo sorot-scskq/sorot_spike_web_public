@@ -12,10 +12,15 @@ ETラリーの直進の行に書いて使う。**旋回の直後の直進**が�
 `heading_fix_task.LOOKAHEAD_ROWS`**（実機で測って決める。`Docs/heading_correction.md`）。
 
 測れなければ何も起きない。
+
+**止めた（2026-10-31）。** QR を復号して四隅から向きを出す旧い道で、走行中に誤った値を当てた。
+シナリオに書いてあっても何もしない（`route_register.heading_script` の説明）。
 """
 
-from heading_fix_task import HeadingFixTask
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def run(request_id):
-    HeadingFixTask.get_instance().fix(request_id)
+    logger.info("heading_fix は止めてあります（2026/recog/heading_fix.py）。向きは heading_task で測ります")

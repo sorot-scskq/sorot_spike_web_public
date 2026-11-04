@@ -57,13 +57,13 @@ from dataclasses import dataclass
 from typing import Any, Callable, Optional
 
 from bottle_locator import BOTTLE_DIAMETER_MM, BottleLocator
-from remote_control import Command, Observation, Status, set_controller
+from remote_control import Command, Observation, Status, current_controller, set_controller
 
 logger = logging.getLogger(__name__)
 
 # --- 段取りのしきい値 --------------------------------------------------------
 #: 担当する SNO（シナリオ番号の設計で ET相撲 は 40）
-SUMO_SNO = 40
+SUMO_SNO = 10
 #: これより近くで正面に見えたら寄せ終わり。近すぎると足元が画面の下へ外れて写らない
 #: （シミュレータの前面カメラは画面の一番下でも 219mm 先）。写る範囲の内側に置く
 APPROACH_DONE_MM = 280.0
@@ -814,6 +814,19 @@ def attach(frame_source: Optional[Callable[[], Any]] = None,
     """
     source = frame_source or _robot_frame_source()
     control = SumoApproach(make_locator(source, geometry), geometry, run_later, sno)
-    set_controller(control)
+    # **それまでの係を外さず後ろにつなぐ。** 制御関数は1つしか差せない。上書きすると、
+    # このあとの区間（ヒントカードを読み終えたら抜ける 20/2・20/3・20/7、QR角度補正の 29/2）を
+    # 終える係がいなくなり、どれも SCT まで止まる（ET相撲がヒントカードより前に来る順番で起きた）
+    previous = current_controller()
+    behind = getattr(previous, "behind_sumo", previous)    # 前に差した力士寄せは捨てる
+
+    def chained(obs: Observation) -> Optional[Command]:
+        cmd = control(obs)
+        if cmd is None and behind is not None:
+            return behind(obs)
+        return cmd
+
+    chained.behind_sumo = behind
+    set_controller(chained)
     logger.info("ET相撲の力士寄せを差しました（SNO %d）", sno)
     return control

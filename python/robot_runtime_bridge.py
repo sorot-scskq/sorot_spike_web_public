@@ -31,8 +31,15 @@ ScriptRunner は `<年>/recog/<名前>.py` を読み、その run(request_id) �
 スレッドどうしが Lock を握ったまま sleep して取り合うと、交代できずに止まる（本物のスレッドは
 無く、交代するのは sleep / Event.wait の所だけのため）。認識1枚の処理（OpenCV）の間も交代しない。
 
-【PyScript の名前空間】
-他の bridge と衝突しないよう、グローバルは _rr_ 接頭辞を付ける。JS からは window.__simRobot を使う。
+【どこで動くか】
+ページとは別の処理の流れ（Web Worker、sim/pyscript/robot-worker.js）で動く。ページと同じ流れで
+動かすと、OpenCV の1回（向きのずれを測る grid_heading.py で約 0.3 秒）のあいだ画面も走行体も止まる。
+Worker の中では self を window と呼べるようにしてあり、ページの口（window.__simZxing など）は
+Worker が同じ名前で用意する。ページにしか無いカメラの画だけ、ページへ頼んで描いてもらう
+（_rr_grab_frame）。
+
+【名前空間】
+グローバルは _rr_ 接頭辞を付ける。JS からは window.__simRobot を使う。
 """
 
 import json
@@ -51,9 +58,13 @@ from pyodide.ffi import to_js as _to_js
 from pyodide.http import pyfetch
 
 
+#: ファイルを取りにいく先（サイトの根元。末尾に /）。Worker は自分の置き場が別なので、ページが教える
+_RR_BASE = str(getattr(window, '__rrBase', '') or '')
+
+
 async def _sim_ffi_load():
     """JS の null を None にそろえる共通の関数（sim/pyscript/sim_ffi.py）を取り込む"""
-    response = await pyfetch("python/sim_ffi.py", cache="no-store")
+    response = await pyfetch(_RR_BASE + "python/sim_ffi.py", cache="no-store")
     with open("sim_ffi.py", "w") as out:
         out.write(await response.string())
 
@@ -77,7 +88,7 @@ def _rr_to_js(value):
 
 
 async def _rr_fetch_text(url):
-    response = await pyfetch(url, cache='no-store')
+    response = await pyfetch(_RR_BASE + url, cache='no-store')
     if not response.ok:
         raise RuntimeError(f'{url} を取得できませんでした（HTTP {response.status}）')
     return await response.string()
@@ -112,20 +123,33 @@ _rr_manifest = await _rr_load_robot_python()
 # --- スレッド（ブラウザでは立てられない）-------------------------------------------
 
 
+def _rr_page_error(text):
+    """エラーをコンソールと出力欄の両方へ出す（Worker のコンソールはページから見えないため）"""
+    console.error(f'robot_runtime: {text}')
+    try:
+        window.__simRobotLog('ERROR', 'robot_runtime', text)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def _rr_later(fn, delay_sec=0.0):
     """fn を JS のタイマーで1回呼ぶ。落ちても走行は止めない（走行体のスレッドと同じ）"""
     def run():
         try:
             fn()
         except Exception as exc:  # noqa: BLE001
-            console.error(f'robot_runtime: スレッドの中でエラー: {exc}\n{traceback.format_exc()}')
+            _rr_page_error(f'スレッドの中でエラー: {exc}\n{traceback.format_exc()}')
     setTimeout(create_once_callable(run), max(0, int(delay_sec * 1000)))
 
 
 #: JS 側から Python の関数を JSPI で呼ぶ（callPromising）。こう呼んだ Python の中でだけ、
 #: time.sleep() が一時停止してブラウザに順番を返せる
 _rr_call_promising = run_js(
-    "(fn, name) => fn.callPromising().catch((e) => console.error('robot_runtime: スレッド ' + name, e))"
+    "(fn, name) => fn.callPromising().catch((e) => {"
+    " console.error('robot_runtime: スレッド ' + name, e);"
+    " window.__simRobotLog?.('ERROR', 'robot_runtime', 'スレッド ' + name + ' が止まりました: ' + (e?.message ?? e)"
+    " + '\\n' + String(e?.stack ?? '').split('\\n').slice(0, 40).join('\\n'));"
+    " })"
     ".finally(() => fn.destroy())")
 
 
@@ -138,13 +162,26 @@ def _rr_can_switch():
         return False
 
 
+#: いま生きている「スレッド」（起こすのを待っているもの・一時停止しているものを含む）の名前と数。
+#: ゴミ集めは、これが 0 のとき（一時停止しているスレッドが無いとき）だけ回す（_rr_collect_garbage）
+_rr_live_threads = {}
+
+
 def _rr_spawn(fn, name, delay_sec=0.0):
     """fn を、一時停止できる「スレッド」として走らせる。落ちても走行は止めない"""
+    _rr_live_threads[name] = _rr_live_threads.get(name, 0) + 1
+
     def body():
         try:
             fn()
         except Exception as exc:  # noqa: BLE001
-            console.error(f'robot_runtime: スレッド {name} でエラー: {exc}\n{traceback.format_exc()}')
+            _rr_page_error(f'スレッド {name} でエラー: {exc}\n{traceback.format_exc()}')
+        finally:
+            left = _rr_live_threads.get(name, 0) - 1
+            if left > 0:
+                _rr_live_threads[name] = left
+            else:
+                _rr_live_threads.pop(name, None)
 
     proxy = create_proxy(body)
     setTimeout(create_once_callable(lambda: _rr_call_promising(proxy, name)), max(0, int(delay_sec * 1000)))
@@ -213,7 +250,131 @@ def _rr_install_threads():
     threading.Event.wait = wait
 
 
+class _RrLock:
+    """
+    取れなければ、短く sleep しながら待つ Lock（threading.Lock の代わり）。
+
+    【なぜ要るか】
+    本物のスレッドが無いので、交代するのは sleep の所だけ。走行体の heading_task は Lock を
+    握ったまま床の画を撮る（撮る前に sleep して順番を返す）。そこへ次の向きの測定が来て、同じ Lock を
+    元の待ち方で取りにいくと、握っている側に二度と順番が回らず止まる（ページで動かすとページごと、
+    Worker で動かすと Worker ごと固まっていた）。
+    ここで sleep しながら待てば、握っている側に順番が回って外してもらえる。
+
+    一時停止できない所（JS から直に呼ばれた所）では元の Lock と同じ待ち方をする。
+    """
+
+    POLL_SEC = 0.005
+    #: これより長く待ったら、待っている所を知らせる（取り合いで止まっていないかを見るため）[s]
+    LONG_WAIT_SEC = 5.0
+    #: 長く待っているのを知らせる先 fn(待った秒, Lock)。橋が出力欄へつなぐ
+    on_long_wait = None
+
+    def __init__(self, can_switch=None, sleep=None, clock=None, factory=None):
+        self._inner = (factory or _rr_original_lock)()
+        self._can_switch = can_switch or _rr_can_switch
+        self._sleep = sleep or time.sleep
+        self._clock = clock or time.monotonic
+
+    def acquire(self, blocking=True, timeout=-1):
+        if self._inner.acquire(False):
+            return True
+        if not blocking:
+            return False
+        if not self._can_switch():
+            return self._inner.acquire(True, timeout)
+        start = self._clock()
+        end = None if timeout is None or timeout < 0 else start + float(timeout)
+        reported = False
+        while True:
+            now = self._clock()
+            if end is not None and now >= end:
+                return False
+            if not reported and now - start >= self.LONG_WAIT_SEC and _RrLock.on_long_wait:
+                reported = True
+                _RrLock.on_long_wait(now - start, self)
+            self._sleep(self.POLL_SEC)
+            if self._inner.acquire(False):
+                return True
+
+    def release(self):
+        self._inner.release()
+
+    def locked(self):
+        return self._inner.locked()
+
+    __enter__ = acquire
+
+    def __exit__(self, *exc):
+        self.release()
+
+
+#: 差し替える前の threading.Lock（_RrLock の中身に使う）
+_rr_original_lock = threading.Lock
+
+
+def _rr_install_locks():
+    """これから作られる threading.Lock を、sleep しながら待つ形にする。走行体のモジュールを読む前に呼ぶ"""
+    if threading.Lock is not _RrLock:
+        threading.Lock = _RrLock
+
+    def report(waited, lock):
+        where = ''.join(traceback.format_stack(limit=8)[:-2])
+        text = f'Lock を {waited:.1f}秒 待っています。待っている所:\n{where}'
+        try:
+            window.__simRobotLog('WARNING', 'robot_runtime', text)
+        except Exception:  # noqa: BLE001
+            console.warn(text)
+
+    _RrLock.on_long_wait = report
+
+
+def _rr_disable_gc():
+    """
+    Python のゴミ集め（循環参照の回収）を、自動では走らせない。走り出す前に回す（_rr_collect_garbage）。
+
+    【なぜ】
+    Worker では画を待つたびに「スレッド」が一時停止して入れ替わる（JSPI）。その途中で自動の
+    ゴミ集めが走ると、一時停止しているスレッドのフレームまでたどって壊れたメモリを読み、
+    `memory access out of bounds` で落ちていた（19_点検X で 1〜2 分。落ちた所は PyGC_Collect の中）。
+    落ちたスレッドが Lock を握っていると、後の測定がすべて止まる。
+    循環しないものはこれまでどおり参照カウントで片付く。
+    """
+    import gc
+    gc.disable()
+
+
+#: 走り出す前のゴミ集めで、スレッドが終わるのを待つ長さ[s]と、見に行く間隔[s]
+_RR_GC_WAIT_SEC = 2.0
+_RR_GC_POLL_SEC = 0.1
+
+
+def _rr_collect_garbage(waited=0.0):
+    """
+    一時停止している「スレッド」が無いのを確かめてから、ゴミ集めを回す（JS のタイマーから呼ぶ）。
+
+    走らせ直すときは、前の回の見張りのスレッドに「止まれ」を出しても、止まりきるのは次に起きたとき。
+    残っているうちに回すと落ちるので、終わるのを待つ。待ちきれなければその回は見送る
+    （見送っても循環しないものは片付いている。次の走り出す前にまた回す）
+    """
+    import gc
+    if _rr_live_threads:
+        if waited < _RR_GC_WAIT_SEC:
+            _rr_later(lambda: _rr_collect_garbage(waited + _RR_GC_POLL_SEC), _RR_GC_POLL_SEC)
+            return
+        names = '、'.join(f'{k}×{v}' if v > 1 else k for k, v in sorted(_rr_live_threads.items()))
+        window.__simRobotLog('INFO', 'robot_runtime',
+                             f'ゴミ集めを見送りました（動いているスレッド: {names}）')
+        return
+    t0 = time.monotonic()
+    found = gc.collect()
+    window.__simRobotLog('INFO', 'robot_runtime',
+                         f'走り出す前にゴミ集めをしました（{found} 個・{(time.monotonic() - t0) * 1000:.0f}ms）')
+
+
 _rr_install_threads()
+_rr_install_locks()
+_rr_disable_gc()
 
 import et_sumo  # noqa: E402
 import remote_control  # noqa: E402
@@ -261,25 +422,53 @@ def _rr_grab_frame(size=None):
 
     画面の「カメラON」を外しているときは None（カメラが付いていない走行体と同じ）。同じシナリオの
     まま「カメラで直す／直さない」を見比べるため
+
+    **描くのはページ。** この Python は Worker で動くので、景色を描けない。ページへ頼み
+    （sim/pyscript/robot-worker-client.js の grabFrame）、描けるまでこの「スレッド」だけ一時停止して
+    待つ。一時停止できない所（JSPI の外）では待てないので None
     """
-    if js_value(getattr(window, '__cameraEnabled', None)) is False:
+    if not _rr_can_switch():
         return None
-    manager = js_value(getattr(window, 'canvasManager', None))
-    if manager is None:
+    from pyodide.ffi import run_sync
+    args = () if size is None else (int(size[0]), int(size[1]))
+    got = js_value(run_sync(window.__rrCallPage('grabFrame', *args)))
+    if got is None:
         return None
-    if size is None:
-        if not manager.captureReadView():
-            return None
-        canvas = manager.readCanvas
-    else:
-        canvas = js_value(manager.captureView(int(size[0]), int(size[1])))
-        if canvas is None:
-            return None
-    width, height = int(canvas.width), int(canvas.height)
-    ctx = canvas.getContext('2d', _rr_to_js({'willReadFrequently': True}))
-    data = ctx.getImageData(0, 0, width, height).data.to_bytes()
+    width, height = int(got.width), int(got.height)
+    data = got.data.to_bytes()
     rgba = np.frombuffer(data, dtype=np.uint8).reshape((height, width, 4))
-    return cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGR)
+    frame = cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGR)
+    _rr_note_frame_pose(frame, js_value(getattr(got, 'pose', None)))
+    return frame
+
+
+#: 撮った画ごとの、撮った時の走行体の本当の姿勢（画面の答え合わせ用）。画の id → 姿勢
+_rr_frame_poses = {}
+
+#: 覚えておく画の数。測る側は撮ってすぐ使うので、少しあれば足りる
+_RR_FRAME_POSE_KEEP = 16
+
+
+def _rr_note_frame_pose(frame, pose):
+    """
+    撮った画に、撮った時の本当の姿勢を添えておく。
+
+    Worker では測っているあいだも走行体が進むので、測り終わった時の向きと比べると答え合わせが
+    ずれる。撮った時の姿勢を、画（同じ物）から引けるようにしておく（_rr_watch_heading）
+    """
+    if pose is None:
+        return
+    _rr_frame_poses[id(frame)] = (frame, {'x': float(pose.x), 'y': float(pose.y), 'angle': float(pose.angle)})
+    while len(_rr_frame_poses) > _RR_FRAME_POSE_KEEP:
+        _rr_frame_poses.pop(next(iter(_rr_frame_poses)))
+
+
+def _rr_frame_pose(frame):
+    """撮った時の本当の姿勢。分からなければ None"""
+    if frame is None:
+        return None
+    kept = _rr_frame_poses.get(id(frame))
+    return kept[1] if kept is not None and kept[0] is frame else None
 
 
 RobotCamera.shared().set_frame_source(_rr_frame_source)
@@ -561,6 +750,71 @@ def _rr_configure_camera(camera_json):
         object.__setattr__(heading_reader.ROBOT_CAMERA, field, getattr(sim, field))
     return True
 
+# --- 床のコードを床へ戻す（シミュレータのカメラの写り方）-------------------------------
+
+from floor_code_heading import CameraFloorPlane  # noqa: E402
+
+
+class _RrSimFloorPlane(CameraFloorPlane):
+    """
+    シミュレータのカメラ（model 'sim'）で、画素を床の点へ戻す。
+
+    【なぜ要るか】
+    走行体の床のコードの読み取り（Common/floor_code_heading.py の CameraFloorPlane）は、
+    ピンホールのカメラしか扱わない（from_constants が 'sim' を断る）。シミュレータのカメラは
+    「縦はピンホール、横は距離に比例した幅」の疑似投影（sim/camera-model.js、
+    grid_heading.CameraConstants の 'sim'）なので、そのままでは入口の QR 角度補正
+    （2026/qr_turn_correction.py）も、ゲートの見張りの横の補正（qr_steer.py）も動かない。
+
+    CameraFloorPlane を受け継ぎ、to_floor だけをシミュレータの式にする。俯角を振って合わせる
+    （TiltFitter）ときに渡される tilt_deg もそのまま使う。走行体のコードは変えない
+    """
+
+    def __init__(self, camera):
+        super().__init__(width=camera.width, height=camera.height,
+                         eye_height_mm=camera.eye_height_mm, tilt_deg=camera.tilt_deg,
+                         hfov_deg=camera.hfov_deg, vfov_deg=camera.vfov_deg)
+        self.hfov_deg = camera.hfov_deg
+        self.vfov_deg = camera.vfov_deg
+
+    def to_floor(self, points, image_size=None, tilt_deg=None):
+        """
+        :returns: (個数, 2)。[前, 左]（CameraFloorPlane と同じ並び）。地平線より上の点は前が非常に大きな値
+        """
+        import math as _math
+        pts = np.asarray(points, dtype=np.float64).reshape(-1, 2)
+        sx = sy = 1.0
+        if image_size is not None:
+            sx, sy = image_size[0] / self.width, image_size[1] / self.height
+        # 画素をこの床平面の大きさへ直す（画素の中心は (n-1)/2 なので 0.5 ずらす）
+        u = (pts[:, 0] + 0.5) / sx - 0.5
+        v = (pts[:, 1] + 0.5) / sy - 0.5
+        tilt = _math.radians(self.tilt_deg if tilt_deg is None else tilt_deg)
+        f = (self.height / 2) / _math.tan(_math.radians(self.vfov_deg) / 2)
+        tan_h = _math.tan(_math.radians(self.hfov_deg) / 2)
+        down = tilt + np.arctan((v - self.height / 2) / f)
+        forward = np.where(down > 1e-6, self.eye_height_mm / np.tan(np.maximum(down, 1e-6)), 1e9)
+        right = ((u + 0.5) / self.width - 0.5) * 2 * forward * tan_h
+        return np.stack([forward, -right], axis=1)
+
+
+def _rr_install_sim_floor_plane():
+    """CameraFloorPlane.from_constants を、'sim' のカメラならシミュレータの床平面を返す形にする"""
+    original = CameraFloorPlane.from_constants
+    if getattr(original, '_rr_sim', False):
+        return
+
+    def from_constants(cls, camera):
+        if getattr(camera, 'model', 'pinhole') == 'sim':
+            return _RrSimFloorPlane(camera)
+        return original.__func__(cls, camera)
+
+    from_constants._rr_sim = True
+    CameraFloorPlane.from_constants = classmethod(from_constants)
+
+
+_rr_install_sim_floor_plane()
+
 # --- SCRIPT を走らせる（走行体の ev3_python.handle_request と同じ2行）-------------------
 
 ScriptRunner._instance = ScriptRunner(root=_RR_ROOT)
@@ -582,7 +836,7 @@ def _rr_run(script, request_json):
         _rr_later(_rr_connect_remote_control)
         return bool(started)
     except Exception as exc:  # noqa: BLE001 — 走行は止めない
-        console.error(f'robot_runtime: SCRIPT {script} の実行に失敗: {exc}\n{traceback.format_exc()}')
+        _rr_page_error(f'SCRIPT {script} の実行に失敗: {exc}\n{traceback.format_exc()}')
         return False
 
 
@@ -636,6 +890,8 @@ def _rr_reset():
                     console.warn(f'robot_runtime: {name} の {value.__name__} を作り直せません: {exc}')
     ScriptRunner._instance = ScriptRunner(root=_RR_ROOT)
     _rr_connect_pc()
+    # 走り出す前にゴミ集め（自動では回さないため。_rr_disable_gc）
+    _rr_later(_rr_collect_garbage)
     return True
 
 
@@ -832,6 +1088,11 @@ class _RrLogToJs(logging.Handler):
         try:
             sink = js_value(getattr(window, '__simRobotLog', None))
             text = self.format(record)
+            # エラーを例外の最中に出したなら、落ちた所も添える（走行体は1行しか出さない所がある）
+            if record.levelno >= logging.ERROR and not record.exc_info:
+                exc = sys.exc_info()
+                if exc[0] is not None:
+                    text += '\n' + ''.join(traceback.format_exception(*exc)[-12:])
             if sink is not None:
                 sink(record.levelname, record.name, text)
             else:
@@ -847,7 +1108,7 @@ for _rr_name in ('script_runner', 'et_sumo', 'remote_control', 'gate_check_task'
                  'floor_code', 'floor_code_observer', 'floor_code_gate', 'scenario_rows',
                  'ground_plane', 'hint_card_capture', 'qr_decoder', 'handler',
                  'bottle_color_task', 'bottle_color_reader', 'hint_card_advance', 'scenario_update',
-                 'config_2026'):
+                 'config_2026', 'qr_turn_correction', 'qr_steer', 'correction_photo', 'floor_code_reader'):
     _rr_logger = logging.getLogger(_rr_name)
     _rr_logger.addHandler(_rr_handler)
     _rr_logger.setLevel(logging.INFO)
@@ -872,8 +1133,12 @@ def _rr_watch_heading():
         try:
             hook = js_value(getattr(window, '__simOnHeadingMeasured', None))
             if hook is not None:
-                hook(json.dumps(result if result is not None else (self.last or {'ok': False}),
-                                ensure_ascii=False, default=str))
+                shown = dict(result if result is not None else (self.last or {'ok': False}))
+                # 撮った時の本当の姿勢（答え合わせはこれと比べる）
+                pose = _rr_frame_pose(getattr(getattr(self, '_reader', None), 'last_frame', None))
+                if pose is not None:
+                    shown['sim_pose'] = pose
+                hook(json.dumps(shown, ensure_ascii=False, default=str))
         except Exception:  # noqa: BLE001 — 画面の記録が転んでも走行は止めない
             pass
         return result
@@ -883,6 +1148,7 @@ def _rr_watch_heading():
 
 
 _rr_watch_heading()
+
 
 
 def _rr_probe():

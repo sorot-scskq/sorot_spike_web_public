@@ -31,6 +31,14 @@
 この線が床の上でどちらを向いているかが分かれば、走行体の向きが決まる。
 線は2本あるので、**どちらで測るかを選ぶ**（`_sigma` を参照。長いほうではない）。
 
+【ファインダが2個しか取れないコード】
+画面の端で切れたコードや、1個だけ小さすぎて立たない遠くのコードは、2個しか取れない。
+**2個でも向きは出る。ただし90°ごとにしか決まらない**（どの2個かが分からないため）。
+隣どうしか対角かは、外枠の辺の向きと比べて決める（`_observe_pair`）。
+結果の `finders` が 2 になり、heading_deg は ±45° に畳んである。
+使う側（`2026/floor_code_reader.py`）は格子からのずれ（45°刻み）しか見ないので、それで足りる。
+止めるなら `Options.use_two_finders = False`。
+
 【床座標（この module の座標の決まり）】
 床平面は `(x, y)` の2次元で扱う。**x は前、y は左**[mm]。角度は**右まわりが正**
 （真正面が 0、右へ向けば +）。**C++ の自己位置と同じ決まり**にしてある。
@@ -115,6 +123,9 @@ MODULE_PX_FLOOR = 1.5
 #: ファインダ中心どうしの間隔[mm]。50 × 14/21 = 33.3mm。
 #: **床座標の縮尺が合っているかは、これと `CodeObservation.line_mm` を比べれば分かる**
 FINDER_SPACING_MM = CODE_SIZE_MM * (CODE_MODULES - FINDER_MODULES) / CODE_MODULES
+
+#: ファインダの外枠の一辺[mm]。50 × 7/21 = 16.7mm
+FINDER_SIDE_MM = CODE_SIZE_MM * FINDER_MODULES / CODE_MODULES
 
 
 # ---------------------------------------------------------------------------
@@ -308,6 +319,165 @@ class GroundPlaneAdapter(FloorPlane):
         return out
 
 
+class CameraFloorPlane(FloorPlane):
+    """
+    カメラの幾何（俯角だけ傾けたピンホール）で 画像 → 床（x 前・y 左）[mm]。
+
+    **高さと画角は確定値で、動くのは俯角だけ**（柱に当たるたびに動く。1日で 1.8°）。
+    `tilt_deg` を書き換えて使う（`TiltFitter`）。`base_tilt_deg` は校正の値で、合わせられないときに戻る先。
+    式は `2026/grid_heading.py` の pinhole の `image_to_ground` と同じ。レンズの歪みは扱わない。
+
+    :param width, height: 定数を測った映像の大きさ。違う大きさの映像は比で直す
+    :param fx, fy, cx, cy: 焦点距離と画面中心[px]。None なら画角と画面の真ん中から
+    """
+
+    frame = "robot"
+    calibrated = True
+
+    def __init__(self, width: int, height: int, eye_height_mm: float, tilt_deg: float,
+                 hfov_deg: Optional[float] = None, vfov_deg: Optional[float] = None,
+                 fx: Optional[float] = None, fy: Optional[float] = None,
+                 cx: Optional[float] = None, cy: Optional[float] = None):
+        self.width, self.height = width, height
+        self.eye_height_mm = eye_height_mm
+        self.base_tilt_deg = tilt_deg
+        self.tilt_deg = tilt_deg
+        self.fx = fx if fx is not None else (width / 2) / math.tan(math.radians(hfov_deg) / 2)
+        self.fy = fy if fy is not None else (height / 2) / math.tan(math.radians(vfov_deg) / 2)
+        self.cx = cx if cx is not None else (width - 1) / 2
+        self.cy = cy if cy is not None else (height - 1) / 2
+
+    @classmethod
+    def from_constants(cls, camera: Any) -> "CameraFloorPlane":
+        """`grid_heading.CameraConstants`（`heading_reader.ROBOT_CAMERA`）から作る"""
+        if getattr(camera, "model", "pinhole") != "pinhole":
+            raise ValueError(f"pinhole のカメラだけ扱える: {camera.model}")
+        return cls(width=camera.width, height=camera.height, eye_height_mm=camera.eye_height_mm,
+                   tilt_deg=camera.tilt_deg, hfov_deg=camera.hfov_deg, vfov_deg=camera.vfov_deg,
+                   fx=camera.fx, fy=camera.fy, cx=camera.cx, cy=camera.cy)
+
+    def to_floor(self, points: Any, image_size: Optional[Tuple[int, int]] = None,
+                 tilt_deg: Optional[float] = None) -> Any:
+        """
+        :param tilt_deg: 省くと `self.tilt_deg`。合わせるときに俯角を振るために渡す
+        :returns: (個数, 2)。地平線より上の点は前が非常に大きな値（床ではない）
+        """
+        np = OpenCv.numpy()
+        pts = np.asarray(points, dtype=np.float64).reshape(-1, 2)
+        sx = sy = 1.0
+        if image_size is not None:
+            sx, sy = image_size[0] / self.width, image_size[1] / self.height
+        fx, fy = self.fx * sx, self.fy * sy
+        cx, cy = (self.cx + 0.5) * sx - 0.5, (self.cy + 0.5) * sy - 0.5
+        tilt = math.radians(self.tilt_deg if tilt_deg is None else tilt_deg)
+        xn, yn = (pts[:, 0] - cx) / fx, (pts[:, 1] - cy) / fy
+        down = yn * math.cos(tilt) + math.sin(tilt)
+        scale = np.where(down > 1e-6, self.eye_height_mm / np.maximum(down, 1e-6), 1e9)
+        forward = (math.cos(tilt) - yn * math.sin(tilt)) * scale
+        return np.stack([forward, -xn * scale], axis=1)
+
+
+class TiltFitter:
+    """
+    床のコード（ファインダ3個）の形が合うように、俯角だけを合わせる。
+
+    床に戻したとき、3個の中心は「直角」で「間隔 33.3mm」に並ぶはず。俯角がずれると奥行きだけが
+    伸び縮みして、直角が崩れ間隔も変わる。**格子に沿った線は向きが変わらないが、斜めの線は狂う**ので、
+    走行体が格子に斜め（15〜30°）のときに向きが外れていた（いまの床平面で 5°超えが 40%）。
+
+    2026-10-31、手元の 9/23〜10/31 の画像で：1枚ごとに合わせると斜めのときの 5°超えが 0%。
+    合わせた俯角は 9/23 午前 26°・午後 21° で、`ground_homography.json` のメモ（取り付けが動いて
+    25.8°→21°）と合った。黄金分割で 0.05° まで詰めて 1回 0.3ms（母艦）。
+
+    合わせられないとき（3個のコードが無い・範囲の端に張り付く・形が合わない）は、
+    **直近に合わせた値の中央値**、それも無ければ校正の値を使う。どれを使ったかは結果に載せる。
+
+    :param tilt_range_deg: 探す範囲。端から `edge_margin_deg` 以内に張り付いた答えは採らない
+    :param max_cost: 形の合い具合の上限（間隔のずれの比の2乗と、直角のずれ÷30° の2乗の平均）
+    :param hold: 持ち越しに使う、直近に合わせた値の数
+    """
+
+    def __init__(self, tilt_range_deg: Tuple[float, float] = (15.0, 32.0),
+                 edge_margin_deg: float = 0.3, max_cost: float = 0.05, hold: int = 5,
+                 tolerance_deg: float = 0.05):
+        self.tilt_range_deg = tilt_range_deg
+        self.edge_margin_deg = edge_margin_deg
+        self.max_cost = max_cost
+        self.hold = hold
+        self.tolerance_deg = tolerance_deg
+        self.recent: List[float] = []
+
+    def choose(self, np: Any, plane: CameraFloorPlane, triples_image: List[Any],
+               image_size: Tuple[int, int]) -> Tuple[float, str, Optional[float]]:
+        """
+        この1枚で使う俯角を決める。
+
+        :param triples_image: 3個のコードのファインダの中心（画像）。(3, 2) の並び
+        :returns: (俯角, 'fitted' / 'held' / 'calibration', 形の合い具合)
+        """
+        # **組ごとに合わせる。** コードでない3個の組が1つ混ざると、まとめて合わせた答えごと崩れた
+        # （画面の奥で柱などを拾った組。床での一辺が 100mm を超える）
+        cost = None
+        accepted: List[Tuple[float, float]] = []
+        low, high = self.tilt_range_deg
+        for triple in triples_image:
+            tilt, value = self.fit(np, plane, [triple], image_size)
+            cost = value if cost is None else min(cost, value)
+            on_edge = tilt - low < self.edge_margin_deg or high - tilt < self.edge_margin_deg
+            if not on_edge and value <= self.max_cost:
+                accepted.append((tilt, value))
+        if accepted:
+            accepted.sort()
+            tilt, value = accepted[len(accepted) // 2]
+            self.recent = (self.recent + [tilt])[-self.hold:]
+            return tilt, "fitted", value
+        if self.recent:
+            ordered = sorted(self.recent)
+            return ordered[len(ordered) // 2], "held", cost
+        return plane.base_tilt_deg, "calibration", cost
+
+    def fit(self, np: Any, plane: CameraFloorPlane, triples_image: List[Any],
+            image_size: Tuple[int, int]) -> Tuple[float, float]:
+        """形がいちばん合う俯角と、そのときの合い具合（黄金分割）"""
+        ratio = (math.sqrt(5.0) - 1.0) / 2.0
+        a, b = self.tilt_range_deg
+        c, d = b - ratio * (b - a), a + ratio * (b - a)
+        cost = lambda t: self.cost(np, plane, triples_image, image_size, t)  # noqa: E731
+        fc, fd = cost(c), cost(d)
+        while b - a > self.tolerance_deg:
+            if fc < fd:
+                b, d, fd = d, c, fc
+                c = b - ratio * (b - a)
+                fc = cost(c)
+            else:
+                a, c, fc = c, d, fd
+                d = a + ratio * (b - a)
+                fd = cost(d)
+        tilt = (a + b) / 2.0
+        return tilt, cost(tilt)
+
+    @staticmethod
+    def cost(np: Any, plane: CameraFloorPlane, triples_image: List[Any],
+             image_size: Tuple[int, int], tilt_deg: float) -> float:
+        """3個の中心を床に戻したときの、直角と間隔のずれ。左上の角は直角にいちばん近い頂点とみなす"""
+        total = 0.0
+        for triple in triples_image:
+            floor = plane.to_floor(triple, image_size, tilt_deg=tilt_deg)
+            best = None
+            for k in range(3):
+                a, b = floor[(k + 1) % 3] - floor[k], floor[(k + 2) % 3] - floor[k]
+                la, lb = float(np.linalg.norm(a)), float(np.linalg.norm(b))
+                if la <= 0 or lb <= 0:
+                    continue
+                angle = math.degrees(math.acos(max(-1.0, min(1.0, float(np.dot(a, b)) / (la * lb)))))
+                value = (((la - FINDER_SPACING_MM) / FINDER_SPACING_MM) ** 2
+                         + ((lb - FINDER_SPACING_MM) / FINDER_SPACING_MM) ** 2
+                         + ((angle - 90.0) / 30.0) ** 2)
+                best = value if best is None else min(best, value)
+            total += 1e6 if best is None else best
+        return total / len(triples_image)
+
+
 # ---------------------------------------------------------------------------
 # 設定
 # ---------------------------------------------------------------------------
@@ -393,6 +563,27 @@ class Options:
     #: コードの上辺が、コース座標系でどちらを向いているか[deg]。マットで一度測る
     code_axis_course_deg: float = 0.0
 
+    #: ファインダが2個しか取れなかったコードからも向きを出すか。
+    #:
+    #: 画面の端で切れた手前のコードや、ファインダが1個だけ小さすぎて立たない遠くのコードを拾う。
+    #: **向きは90°ごとにしか決まらない**（どの2個かが分からないため）。結果の `finders` が 2 になる。
+    #: 2026-10-31、手元の2,374枚で、3個で決まった230枚に加えて52枚で向きが出た。
+    #: 近い時刻の3個のコードと自己位置の回った量で比べると、差は中央 1.8°（3個どうしは 1.5°）
+    use_two_finders: bool = True
+
+    #: 2個の組で、ファインダの床での一辺が `FINDER_SIDE_MM` の何倍までを認めるか。
+    #: 2個の組には直角の検査が効かないので、大きさでコードでないものを弾く
+    pair_finder_side_range: Tuple[float, float] = (0.6, 1.6)
+
+    #: 2個の組で、中心どうしの床での間隔が `FINDER_SPACING_MM` の何倍までを認めるか。
+    #: 隣なら 1.0、対角なら 1.41。**間隔では隣と対角を見分けない**
+    #: （実機では隣が 28〜42mm、対角が 40〜60mm に散って重なる）
+    pair_spacing_range: Tuple[float, float] = (0.6, 1.9)
+
+    #: 床平面がカメラの幾何（`CameraFloorPlane`）のとき、1枚ごとに俯角をコードの形から合わせるか
+    #: （`TiltFitter`）。ほかの床平面では効かない
+    fit_tilt: bool = True
+
 
 # ---------------------------------------------------------------------------
 # 検出の結果
@@ -434,9 +625,13 @@ class CodeObservation:
     module_px: float
     #: 床座標で測った左上の角度[deg]。90 から離れていれば平面として怪しい
     right_angle_deg: float
-    #: ファインダ3個の中心（画像 / 床）。左上・右上・左下の順
+    #: ファインダ3個の中心（画像 / 床）。左上・右上・左下の順。2個の組では見えた2個
     centers_image: List[Tuple[float, float]]
     centers_floor: List[Tuple[float, float]]
+    #: 向きを出したファインダの数。**2 のときは向きが90°ごとにしか決まらず**、
+    #: heading_deg / axis_deg は ±45° に畳んである。x_mm / y_mm は2個の中点で、
+    #: コードの中心から最大 17mm ずれる。right_angle_deg は測れないので 0
+    finders: int = 3
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -463,6 +658,12 @@ class FloorHeadingResult:
     elapsed_ms: float = 0.0
     width: int = 0
     height: int = 0
+    #: 床に戻すのに使った俯角[deg]。床平面がカメラの幾何（`CameraFloorPlane`）のときだけ
+    tilt_deg: Optional[float] = None
+    #: 俯角の出どころ。'fitted'（この1枚で合わせた）/ 'held'（直近の値）/ 'calibration'（校正の値）
+    tilt_source: str = ""
+    #: 合わせたときの形の合い具合（小さいほど合う）。合わせなかったら None
+    tilt_cost: Optional[float] = None
 
     @property
     def heading_deg(self) -> Optional[float]:
@@ -697,6 +898,7 @@ class FloorCodeHeading:
         self.plane = plane or IdentityFloorPlane()
         self.options = options or Options()
         self.finder = FinderPatternFinder(self.options)
+        self.tilt_fitter = TiltFitter()
         self._clock = clock
 
     def measure(self, image: Any) -> FloorHeadingResult:
@@ -719,20 +921,27 @@ class FloorCodeHeading:
 
         finders = self.finder.find(image)
         result.finders = len(finders)
-        if len(finders) < 3:
+        if len(finders) < (2 if self.options.use_two_finders else 3):
             result.reason = f"ファインダが{len(finders)}個（3個で1コード）"
             result.elapsed_ms = self._elapsed(started)
             return result
 
         image_size = (result.width, result.height)
         centers_image = np.array([f.center for f in finders], dtype=np.float64)
+        if isinstance(self.plane, CameraFloorPlane):
+            if self.options.fit_tilt:
+                self._fit_tilt(np, finders, centers_image, image_size)
+            result.tilt_deg = round(self.plane.tilt_deg, 3)
+            result.tilt_source = self._tilt_source
+            result.tilt_cost = self._tilt_cost
         floor = self.plane.to_floor(centers_image, image_size)
         if floor is None:
             result.reason = "床平面が使えない（校正されていない）"
             result.elapsed_ms = self._elapsed(started)
             return result
         centers_floor = np.asarray(floor, dtype=np.float64)
-        sides_floor = self._sides_on_floor(np, finders, image_size)
+        quads_floor = self._quads_on_floor(np, finders, image_size)
+        sides_floor = self._sides_of(np, quads_floor, len(finders))
 
         # 1モジュールが何px か（潰れているほうの向き）。崖に近いかを知らせるため
         module_px = [min(math.dist(f.corners[i], f.corners[(i + 1) % 4]) for i in range(4))
@@ -740,10 +949,14 @@ class FloorCodeHeading:
 
         codes: List[CodeObservation] = []
         for group in self._group(np, centers_floor, sides_floor):
-            if len(group) != 3:
+            if len(group) == 2 and self.options.use_two_finders:
+                code = self._observe_pair(np, group, finders, centers_floor, quads_floor,
+                                          sides_floor, module_px)
+            elif len(group) == 3:
+                code = self._observe(np, group, centers_image, centers_floor, module_px)
+            else:
                 result.skipped += 1
                 continue
-            code = self._observe(np, group, centers_image, centers_floor, module_px)
             if code is None:
                 result.skipped += 1
                 continue
@@ -763,21 +976,115 @@ class FloorCodeHeading:
         result.elapsed_ms = self._elapsed(started)
         return result
 
+    _tilt_source = "calibration"
+    _tilt_cost: Optional[float] = None
+
+    def _fit_tilt(self, np: Any, finders: List[FinderPattern], centers_image: Any,
+                  image_size: Tuple[int, int]) -> None:
+        """
+        いまの俯角でまとめた3個の組から俯角を合わせ、床平面に書き込む。
+        まとめ方は間隔の比で決まるので、俯角が数度ずれていても組は変わらない
+        """
+        floor = np.asarray(self.plane.to_floor(centers_image, image_size), dtype=np.float64)
+        sides = self._sides_of(np, self._quads_on_floor(np, finders, image_size), len(finders))
+        # 床での大きさがファインダらしいものだけ。俯角が数度ずれると大きさも2〜3割変わるので幅は広め
+        low, high = 0.5 * FINDER_SIDE_MM, 2.0 * FINDER_SIDE_MM
+        triples = [centers_image[group] for group in self._group(np, floor, sides)
+                   if len(group) == 3 and all(low <= sides[i] <= high for i in group)]
+        tilt, source, cost = self.tilt_fitter.choose(np, self.plane, triples, image_size)
+        self.plane.tilt_deg = tilt
+        self._tilt_source = source
+        self._tilt_cost = None if cost is None else round(cost, 5)
+
     def _elapsed(self, started: float) -> float:
         return round((self._clock() - started) * 1000, 1)
 
-    def _sides_on_floor(self, np: Any, finders: List[FinderPattern],
+    def _quads_on_floor(self, np: Any, finders: List[FinderPattern],
                         image_size: Tuple[int, int]) -> Any:
-        """ファインダごとの、床での一辺の長さ[mm]。まとめ方の尺度に使う"""
+        """ファインダごとの外枠の四隅の床座標[mm]。形は (個数, 4, 2)。床平面が使えなければ None"""
         flat = np.asarray([corner for finder in finders for corner in finder.corners],
                           dtype=np.float64)
         floor = self.plane.to_floor(flat, image_size)
         if floor is None:
-            return np.zeros(len(finders), dtype=np.float64)
-        corners = np.asarray(floor, dtype=np.float64).reshape(len(finders), 4, 2)
+            return None
+        return np.asarray(floor, dtype=np.float64).reshape(len(finders), 4, 2)
+
+    @staticmethod
+    def _sides_of(np: Any, quads: Any, count: int) -> Any:
+        """ファインダごとの、床での一辺の長さ[mm]。まとめ方の尺度に使う"""
+        if quads is None:
+            return np.zeros(count, dtype=np.float64)
         sides = [sum(float(np.linalg.norm(quad[i] - quad[(i + 1) % 4])) for i in range(4)) / 4.0
-                 for quad in corners]
+                 for quad in quads]
         return np.asarray(sides, dtype=np.float64)
+
+    def _observe_pair(self, np: Any, group: List[int], finders: List[FinderPattern],
+                      centers_floor: Any, quads_floor: Any, sides_floor: Any,
+                      module_px: Any = None) -> Optional[CodeObservation]:
+        """
+        ファインダ2個から向きを出す。**向きは90°ごとにしか決まらない。** コードらしくなければ None。
+
+        2個が隣どうしなら、結ぶ線はコードの辺に沿う。対角なら辺から45°ずれる。
+        どちらかは**外枠の辺の向きと比べて**決める（ファインダの外枠はコードの辺と平行）。
+        外枠の辺だけで出した向きは誤差が中央 3.6° あり、それだけでは使えないが、
+        0° か 45° かを分けるには十分。
+        """
+        opt = self.options
+        if quads_floor is None:
+            return None
+        first, second = group
+        low, high = opt.pair_finder_side_range
+        for index in group:
+            if not low * FINDER_SIDE_MM <= sides_floor[index] <= high * FINDER_SIDE_MM:
+                return None
+        vector = centers_floor[second] - centers_floor[first]
+        length = float(np.linalg.norm(vector))
+        low, high = opt.pair_spacing_range
+        if not low * FINDER_SPACING_MM <= length <= high * FINDER_SPACING_MM:
+            return None
+
+        edge_deg = self._edge_bearing(np, [quads_floor[i] for i in group])
+        line_deg = self._wrap90(self._bearing(vector))
+        diagonal = abs(self._wrap90(line_deg - edge_deg)) >= 22.5
+        axis_deg = self._wrap90(line_deg - 45.0 if diagonal else line_deg)
+
+        # 精度の目安。2個では直交する方向線が無いので、外枠の大きさから 1px が何mm かを見積もる
+        side_px = 0.5 * (finders[first].side_px + finders[second].side_px)
+        mm_per_px = 0.5 * (sides_floor[first] + sides_floor[second]) / side_px if side_px > 0 else 0.0
+        effective_mm = length / math.sqrt(2.0) if diagonal else length
+        sigma_deg = self._sigma(opt.center_error_px, 1.0, effective_mm, mm_per_px)
+
+        center = 0.5 * (centers_floor[first] + centers_floor[second])
+        px = float(math.dist(finders[first].center, finders[second].center))
+        return CodeObservation(
+            heading_deg=self._wrap90(opt.code_axis_course_deg - axis_deg),
+            axis_deg=axis_deg,
+            x_mm=float(center[0]), y_mm=float(center[1]),
+            sigma_deg=sigma_deg,
+            direction_line="pair_diagonal" if diagonal else "pair_adjacent",
+            line_px=(round(px, 1), 0.0),
+            line_mm=(round(length, 2), 0.0),
+            module_px=round(min(module_px[i] for i in group), 2) if module_px else 0.0,
+            right_angle_deg=0.0,
+            centers_image=[tuple(float(v) for v in finders[i].center) for i in group],
+            centers_floor=[tuple(float(v) for v in centers_floor[i]) for i in group],
+            finders=2,
+        )
+
+    def _edge_bearing(self, np: Any, quads: List[Any]) -> float:
+        """外枠の辺の向き[deg]を90°ごとに畳んで平均する（4倍角で平均）"""
+        sine = cosine = 0.0
+        for quad in quads:
+            for i in range(4):
+                angle = math.radians(4.0 * self._bearing(quad[(i + 1) % 4] - quad[i]))
+                sine += math.sin(angle)
+                cosine += math.cos(angle)
+        return math.degrees(math.atan2(sine, cosine)) / 4.0
+
+    @staticmethod
+    def _wrap90(degrees: float) -> float:
+        """-45 〜 45 に折り返す（90°ごとにしか決まらない向き）"""
+        return round((degrees + 45.0) % 90.0 - 45.0, 4)
 
     def _group(self, np: Any, centers: Any, sides: Any) -> List[List[int]]:
         """

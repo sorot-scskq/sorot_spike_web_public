@@ -116,12 +116,15 @@ def start_recognizers():
     from bottle_color_task import BottleColorTask
     BottleColorTask.get_instance().start()
 
+    from remote_control import set_controller
+    from qr_turn_correction import QrTurnController
+    fallback_controller = None
     if USE_HINT_CARD_ADVANCE:
         # ヒントカードが読めたら、止まって読む区間を終わらせる（SCJFN 2049）。
         # 読めたかを知っているのは Python 側なので、区間の終わりもこちらが言う
         from hint_card_advance import HintCardAdvance
-        from remote_control import set_controller
-        set_controller(HintCardAdvance().control)
+        fallback_controller = HintCardAdvance().control
+    set_controller(QrTurnController(fallback=fallback_controller).control)
 
     if USE_HEADING_FIX:
         # 打ち直しを書き込む先の行を知るため、走り出す前にシナリオを読んでおく。

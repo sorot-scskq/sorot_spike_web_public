@@ -174,32 +174,11 @@ FOLLOW_PLAN_SWITCH = "./sorot_spike/follow_plan.txt"
 #: 理由は `FOLLOW_PLAN_SWITCH` と同じ
 USE_HEADING_CAMERA_SWITCH = "./sorot_spike/heading_camera.txt"
 
-#: `USE_HEADING_FIX` を走行体で切り替える置き場（1行目に 1 か 0）。
-#: 理由は `FOLLOW_PLAN_SWITCH` と同じ
-USE_HEADING_FIX_SWITCH = "./sorot_spike/heading_fix.txt"
-
 #: 旋回の直後の直進で、カメラで向きを測るか
 USE_HEADING_CAMERA = True
 
 #: 向きを測るスクリプト（RoughSpot/Python からの相対パス。SCRIPT_LEN 40 まで）
 HEADING_SCRIPT = "2026/recog/grid_heading.py"
-
-#: 測った向きを**自己位置**へも打ち直す側に替えるか（Docs/heading_correction.md）
-#:
-#: **もう「どちらか」ではない。** SCRIPT は1行に1つしか書けないが、直す量が別でも
-#: **測る量は同じ**（格子に対する向きのずれ）なので、打ち直す側（HEADING_FIX_SCRIPT）は
-#: 1回の観測から両方へ配る。
-#:
-#:     床のコードで測れた  → 自己位置を打ち直す ＋ 走らせ方の目標も直す
-#:     測れなかった        → 目印・黒線で測り直し、走らせ方の目標だけ直す（従来どおり）
-#:
-#: つまり True にしても、**向き保持のカメラ補正は止まらない**
-#: （`heading_fix_task.PUBLISH_HEADING_DEV` / `FALLBACK_TO_MARKERS`）。
-#: **既定はまだ False。** 実機で1本走らせて確かめてから既定を変えること
-USE_HEADING_FIX = False
-
-#: 自己位置の向きを打ち直すスクリプト
-HEADING_FIX_SCRIPT = "2026/recog/heading_fix.py"
 
 #: 何回の旋回につき 1回測るか。1 なら旋回のたび
 HEADING_EVERY = 1
@@ -276,10 +255,15 @@ def is_turn_row(row: Any) -> bool:
 
 
 def heading_script() -> str:
-    """旋回の直後の直進に付ける SCRIPT（向き保持の目標を直す / 自己位置を打ち直す）"""
-    fix = SwitchFile.read(USE_HEADING_FIX_SWITCH, USE_HEADING_FIX)
-    logger.info("旋回の直後の直進: %s", "自己位置を打ち直す" if fix else "向き保持の目標を直す")
-    return HEADING_FIX_SCRIPT if fix else HEADING_SCRIPT
+    """
+    旋回の直後の直進に付ける SCRIPT（向き保持の目標を直す）。
+
+    **自己位置を打ち直す側（heading_fix）は止めた（2026-10-31）。** QR を復号して四隅から向きを出す
+    旧い道で、走行中に誤った値（-15.6 / +21.6 / +5.34°）を出し、+5.34° は当たってしまった。
+    床のコードは heading_task の側で、四角（ファインダ）の道で読む。`heading_fix.txt` は無くした
+    """
+    logger.info("旋回の直後の直進: 向き保持の目標を直す")
+    return HEADING_SCRIPT
 
 
 def with_heading_camera(scenario: list, every: int = HEADING_EVERY) -> list:

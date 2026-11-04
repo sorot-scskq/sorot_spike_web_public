@@ -203,6 +203,11 @@ class RemoteControl:
     def has_controller(self) -> bool:
         return self._controller is not None
 
+    def current_controller(self) -> Optional[Callable[[Observation], Any]]:
+        """いま差してある制御関数。無ければ None"""
+        with self._lock:
+            return self._controller
+
     # --- 走行体そのものを操作する ---------------------------------------------
 
     def insert_scenario(self, commands) -> None:
@@ -449,6 +454,11 @@ def controller(fn: Callable[[Observation], Any]):
 
 def has_controller() -> bool:
     return RemoteControl.get_instance().has_controller()
+
+
+def current_controller() -> Optional[Callable[[Observation], Any]]:
+    """いま差してある制御関数。無ければ None"""
+    return RemoteControl.get_instance().current_controller()
 
 
 def insert_scenario(commands) -> None:

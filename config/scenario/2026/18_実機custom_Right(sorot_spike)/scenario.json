@@ -359,14 +359,26 @@
     "SwitchInfo":{"SCJFN":1,"SCT":500,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
     "CoordCorrectInfo":{}
 },
-{"Comment":"【ETラリー】経路の入り口（SCJFN 4096 = SW_ROUTE、SCV 1 = ETラリー）。届いた経路はこの直後に SNO 30 として入る。3秒で届かなければ諦めて次へ。**ここが PC の経路の出発点（START_RED）。** 3色とも赤ゾーンの目印の高さでグリッドの方（西）を向いて止まっている。PC の経路は最初に320mm進んでグリッドの1マス目に入る",
+{"Comment":"【ETラリー】QR角度補正のため止まって床コードを測る（入口の向きを格子にそろえる。赤・青・黄どの運び終わりからもここを通る）。測り終えたら Python がリモートの応答で抜けさせる（SCJFN 2049）",
     "SNO":29,"CNO":2,"PRVSNO":29,"PRVCNO":1,
+    "RunInfo":{"SCRIPT":"2026/recog/qr_turn_correction.py","FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":2049,"SCT":6000,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"【ETラリー】QR測定失敗時は無旋回で抜ける。成功時はPythonが旋回行へ差し替える",
+    "SNO":29,"CNO":3,"PRVSNO":29,"PRVCNO":2,
+    "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
+    "SwitchInfo":{"SCJFN":1,"SCT":500,"SCD":0,"SCR":0,"SCC":0,"SCV":0,"SCX":0,"SCY":0},
+    "CoordCorrectInfo":{}
+},
+{"Comment":"【ETラリー】経路の入り口（SCJFN 4096 = SW_ROUTE、SCV 1 = ETラリー）。届いた経路はこの直後に SNO 30 として入る。3秒で届かなければ諦めて次へ。**ここが PC の経路の出発点（START_RED）。** 3色とも赤ゾーンの目印の高さでグリッドの方（西）を向いて止まっている。PC の経路は最初に320mm進んでグリッドの1マス目に入る",
+    "SNO":29,"CNO":4,"PRVSNO":29,"PRVCNO":3,
     "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
     "SwitchInfo":{"SCJFN":4096,"SCT":5000,"SCD":0,"SCR":0,"SCC":0,"SCV":1,"SCX":0,"SCY":0},
     "CoordCorrectInfo":{}
 },
 {"Comment":"【ETラリー】経路を走り終えたか。**届かなかったときは 37 へ逃げる**（SCV 21 = ETラリーの経路が届いていない）。届いていれば経路を走り終えてここへ来るので、次の 36 へ進む",
-    "SNO":35,"CNO":1,"PRVSNO":29,"PRVCNO":2,
+    "SNO":35,"CNO":1,"PRVSNO":29,"PRVCNO":4,
     "RunInfo":{"FUNCNO":5,"FWD":0,"TRN":0,"KP":0,"KI":0,"KD":0,"NOBLNCE":1},
     "SwitchInfo":{"SCJFN":2,"SCT":0,"SCD":0,"SCR":0,"SCC":0,"SCV":21,"SCX":0,"SCY":0,"JMPSNO":37},
     "CoordCorrectInfo":{}

@@ -111,6 +111,12 @@ class ScenarioRows:
         #: 学び方が狂ったら二度と使わない
         self._route_lost = False
 
+    def rows_with_script(self, script: str) -> List[Tuple[int, int]]:
+        """シナリオのファイルの行のうち、SCRIPT が `script` の行の (SNO, CNO)"""
+        with self._lock:
+            return [(r.get("SNO", 0), r.get("CNO", 0)) for r in self._file_rows
+                    if str((r.get("RunInfo") or {}).get("SCRIPT", "")).strip() == script]
+
     # --- 行を覚える -----------------------------------------------------------
 
     def load_file(self, path: str) -> int:
@@ -220,14 +226,19 @@ class ScenarioRows:
 
         その場で打ち直す側が使う（旋回の最中に打ち直すと、その行の止め方が狂う）。
         """
+        row = self.row_at(sno, cno)
+        return None if row is None else keeps_heading(row)
+
+    def row_at(self, sno: int, cno: int) -> Optional[Dict[str, Any]]:
+        """その行の中身（コマンドセット）。**知らない行なら None**（経路の行は番号を学んでから）"""
         with self._lock:
             at = self._file_at.get((sno, cno))
             if at is not None:
-                return keeps_heading(self._file_rows[at])
+                return self._file_rows[at]
             if self._route_offset is not None and self._route_rows:
                 index = cno - self._route_offset
                 if 0 <= index < len(self._route_rows):
-                    return keeps_heading(self._route_rows[index])
+                    return self._route_rows[index]
         return None
 
     def is_route_marker(self, sno: int, cno: int) -> bool:
